@@ -52,6 +52,8 @@ public class CameraController : MonoBehaviour
 
             float scrollInput = Input.mouseScrollDelta.y;
 
+            //float nextDistance = 
+
             // Check if there was a scroll up event
             if (scrollInput > 0)
             {
@@ -61,7 +63,7 @@ public class CameraController : MonoBehaviour
             // Check if there was a scroll down event
             if (scrollInput < 0)
             {
-                distanceToTarget += zoomSpeed * Time.deltaTime; ;
+                distanceToTarget += zoomSpeed * Time.deltaTime; 
             }
         }
     }
