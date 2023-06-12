@@ -20,19 +20,24 @@ public class CameraController : MonoBehaviour
     private float smoothTime = 3.0f;
 
     [SerializeField]
+    private bool rotationIsInLocal = false;
+
+    [SerializeField]
     private float zoomSpeed = 3.0f;
 
+    Transform centerPoint;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        centerPoint = transform.parent;
     }
 
     // Update is called once per frame
     void Update()
     {
         distanceToTarget = Mathf.Clamp(distanceToTarget, 5, 15);
+
 
         if (Input.GetMouseButton(1))
         {
@@ -44,27 +49,29 @@ public class CameraController : MonoBehaviour
 
             rotationX = Mathf.Clamp(rotationX, -90, 90);
 
-            Vector3 nextRotation = new Vector3(rotationX, rotationY);
-            currentRotation = Vector3.SmoothDamp(currentRotation, nextRotation, ref smoothVelocity, smoothTime);
+            Vector3 rotationVector = new Vector3(rotationX, rotationY);
+
+            if (rotationIsInLocal)
+                centerPoint.Rotate(mouseY, mouseX, 0);
+            else
+                centerPoint.localEulerAngles = rotationVector;
+            //Vector3 nextRotation = new Vector3(rotationX, rotationY);
+            //centerPoint.localEulerAngles = nextRotation;
+
+
+
+            /*currentRotation = Vector3.SmoothDamp(currentRotation, nextRotation, ref smoothVelocity, smoothTime);
 
             transform.localEulerAngles = currentRotation;
-            transform.position = targetTransform.position - transform.forward * distanceToTarget;
+            transform.position = centerPoint.position - transform.forward * distanceToTarget;*/
 
             float scrollInput = Input.mouseScrollDelta.y;
 
-            //float nextDistance = 
-
-            // Check if there was a scroll up event
             if (scrollInput > 0)
-            {
                 distanceToTarget -= zoomSpeed * Time.deltaTime;
-            }
 
-            // Check if there was a scroll down event
             if (scrollInput < 0)
-            {
                 distanceToTarget += zoomSpeed * Time.deltaTime; 
-            }
         }
     }
 }
