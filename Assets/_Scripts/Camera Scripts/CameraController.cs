@@ -4,28 +4,20 @@ using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
 public class CameraController : MonoBehaviour
-{
-    [SerializeField] float mouseSensitivity = 3.0f;
-
+{   
     private float rotationY;
     private float rotationX;
-    private Vector3 currentRotation;
-    private Vector3 smoothVelocity = Vector3.zero;
+    private Transform centerPoint;
 
-    [SerializeField]
-    private Transform targetTransform;
-    [SerializeField]
-    private float distanceToTarget = 10.0f;
-    [SerializeField]
-    private float smoothTime = 3.0f;
+    [Header("Camera Settings")]
+    [SerializeField] float mouseSensitivity = 3.0f;
+    [SerializeField] private float distanceToTarget = 10.0f;
+    [SerializeField] private Transform targetTransform;
+    [SerializeField] private float zoomSpeed = 3.0f;
 
+    [Header("Camera Modes")]
     [SerializeField]
     private bool rotationIsInLocal = false;
-
-    [SerializeField]
-    private float zoomSpeed = 3.0f;
-
-    Transform centerPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -36,8 +28,9 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        centerPoint.position = targetTransform.position;
         distanceToTarget = Mathf.Clamp(distanceToTarget, 5, 15);
-
+        transform.position = centerPoint.position - transform.forward * distanceToTarget;
 
         if (Input.GetMouseButton(1))
         {
@@ -51,25 +44,17 @@ public class CameraController : MonoBehaviour
 
             Vector3 rotationVector = new Vector3(rotationX, rotationY);
 
+            Vector3 rotationUpdateVector = new Vector3(mouseY * -1f, mouseX, 0);
+
             if (rotationIsInLocal)
-                centerPoint.Rotate(mouseY, mouseX, 0);
+                centerPoint.Rotate(rotationUpdateVector);
             else
-                centerPoint.localEulerAngles = rotationVector;
-            //Vector3 nextRotation = new Vector3(rotationX, rotationY);
-            //centerPoint.localEulerAngles = nextRotation;
+                centerPoint.eulerAngles = rotationVector;
 
-
-
-            /*currentRotation = Vector3.SmoothDamp(currentRotation, nextRotation, ref smoothVelocity, smoothTime);
-
-            transform.localEulerAngles = currentRotation;
-            transform.position = centerPoint.position - transform.forward * distanceToTarget;*/
-
+            // Mouse scroll
             float scrollInput = Input.mouseScrollDelta.y;
-
             if (scrollInput > 0)
                 distanceToTarget -= zoomSpeed * Time.deltaTime;
-
             if (scrollInput < 0)
                 distanceToTarget += zoomSpeed * Time.deltaTime; 
         }
