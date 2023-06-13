@@ -8,6 +8,7 @@ public class CameraController : MonoBehaviour
     private float rotationY;
     private float rotationX;
     private Transform centerPoint;
+    private GameObject playerRef;
 
     [Header("Camera Settings")]
     [SerializeField] float mouseSensitivity = 3.0f;
@@ -18,16 +19,25 @@ public class CameraController : MonoBehaviour
     [Header("Camera Modes")]
     [SerializeField]
     private bool rotationIsInLocal = false;
+    [SerializeField]
+    private bool moveAfterPlayer = false;
 
     // Start is called before the first frame update
     void Start()
     {
         centerPoint = transform.parent;
+        playerRef = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (moveAfterPlayer)
+        {
+            targetTransform = playerRef.transform;
+            centerPoint.rotation = playerRef.transform.rotation;
+        }
+
         centerPoint.position = targetTransform.position;
         distanceToTarget = Mathf.Clamp(distanceToTarget, 5, 15);
         transform.position = centerPoint.position - transform.forward * distanceToTarget;
@@ -50,13 +60,12 @@ public class CameraController : MonoBehaviour
                 centerPoint.Rotate(rotationUpdateVector);
             else
                 centerPoint.eulerAngles = rotationVector;
-
-            // Mouse scroll
-            float scrollInput = Input.mouseScrollDelta.y;
-            if (scrollInput > 0)
-                distanceToTarget -= zoomSpeed * Time.deltaTime;
-            if (scrollInput < 0)
-                distanceToTarget += zoomSpeed * Time.deltaTime; 
         }
+
+        float scrollInput = Input.mouseScrollDelta.y;
+        if (scrollInput > 0)
+            distanceToTarget -= zoomSpeed * Time.deltaTime;
+        if (scrollInput < 0)
+            distanceToTarget += zoomSpeed * Time.deltaTime;
     }
 }
