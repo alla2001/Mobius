@@ -47,7 +47,10 @@ public class CameraController : MonoBehaviour
         transform.position = centerPoint.position - transform.forward * distanceToTarget;
 
 
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            cameraMode = CameraMode.GodModeLocal;
+        }
 
         if (Input.GetMouseButton(1) && cameraMode != CameraMode.FollowCharacter)
         {
@@ -95,7 +98,7 @@ public class CameraController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            if (hit.transform.gameObject.tag == "Player")
+            if (hit.transform.gameObject.tag == "Player" && Input.GetMouseButtonDown(0))
             {
                 cameraMode = CameraMode.FollowCharacter;
             }
