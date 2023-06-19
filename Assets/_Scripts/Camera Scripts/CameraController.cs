@@ -87,7 +87,7 @@ public class CameraController : MonoBehaviour
         }
         float scrollInput = Input.mouseScrollDelta.y;
 
-        Debug.Log(scrollInput);
+        //Debug.Log(scrollInput);
         if (scrollInput > 0)
             distanceToTarget -= zoomSpeed * Time.deltaTime;
         if (scrollInput < 0)
@@ -105,6 +105,6 @@ public class CameraController : MonoBehaviour
             Transform objectHit = hit.transform;
         }
 
-        Debug.Log(centerPoint.position);
+        //Debug.Log(centerPoint.position);
     }
 }
