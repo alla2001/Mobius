@@ -20,83 +20,144 @@ public class CharacterMovement : MonoBehaviour
     private SplineFollower _follower;
     
     public bool hasControle=false;
+    bool inInterSection;
     private void OnEnable()
     {
-        follower.onNode += OnNode; //onNode is called every time the follower passes by a Node
+        //onNode is called every time the follower passes by a Node
     }
     private void OnDisable()
     {
-        follower.onNode -= OnNode;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if ()
-        //{
-
-        //}
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            MoveOnIntersection(0);
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            MoveOnIntersection(1);
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            GoBack();
+        }
     }
-    private void OnNode(List<SplineTracer.NodeConnection> passed)
+    void GoBack()
     {
-        
- Debug.Log("Reached node " + passed[0].node.name + " connected at point " + passed[0].point);
-        //Get all available connected splines
-        Node.Connection[] connections = passed[0].node.GetConnections();
-        //If this node does not have other connected splines, skip everything - there is no junction
-        if (connections.Length == 1) return;
-        //get the connected splines and find the index of the follower's current spline
-        int currentConnection = 0;
-        for (int i = 0; i < connections.Length; i++)
-        {
-            if (connections[i].spline == follower.spline && connections[i].pointIndex ==
-           passed[0].point)
-            {
-                currentConnection = i;
-                break;
-            }
-        }
-        //Choose a random connection to use that is not the current one
-        //This part can be replaced with any other Junction-picking logic (see TrainEngine.cs inExamples)
- int newConnection = Random.Range(0, connections.Length);
-        //If the random index corrensponds to the current connection, change it so that it
-      
- if (newConnection == currentConnection)
-        {
-            newConnection++;
-            if (newConnection >= connections.Length) newConnection = 0;
-        }
-        //A good method to use which takes into account spline directions and travel distances
-        //and adds compensation so that no twitching occurs
-        SwitchSpline(connections[currentConnection], connections[newConnection]);
+        if (follower.direction == Spline.Direction.Forward)
+            follower.direction = Spline.Direction.Backward;
+        else
+            follower.direction = Spline.Direction.Forward;
     }
-    void SwitchSpline(Node.Connection from, Node.Connection to)
+    void SwitchSpline(Node.Connection from, Node.Connection to,bool flipDirection)
     {
         //See how much units we have travelled past that Node in the last frame
-        float excessDistance =
-       follower.spline.CalculateLength(follower.spline.GetPointPercent(from.pointIndex),
-       follower.UnclipPercent(follower.result.percent));
+        float excessDistance = follower.spline.CalculateLength(follower.spline.GetPointPercent(from.pointIndex), follower.UnclipPercent(follower.result.percent));
+       excessDistance = 0;
         //Set the spline to the follower
         follower.spline = to.spline;
+        if (!to.spline.isClosed)
+        {
+            follower.wrapMode = SplineFollower.Wrap.PingPong;
+        }
+        else
+        {
+            follower.wrapMode = SplineFollower.Wrap.Loop;
+        }
         follower.RebuildImmediate();
         //Get the location of the junction point in percent along the new spline
         double startpercent = follower.ClipPercent(to.spline.GetPointPercent(to.pointIndex));
-        if (Vector3.Dot(from.spline.Evaluate(from.pointIndex).forward,
-       to.spline.Evaluate(to.pointIndex).forward) < 0f)
+        if (follower.direction == Spline.Direction.Forward)
         {
-            if (follower.direction == Spline.Direction.Forward) follower.direction =
-           Spline.Direction.Backward;
-            else follower.direction = Spline.Direction.Forward;
+            if (Vector3.Dot(from.spline.Evaluate(from.pointIndex).right, to.spline.Evaluate(to.pointIndex).forward) < 0f)
+            {
+                if (!flipDirection)
+                {
+                    if (follower.direction == Spline.Direction.Forward)
+                        follower.direction = Spline.Direction.Backward;
+                    else
+                        follower.direction = Spline.Direction.Forward;
+                }
+
+
+            }
+            else
+            {
+                if (flipDirection)
+                {
+                    if (follower.direction == Spline.Direction.Forward)
+                        follower.direction = Spline.Direction.Backward;
+                    else
+                        follower.direction = Spline.Direction.Forward;
+                }
+            }
         }
+        else
+        {
+            if (Vector3.Dot(from.spline.Evaluate(from.pointIndex).right, to.spline.Evaluate(to.pointIndex).forward) < 0f)
+            {
+                if (!flipDirection)
+                {
+                    if (follower.direction == Spline.Direction.Forward)
+                        follower.direction = Spline.Direction.Backward;
+                    else
+                        follower.direction = Spline.Direction.Forward;
+                }
+
+
+            }
+            else
+            {
+                if (flipDirection)
+                {
+                    if (follower.direction == Spline.Direction.Forward)
+                        follower.direction = Spline.Direction.Backward;
+                    else
+                        follower.direction = Spline.Direction.Forward;
+                }
+            }
+        }
+       
+       
         //Position the follower at the new location and travel excessDistance along the new spline
         follower.SetPercent(follower.Travel(startpercent, excessDistance, follower.direction));
-      
-    }
 
+    }
+    Vector3 intersectionPos;
+
+    public void MoveOnIntersection(int direction)
+    {
+
+        if (!inInterSection) return;    
+        int current = intersection.GetCurrentConnection(follower);
+      
+        SwitchSpline(intersection.GetConnectionByIndex(current), intersection.GetNextDirection(current), direction>0);
+    }
+    Intersection intersection;
     private void OnTriggerEnter(Collider other)
     {
-        Node node = other.gameObject.GetComponent<Node>();
+        if (other.CompareTag("Intersection") && !inInterSection)
+        {
+            print("Intersect");
+            intersectionPos=other.transform.position ;
+            intersection = other.GetComponent<Intersection>();
+           
+              inInterSection =true;
+    
+        }
 
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Intersection") && inInterSection)
+        {
+          // other.transform.position= intersectionPos;
+            inInterSection = false;
+        }
     }
 }
 
