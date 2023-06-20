@@ -1,28 +1,29 @@
 using Dreamteck.Splines;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Dreamteck.Splines;
+
 public class Intersection : MonoBehaviour
 {
     public Node nodeIntersection;
+
     public Node.Connection GetNextDirection(int current)
     {
         Node.Connection[] connections = nodeIntersection.GetConnections();
         int index = 0;
-        if(current+1< connections.Length) index= current+1;
+        if (current + 1 < connections.Length) index = current + 1;
         return nodeIntersection.GetConnections()[index];
     }
+
     public int GetCurrentConnection(SplineFollower follower)
     {
         Node.Connection[] connections = nodeIntersection.GetConnections();
-       
+
         if (connections.Length == 1) return -1;
 
         int currentConnection = 0;
         for (int i = 0; i < connections.Length; i++)
         {
-            if (connections[i].spline == follower.spline )
+            if (connections[i].spline == follower.spline)
             {
                 currentConnection = i;
                 break;
@@ -30,14 +31,15 @@ public class Intersection : MonoBehaviour
         }
         return currentConnection;
     }
+
     public Node.Connection GetConnectionByIndex(int index)
     {
         Node.Connection[] connections = nodeIntersection.GetConnections();
         return connections[index];
     }
+
     private void OnNode(List<SplineTracer.NodeConnection> passed)
     {
-
         //Debug.Log("Reached node " + passed[0].node.name + " connected at point " + passed[0].point);
         ////Get all available connected splines
         //Node.Connection[] connections = passed[0].node.GetConnections();
