@@ -9,13 +9,23 @@ public class ShapePlacer : MonoBehaviour
     public bool placingShape;
     GameObject tmp;
     public bool canPlace;
+
+    private void Start()
+    {
+        placingShape = false;
+    }
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            placingShape = true;
+        }
+
         if (placingShape && tmp==null) 
         {
             tmp = Instantiate(Shape);
             tmp.transform.parent = transform;
-            tmp.transform.position = tmp.transform.position+transform.forward*5f;
+            tmp.transform.position = tmp.transform.position+transform.forward*8f;
 
         }
         if (Input.GetKeyDown(KeyCode.Space) && placingShape && canPlace)

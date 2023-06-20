@@ -51,6 +51,6 @@ public class CutoutObject : MonoBehaviour
         }
 
         
-        Debug.Log(cutoutPos);
+        //Debug.Log(cutoutPos);
     }
 }

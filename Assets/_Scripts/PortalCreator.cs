@@ -16,9 +16,10 @@ public class PortalCreator : MonoBehaviour
 
     public SplineComputer firstSpline;
     private SplineComputer secondSpline;
+    public GameObject bridge;
 
     private GameObject tempHilight;
-
+    
     public LayerMask ignoreMask;
     // Start is called before the first frame update
     private void Start()
@@ -33,7 +34,7 @@ public class PortalCreator : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        print(firstSpline.GetComponent<SplineMesh>().GetChannel(0).minScale.x);
+        //print(firstSpline.GetComponent<SplineMesh>().GetChannel(0).minScale.x);
         
         if (!inPortalCreationMode) return;
         Ray r = mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -71,11 +72,12 @@ public class PortalCreator : MonoBehaviour
             {
                 
                 secondSpline = hit.collider.GetComponent<SplineComputer>();
+                if (secondSpline == null) return;
                 if (firstSpline == secondSpline) 
                 {
 
-                    Destroy(firstBridgePoint);
-                    Destroy(secondBridgePoint);
+                    Destroy(firstBridgePoint.gameObject);
+                    Destroy(secondBridgePoint.gameObject);
                     return;
                 }
                 secondBridgePoint = Instantiate(nodePrefab).GetComponent<Node>();
@@ -113,17 +115,20 @@ public class PortalCreator : MonoBehaviour
                     points[1].size = 1f;
                     points[1].color = Color.white;
 
-                    splineBridge = new GameObject().AddComponent<SplineComputer>();
+                    splineBridge = Instantiate(bridge).GetComponent<SplineComputer>();
 
                     splineBridge.SetPoints(points);
                     firstBridgePoint.AddConnection(splineBridge, 0);
                     secondBridgePoint.AddConnection(splineBridge, 1);
+                    splineBridge.GetComponent<SplineMesh>().RebuildImmediate();
 
-                 
-                }else
+
+
+                }
+                else
                 {
-                    Destroy(firstBridgePoint);
-                    Destroy(secondBridgePoint);
+                    Destroy(firstBridgePoint.gameObject);
+                    Destroy(secondBridgePoint.gameObject);
                 }
             }
             return;
