@@ -120,9 +120,12 @@ public class PortalCreator : MonoBehaviour
                     splineBridge.SetPoints(points);
                     firstBridgePoint.AddConnection(splineBridge, 0);
                     secondBridgePoint.AddConnection(splineBridge, 1);
+                    splineBridge.GetComponent<SplineMesh>().RebuildImmediate();
 
-                 
-                }else
+
+
+                }
+                else
                 {
                     Destroy(firstBridgePoint);
                     Destroy(secondBridgePoint);
