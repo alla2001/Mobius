@@ -39,12 +39,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CutoutSize: 0.05
-    - _FalloffSize: 0.05
+    - _CutoutSize: -0.52
+    - _FalloffSize: 0.33
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _CutoutPos: {r: 2, g: 2, b: 0, a: 0}
+    - _CutoutPos: {r: 0, g: 0, b: 0, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _Tiling: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
