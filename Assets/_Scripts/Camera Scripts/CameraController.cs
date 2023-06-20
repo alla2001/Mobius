@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using static UnityEngine.GraphicsBuffer;
 
 public enum CameraMode
 {
@@ -13,18 +8,19 @@ public enum CameraMode
 }
 
 public class CameraController : MonoBehaviour
-{   
+{
     private float rotationY;
     private float rotationX;
     private Transform centerPoint;
     private GameObject playerRef;
-    Vector3 rotationVector;
-    Vector3 rotationUpdateVector;
-    float mouseX;
-    float mouseY;
+    private Vector3 rotationVector;
+    private Vector3 rotationUpdateVector;
+    private float mouseX;
+    private float mouseY;
 
     [Header("Camera Settings")]
-    [SerializeField] float mouseSensitivity = 3.0f;
+    [SerializeField] private float mouseSensitivity = 3.0f;
+
     [SerializeField] private float distanceToTarget = 10.0f;
     [SerializeField] private float zoomSpeed = 3.0f;
 
@@ -33,19 +29,18 @@ public class CameraController : MonoBehaviour
     private CameraMode cameraMode;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         centerPoint = transform.parent;
         playerRef = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         //centerPoint.position = targetTransform.position;
-        distanceToTarget = Mathf.Clamp(distanceToTarget, 5, 15);
+        distanceToTarget = Mathf.Clamp(distanceToTarget, 5, 35);
         transform.position = centerPoint.position - transform.forward * distanceToTarget;
-
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -74,7 +69,7 @@ public class CameraController : MonoBehaviour
         }
         else if (cameraMode == CameraMode.GodModeLocal)
         {
-            centerPoint.position = Vector3.zero;
+            //centerPoint.position = Vector3.zero;
             if (Input.GetMouseButton(1))
             {
                 centerPoint.Rotate(rotationUpdateVector);
@@ -82,7 +77,7 @@ public class CameraController : MonoBehaviour
         }
         else if (cameraMode == CameraMode.GodModeGlobal)
         {
-            centerPoint.position = Vector3.zero;
+            //centerPoint.position = Vector3.zero;
             centerPoint.eulerAngles = rotationVector;
         }
         float scrollInput = Input.mouseScrollDelta.y;

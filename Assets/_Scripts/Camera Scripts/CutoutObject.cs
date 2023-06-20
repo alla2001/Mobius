@@ -6,12 +6,13 @@ public class CutoutObject : MonoBehaviour
 {
     [SerializeField]
     private Transform targetObject;
-
+    public float falloff;
+    public float size;
     [SerializeField]
     private LayerMask wallMask;
 
     private Camera mainCamera;
-    public List<Material> materials;
+   
     private void Awake()
     {
         mainCamera = GetComponent<Camera>();
@@ -23,19 +24,33 @@ public class CutoutObject : MonoBehaviour
         cutoutPos.y /= (Screen.width / Screen.height);
 
         Vector3 offset = targetObject.position - transform.position;
-        RaycastHit[] hitObjects = Physics.RaycastAll(transform.position, offset, offset.magnitude, wallMask);
+        RaycastHit[] hitObjects = Physics.SphereCastAll(transform.position,0.5f, offset, offset.magnitude-0.52f, wallMask);
+        GameObject[] objectsInLayer = GameObject.FindGameObjectsWithTag("wall");
+        foreach (GameObject obj in objectsInLayer)
+        {
+            Material[] materials = obj.transform.GetComponent<Renderer>().materials;
 
-        //for (int i = 0; i < hitObjects.Length; ++i)
-        //{
-            //Material[] materials = hitObjects[i].transform.GetComponent<Renderer>().materials;
+            foreach (Material mat in materials)
+            {
+                print(obj.name);
+               
+                mat.SetFloat("_CutoutSize", 0);
+                mat.SetFloat("_FalloffSize", 0);
+            }
+        }
+        for (int i = 0; i < hitObjects.Length; ++i)
+        {
+            Material[] materials = hitObjects[i].transform.GetComponent<Renderer>().materials;
 
-           foreach(Material mat in materials)
+            foreach (Material mat in materials)
             {
                 mat.SetVector("_CutoutPos", cutoutPos);
-                mat.SetFloat("_CutoutSize", 0.08f);
-                mat.SetFloat("_FalloffSize", 0.05f);
+                mat.SetFloat("_CutoutSize", size);
+                mat.SetFloat("_FalloffSize", falloff);
             }
+        }
 
-        Debug.Log(cutoutPos);
+        
+        //Debug.Log(cutoutPos);
     }
 }

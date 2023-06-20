@@ -6,6 +6,6 @@ using UnityEngine;
 public class BridgePoint : MonoBehaviour
 {
 
-    public Node topNode;
-    public Node bottomNode;
+    public Node Node;
+    //public Node bottomNode;
 }

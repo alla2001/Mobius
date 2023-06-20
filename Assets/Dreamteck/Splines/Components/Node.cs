@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 namespace Dreamteck.Splines
 {
@@ -24,8 +23,10 @@ namespace Dreamteck.Splines
 
             [SerializeField]
             private int _pointIndex = 0;
+
             [SerializeField]
             private SplineComputer _computer = null;
+
             [SerializeField]
             [HideInInspector]
             internal SplinePoint point;
@@ -47,7 +48,10 @@ namespace Dreamteck.Splines
                 point = inputPoint;
             }
         }
-        public enum Type { Smooth, Free }
+
+        public enum Type
+        { Smooth, Free }
+
         [HideInInspector]
         public Type type = Type.Smooth;
 
@@ -93,12 +97,15 @@ namespace Dreamteck.Splines
         [SerializeField]
         [HideInInspector]
         protected Connection[] connections = new Connection[0];
+
         [SerializeField]
         [HideInInspector]
         private bool _transformSize = true;
+
         [SerializeField]
         [HideInInspector]
         private bool _transformNormals = true;
+
         [SerializeField]
         [HideInInspector]
         private bool _transformTangents = true;
@@ -113,33 +120,33 @@ namespace Dreamteck.Splines
             SampleTransform();
         }
 
-
-        void LateUpdate()
+        private void LateUpdate()
         {
             Run();
         }
 
-        void Update()
+        private void Update()
         {
             Run();
         }
 
-        bool TransformChanged()
+        private bool TransformChanged()
         {
 #if UNITY_EDITOR
-            if(_trs == null) return _lastPosition != transform.position || _lastRotation != transform.rotation || _lastScale != transform.lossyScale;
+            if (_trs == null) return _lastPosition != transform.position || _lastRotation != transform.rotation || _lastScale != transform.lossyScale;
 #endif
             return _lastPosition != _trs.position || _lastRotation != _trs.rotation || _lastScale != _trs.lossyScale;
         }
 
-        void SampleTransform() {
+        private void SampleTransform()
+        {
 #if UNITY_EDITOR
             if (!Application.isPlaying)
             {
                 _lastPosition = transform.position;
                 _lastScale = transform.lossyScale;
                 _lastRotation = transform.rotation;
-            } 
+            }
             else
             {
                 _lastPosition = _trs.position;
@@ -222,14 +229,14 @@ namespace Dreamteck.Splines
             }
         }
 
-        void OnDestroy()
+        private void OnDestroy()
         {
             ClearConnections();
         }
 
         public void ClearConnections()
         {
-            for (int i = connections.Length-1; i >= 0; i--)
+            for (int i = connections.Length - 1; i >= 0; i--)
             {
                 if (connections[i].spline != null) connections[i].spline.DisconnectNode(connections[i].pointIndex);
             }
@@ -309,12 +316,15 @@ namespace Dreamteck.Splines
         }
 
 #if UNITY_EDITOR
+
         //Use this to maintain the connections between computers in the editor
         public void EditorMaintainConnections()
         {
             RemoveInvalidConnections();
         }
+
 #endif
+
         //Remove invalid connections
         protected void RemoveInvalidConnections()
         {
@@ -336,7 +346,7 @@ namespace Dreamteck.Splines
             SplinePoint point = computer.GetPoint(pointIndex);
             point.SetPosition(transform.position);
             ArrayUtility.Add(ref connections, new Connection(computer, pointIndex, PointToLocal(point)));
-            if(connections.Length == 1) SetPoint(connections.Length - 1, point, true);
+            if (connections.Length == 1) SetPoint(connections.Length - 1, point, true);
             UpdateConnectedComputers();
         }
 
@@ -346,7 +356,7 @@ namespace Dreamteck.Splines
             worldPoint.tangent = transform.InverseTransformPoint(worldPoint.tangent);
             worldPoint.tangent2 = transform.InverseTransformPoint(worldPoint.tangent2);
             worldPoint.normal = transform.InverseTransformDirection(worldPoint.normal);
-            worldPoint.size /= (transform.localScale.x + transform.localScale.y + transform.localScale.z)/ 3f;
+            worldPoint.size /= (transform.localScale.x + transform.localScale.y + transform.localScale.z) / 3f;
             return worldPoint;
         }
 
@@ -407,6 +417,5 @@ namespace Dreamteck.Splines
         {
             return connections;
         }
-
     }
 }
