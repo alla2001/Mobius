@@ -16,9 +16,10 @@ public class PortalCreator : MonoBehaviour
 
     public SplineComputer firstSpline;
     private SplineComputer secondSpline;
+    public GameObject bridge;
 
     private GameObject tempHilight;
-
+    
     public LayerMask ignoreMask;
     // Start is called before the first frame update
     private void Start()
@@ -114,7 +115,7 @@ public class PortalCreator : MonoBehaviour
                     points[1].size = 1f;
                     points[1].color = Color.white;
 
-                    splineBridge = new GameObject().AddComponent<SplineComputer>();
+                    splineBridge = Instantiate(bridge).GetComponent<SplineComputer>();
 
                     splineBridge.SetPoints(points);
                     firstBridgePoint.AddConnection(splineBridge, 0);
