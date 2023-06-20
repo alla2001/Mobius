@@ -76,8 +76,8 @@ public class PortalCreator : MonoBehaviour
                 if (firstSpline == secondSpline) 
                 {
 
-                    Destroy(firstBridgePoint);
-                    Destroy(secondBridgePoint);
+                    Destroy(firstBridgePoint.gameObject);
+                    Destroy(secondBridgePoint.gameObject);
                     return;
                 }
                 secondBridgePoint = Instantiate(nodePrefab).GetComponent<Node>();
@@ -127,8 +127,8 @@ public class PortalCreator : MonoBehaviour
                 }
                 else
                 {
-                    Destroy(firstBridgePoint);
-                    Destroy(secondBridgePoint);
+                    Destroy(firstBridgePoint.gameObject);
+                    Destroy(secondBridgePoint.gameObject);
                 }
             }
             return;
