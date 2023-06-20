@@ -33,7 +33,7 @@ public class PortalCreator : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        print(firstSpline.GetComponent<SplineMesh>().GetChannel(0).minScale.x);
+        //print(firstSpline.GetComponent<SplineMesh>().GetChannel(0).minScale.x);
         
         if (!inPortalCreationMode) return;
         Ray r = mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -71,6 +71,7 @@ public class PortalCreator : MonoBehaviour
             {
                 
                 secondSpline = hit.collider.GetComponent<SplineComputer>();
+                if (secondSpline == null) return;
                 if (firstSpline == secondSpline) 
                 {
 

@@ -39,7 +39,7 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         //centerPoint.position = targetTransform.position;
-        distanceToTarget = Mathf.Clamp(distanceToTarget, 5, 15);
+        distanceToTarget = Mathf.Clamp(distanceToTarget, 5, 35);
         transform.position = centerPoint.position - transform.forward * distanceToTarget;
 
         if (Input.GetKeyDown(KeyCode.Space))
