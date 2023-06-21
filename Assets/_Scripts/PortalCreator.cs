@@ -41,6 +41,9 @@ public class PortalCreator : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(r, out hit , 1000,~ignoreMask))
         {
+
+            
+
             if (firstBridgePoint != null && Vector3.Distance(firstBridgePoint.transform.position, hit.point) > maxPortalDistance)
             {
                 if (tempHilight != null)
@@ -122,7 +125,7 @@ public class PortalCreator : MonoBehaviour
                     secondBridgePoint.AddConnection(splineBridge, 1);
                     splineBridge.GetComponent<SplineMesh>().RebuildImmediate();
 
-
+                    firstBridgePoint =null; secondBridgePoint =null;
 
                 }
                 else
