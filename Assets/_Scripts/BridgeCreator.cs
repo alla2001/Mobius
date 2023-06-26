@@ -1,7 +1,7 @@
 using Dreamteck.Splines;
 using UnityEngine;
 
-public class PortalCreator : MonoBehaviour
+public class BridgeCreator : MonoBehaviour
 {
     public bool inPortalCreationMode;
     public float maxPortalDistance;
@@ -99,7 +99,13 @@ public class PortalCreator : MonoBehaviour
                 float w2 = secondSpline.GetComponent<SplineMesh>().GetChannel(0).minScale.x/2 + 0.2f;
                 rayCastPoint2 = secondBridgePoint.transform.position + -direction.normalized * w2;
                 float distance = Vector3.Distance(rayCastPoint1, rayCastPoint2);
-              
+
+                Vector3 pointNoraml1 = FindConnnectionDirection(firstBridgePoint, secondBridgePoint).normalized;
+
+                Vector3 pointNoraml2 = FindConnnectionDirection(secondBridgePoint,firstBridgePoint).normalized;
+
+                Debug.DrawLine(firstBridgePoint.transform.position,firstBridgePoint.transform.position+pointNoraml1 * 0.1f);
+                Debug.DrawLine(secondBridgePoint.transform.position, secondBridgePoint.transform.position + pointNoraml2* 0.1f);
                 Debug.DrawLine(rayCastPoint1, rayCastPoint2,Color.green,100000);
                 if (!Physics.Linecast(rayCastPoint1, rayCastPoint2))
                 {
@@ -108,15 +114,21 @@ public class PortalCreator : MonoBehaviour
                     
                     points[0] = new SplinePoint();
                     points[0].position = firstBridgePoint.GetPoint(0, false).position;
-                    points[0].normal = Vector3.up;
+                    //points[0].normal = pointNoraml1;
+                    points[0].tangent = firstBridgePoint.GetPoint(0, false).position+ pointNoraml1;
+                    points[0].tangent2 = firstBridgePoint.GetPoint(0, false).position - pointNoraml1;
                     points[0].size = 1f;
                     points[0].color = Color.white;
 
                     points[1] = new SplinePoint();
                     points[1].position = secondBridgePoint.GetPoint(0, false).position;
-                    points[1].normal = Vector3.up;
+                    //points[1].normal = pointNoraml2;
+                    points[1].tangent = secondBridgePoint.GetPoint(0, false).position + pointNoraml2;
+                    points[1].tangent2 = secondBridgePoint.GetPoint(0, false).position - pointNoraml2;
                     points[1].size = 1f;
                     points[1].color = Color.white;
+
+                   
 
                     splineBridge = Instantiate(bridge).GetComponent<SplineComputer>();
 
@@ -139,4 +151,26 @@ public class PortalCreator : MonoBehaviour
         if (tempHilight != null)
             Destroy(tempHilight);
     }
+
+    public Vector3 FindConnnectionDirection(Node from,Node To)
+    {
+        Vector3 dir = To.transform.position - from.transform.position;
+        dir = Vector3.ProjectOnPlane(from.transform.forward, dir);
+
+        if (Vector3.Angle(dir,from.transform.right)<45)
+        {
+            return from.transform.right;
+        }
+        if (Vector3.Angle(dir, -from.transform.right) < 45)
+        {
+            return -from.transform.right;
+        }
+        if (Vector3.Angle(dir, from.transform.up) < 45)
+        {
+            return from.transform.up;
+        }
+        return Vector3.up;
+    }
+
+
 }
