@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class ShapePlacer : MonoBehaviour
 {
-    public GameObject Shape;
-    public Transform levelHolder;
-    public bool placingShape;
+    [SerializeField] private List<GameObject> shapes;
+
+    private Transform levelHolder;
+    private bool placingShape;
+    private bool rotatingShape;
     GameObject tmp;
-    public bool canPlace;
+    private bool canPlace;
+    Vector2 mouseInput;
 
     private void Start()
     {
         placingShape = false;
+        rotatingShape = false;
     }
     private void Update()
     {
@@ -23,21 +27,36 @@ public class ShapePlacer : MonoBehaviour
 
         if (placingShape && tmp==null) 
         {
-            tmp = Instantiate(Shape);
+            tmp = Instantiate(shapes[Random.Range(0, shapes.Count)]);
             tmp.transform.parent = transform;
-            tmp.transform.position = tmp.transform.position+transform.forward*8f;
+            tmp.transform.position = transform.position+transform.forward*20f;
 
         }
-        if (Input.GetKeyDown(KeyCode.Space) && placingShape && canPlace)
+        if (Input.GetKeyDown(KeyCode.Space) && placingShape)
         {
             tmp.transform.parent = levelHolder;
+            placingShape = false;
+            //tmp = null;
+            rotatingShape = true;
+        }
 
+        if (rotatingShape)
+        {
+            mouseInput.x += Input.GetAxis("Mouse X");
+            mouseInput.y += Input.GetAxis("Mouse Y");
+            tmp.transform.localRotation = Quaternion.Euler(-mouseInput.y, mouseInput.x, 0);
 
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                placingShape = false;
+                rotatingShape = false;
+                tmp = null;
+            }
         }
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         canPlace = false;   
     }
@@ -53,6 +72,6 @@ public class ShapePlacer : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         canPlace = true;
-    }
+    }*/
 
 }
