@@ -104,9 +104,9 @@ public class BridgeCreator : MonoBehaviour
 
                 Vector3 pointNoraml2 = FindConnnectionDirection(secondBridgePoint,firstBridgePoint).normalized;
 
-                Debug.DrawLine(firstBridgePoint.transform.position,firstBridgePoint.transform.position+pointNoraml1 * 0.1f);
-                Debug.DrawLine(secondBridgePoint.transform.position, secondBridgePoint.transform.position + pointNoraml2* 0.1f);
-                Debug.DrawLine(rayCastPoint1, rayCastPoint2,Color.green,100000);
+                //Debug.DrawLine(firstBridgePoint.transform.position,firstBridgePoint.transform.position+pointNoraml1, Color.red,1000);
+                //Debug.DrawLine(secondBridgePoint.transform.position, secondBridgePoint.transform.position + pointNoraml2,Color.red, 1000);
+                //Debug.DrawLine(rayCastPoint1, rayCastPoint2,Color.green,100000);
                 if (!Physics.Linecast(rayCastPoint1, rayCastPoint2))
                 {
                   
@@ -156,7 +156,7 @@ public class BridgeCreator : MonoBehaviour
     {
         Vector3 dir = To.transform.position - from.transform.position;
         dir = Vector3.ProjectOnPlane(from.transform.forward, dir);
-
+        Debug.DrawRay(from.transform.position, dir, Color.red, 1000);
         if (Vector3.Angle(dir,from.transform.right)<45)
         {
             return from.transform.right;
