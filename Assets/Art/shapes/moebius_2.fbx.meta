@@ -8,17 +8,17 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: 2_1
-    second: {fileID: 2100000, guid: 3d87d03a882511a4ba28b0b1181e1d6e, type: 2}
+    second: {fileID: 2100000, guid: 2b71d3b426d8b4441b8c8a79f49c9eaa, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: 2_2
-    second: {fileID: 2100000, guid: 23c1744dbe1839642989e4316051aaf6, type: 2}
+    second: {fileID: 2100000, guid: 5607224f2d27533438bd5c493fb7d9e2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: 2_3
-    second: {fileID: 2100000, guid: 615d13d777d67824091121028719b4a2, type: 2}
+      name: 2_metalwork
+    second: {fileID: 2100000, guid: ae11c0af453f966409f4eeecf5a31d55, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -50,7 +50,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 100
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
