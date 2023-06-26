@@ -129,19 +129,23 @@ public class CleanedCameraController : MonoBehaviour
 
     private void GetInput()
     {
-        mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-        mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * -1f;
+        scrollInput = Input.mouseScrollDelta.y;
+        if (Input.GetMouseButton(1))
+        {
+            mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+            mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * -1f;
 
-        rotationX += mouseY;
-        rotationY += mouseX;
+            rotationX += mouseY;
+            rotationY += mouseX;
 
-        rotationX = Mathf.Clamp(rotationX, -90, 90);
+            rotationX = Mathf.Clamp(rotationX, -90, 90);
 
-        rotationVector = new Vector3(rotationX, rotationY);
+            rotationVector = new Vector3(rotationX, rotationY);
 
-        rotationUpdateVector = new Vector3(mouseY, mouseX, 0);
+            rotationUpdateVector = new Vector3(mouseY, mouseX, 0);
 
-        scrollInput = Input.mouseScrollDelta.y; 
+            
+            }
     }
 
     private void ExecuteInput()
@@ -192,7 +196,7 @@ public class CleanedCameraController : MonoBehaviour
     private void PositionCamera()
     {
         transform.position = centerPoint.position - transform.forward * distanceToTarget;
-        distanceToTarget += scrollInput * zoomSpeed;
+        distanceToTarget -= scrollInput * zoomSpeed;
         distanceToTarget = Mathf.Clamp(distanceToTarget, minZoomCurrent, maxZoomCurrent);
     }
 }
