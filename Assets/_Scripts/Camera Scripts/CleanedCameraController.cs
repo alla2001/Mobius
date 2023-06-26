@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public enum CleanedCameraMode
 {
@@ -10,6 +11,9 @@ public enum CleanedCameraMode
 
 public class CleanedCameraController : MonoBehaviour
 {
+    //DEBUG
+    public KeyCode isThisTheMouseWheel;
+
     //PUBLIC STATICS & EVENTS
 
     //EDITOR REFERENCES
@@ -56,18 +60,24 @@ public class CleanedCameraController : MonoBehaviour
     [SerializeField] private float maxZoomGodMode = 50.0f;
     [SerializeField] private float minZoomCharacterMode = 5.0f;
     [SerializeField] private float maxZoomCharacterMode = 10.0f;
+    [SerializeField] private float moveSpeed = .3f; 
 
     //CODE VARIABLES
+    private float rotationZ;
     private float rotationY;
     private float rotationX;
     private Vector3 rotationVector;
     private Vector3 rotationUpdateVector;
     private float mouseX;
     private float mouseY;
+    private float mouseZ;
+    private bool mouseDownAtEdge; 
+    private bool mouseRollMode => mouseDownAtEdge; 
     private float distanceToTarget = 10.0f;
     private float minZoomCurrent;
     private float maxZoomCurrent;
-    private float scrollInput; 
+    private float scrollInput;
+    private Vector3 cameraOffSet; 
     private bool isGodModeLocal = true;
 
     //PUBLIC STATIC METHODS
@@ -78,14 +88,13 @@ public class CleanedCameraController : MonoBehaviour
         centerPoint = transform.parent;
         characterRef = GameObject.FindGameObjectWithTag("Player");
 
-        cameraMode = p_cameraMode; 
+        cameraMode = CleanedCameraMode.GodModeLocal; 
     }
 
     private void Update()
     {
         CheckCameraModeChange();
-        GetInput();
-        ExecuteInput(); 
+        UpdateCameraBasedOnMode(); 
     }
 
     //IN SCENE METHODS (e.g. things that need to be accessed by unityEvents)
@@ -102,8 +111,6 @@ public class CleanedCameraController : MonoBehaviour
                 isGodModeLocal = !isGodModeLocal; //zypernKatze is not sure whether this might break stuff (cause a global cam can't ever be rotated in roll direction)
             }
             cameraMode = isGodModeLocal ? CleanedCameraMode.GodModeLocal : CleanedCameraMode.GodModeGlobal; 
-
-
         }
 
         if (cameraMode != CleanedCameraMode.FollowCharacter)
@@ -127,30 +134,8 @@ public class CleanedCameraController : MonoBehaviour
         }
     }
 
-    private void GetInput()
+    private void UpdateCameraBasedOnMode()
     {
-        scrollInput = Input.mouseScrollDelta.y;
-        if (Input.GetMouseButton(1))
-        {
-            mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-            mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * -1f;
-
-            rotationX += mouseY;
-            rotationY += mouseX;
-
-            rotationX = Mathf.Clamp(rotationX, -90, 90);
-
-            rotationVector = new Vector3(rotationX, rotationY);
-
-            rotationUpdateVector = new Vector3(mouseY, mouseX, 0);
-
-            
-            }
-    }
-
-    private void ExecuteInput()
-    {
-        //cameraRotation
         switch (cameraMode)
         {
             case CleanedCameraMode.GodModeGlobal:
@@ -170,7 +155,12 @@ public class CleanedCameraController : MonoBehaviour
 
     private void UpdateCameraGodmodeGlobal()
     {
-        PositionCamera();
+        GetMouseInput();
+
+        MoveCameraPivot();
+        SetCameraPosition();
+
+        //RotateGlobal
         if (Input.GetMouseButton(1))
         {
             centerPoint.eulerAngles = rotationVector;
@@ -179,7 +169,12 @@ public class CleanedCameraController : MonoBehaviour
 
     private void UpdateCameraGodModeLocal()
     {
-        PositionCamera();
+        GetMouseInput();
+
+        MoveCameraPivot();
+        SetCameraPosition();
+
+        //RotateLocal
         if (Input.GetMouseButton(1))
         {
             centerPoint.Rotate(rotationUpdateVector);
@@ -190,13 +185,58 @@ public class CleanedCameraController : MonoBehaviour
     {
         centerPoint.position = characterRef.transform.position;
         centerPoint.rotation = characterRef.transform.rotation;
-        PositionCamera();
+        
+        SetCameraPosition();
     }
-
-    private void PositionCamera()
+    private void SetCameraPosition()
     {
-        transform.position = centerPoint.position - transform.forward * distanceToTarget;
+        transform.position = centerPoint.position - transform.forward * distanceToTarget + cameraOffSet;
         distanceToTarget -= scrollInput * zoomSpeed;
         distanceToTarget = Mathf.Clamp(distanceToTarget, minZoomCurrent, maxZoomCurrent);
+    }
+
+    private void GetMouseInput()
+    {
+        scrollInput = Input.mouseScrollDelta.y;
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            Debug.Log("mouseButtonDown"); 
+                mouseDownAtEdge = 
+                    Input.mousePosition.x < Screen.width * 2 / 5 ||
+                    Input.mousePosition.x > Screen.width * 4 / 5;
+        }
+
+        //When the player grabs the screen at the edge, they can do a roll-rotation
+        mouseX = !mouseRollMode ? Input.GetAxis("Mouse X") * mouseSensitivity : Input.GetAxis("Mouse X") * mouseSensitivity;
+        mouseY = !mouseRollMode ? Input.GetAxis("Mouse Y") * mouseSensitivity * -1f : 0;
+        mouseZ = mouseRollMode ? Input.GetAxis("Mouse Y") * mouseSensitivity * -1f : 0;
+
+        if (Input.GetMouseButton(1))
+        {
+            CalcRotationValues(); 
+        }
+    }
+
+    private void CalcRotationValues()
+    {
+        rotationX += mouseY;
+        rotationY += mouseX;
+        rotationZ += mouseZ;
+
+        rotationX = Mathf.Clamp(rotationX, -90, 90);
+
+        rotationVector = new Vector3(rotationX, rotationY, rotationZ);
+
+        rotationUpdateVector = new Vector3(mouseY, mouseX, mouseZ);
+    }
+
+    private void MoveCameraPivot()
+    { 
+        if (Input.GetMouseButton(2))
+        {
+            cameraOffSet += (-centerPoint.right * mouseX + centerPoint.up * mouseY) * moveSpeed;
+            Debug.Log("CameraOffset" + cameraOffSet); 
+        }
     }
 }
