@@ -20,10 +20,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     // Game variables
-    GameState currentState;
+    [HideInInspector] public GameState currentState;
     const float gameTimeScaleCharacter = 1f;
     const float gameTimeScaleGodmode = 0.5f;
-    [HideInInspector]public float timeLeft;
+    [HideInInspector] public float timeLeft;
     int minutes;
     int seconds;
 
@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // Determine what time to use
-        if (currentState == GameState.CharacterPlacement)
+        if (currentState == GameState.CharacterView)
             timeLeft -= Time.deltaTime * gameTimeScaleCharacter;
         else
             timeLeft -= Time.deltaTime * gameTimeScaleGodmode;

@@ -22,6 +22,7 @@ public class ShapePlacer : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
+            GameManager.Instance.currentState = GameState.ShapePlacement;
             placingShape = true;
         }
 
