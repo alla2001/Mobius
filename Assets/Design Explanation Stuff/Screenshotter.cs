@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Screenshotter : MonoBehaviour
 {
-    [ContextMenuItem("ScreenshotGameView", "Screenshot")]
-    public static void Screenshot()
+    [ContextMenu("ScreenshotGameView")]
+    public void Screenshot()
     {
-        string folderPath = "Assets/Screenshots/"; // the path of your project folder
+        string folderPath = "D:/"; // the path of your project folder
 
         if (!System.IO.Directory.Exists(folderPath)) // if this path does not exist yet
             System.IO.Directory.CreateDirectory(folderPath);  // it will get created
