@@ -12,6 +12,8 @@ public class ShapePlacer : MonoBehaviour
     GameObject tmp;
     private bool canPlace;
     Vector2 mouseInput;
+    [SerializeField]
+    private Vector3 OffsetToCamera; 
 
     private void Start()
     {
@@ -29,7 +31,7 @@ public class ShapePlacer : MonoBehaviour
         {
             tmp = Instantiate(shapes[Random.Range(0, shapes.Count)]);
             tmp.transform.parent = transform;
-            tmp.transform.position = transform.position+transform.forward*20f;
+            tmp.transform.position = transform.position + OffsetToCamera;
 
         }
         if (Input.GetKeyDown(KeyCode.Space) && placingShape)
