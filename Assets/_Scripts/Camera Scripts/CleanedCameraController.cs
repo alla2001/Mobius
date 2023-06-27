@@ -139,12 +139,15 @@ public class CleanedCameraController : MonoBehaviour
         switch (cameraMode)
         {
             case CleanedCameraMode.GodModeGlobal:
+                GameManager.Instance.currentState = GameState.GodView;
                 UpdateCameraGodmodeGlobal(); 
                 break;
             case CleanedCameraMode.GodModeLocal:
+                GameManager.Instance.currentState = GameState.GodView;
                 UpdateCameraGodModeLocal();
                 break; 
             case CleanedCameraMode.FollowCharacter:
+                GameManager.Instance.currentState = GameState.CharacterView;
                 UpdateCameraFollowCharacter();
                 break;
             default:
