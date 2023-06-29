@@ -20,9 +20,16 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     // Game variables
-    [HideInInspector] public GameState currentState;
-    const float gameTimeScaleCharacter = 1f;
-    const float gameTimeScaleGodmode = 0.5f;
+    public GameState currentState;
+    [HideInInspector] public float gameTimeScaleCharacter = 1f;
+    [HideInInspector] public float gameTimeScaleGodmode = 0.5f;
+
+    [HideInInspector] public List<Character> allCharacters;
+
+
+    public float speedForCharacterMode = 2f;
+    public float speedForGodMode = 0.5f;
+
     [HideInInspector] public float timeLeft;
     int minutes;
     int seconds;
@@ -44,19 +51,26 @@ public class GameManager : MonoBehaviour
     {
         currentState = GameState.BridgeBuildMode;
         timeLeft = 300;
+
+        allCharacters = new List<Character>(FindObjectsOfType<Character>());
     }
 
     // Update is called once per frame
     void Update()
     {
         // Determine what time to use
-        if (currentState == GameState.CharacterView)
+        /*if (currentState == GameState.CharacterView)
             timeLeft -= Time.deltaTime * gameTimeScaleCharacter;
         else
-            timeLeft -= Time.deltaTime * gameTimeScaleGodmode;
+            timeLeft -= Time.deltaTime * gameTimeScaleGodmode;*/
 
-        if (timeLeft <= 0)
+        /* if (timeLeft <= 0)
+             Death();*/
+
+        if (allCharacters.Count <= 0)
+        {
             Death();
+        }
     }
 
     void Death()

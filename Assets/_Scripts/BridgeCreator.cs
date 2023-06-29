@@ -37,6 +37,7 @@ public class BridgeCreator : MonoBehaviour
         //print(firstSpline.GetComponent<SplineMesh>().GetChannel(0).minScale.x);
         
         if (!inPortalCreationMode) return;
+        if (GameManager.Instance.currentState != GameState.BridgeBuildMode) return;
         Ray r = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(r, out hit , 1000,~ignoreMask))
