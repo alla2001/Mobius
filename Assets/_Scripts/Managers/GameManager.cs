@@ -26,9 +26,9 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public List<Character> allCharacters;
 
-    private List<GameObject> allWalls;
+    [HideInInspector] public List<GameObject> allWalls;
     private List<Vector3> allWallPositions = new List<Vector3>();
-    [HideInInspector] public Vector3 averageCenterPointPosition;
+     public Vector3 averageCenterPointPosition;
 
 
     public float speedForCharacterMode = 2f;
@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
         UpdateAveragePosition();
     }
 
-    private void UpdateAveragePosition()
+    public void UpdateAveragePosition()
     {
         for (int i = 0; i < allWalls.Count; i++)
         {
@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        print(allWalls.Count);
         // Determine what time to use
         /*if (currentState == GameState.CharacterView)
             timeLeft -= Time.deltaTime * gameTimeScaleCharacter;
