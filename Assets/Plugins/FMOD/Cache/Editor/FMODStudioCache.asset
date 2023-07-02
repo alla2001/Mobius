@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638237047401290189
+  lastModified: 638238687274042900
   FileSizes: []
   Exists: 1
---- !u!114 &-2774461454392024769
+--- !u!114 &-5452513138047744541
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -28,25 +28,50 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Item_Collected
+  m_Name: event:/ReferenceBeat
   m_EditorClassIdentifier: 
-  Path: event:/Item_Collected
+  Path: event:/ReferenceBeat
   Guid:
-    Data1: 526243956
-    Data2: 1288978093
-    Data3: -688928342
-    Data4: -1035279362
+    Data1: 457267134
+    Data2: 1107065189
+    Data3: 1536864144
+    Data4: -891757631
   Banks:
-  - {fileID: 3704251704449588480}
-  IsStream: 0
+  - {fileID: -6885711155126418999}
+  IsStream: 1
   Is3D: 0
-  IsOneShot: 1
-  Parameters:
-  - {fileID: 6410096768478091823}
-  - {fileID: 1421770780623638919}
+  IsOneShot: 0
+  Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 7777
+  Length: 12222
+--- !u!114 &-1710990620758064757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Collectible_Collected
+  m_EditorClassIdentifier: 
+  Path: event:/Collectible_Collected
+  Guid:
+    Data1: 1105765027
+    Data2: 1116997113
+    Data3: -1259575675
+    Data4: -1350906413
+  Banks:
+  - {fileID: 3704251704449588480}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 12173
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,7 +91,9 @@ MonoBehaviour:
   - {fileID: 3704251704449588480}
   EditorEvents:
   - {fileID: 786431539482606903}
-  - {fileID: -2774461454392024769}
+  - {fileID: -1710990620758064757}
+  - {fileID: 6922948702286732450}
+  - {fileID: -5452513138047744541}
   EditorParameters:
   - {fileID: 3650060901570405047}
   - {fileID: 8224879041447664527}
@@ -74,7 +101,7 @@ MonoBehaviour:
   - {fileID: -6885711155126418999}
   StringsBanks:
   - {fileID: 7027540124532258230}
-  cacheTime: 638237047401290189
+  cacheTime: 638238720142537880
   cacheVersion: 131605
 --- !u!114 &331622543859416927
 MonoBehaviour:
@@ -91,7 +118,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank
   Name: Atmosphere
   StudioPath: bank:/Atmosphere
-  lastModified: 638237047399796149
+  lastModified: 638238555449557484
   FileSizes: []
   Exists: 1
 --- !u!114 &786431539482606903
@@ -121,32 +148,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 20000
---- !u!114 &1421770780623638919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Item_Collected/IsBeat
-  m_EditorClassIdentifier: 
-  Name: IsBeat
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 2406493681
-    data2: 3034306142
-  Type: 2
-  IsGlobal: 1
-  Labels:
-  - IsBeat
-  - NotBeat
-  Exists: 1
 --- !u!114 &3650060901570405047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +168,7 @@ MonoBehaviour:
   ID:
     data1: 2406493681
     data2: 3034306142
-  Type: 2
+  Type: 1
   IsGlobal: 1
   Labels:
   - IsBeat
@@ -188,10 +189,10 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Items.bank
   Name: Items
   StudioPath: bank:/Items
-  lastModified: 638237047401216459
+  lastModified: 638238720142537880
   FileSizes: []
   Exists: 1
---- !u!114 &6410096768478091823
+--- !u!114 &6922948702286732450
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -200,21 +201,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Item_Collected/CurrentBeat
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Collectible_RewardDecision
   m_EditorClassIdentifier: 
-  Name: CurrentBeat
-  StudioPath: 
-  Min: 1
-  Max: 4
-  Default: 1
-  ID:
-    data1: 265872632
-    data2: 1367321373
-  Type: 1
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
+  Path: event:/Collectible_RewardDecision
+  Guid:
+    Data1: -576991117
+    Data2: 1137166956
+    Data3: 256539581
+    Data4: -1867606815
+  Banks:
+  - {fileID: 3704251704449588480}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 11111
 --- !u!114 &7027540124532258230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,10 +234,10 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638237047401290189
+  lastModified: 638238687274057946
   FileSizes:
   - Name: 
-    Value: 1108
+    Value: 1216
   Exists: 1
 --- !u!114 &8224879041447664527
 MonoBehaviour:
