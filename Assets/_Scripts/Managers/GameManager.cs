@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public List<Character> allCharacters;
 
+    private List<GameObject> allWalls;
+    private List<Vector3> allWallPositions = new List<Vector3>();
+    [HideInInspector] public Vector3 averageCenterPointPosition;
+
 
     public float speedForCharacterMode = 2f;
     public float speedForGodMode = 0.5f;
@@ -53,6 +57,18 @@ public class GameManager : MonoBehaviour
         timeLeft = 300;
 
         allCharacters = new List<Character>(FindObjectsOfType<Character>());
+        allWalls = new List<GameObject>(GameObject.FindGameObjectsWithTag("wall"));
+        UpdateAveragePosition();
+    }
+
+    private void UpdateAveragePosition()
+    {
+        for (int i = 0; i < allWalls.Count; i++)
+        {
+            allWallPositions.Add(allWalls[i].gameObject.transform.position);
+        }
+
+        averageCenterPointPosition = GetMeanVector(allWallPositions);
     }
 
     // Update is called once per frame
@@ -71,6 +87,24 @@ public class GameManager : MonoBehaviour
         {
             Death();
         }
+    }
+
+    private Vector3 GetMeanVector(List<Vector3> positions)
+    {
+        if (positions.Count == 0)
+            return Vector3.zero;
+
+        float x = 0f;
+        float y = 0f;
+        float z = 0f;
+
+        foreach (Vector3 pos in positions)
+        {
+            x += pos.x;
+            y += pos.y;
+            z += pos.z;
+        }
+        return new Vector3(x / positions.Count, y / positions.Count, z / positions.Count);
     }
 
     void Death()

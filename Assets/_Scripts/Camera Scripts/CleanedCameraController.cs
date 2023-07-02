@@ -163,6 +163,8 @@ public class CleanedCameraController : MonoBehaviour
         MoveCameraPivot();
         SetCameraPosition();
 
+        centerPoint.position = GameManager.Instance.averageCenterPointPosition;
+
         //RotateGlobal
         if (Input.GetMouseButton(1))
         {
@@ -176,6 +178,8 @@ public class CleanedCameraController : MonoBehaviour
 
         MoveCameraPivot();
         SetCameraPosition();
+
+        centerPoint.position = GameManager.Instance.averageCenterPointPosition;
 
         //RotateLocal
         if (Input.GetMouseButton(1))
