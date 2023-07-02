@@ -53,6 +53,8 @@ public class ShapePlacer : MonoBehaviour
             {
                 placingShape = false;
                 rotatingShape = false;
+                GameManager.Instance.allWalls.Add(tmp);
+                GameManager.Instance.UpdateAveragePosition();
                 tmp = null;
             }
         }
