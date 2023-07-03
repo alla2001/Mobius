@@ -32,7 +32,7 @@ public class ShapePlacer : MonoBehaviour
         {
             tmp = Instantiate(shapes[Random.Range(0, shapes.Count)]);
             tmp.transform.parent = transform;
-            tmp.transform.position = transform.position + OffsetToCamera;
+            tmp.transform.position = transform.localPosition + OffsetToCamera;
 
         }
         if (Input.GetKeyDown(KeyCode.Space) && placingShape)
