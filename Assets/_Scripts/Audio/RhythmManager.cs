@@ -45,7 +45,6 @@ public class RhythmManager : MonoBehaviour
         InvokeRepeating("timedUpdate", 0, 60/BPM);
         Invoke("printBarAndBeat", 60);
         beatEvent += StartAmbience;
-        beatEvent += PrintBeat; 
     }
 
     private void timedUpdate()
@@ -81,12 +80,16 @@ public class RhythmManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        beatEvent -= PrintBeat; 
+
     }
 
     //IN SCENE METHODS (e.g. things that need to be accessed by unityEvents)
 
     //PUBLIC CODE METHODS
+    public int differenceBetweenBeats(int earlyBar, int earlyBeat, int lateBar, int lateBeat)
+    {
+        return (lateBar - earlyBar) * 4 + lateBeat - earlyBeat; 
+    }
 
     //PRIVATE CODE METHODS
     private void printBarAndBeat()

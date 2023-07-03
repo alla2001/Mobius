@@ -21,7 +21,7 @@ public class AudioTrigger : MonoBehaviour
     { 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            AudioManager.instance.ChangeMode(FMODEvents.instance.rewardChoice);  
+            AudioManager.instance.ChangeMode(AudioManager.SoundMode.RewardMode);  
         }
     }
 

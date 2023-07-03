@@ -22,7 +22,7 @@ public class FMODEvents : MonoBehaviour
             Destroy(this);
             Debug.LogError("Secondary Soundmanager destroyed on: " + gameObject.name);
         }
-        instance = this; 
+        instance = this;
     }
 
     [field: Header("Ambience")]
@@ -33,7 +33,13 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference collectible { get; private set; }
 
     [field: Header("SoundModes")]
-    [field: SerializeField] public SoundMode rewardChoice { get; private set; }
-    [field: SerializeField] public SoundMode godView { get; private set; }
-    [field: SerializeField] public SoundMode characterView { get; private set; }
+    [field: SerializeField] public SoundMode godMode { get; private set; }
+    [field: SerializeField] public SoundMode characterMode { get; private set; }
+    [field: SerializeField] public SoundMode rewardMode { get; private set; }
+
+    [field: Header("Character")]
+    [field: SerializeField] public EventReference characterControlRequest { get; private set; }
+
+    [field: Header("Shapes")]
+    [field: SerializeField] public EventReference[] shapeSounds { get; private set; }
 }
