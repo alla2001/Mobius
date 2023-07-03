@@ -17,7 +17,10 @@ public class CharacterMovement : MonoBehaviour
         }
         set { _follower = value; }
     }
-
+    /// <summary>
+    /// TODO : Make smooth turning and smooth turn in place 
+    /// TODO :
+    /// </summary>
     private SplineFollower _follower;
 
     public bool hasControle = false;
