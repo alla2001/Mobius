@@ -18,6 +18,22 @@ public class AudioManager : MonoBehaviour
     //EDITOR VARIABLES
 
     //CODE VARIABLES
+    public class SoundMode
+    {
+        public string name;
+        public FMODEvents.SoundMode fmod; 
+
+        private SoundMode(string name, FMODEvents.SoundMode sounds)
+        {
+            this.name = name;
+            this.fmod = sounds; 
+        }
+
+        public static SoundMode GodMode = new SoundMode("Godmode", FMODEvents.instance.godMode); 
+        public static SoundMode CharacterMode = new SoundMode("Godmode", FMODEvents.instance.characterMode); 
+        public static SoundMode RewardMode = new SoundMode("RewardMode", FMODEvents.instance.rewardMode); 
+    }
+
     private class SoundQueueElement
     {
         public SoundQueueElement(EventInstance eI, bool start, int bar, int beat)
@@ -111,23 +127,23 @@ public class AudioManager : MonoBehaviour
         RuntimeManager.PlayOneShot(sound, worldPos);
     }
 
-    public void ChangeMode(FMODEvents.SoundMode soundMode)
+    public void ChangeMode(SoundMode soundMode)
     {
         foreach (EventInstance modeEventInstance in modeEventInstances)
         {
             modeEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             modeEventInstance.release(); 
         }
-        if (!soundMode.startingEvent.IsNull)
+        if (!soundMode.fmod.startingEvent.IsNull)
         {
-            EventInstance eI = CreateEventInstance(soundMode.startingEvent); 
+            EventInstance eI = CreateEventInstance(soundMode.fmod.startingEvent); 
             eI.start();
-            QueueSound(eI, false, soundMode.deltaBarsToStart, 1); 
+            QueueSound(eI, false, soundMode.fmod.deltaBarsToStart, 1); 
         }
-        foreach (EventReference eR in soundMode.continuousSounds)
+        foreach (EventReference eR in soundMode.fmod.continuousSounds)
         {
             EventInstance eI = CreateEventInstance(eR);
-            QueueSound(eI, true, RhythmManager.instance.currentBar + soundMode.deltaBarsToStart, 1); 
+            QueueSound(eI, true, RhythmManager.instance.currentBar + soundMode.fmod.deltaBarsToStart, 1); 
             modeEventInstances.Add(eI);
         }
     }
@@ -144,9 +160,9 @@ public class AudioManager : MonoBehaviour
         return eventInstance;
     }
 
-    public StudioEventEmitter InitializeEventEmitter(EventReference eventReference, GameObject emitterGameObject)
+    public StudioEventEmitter CreateEventEmitter(EventReference eventReference, GameObject emitterGameObject)
     {
-        StudioEventEmitter emitter = emitterGameObject.GetComponent<StudioEventEmitter>();
+        StudioEventEmitter emitter = emitterGameObject.AddComponent<StudioEventEmitter>();
         emitter.EventReference = eventReference;
         eventEmitters.Add(emitter);
         return emitter;
