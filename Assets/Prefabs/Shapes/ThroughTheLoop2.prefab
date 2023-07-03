@@ -533,6 +533,8 @@ GameObject:
   - component: {fileID: 8460460759397197097}
   - component: {fileID: 8460460759397197098}
   - component: {fileID: 8460460759397197099}
+  - component: {fileID: -3976809831925543072}
+  - component: {fileID: -2181655748695767910}
   m_Layer: 0
   m_Name: ThroughTheLoop2
   m_TagString: wall
@@ -625,6 +627,35 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -6782079499490239639, guid: 4bdc8e027694c4741aacbd74f17d8765, type: 3}
+--- !u!114 &-3976809831925543072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8460460759397197101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d790a3b4c76ef7047b7df26a0cb7b730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectRadius: 0.3
+--- !u!54 &-2181655748695767910
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8460460759397197101}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8460460759539706272
 GameObject:
   m_ObjectHideFlags: 0

@@ -434,6 +434,8 @@ GameObject:
   - component: {fileID: 4331954974927332496}
   - component: {fileID: 4331954974927332497}
   - component: {fileID: 4331954974927332502}
+  - component: {fileID: 2932672451108225481}
+  - component: {fileID: 8689753127757325830}
   m_Layer: 0
   m_Name: Pretzet1
   m_TagString: wall
@@ -524,6 +526,35 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8123876316228518699, guid: beabef0b508e0994dba189bae0e5c475, type: 3}
+--- !u!114 &2932672451108225481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4331954974927332500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d790a3b4c76ef7047b7df26a0cb7b730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectRadius: 0.3
+--- !u!54 &8689753127757325830
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4331954974927332500}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4331954975105818375
 GameObject:
   m_ObjectHideFlags: 0
