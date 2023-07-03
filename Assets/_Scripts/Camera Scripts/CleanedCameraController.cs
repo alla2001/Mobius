@@ -11,9 +11,6 @@ public enum CleanedCameraMode
 
 public class CleanedCameraController : MonoBehaviour
 {
-    //DEBUG
-    public KeyCode isThisTheMouseWheel;
-
     //PUBLIC STATICS & EVENTS
 
     //EDITOR REFERENCES
@@ -71,8 +68,9 @@ public class CleanedCameraController : MonoBehaviour
     private float mouseX;
     private float mouseY;
     private float mouseZ;
-    private bool mouseDownAtEdge; 
-    private bool mouseRollMode => mouseDownAtEdge; 
+    private bool mouseLeftEdge;
+    private bool mouseRightEdge; 
+
     private float distanceToTarget = 10.0f;
     private float minZoomCurrent;
     private float maxZoomCurrent;
@@ -163,6 +161,8 @@ public class CleanedCameraController : MonoBehaviour
         MoveCameraPivot();
         SetCameraPosition();
 
+        centerPoint.position = GameManager.Instance.averageCenterPointPosition;
+
         //RotateGlobal
         if (Input.GetMouseButton(1))
         {
@@ -176,6 +176,8 @@ public class CleanedCameraController : MonoBehaviour
 
         MoveCameraPivot();
         SetCameraPosition();
+
+        centerPoint.position = GameManager.Instance.averageCenterPointPosition;
 
         //RotateLocal
         if (Input.GetMouseButton(1))
@@ -204,16 +206,32 @@ public class CleanedCameraController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            Debug.Log("mouseButtonDown"); 
-                mouseDownAtEdge = 
-                    Input.mousePosition.x < Screen.width * 2 / 5 ||
-                    Input.mousePosition.x > Screen.width * 4 / 5;
+            Debug.Log("mouseButtonDown");
+            mouseLeftEdge = Input.mousePosition.x < Screen.width * 1 / 5; 
+            mouseRightEdge = Input.mousePosition.x > Screen.width * 4 / 5;
         }
-
         //When the player grabs the screen at the edge, they can do a roll-rotation
-        mouseX = !mouseRollMode ? Input.GetAxis("Mouse X") * mouseSensitivity : Input.GetAxis("Mouse X") * mouseSensitivity;
-        mouseY = !mouseRollMode ? Input.GetAxis("Mouse Y") * mouseSensitivity * -1f : 0;
-        mouseZ = mouseRollMode ? Input.GetAxis("Mouse Y") * mouseSensitivity * -1f : 0;
+
+        mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+        if (!(mouseLeftEdge || mouseRightEdge))
+        {
+            mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * -1f;
+            mouseZ = 0; 
+        }
+        else if (mouseLeftEdge)
+        {
+            mouseY = 0;
+            mouseZ = Input.GetAxis("Mouse Y") * mouseSensitivity * 1f;
+        }
+        else if (mouseRightEdge)
+        {
+            mouseY = 0;
+            mouseZ = Input.GetAxis("Mouse Y") * mouseSensitivity * -1f;
+        }
+        else
+        {
+            Debug.LogError("mousePosition not recognised"); 
+        }
 
         if (Input.GetMouseButton(1))
         {
@@ -239,7 +257,6 @@ public class CleanedCameraController : MonoBehaviour
         if (Input.GetMouseButton(2))
         {
             cameraOffSet += (-centerPoint.right * mouseX + centerPoint.up * mouseY) * moveSpeed;
-            Debug.Log("CameraOffset" + cameraOffSet); 
         }
     }
 }
