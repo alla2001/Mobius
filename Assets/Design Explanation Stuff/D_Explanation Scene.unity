@@ -53321,6 +53321,48 @@ MonoBehaviour:
       Data3: -2101185623
       Data4: -989066489
     Path: event:/Character_TakeControl
+  <bridgeFirstClick>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <bridgeSecondClick>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <bridgeNotPossible>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <bridgeInConstruction>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <characterDeathWarning>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <characterDeath>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   <shapeSounds>k__BackingField:
   - Guid:
       Data1: 244552174
@@ -70812,6 +70854,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1343038588}
   - component: {fileID: 1343038587}
+  - component: {fileID: 1343038589}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -70831,15 +70874,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a53aa27a8f72a7418c2f71a0a14381e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
+  Score: 0
   gameTimeScaleCharacter: 1
   gameTimeScaleGodmode: 0.5
+  onStateChange:
+    m_PersistentCalls:
+      m_Calls: []
   allCharacters: []
   allWalls: []
   averageCenterPointPosition: {x: 0, y: 0, z: 0}
   speedForCharacterMode: 2
   speedForGodMode: 0.5
   timeLeft: 0
+  currentControlledCharacter: {fileID: 0}
 --- !u!4 &1343038588
 Transform:
   m_ObjectHideFlags: 0
@@ -70855,6 +70902,66 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1343038589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343038586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50dc5d7e3546b3a46bfc9861c17f4fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockedShapes: 
+  lockedArchitectures: 
+  ArchitectureMaterialsMap:
+  - architecture: 0
+    materialSlots:
+    - materialGroups:
+      - {fileID: 11400000, guid: f4037392df729504ab6ee4aa41de3387, type: 2}
+      - {fileID: 11400000, guid: 480916501d5b17e44aa0e809d40f96a4, type: 2}
+      - {fileID: 11400000, guid: 93759a15f1e9011468c68e82eb8efa44, type: 2}
+      - {fileID: 11400000, guid: 1f0c063174ad4a149ab533dc064b6f07, type: 2}
+    - materialGroups:
+      - {fileID: 11400000, guid: f4037392df729504ab6ee4aa41de3387, type: 2}
+      - {fileID: 11400000, guid: 480916501d5b17e44aa0e809d40f96a4, type: 2}
+      - {fileID: 11400000, guid: 93759a15f1e9011468c68e82eb8efa44, type: 2}
+      - {fileID: 11400000, guid: 1f0c063174ad4a149ab533dc064b6f07, type: 2}
+  - architecture: 1
+    materialSlots:
+    - materialGroups:
+      - {fileID: 11400000, guid: f4037392df729504ab6ee4aa41de3387, type: 2}
+      - {fileID: 11400000, guid: 9ee8e297a6eee0f4cbf1d08aa13e6d27, type: 2}
+    - materialGroups:
+      - {fileID: 11400000, guid: f4037392df729504ab6ee4aa41de3387, type: 2}
+      - {fileID: 11400000, guid: 9ee8e297a6eee0f4cbf1d08aa13e6d27, type: 2}
+    - materialGroups:
+      - {fileID: 11400000, guid: a6662cfacc927ea4ebb3596b587b2b1e, type: 2}
+  - architecture: 2
+    materialSlots:
+    - materialGroups:
+      - {fileID: 11400000, guid: f4037392df729504ab6ee4aa41de3387, type: 2}
+      - {fileID: 11400000, guid: 480916501d5b17e44aa0e809d40f96a4, type: 2}
+      - {fileID: 11400000, guid: 93759a15f1e9011468c68e82eb8efa44, type: 2}
+      - {fileID: 11400000, guid: 1f0c063174ad4a149ab533dc064b6f07, type: 2}
+    - materialGroups:
+      - {fileID: 11400000, guid: f4037392df729504ab6ee4aa41de3387, type: 2}
+    - materialGroups:
+      - {fileID: 11400000, guid: a9e524c99863e2a46a97eb155ba8a585, type: 2}
+  - architecture: 3
+    materialSlots:
+    - materialGroups:
+      - {fileID: 11400000, guid: f4037392df729504ab6ee4aa41de3387, type: 2}
+      - {fileID: 11400000, guid: 480916501d5b17e44aa0e809d40f96a4, type: 2}
+      - {fileID: 11400000, guid: 93759a15f1e9011468c68e82eb8efa44, type: 2}
+      - {fileID: 11400000, guid: 1f0c063174ad4a149ab533dc064b6f07, type: 2}
+    - materialGroups:
+      - {fileID: 11400000, guid: f4037392df729504ab6ee4aa41de3387, type: 2}
+  MaterialGroups: []
+  unlockedShapes: 
+  unlockedArchitectures: 
 --- !u!1001 &1343574161
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -107938,7 +108045,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 845c899654dcca146ba6ed92face39d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasControle: 0
 --- !u!114 &1990680073
 MonoBehaviour:
   m_ObjectHideFlags: 0

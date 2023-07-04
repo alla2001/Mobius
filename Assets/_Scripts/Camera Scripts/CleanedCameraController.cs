@@ -145,7 +145,7 @@ public class CleanedCameraController : MonoBehaviour
                 UpdateCameraGodModeLocal();
                 break; 
             case CleanedCameraMode.FollowCharacter:
-                GameManager.Instance.currentState = GameState.CharacterView;
+                //GameManager.Instance.currentState = GameState.CharacterView;
                 UpdateCameraFollowCharacter();
                 break;
             default:
