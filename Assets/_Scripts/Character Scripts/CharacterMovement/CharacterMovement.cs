@@ -23,7 +23,7 @@ public class CharacterMovement : MonoBehaviour
     /// </summary>
     private SplineFollower _follower;
 
-    public bool hasControle = false;
+
     private bool inInterSection;
 
     private void OnEnable()
@@ -38,6 +38,7 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (GameManager.Instance.currentControlledCharacter != this) return;
         if (Input.GetKeyDown(KeyCode.D))
         {
             MoveOnIntersection(0);
