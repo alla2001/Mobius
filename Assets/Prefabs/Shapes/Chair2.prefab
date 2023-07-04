@@ -2167,6 +2167,8 @@ GameObject:
   - component: {fileID: 5072929555932618174}
   - component: {fileID: 5072929555932618175}
   - component: {fileID: 5072929555932618172}
+  - component: {fileID: -5930226560318167225}
+  - component: {fileID: -2625541808493248327}
   m_Layer: 0
   m_Name: Chair2
   m_TagString: wall
@@ -2258,6 +2260,35 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8715427492432692543, guid: 46454220eda17794fa4a0af83da235f1, type: 3}
+--- !u!114 &-5930226560318167225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5072929555932618170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d790a3b4c76ef7047b7df26a0cb7b730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectRadius: 0.3
+--- !u!54 &-2625541808493248327
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5072929555932618170}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5072929556002835355
 GameObject:
   m_ObjectHideFlags: 0

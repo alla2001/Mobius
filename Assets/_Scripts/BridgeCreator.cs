@@ -11,8 +11,8 @@ public class BridgeCreator : MonoBehaviour
     public GameObject bridge;
     public GameObject shapePrefab;
     public LayerMask ignoreMask;
-
-
+    public float energy = 100;
+    public LineRenderer lineRenderer;
     private Node firstBridgePoint;
     private Node secondBridgePoint;
     private SplineComputer splineBridge;
@@ -20,7 +20,12 @@ public class BridgeCreator : MonoBehaviour
     private SplineComputer secondSpline;
     private GameObject tempHilight;
     
- 
+        /// <summary>
+        /// TODO : Implement bridge distance/length, cant place too long bridges (Based on energy)
+        /// TODO : Energy based on length, more length used less energy you have
+        /// TODO : Number of scattered objectects depends on legnth 
+        /// TODO : 
+        /// </summary>
     // Start is called before the first frame update
     private void Start()
     {
@@ -41,7 +46,21 @@ public class BridgeCreator : MonoBehaviour
     {
         //print(firstSpline.GetComponent<SplineMesh>().GetChannel(0).minScale.x);
 
+        if (GameManager.Instance.currentState!= GameState.GodView)
+        {
+            Destroy(tempHilight);
+            if (firstBridgePoint != null)
+            {
+                Destroy(firstBridgePoint.gameObject);
+            }
+            if (secondBridgePoint != null)
+            {
+                Destroy(secondBridgePoint.gameObject);
+            }
+       
+            return;
 
+        }
         if (!inPortalCreationMode) return;
         Ray r = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -56,12 +75,23 @@ public class BridgeCreator : MonoBehaviour
                     Destroy(tempHilight);
                 return;
             }
-
+         
             if (tempHilight == null)
             {
                 tempHilight = Instantiate(hilightPrefab);
             }
+
             tempHilight.transform.position = hit.point;
+            int index = hit.collider.GetComponent<SplineComputer>().PercentToPointIndex(hit.collider.GetComponent<SplineComputer>().Project(hit.point).percent);
+            SplineSample result = hit.collider.GetComponent<SplineComputer>().Evaluate(index);
+           
+           
+            if (firstBridgePoint && energy-Vector3.Distance(firstBridgePoint.transform.position, result.position) >=0)
+            {
+                lineRenderer.positionCount = 2;
+                lineRenderer.SetPosition(1, result.position);
+            }
+         
             if (!Input.GetMouseButtonDown(0))
             {
                 return;
@@ -71,15 +101,15 @@ public class BridgeCreator : MonoBehaviour
             if (!firstBridgePoint)
             {
                 firstSpline = hit.collider.GetComponent<SplineComputer>();
-
+                lineRenderer.positionCount = 2;
                 firstBridgePoint = Instantiate(nodePrefab).GetComponent<Node>();
 
-                int index = firstSpline.PercentToPointIndex(firstSpline.Project(hit.point).percent);
-                SplineSample result = firstSpline.Evaluate(index);
+                index = firstSpline.PercentToPointIndex(firstSpline.Project(hit.point).percent);
+                result = firstSpline.Evaluate(index);
                 firstBridgePoint.transform.position = result.position;
-                  firstBridgePoint.transform.rotation = result.rotation;
+                 firstBridgePoint.transform.rotation = result.rotation;
 
-          
+                lineRenderer.SetPosition(0, result.position);
                 firstBridgePoint.GetComponent<Node>().AddConnection(firstSpline, firstSpline.PercentToPointIndex(firstSpline.Project(hit.point).percent));
             }
             else
@@ -91,14 +121,14 @@ public class BridgeCreator : MonoBehaviour
                 {
 
                     Destroy(firstBridgePoint.gameObject);
-                    Destroy(secondBridgePoint.gameObject);
+           
                     return;
                 }
                 secondBridgePoint = Instantiate(nodePrefab).GetComponent<Node>();
 
-                 int index = secondSpline.PercentToPointIndex(secondSpline.Project(hit.point).percent);
+                index = secondSpline.PercentToPointIndex(secondSpline.Project(hit.point).percent);
 
-                SplineSample result = secondSpline.Evaluate(index);
+                result = secondSpline.Evaluate(index);
 
                 secondBridgePoint.transform.position = result.position;
                 secondBridgePoint.transform.rotation = result.rotation;
@@ -111,25 +141,35 @@ public class BridgeCreator : MonoBehaviour
 
                 Vector3 direction = secondBridgePoint.transform.position - firstBridgePoint.transform.position;
 
-                float w1 = firstSpline.GetComponent<SplineMesh>().GetChannel(0).minScale.x/2 + 0.2f;
-                rayCastPoint1 = firstBridgePoint.transform.position + direction.normalized * w1;
+           
 
-                float w2 = secondSpline.GetComponent<SplineMesh>().GetChannel(0).minScale.x/2 + 0.2f;
-                rayCastPoint2 = secondBridgePoint.transform.position + -direction.normalized * w2;
 
-                float distance = Vector3.Distance(rayCastPoint1, rayCastPoint2);
-
+           
                 pointNoraml1 = FindConnnectionDirection(firstBridgePoint, secondBridgePoint).normalized;
 
-                pointNoraml2 = FindConnnectionDirection(secondBridgePoint,firstBridgePoint).normalized;
+                pointNoraml2 = -FindConnnectionDirection(secondBridgePoint,firstBridgePoint).normalized;
 
                 tanget1 = FindConnnectionTangent(firstBridgePoint, secondBridgePoint).normalized;
                 tanget2 = FindConnnectionTangent(secondBridgePoint, firstBridgePoint).normalized;
+             
+        
+                float w1 = firstSpline.GetComponent<SplineMesh>().GetChannel(0).minScale.x / 2 + 0.22f;
+                rayCastPoint1 = firstBridgePoint.transform.position + FindRayCastTangent(firstBridgePoint, secondBridgePoint) * w1;
 
+                float w2 = secondSpline.GetComponent<SplineMesh>().GetChannel(0).minScale.x / 2 + 0.22f;
+                rayCastPoint2 = secondBridgePoint.transform.position + FindRayCastTangent( secondBridgePoint, firstBridgePoint) * w2;
 
-                Debug.DrawRay(firstBridgePoint.transform.position, pointNoraml1, Color.red, 1000);
-                Debug.DrawRay(secondBridgePoint.transform.position, pointNoraml2, Color.red, 1000);
-                if (!Physics.Linecast(rayCastPoint1, rayCastPoint2))
+                float distance = Vector3.Distance(rayCastPoint1, rayCastPoint2);
+                if (energy - distance < 0)
+                {
+                    return;
+                }
+                energy -= distance;
+
+            
+                Debug.DrawLine(rayCastPoint1, rayCastPoint2, Color.red, 1000);
+
+                if (!Physics.SphereCast(rayCastPoint1, 0.15f, rayCastPoint2 - rayCastPoint1,out hit, Vector3.Distance(rayCastPoint2 ,rayCastPoint1)))
                 {
                   
                     SplinePoint[] points = new SplinePoint[2];
@@ -183,12 +223,16 @@ public class BridgeCreator : MonoBehaviour
         }
         if (tempHilight != null)
             Destroy(tempHilight);
+        if (firstBridgePoint )
+        {
+            lineRenderer.positionCount=1;
+        }
     }
     public void OnReBuild()
     {
         LayOutObjects(5, shapePrefab);
 
-        splineBridge?.SetPointTangents(1, splineBridge.GetPointPosition(1)+ tanget2 , splineBridge.GetPointPosition(1)- tanget2);
+        splineBridge?.SetPointTangents(1, splineBridge.GetPointPosition(1)  -tanget2 , splineBridge.GetPointPosition(1)+ tanget2);
         splineBridge?.SetPointTangents(0, splineBridge.GetPointPosition(0) + tanget1, splineBridge.GetPointPosition(0) - tanget1);
 
         splineBridge?.SetPointNormal(0,pointNoraml1);
@@ -197,13 +241,14 @@ public class BridgeCreator : MonoBehaviour
         firstBridgePoint = null; secondBridgePoint = null;
         splineBridge.onRebuild -= OnReBuild;
         splineBridge.GetComponent<SplineMesh>().RebuildImmediate();
+        lineRenderer.positionCount= 0;
     }
     public Vector3 FindConnnectionDirection(Node from,Node To)
     {
         Vector3 dir = To.transform.position - from.transform.position;
         dir.Normalize();
         dir = Vector3.ProjectOnPlane(dir, from.transform.forward);
-        Debug.DrawRay(from.transform.position, dir, Color.yellow, 1000);
+    
         float rightAngle = Vector3.Angle(dir, from.transform.right);
         float leftAngle = Vector3.Angle(dir, -from.transform.right);
         float topAngle = Vector3.Angle(dir, from.transform.up);
@@ -218,6 +263,17 @@ public class BridgeCreator : MonoBehaviour
         }
         else if (topAngle <= rightAngle && topAngle <= leftAngle && leftAngle <= bottomAngle)
         {
+            Vector3 dir2 = Vector3.ProjectOnPlane(dir, from.transform.up);
+             float frontAngle = Vector3.Angle(dir2, from.transform.forward);
+             float backAngle = Vector3.Angle(dir2, -from.transform.forward);
+            if (frontAngle <= backAngle)
+            {
+                return from.transform.forward;
+            }
+            else
+            {
+                return -from.transform.forward;
+            }
             return from.transform.forward;
         }
         else
@@ -228,13 +284,13 @@ public class BridgeCreator : MonoBehaviour
 
 
     }
-
+  
     public Vector3 FindConnnectionTangent(Node from, Node To)
     {
         Vector3 dir = To.transform.position - from.transform.position;
         dir.Normalize();
         dir = Vector3.ProjectOnPlane(dir,from.transform.forward );
-        Debug.DrawRay(from.transform.position, dir, Color.yellow, 1000);
+    
         float rightAngle = Vector3.Angle(dir, from.transform.right);
         float leftAngle = Vector3.Angle(dir, -from.transform.right);
         float topAngle = Vector3.Angle(dir, from.transform.up);
@@ -245,6 +301,30 @@ public class BridgeCreator : MonoBehaviour
         else if (leftAngle <= rightAngle && leftAngle <= topAngle)
         {
             return from.transform.right;
+        }
+        else
+        {
+            return -from.transform.up;
+        }
+
+
+    }
+    public Vector3 FindRayCastTangent(Node from, Node To)
+    {
+        Vector3 dir = To.transform.position - from.transform.position;
+        dir.Normalize();
+        dir = Vector3.ProjectOnPlane(dir, from.transform.forward);
+
+        float rightAngle = Vector3.Angle(dir, from.transform.right);
+        float leftAngle = Vector3.Angle(dir, -from.transform.right);
+        float topAngle = Vector3.Angle(dir, from.transform.up);
+        if (rightAngle <= leftAngle && rightAngle <= topAngle)
+        {
+            return from.transform.right;
+        }
+        else if (leftAngle <= rightAngle && leftAngle <= topAngle)
+        {
+            return -from.transform.right;
         }
         else
         {

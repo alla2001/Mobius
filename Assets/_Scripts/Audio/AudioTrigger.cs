@@ -19,10 +19,12 @@ public class AudioTrigger : MonoBehaviour
 
     private void Update()
     { 
+        /*
         if (Input.GetKeyDown(KeyCode.S))
         {
-            AudioManager.instance.ChangeMode(AudioManager.SoundMode.RewardMode);  
+            AudioManager.instance.ChangeSoundMode(AudioManager.SoundMode.RewardMode);  
         }
+        */
     }
 
     public void PlaySoundEvent()

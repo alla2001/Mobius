@@ -20,6 +20,7 @@ public class CutoutObject : MonoBehaviour
 
     private void Update()
     {
+        if (!targetObject) return;
         Vector2 cutoutPos = mainCamera.WorldToViewportPoint(targetObject.position);
         cutoutPos.y /= (Screen.width / Screen.height);
 

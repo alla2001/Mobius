@@ -17,22 +17,26 @@ public class ShapePlacer : MonoBehaviour
 
     private void Start()
     {
+        GameManager.Instance.onStateChange.AddListener((state) => { if (state == GameState.ShapePlacement) { placingShape = true; } });
+
         placingShape = false;
         rotatingShape = false;
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+
+
+        if (GameManager.Instance.currentState == GameState.ShapePlacement)
         {
-            GameManager.Instance.currentState = GameState.ShapePlacement;
             placingShape = true;
         }
 
         if (placingShape && tmp==null) 
         {
             tmp = Instantiate(shapes[Random.Range(0, shapes.Count)]);
+            tmp.GetComponent<MeshCollider>().enabled = false;
             tmp.transform.parent = transform;
-            tmp.transform.position = transform.localPosition + OffsetToCamera;
+            tmp.transform.localPosition = OffsetToCamera;
 
         }
         if (Input.GetKeyDown(KeyCode.Space) && placingShape)
@@ -51,11 +55,19 @@ public class ShapePlacer : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.F))
             {
-                placingShape = false;
-                rotatingShape = false;
-                GameManager.Instance.allWalls.Add(tmp);
-                GameManager.Instance.UpdateAveragePosition();
-                tmp = null;
+                if (tmp.GetComponent<Shape>().canBePlaced)
+                {
+                    placingShape = false;
+                    rotatingShape = false;
+                    tmp.GetComponent<MeshCollider>().enabled = true;
+                    GameManager.Instance.allWalls.Add(tmp);
+                    GameManager.Instance.UpdateAveragePosition();
+                    tmp = null;
+                }
+                else
+                {
+                    Debug.Log("Cant place the shape");
+                }
             }
         }
 

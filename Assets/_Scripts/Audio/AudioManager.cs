@@ -2,6 +2,7 @@ using FMOD.Studio;
 using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using static Unity.Burst.Intrinsics.X86;
@@ -12,27 +13,15 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
     //EDITOR REFERENCES
+    public Dictionary<AudioLayerManager.LayerType, AudioLayerManager> audioLayers = new Dictionary<AudioLayerManager.LayerType, AudioLayerManager>(); 
 
     //CODE REFERENCES
 
     //EDITOR VARIABLES
 
     //CODE VARIABLES
-    public class SoundMode
-    {
-        public string name;
-        public FMODEvents.SoundMode fmod; 
 
-        private SoundMode(string name, FMODEvents.SoundMode sounds)
-        {
-            this.name = name;
-            this.fmod = sounds; 
-        }
-
-        public static SoundMode GodMode = new SoundMode("Godmode", FMODEvents.instance.godMode); 
-        public static SoundMode CharacterMode = new SoundMode("Godmode", FMODEvents.instance.characterMode); 
-        public static SoundMode RewardMode = new SoundMode("RewardMode", FMODEvents.instance.rewardMode); 
-    }
+    //zypernKAtze SoundModes
 
     private class SoundQueueElement
     {
@@ -51,7 +40,7 @@ public class AudioManager : MonoBehaviour
     }
 
     private List<EventInstance> eventInstances;
-    private HashSet<EventInstance> modeEventInstances;
+    private SoundMode currentSoundMode; 
     private List<SoundQueueElement> soundQueueElements; 
     private List<StudioEventEmitter> eventEmitters;
 
@@ -63,7 +52,7 @@ public class AudioManager : MonoBehaviour
     //PUBLIC STATIC METHODS
 
     //MONOBEHAVIOUR METHODS
-    private void Awake()
+    private void Awake() //runs before other awakes
     {
         if (instance != null)
         {
@@ -77,7 +66,6 @@ public class AudioManager : MonoBehaviour
 
         eventInstances = new List<EventInstance>();
         eventEmitters = new List<StudioEventEmitter>();
-        modeEventInstances = new HashSet<EventInstance>();
         soundQueueElements = new List<SoundQueueElement>(); 
 
         /*
@@ -127,25 +115,31 @@ public class AudioManager : MonoBehaviour
         RuntimeManager.PlayOneShot(sound, worldPos);
     }
 
-    public void ChangeMode(SoundMode soundMode)
+    public void ChangeSoundMode(SoundMode soundMode)
     {
-        foreach (EventInstance modeEventInstance in modeEventInstances)
+        if (!soundMode.startingEvent.IsNull)
         {
-            modeEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            modeEventInstance.release(); 
-        }
-        if (!soundMode.fmod.startingEvent.IsNull)
-        {
-            EventInstance eI = CreateEventInstance(soundMode.fmod.startingEvent); 
+            EventInstance eI = CreateEventInstance(soundMode.startingEvent);
             eI.start();
-            QueueSound(eI, false, soundMode.fmod.deltaBarsToStart, 1); 
+            //QueueSound(eI, false, soundMode.fmod.deltaBarsToStart, 1); zypernKatze this seems like a repetition of the starting Sound
         }
-        foreach (EventReference eR in soundMode.fmod.continuousSounds)
+
+        foreach (AudioLayerManager audioLayer in currentSoundMode.audioLayers)
         {
-            EventInstance eI = CreateEventInstance(eR);
-            QueueSound(eI, true, RhythmManager.instance.currentBar + soundMode.fmod.deltaBarsToStart, 1); 
-            modeEventInstances.Add(eI);
+            audioLayer.turnOff(); 
         }
+
+        currentSoundMode = soundMode;
+
+        foreach (AudioLayerManager audioLayer in currentSoundMode.audioLayers)
+        {
+            audioLayer.turnOn();
+        }
+    }
+
+    public void AddEmitterToLayer(AudioLayerManager.LayerType layer, GameObject attachmentObject)
+    {
+        audioLayers[layer].addEventEmitter(attachmentObject); 
     }
 
     public void QueueSound(EventInstance eI, bool start, int bar, int beat)

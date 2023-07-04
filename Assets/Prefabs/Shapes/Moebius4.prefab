@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 1784790473211001992}
   - component: {fileID: 1784790473211001993}
   - component: {fileID: 1784790473211001990}
+  - component: {fileID: -3696159639867299821}
+  - component: {fileID: -1126702414232600164}
   m_Layer: 0
   m_Name: Moebius4
   m_TagString: wall
@@ -100,6 +102,35 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -1462209889380005976, guid: 4fe70a4c3a0f2b846a4f7411745d3c84, type: 3}
+--- !u!114 &-3696159639867299821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784790473211001988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d790a3b4c76ef7047b7df26a0cb7b730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectRadius: 0.3
+--- !u!54 &-1126702414232600164
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784790473211001988}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1784790473677975919
 GameObject:
   m_ObjectHideFlags: 0
