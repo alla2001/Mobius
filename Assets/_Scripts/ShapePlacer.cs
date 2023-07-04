@@ -31,6 +31,7 @@ public class ShapePlacer : MonoBehaviour
         if (placingShape && tmp==null) 
         {
             tmp = Instantiate(shapes[Random.Range(0, shapes.Count)]);
+            tmp.GetComponent<MeshCollider>().enabled = false;
             tmp.transform.parent = transform;
             tmp.transform.position = transform.localPosition + OffsetToCamera;
 
@@ -51,11 +52,19 @@ public class ShapePlacer : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.F))
             {
-                placingShape = false;
-                rotatingShape = false;
-                GameManager.Instance.allWalls.Add(tmp);
-                GameManager.Instance.UpdateAveragePosition();
-                tmp = null;
+                if (tmp.GetComponent<Shape>().canBePlaced)
+                {
+                    placingShape = false;
+                    rotatingShape = false;
+                    tmp.GetComponent<MeshCollider>().enabled = true;
+                    GameManager.Instance.allWalls.Add(tmp);
+                    GameManager.Instance.UpdateAveragePosition();
+                    tmp = null;
+                }
+                else
+                {
+                    Debug.Log("Cant place the shape");
+                }
             }
         }
 

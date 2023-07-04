@@ -5338,6 +5338,8 @@ GameObject:
   - component: {fileID: 7645422303008899280}
   - component: {fileID: 7645422303008899281}
   - component: {fileID: 7645422303008899278}
+  - component: {fileID: -6273706733769439200}
+  - component: {fileID: 8990901215855411269}
   m_Layer: 0
   m_Name: Frog3
   m_TagString: wall
@@ -5430,6 +5432,35 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8324956894010399919, guid: 7be26985d40074040bd0188e35f30384, type: 3}
+--- !u!114 &-6273706733769439200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7645422303008899276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d790a3b4c76ef7047b7df26a0cb7b730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectRadius: 0.3
+--- !u!54 &8990901215855411269
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7645422303008899276}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7645422303176555587
 GameObject:
   m_ObjectHideFlags: 0

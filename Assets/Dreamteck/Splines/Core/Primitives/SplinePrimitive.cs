@@ -68,7 +68,9 @@ namespace Dreamteck.Splines.Primitives {
 
         public SplinePoint[] GetPoints()
         {
+            
             return points;
+
         }
 
         public virtual Spline.Type GetSplineType()

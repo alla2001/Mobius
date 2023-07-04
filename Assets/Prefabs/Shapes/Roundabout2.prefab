@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 3198225935130412043}
   - component: {fileID: 3198225935130412042}
   - component: {fileID: 3198225935130412085}
+  - component: {fileID: -2529549474788808107}
+  - component: {fileID: 5488620097729302959}
   m_Layer: 0
   m_Name: Roundabout2
   m_TagString: wall
@@ -104,6 +106,35 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -571856734193282172, guid: 579b57f5f2c730d4fa8c1f66a22b30bd, type: 3}
+--- !u!114 &-2529549474788808107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3198225935130412087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d790a3b4c76ef7047b7df26a0cb7b730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectRadius: 0.3
+--- !u!54 &5488620097729302959
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3198225935130412087}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3198225935213175990
 GameObject:
   m_ObjectHideFlags: 0
