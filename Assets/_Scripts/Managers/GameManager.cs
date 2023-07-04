@@ -90,19 +90,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(allWalls.Count);
-        // Determine what time to use
-        /*if (currentState == GameState.CharacterView)
-            timeLeft -= Time.deltaTime * gameTimeScaleCharacter;
-        else
-            timeLeft -= Time.deltaTime * gameTimeScaleGodmode;*/
 
-        /* if (timeLeft <= 0)
-             Death();*/
+        Debug.Log(currentState);
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            currentState = GameState.CharacterPlacement;
+        }
 
         if (allCharacters.Count <= 0)
         {
-            Death();
+            //Death();
         }
     }
 
