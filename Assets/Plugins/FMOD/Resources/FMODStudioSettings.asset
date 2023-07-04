@@ -519,9 +519,10 @@ MonoBehaviour:
   - Master
   Banks:
   - Atmosphere
+  - BridgeRhythmDrums
   - Characters
   - Items
-  - Shape
+  - ShapeHangDrums
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0

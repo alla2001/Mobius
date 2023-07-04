@@ -64,11 +64,6 @@ public class RhythmManager : MonoBehaviour
         RuntimeManager.StudioSystem.setParameterByName("currentBeat", currentBeat);
         RuntimeManager.StudioSystem.setParameterByName("IsBeat", 1);
 
-        float zypernKatze;
-        float zypernKatzeIsBeat;
-        RuntimeManager.StudioSystem.getParameterByName("currentBeat", out zypernKatze);
-        RuntimeManager.StudioSystem.getParameterByName("IsBeat", out zypernKatzeIsBeat);
-
         StartCoroutine(stopBeat());
     }
 

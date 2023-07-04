@@ -4,11 +4,10 @@ public class D_AddShapeSound : MonoBehaviour
 {
     //PUBLIC STATICS & EVENTS
 
-    //EDITOR REFERENCES
+    //REFERENCES
 
-    //CODE REFERENCES
-
-    //EDITOR VARIABLES
+    //OTHER EDITOR VARIABLES
+    public AudioLayerManager.LayerType layerType; 
 
     //CODE VARIABLES
 
@@ -19,7 +18,7 @@ public class D_AddShapeSound : MonoBehaviour
     //MONOBEHAVIOUR METHODS
     private void Start()
     {
-        ShapeAudioManager.instance.addEventEmitterToShape(this.gameObject); 
+        AudioManager.instance.AddEmitterToLayer(layerType, this.gameObject);  
     }
 
     //IN SCENE METHODS (e.g. things that need to be accessed by unityEvents)

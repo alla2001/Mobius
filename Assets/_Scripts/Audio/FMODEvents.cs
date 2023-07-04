@@ -8,11 +8,11 @@ public class FMODEvents : MonoBehaviour
     public static FMODEvents instance;
 
     [System.Serializable]
-    public class SoundMode
+    public class SoundLayerCollection
     {
-        [field: SerializeField] public EventReference startingEvent { get; private set; }
-        [field: SerializeField] public List<EventReference> continuousSounds { get; private set; }
-        [field: SerializeField] public int deltaBarsToStart { get; private set; }
+        AudioLayerManager.LayerType type;
+        [field: SerializeField]
+        public EventReference[] sounds; 
     }
 
     private void Awake()
@@ -29,17 +29,16 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference ambience { get; private set; }
 
 
-    [field: Header("Reward")]
-    [field: SerializeField] public EventReference collectible { get; private set; }
-
     [field: Header("SoundModes")]
     [field: SerializeField] public SoundMode godMode { get; private set; }
     [field: SerializeField] public SoundMode characterMode { get; private set; }
     [field: SerializeField] public SoundMode rewardMode { get; private set; }
 
-    [field: Header("Character")]
+
+    [field: Header("Events")]
+    [field: SerializeField] public EventReference rewardCollected { get; private set; }
     [field: SerializeField] public EventReference characterControlRequest { get; private set; }
 
-    [field: Header("Shapes")]
+    [field: Header("SoundLayers")]
     [field: SerializeField] public EventReference[] shapeSounds { get; private set; }
 }
