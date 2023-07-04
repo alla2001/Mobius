@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public enum GameState
 {
@@ -10,7 +11,6 @@ public enum GameState
     RewardMode,
     ShapePlacement,
     CharacterPlacement,
-    BridgeBuildMode,
     CharacterView
 }
 
@@ -19,11 +19,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    public int Score;
+
     // Game variables
-    public GameState currentState;
+    public  GameState currentState { get; private set; }    
     [HideInInspector] public float gameTimeScaleCharacter = 1f;
     [HideInInspector] public float gameTimeScaleGodmode = 0.5f;
-
+    public UnityEvent<GameState> onStateChange = new UnityEvent<GameState>();
     [HideInInspector] public List<Character> allCharacters;
 
     [HideInInspector] public List<GameObject> allWalls;
@@ -37,7 +39,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public float timeLeft;
     int minutes;
     int seconds;
-
+    public CharacterMovement currentControlledCharacter;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -53,7 +55,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentState = GameState.BridgeBuildMode;
+        ChangeState(GameState.GodView); 
         timeLeft = 300;
 
         allCharacters = new List<Character>(FindObjectsOfType<Character>());
@@ -61,6 +63,20 @@ public class GameManager : MonoBehaviour
         UpdateAveragePosition();
     }
 
+    public void ChangeState(GameState newState) 
+    {
+        onStateChange.Invoke(newState);
+        currentState = newState;
+       
+        if (newState == GameState.CharacterView)
+        {
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            Time.timeScale = 0.5f;
+        }
+    }
     public void UpdateAveragePosition()
     {
         for (int i = 0; i < allWalls.Count; i++)
@@ -110,6 +126,6 @@ public class GameManager : MonoBehaviour
 
     void Death()
     {
-        currentState = GameState.BridgeBuildMode;
+        currentState = GameState.GodView;
     }
 }

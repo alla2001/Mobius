@@ -10,10 +10,13 @@ public class ItemSpawner : MonoBehaviour
 
     private void Awake()
     {
-        while (spawnedItems<=0) 
+        for (int i = 0; i < 100; i++)
         {
             SpawnItems();
+            if (spawnedItems > 0) break;
         }
+          
+        
     }
     public void SpawnItems()
     {

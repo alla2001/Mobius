@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638240625208358556
+  lastModified: 638240198909902093
   FileSizes: []
   Exists: 1
 --- !u!114 &-6543444884227491184
@@ -114,7 +114,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/ShapeHangDrums.bank
   Name: ShapeHangDrums
   StudioPath: bank:/ShapeHangDrums
-  lastModified: 638240625208613114
+  lastModified: 638240841058250094
   FileSizes: []
   Exists: 1
 --- !u!114 &-5326185812466761663
@@ -186,7 +186,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Characters.bank
   Name: Characters
   StudioPath: bank:/Characters
-  lastModified: 638240625204953612
+  lastModified: 638240841057682376
   FileSizes: []
   Exists: 1
 --- !u!114 &-4541070451326292446
@@ -258,7 +258,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/BridgeRhythmDrums.bank
   Name: BridgeRhythmDrums
   StudioPath: bank:/BridgeRhythmDrums
-  lastModified: 638240371497664784
+  lastModified: 638240841057212550
   FileSizes: []
   Exists: 1
 --- !u!114 &-2773583227191892409
@@ -483,7 +483,7 @@ MonoBehaviour:
   - {fileID: -6885711155126418999}
   StringsBanks:
   - {fileID: 7027540124532258230}
-  cacheTime: 638240625208613114
+  cacheTime: 638240841058250094
   cacheVersion: 131605
 --- !u!114 &331622543859416927
 MonoBehaviour:
@@ -500,7 +500,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank
   Name: Atmosphere
   StudioPath: bank:/Atmosphere
-  lastModified: 638238555449557484
+  lastModified: 638240198909442845
   FileSizes: []
   Exists: 1
 --- !u!114 &390539874440832980
@@ -787,7 +787,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Items.bank
   Name: Items
   StudioPath: bank:/Items
-  lastModified: 638240625208144787
+  lastModified: 638240841057981414
   FileSizes: []
   Exists: 1
 --- !u!114 &4111920463654774103
@@ -967,7 +967,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638240625208368557
+  lastModified: 638240841058078062
   FileSizes:
   - Name: 
     Value: 2390

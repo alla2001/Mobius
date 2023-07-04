@@ -69,7 +69,7 @@ public class Shape : MonoBehaviour
             {
                 continue;
             }
-            //Gizmos.DrawSphere(node.position, detectRadius);
+            Gizmos.DrawSphere(node.position, detectRadius);
         }
 
         Gizmos.color = Color.red;

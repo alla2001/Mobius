@@ -17,14 +17,17 @@ public class ShapePlacer : MonoBehaviour
 
     private void Start()
     {
+        GameManager.Instance.onStateChange.AddListener((state) => { if (state == GameState.ShapePlacement) { placingShape = true; } });
+
         placingShape = false;
         rotatingShape = false;
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+
+
+        if (GameManager.Instance.currentState == GameState.ShapePlacement)
         {
-            GameManager.Instance.currentState = GameState.ShapePlacement;
             placingShape = true;
         }
 
@@ -33,7 +36,7 @@ public class ShapePlacer : MonoBehaviour
             tmp = Instantiate(shapes[Random.Range(0, shapes.Count)]);
             tmp.GetComponent<MeshCollider>().enabled = false;
             tmp.transform.parent = transform;
-            tmp.transform.position = transform.localPosition + OffsetToCamera;
+            tmp.transform.localPosition = OffsetToCamera;
 
         }
         if (Input.GetKeyDown(KeyCode.Space) && placingShape)
