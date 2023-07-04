@@ -121,7 +121,6 @@ public class AudioManager : MonoBehaviour
         {
             EventInstance eI = CreateEventInstance(soundMode.startingEvent);
             eI.start();
-            //QueueSound(eI, false, soundMode.fmod.deltaBarsToStart, 1); zypernKatze this seems like a repetition of the starting Sound
         }
 
         foreach (AudioLayerManager audioLayer in currentSoundMode.audioLayers)

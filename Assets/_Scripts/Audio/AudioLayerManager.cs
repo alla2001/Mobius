@@ -14,7 +14,7 @@ public class AudioLayerManager : MonoBehaviour
     [System.Serializable]
     public enum LayerType
     {
-        HANGDRUM, RHYTHMDRUMS, REWARDCOLLECTED
+        HANGDRUM, RHYTHMDRUMS, REWARDCOLLECTED, CHARACTER, ITEM
     }
     [field: SerializeField]
     private LayerType soundType; 
@@ -106,7 +106,7 @@ public class AudioLayerManager : MonoBehaviour
             layerEventInstance.AllowFadeout = true;
             layerEventInstance.Stop();
         }
-        /* zypernKatze need to put the nonEmitterSounds somewhere else
+        /* zypernKatze_? Do I need non-emitter-sounds?
         foreach (EventReference eR in soundMode.fmod.continuousSounds)
         {
             EventInstance eI = CreateEventInstance(eR);
@@ -123,7 +123,7 @@ public class AudioLayerManager : MonoBehaviour
 
     public StudioEventEmitter addEventEmitter(GameObject attachmentObject, float minAttenuationRange, float maxAttenuationRange)
     {
-        int randomInt = (int)Random.Range(0, events.Count); //zypernKatze03 rewrite this to use FMODEvents
+        int randomInt = (int)Random.Range(0, events.Count); //zypernKatze_cleanup rewrite this to use FMODEvents
         EventReference randomSound = events[randomInt];
 
         StudioEventEmitter eventEmitter = AudioManager.instance.CreateEventEmitter(randomSound, attachmentObject); 
@@ -135,7 +135,7 @@ public class AudioLayerManager : MonoBehaviour
         return eventEmitter; 
     }
 
-    private bool CheckPlayChance(int bar, int beat) //zypernKatze balancing
+    private bool CheckPlayChance(int bar, int beat)
     {
         float soundProbabilityThisFrame = RhythmManager.instance.differenceBetweenBeats(lastSound[0], lastSound[1], bar, beat) * probabiltyOfSoundOnFirstBeat * 100;
         int randomComparison = Random.Range(0, 100); 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.04365709, g: 0.044818856, b: 0.05955075, a: 1}
+  m_IndirectSpecularColor: {r: 0.113612205, g: 0.12870413, b: 0.25310433, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -53204,6 +53204,9 @@ GameObject:
   - component: {fileID: 1070478701}
   - component: {fileID: 1070478702}
   - component: {fileID: 1070478703}
+  - component: {fileID: 1070478706}
+  - component: {fileID: 1070478705}
+  - component: {fileID: 1070478704}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -53493,6 +53496,132 @@ MonoBehaviour:
     Path: event:/RhythmDrum_10
   minAttenuationRange: 5
   maxAttenuationRange: 25
+--- !u!114 &1070478704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070478694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9551d45737e623147a49bf05b3bd657c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundType: 3
+  averageBeatsBetweenSounds: 0
+  skipSoundChance: 0
+  <events>k__BackingField:
+  - Guid:
+      Data1: 1337541315
+      Data2: 1264511909
+      Data3: -1366792797
+      Data4: -1634518504
+    Path: event:/Character 1
+  - Guid:
+      Data1: -271473528
+      Data2: 1076109249
+      Data3: 1217767863
+      Data4: -1959585439
+    Path: event:/Character 2
+  - Guid:
+      Data1: -262389179
+      Data2: 1235706015
+      Data3: -1042613060
+      Data4: -1508797251
+    Path: event:/Character 3
+  - Guid:
+      Data1: 1776859402
+      Data2: 1110725835
+      Data3: -1782263386
+      Data4: -383174811
+    Path: event:/Character 4
+  minAttenuationRange: 5
+  maxAttenuationRange: 30
+--- !u!114 &1070478705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070478694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9551d45737e623147a49bf05b3bd657c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundType: 2
+  averageBeatsBetweenSounds: 8
+  skipSoundChance: 0
+  <events>k__BackingField:
+  - Guid:
+      Data1: -576991117
+      Data2: 1137166956
+      Data3: 256539581
+      Data4: -1867606815
+    Path: event:/Collectible_RewardDecision
+  minAttenuationRange: 5
+  maxAttenuationRange: 30
+--- !u!114 &1070478706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070478694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9551d45737e623147a49bf05b3bd657c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundType: 4
+  averageBeatsBetweenSounds: 0
+  skipSoundChance: 0
+  <events>k__BackingField:
+  - Guid:
+      Data1: 1224222539
+      Data2: 1296944523
+      Data3: 318416313
+      Data4: -1489233922
+    Path: event:/Item_1
+  - Guid:
+      Data1: -1638279746
+      Data2: 1154935020
+      Data3: -1868345461
+      Data4: -1085757016
+    Path: event:/Item_2
+  - Guid:
+      Data1: -166037013
+      Data2: 1265470092
+      Data3: 1651834257
+      Data4: 888030598
+    Path: event:/Item_3
+  - Guid:
+      Data1: 611757618
+      Data2: 1273591961
+      Data3: -1807578240
+      Data4: -1037532265
+    Path: event:/Item_4
+  - Guid:
+      Data1: 1647481214
+      Data2: 1216132061
+      Data3: -583799
+      Data4: 1112529054
+    Path: event:/Item_5
+  - Guid:
+      Data1: -1786190756
+      Data2: 1300210191
+      Data3: 759633323
+      Data4: 518947326
+    Path: event:/Item_6
+  - Guid:
+      Data1: -1537952138
+      Data2: 1287116552
+      Data3: 1862431918
+      Data4: -1280387513
+    Path: event:/Item_7
+  minAttenuationRange: 5
+  maxAttenuationRange: 30
 --- !u!1 &1071690449
 GameObject:
   m_ObjectHideFlags: 0

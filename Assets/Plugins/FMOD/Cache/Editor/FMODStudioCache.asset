@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638240625208358556
+  lastModified: 638240886770274350
   FileSizes: []
   Exists: 1
 --- !u!114 &-6543444884227491184
@@ -186,7 +186,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Characters.bank
   Name: Characters
   StudioPath: bank:/Characters
-  lastModified: 638240625204953612
+  lastModified: 638240886769857186
   FileSizes: []
   Exists: 1
 --- !u!114 &-4541070451326292446
@@ -369,6 +369,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 12173
+--- !u!114 &-1670708281448150015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Character_Death
+  m_EditorClassIdentifier: 
+  Path: event:/Character_Death
+  Guid:
+    Data1: -2025588728
+    Data2: 1340393839
+    Data3: 1779446719
+    Data4: -1639762112
+  Banks:
+  - {fileID: -4768914128380226247}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 7732
 --- !u!114 &-319251315804457403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,6 +503,8 @@ MonoBehaviour:
   - {fileID: 2232730181954131686}
   - {fileID: 8492136199256825188}
   - {fileID: 6868946108204555072}
+  - {fileID: -1670708281448150015}
+  - {fileID: 7770088857915720122}
   EditorParameters:
   - {fileID: 3650060901570405047}
   - {fileID: 8224879041447664527}
@@ -483,7 +512,7 @@ MonoBehaviour:
   - {fileID: -6885711155126418999}
   StringsBanks:
   - {fileID: 7027540124532258230}
-  cacheTime: 638240625208613114
+  cacheTime: 638240886770284370
   cacheVersion: 131605
 --- !u!114 &331622543859416927
 MonoBehaviour:
@@ -967,10 +996,10 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638240625208368557
+  lastModified: 638240886770284370
   FileSizes:
   - Name: 
-    Value: 2390
+    Value: 2476
   Exists: 1
 --- !u!114 &7102880079406115287
 MonoBehaviour:
@@ -999,6 +1028,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4315
+--- !u!114 &7770088857915720122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Character_Warning
+  m_EditorClassIdentifier: 
+  Path: event:/Character_Warning
+  Guid:
+    Data1: 684444082
+    Data2: 1090840229
+    Data3: -2031048018
+    Data4: 326371668
+  Banks:
+  - {fileID: -4768914128380226247}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5833
 --- !u!114 &8117348503079643565
 MonoBehaviour:
   m_ObjectHideFlags: 0

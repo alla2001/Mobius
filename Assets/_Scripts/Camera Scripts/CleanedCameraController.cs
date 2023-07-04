@@ -106,7 +106,7 @@ public class CleanedCameraController : MonoBehaviour
         {
             if (cameraMode == CleanedCameraMode.GodModeGlobal || cameraMode == CleanedCameraMode.GodModeLocal) 
             {
-                isGodModeLocal = !isGodModeLocal; //zypernKatze_Irrelevant is not sure whether this might break stuff (cause a global cam can't ever be rotated in roll direction)
+                isGodModeLocal = !isGodModeLocal; //zypernKatze_? is not sure whether this might break stuff (cause a global cam can't ever be rotated in roll direction)
             }
             cameraMode = isGodModeLocal ? CleanedCameraMode.GodModeLocal : CleanedCameraMode.GodModeGlobal; 
         }
