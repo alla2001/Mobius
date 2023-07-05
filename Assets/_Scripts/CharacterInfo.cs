@@ -9,8 +9,13 @@ public class CharacterInfo : MonoBehaviour
 
     public void Start()
     {
-        Item.itemCollected.AddListener(() => { timeBeforeDeath += timeGainedFromItem; });
+     
 
+    }
+
+    public void RewardTime()
+    {
+        timeBeforeDeath += timeGainedFromItem;
     }
     private void Update()
     {

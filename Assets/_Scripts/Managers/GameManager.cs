@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
         onStateChange.Invoke(newState);
         currentState = newState;
        
+
         if (newState == GameState.CharacterView)
         {
             Time.timeScale = 1f;
@@ -75,6 +76,20 @@ public class GameManager : MonoBehaviour
         else
         {
             Time.timeScale = 0.5f;
+          
+        }
+
+        if(newState == GameState.ShapePlacement)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible=false;
+
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true   ;
+
         }
     }
     public void UpdateAveragePosition()

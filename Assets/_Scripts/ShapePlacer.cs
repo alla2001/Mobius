@@ -46,10 +46,14 @@ public class ShapePlacer : MonoBehaviour
 
         if (rotatingShape)
         {
-            mouseInput.x += Input.GetAxis("Mouse X");
-            mouseInput.y += Input.GetAxis("Mouse Y");
-            tmp.transform.localRotation = Quaternion.Euler(-mouseInput.y, mouseInput.x, 0);
+            Vector2 pastMouse = mouseInput;
+            mouseInput.x += Input.GetAxis("Mouse X")*2f;
+            mouseInput.y += Input.GetAxis("Mouse Y") * 2f;
 
+            Vector2 delta = mouseInput - pastMouse;
+
+            tmp.transform.Rotate(tmp.transform.InverseTransformDirection( Camera.main.transform.up), -delta.x);
+            tmp.transform.Rotate(tmp.transform.InverseTransformDirection(Camera.main.transform.right), delta.y);
             if (Input.GetKeyDown(KeyCode.F))
             {
                 if (tmp.GetComponent<Shape>().canBePlaced)

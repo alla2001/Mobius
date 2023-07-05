@@ -26,7 +26,7 @@ public class Shape : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AudioManager.instance.AddEmitterToLayer(AudioLayerType.HANGDRUM, this.gameObject);
+       // AudioManager.instance.AddEmitterToLayer(AudioLayerType.HANGDRUM, this.gameObject);
     }
 
     // Update is called once per frame

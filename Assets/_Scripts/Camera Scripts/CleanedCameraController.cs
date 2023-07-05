@@ -11,14 +11,10 @@ public enum CleanedCameraMode
 
 public class CleanedCameraController : MonoBehaviour
 {
-    //PUBLIC STATICS & EVENTS
-
-    //EDITOR REFERENCES
-
-    //CODE REFERENCES
+   
     private Transform centerPoint;
-    private GameObject characterRef;
 
+    public CharacterMovement currentPlayer;
     //EDITOR VARIABLES
     [Header("Camera Modes")]
     [SerializeField]
@@ -76,7 +72,6 @@ public class CleanedCameraController : MonoBehaviour
     private float maxZoomCurrent;
     private float scrollInput;
     private Vector3 cameraOffSet; 
-    private bool isGodModeLocal = true;
 
     //PUBLIC STATIC METHODS
 
@@ -84,13 +79,27 @@ public class CleanedCameraController : MonoBehaviour
     private void Start()
     {
         centerPoint = transform.parent;
-        characterRef = GameObject.FindGameObjectWithTag("Player");
+        
 
-        cameraMode = CleanedCameraMode.GodModeLocal; 
+        cameraMode = CleanedCameraMode.GodModeLocal;
+
+        GameManager.Instance.onStateChange.AddListener((state) => {
+
+            if (state ==GameState.CharacterView)
+            {
+                cameraMode= CleanedCameraMode.FollowCharacter;
+            }
+            else
+            {
+                cameraMode = CleanedCameraMode.GodModeLocal;
+            }
+        
+        });
     }
 
     private void Update()
     {
+        GetMouseInput();
         CheckCameraModeChange();
         UpdateCameraBasedOnMode(); 
     }
@@ -102,15 +111,21 @@ public class CleanedCameraController : MonoBehaviour
     //PRIVATE CODE METHODS
     private void CheckCameraModeChange()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (cameraMode == CleanedCameraMode.GodModeGlobal || cameraMode == CleanedCameraMode.GodModeLocal) 
-            {
-                isGodModeLocal = !isGodModeLocal; //zypernKatze_? is not sure whether this might break stuff (cause a global cam can't ever be rotated in roll direction)
-            }
-            cameraMode = isGodModeLocal ? CleanedCameraMode.GodModeLocal : CleanedCameraMode.GodModeGlobal; 
+            //if (cameraMode == CleanedCameraMode.GodModeGlobal || cameraMode == CleanedCameraMode.GodModeLocal) 
+            //{
+            //    isGodModeLocal = !isGodModeLocal; //zypernKatze is not sure whether this might break stuff (cause a global cam can't ever be rotated in roll direction)
+            //}
+            //cameraMode = isGodModeLocal ? CleanedCameraMode.GodModeLocal : CleanedCameraMode.GodModeGlobal;
+            cameraMode = CleanedCameraMode.GodModeLocal;
+            GameManager.Instance.ChangeState(GameState.GodView);
+            GameManager.Instance.currentControlledCharacter = null;
         }
-
+        if (currentPlayer==null)
+        {
+            cameraMode= CleanedCameraMode.GodModeLocal;
+        }
         if (cameraMode != CleanedCameraMode.FollowCharacter)
         {
             CheckCharacterClick(); 
@@ -126,7 +141,8 @@ public class CleanedCameraController : MonoBehaviour
         {
             if (hit.transform.gameObject.tag == "Player" && Input.GetMouseButtonDown(0))
             {
-                characterRef = hit.transform.gameObject;
+                currentPlayer = hit.collider.gameObject.GetComponent<CharacterMovement>();
+                GameManager.Instance.currentControlledCharacter = currentPlayer;
                 cameraMode = CleanedCameraMode.FollowCharacter;
             }
         }
@@ -145,7 +161,7 @@ public class CleanedCameraController : MonoBehaviour
                 UpdateCameraGodModeLocal();
                 break; 
             case CleanedCameraMode.FollowCharacter:
-                //GameManager.Instance.currentState = GameState.CharacterView;
+                GameManager.Instance.ChangeState(GameState.CharacterView);
                 UpdateCameraFollowCharacter();
                 break;
             default:
@@ -156,7 +172,7 @@ public class CleanedCameraController : MonoBehaviour
 
     private void UpdateCameraGodmodeGlobal()
     {
-        GetMouseInput();
+      
 
         MoveCameraPivot();
         SetCameraPosition();
@@ -172,7 +188,7 @@ public class CleanedCameraController : MonoBehaviour
 
     private void UpdateCameraGodModeLocal()
     {
-        GetMouseInput();
+     
 
         MoveCameraPivot();
         SetCameraPosition();
@@ -188,10 +204,12 @@ public class CleanedCameraController : MonoBehaviour
 
     private void UpdateCameraFollowCharacter()
     {
-        centerPoint.position = characterRef.transform.position;
-        centerPoint.rotation = characterRef.transform.rotation;
-        
-        SetCameraPosition();
+        centerPoint.position = currentPlayer.transform.position;
+        centerPoint.rotation = currentPlayer.transform.rotation;
+
+        transform.localPosition= new Vector3( 0,0,-distanceToTarget );
+        distanceToTarget -= scrollInput * zoomSpeed;
+        distanceToTarget = Mathf.Clamp(distanceToTarget, minZoomCurrent, maxZoomCurrent);
     }
     private void SetCameraPosition()
     {

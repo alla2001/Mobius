@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class Item : MonoBehaviour
 {
     public float timeBeforeDespawn;
-    public static UnityEvent itemCollected = new UnityEvent();
+    //public static UnityEvent itemCollected = new UnityEvent();
     public int addedScore=10;
     // Start is called before the first frame update
     void Start()
@@ -23,15 +23,15 @@ public class Item : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GivePlayerPower();
+            GivePlayerPower(other.GetComponent<CharacterInfo>());
             Destroy(gameObject);
         }
     }
 
-    public void GivePlayerPower()
+    public void GivePlayerPower(CharacterInfo character)
     {
         GameManager.Instance.Score+= addedScore;
-        itemCollected?.Invoke();
+        character.RewardTime();
         GameManager.Instance.ChangeState(GameState.ShapePlacement);
     }
 }
