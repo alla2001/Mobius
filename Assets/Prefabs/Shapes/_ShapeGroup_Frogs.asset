@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a95a11f67a8e144e8c5f33480b7bd51, type: 3}
+  m_Name: _ShapeGroup_Frogs
+  m_EditorClassIdentifier: 
+  shapes:
+  - {fileID: 846885424900574526, guid: ec887d00b0295ae4b986a1c73ae3ea2e, type: 3}
+  - {fileID: 2364746663376315579, guid: 5dba088d4e16dac49b0e10a217cb0cea, type: 3}
+  - {fileID: 7645422303008899276, guid: b7c1d23ef199b7543b0d31d01220dd0c, type: 3}
+  - {fileID: 3175554694366762197, guid: c5c5c31ba50672643a0e5a32b2790706, type: 3}

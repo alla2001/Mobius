@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf4e22eb376d5c3418380a4914f3fb8e, type: 3}
+  m_Name: _ArchitecturalStyle_Skeleton
+  m_EditorClassIdentifier: 
+  materialSlots:
+  - {fileID: 11400000, guid: 3af1f967a55fbb14cbb73e19cbc13b2a, type: 2}
+  - {fileID: 11400000, guid: f4037392df729504ab6ee4aa41de3387, type: 2}

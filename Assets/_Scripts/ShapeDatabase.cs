@@ -3,43 +3,33 @@ using UnityEngine;
 
 public class ShapeDatabase : MonoBehaviour
 {
+    //DEBUG
+    [ContextMenu("Generate20Shapes")]
+    public void Generate20Shapes()
+    {
+        Awake(); 
+
+        for(int i = 0; i < 20; i++)
+        {
+            GameObject gO = GenerateRandomShape();
+            gO = Instantiate(gO, Vector3.zero, Quaternion.identity);
+            gO.transform.position += Vector3.right * i * 10; 
+        }
+    }
+
     //PUBLIC STATICS & EVENTS & PUBLIC SUBCLASSES
     public static ShapeDatabase instance;
-    public enum SPLINEFORM
-    {
-        BUTTERFLY, CHAIR, FROG, MOEBIUS, PRETZEL, ROUNDABOUT, THROUGHTHELOOP
-    }
-
-    public enum ARCHITECTURE
-    {
-        PILLARS_1, PIPES_2, WINDOWS_3, SKELETON_4
-    }
-
-    [System.Serializable]
-    public class ArchitectureMaterialMap
-    {
-        [SerializeField] public ARCHITECTURE architecture;
-        [SerializeField] public MaterialGroupArray[] materialSlots; 
-    }
-
-    [System.Serializable]
-    public class MaterialGroupArray
-    {
-        [SerializeField] public MaterialGroup[] materialGroups; 
-    }
 
     //EDITOR REFERENCES
-    public List<SPLINEFORM> lockedShapes = new List<SPLINEFORM>();
-    public List<ARCHITECTURE> lockedArchitectures = new List<ARCHITECTURE>();
+    public List<ShapeGroup> lockedShapeGroups = new List<ShapeGroup>();
+    public List<ArchitecturalStyle> lockedArchitectures = new List<ArchitecturalStyle>();
+    public List<Material> lockedMaterials = new List<Material>();
 
-    public List<ArchitectureMaterialMap> ArchitectureMaterialsMap = new List<ArchitectureMaterialMap>();
-    public List<MaterialGroup> MaterialGroups; //make this a ScriptableObject?
+    public List<ShapeGroup> unlockedShapeGroups = new List<ShapeGroup>();
+    public List<ArchitecturalStyle> unlockedArchitectures = new List<ArchitecturalStyle>();
+    public List<Material> unlockedMaterials = new List<Material>();
 
     //CODE REFERENCES
-    [HideInInspector]
-    public List<SPLINEFORM> unlockedShapes = new List<SPLINEFORM>();
-    [HideInInspector]
-    public List<ARCHITECTURE> unlockedArchitectures = new List<ARCHITECTURE>();
 
     //EDITOR VARIABLES
 
@@ -48,11 +38,16 @@ public class ShapeDatabase : MonoBehaviour
     //PUBLIC STATIC METHODS
 
     //MONOBEHAVIOUR METHODS
+    [ContextMenu("SetThisAsInstance")]
     private void Awake()
     {
+        if (instance == this) //needed because I call this in edit mode
+        {
+            return; 
+        }
         if (instance != null) 
         {
-            Destroy(this.gameObject);
+            DestroyImmediate(this.gameObject);
             Debug.LogWarning("deleted second ShapeRandomiser on object: " + gameObject.name); 
         }
         instance = this; 
@@ -61,10 +56,43 @@ public class ShapeDatabase : MonoBehaviour
     //IN SCENE METHODS (e.g. things that need to be accessed by unityEvents)
 
     //PUBLIC CODE METHODS
-    public void AddRandomMaterial()
+    public GameObject GenerateRandomShape()
     {
+        //ShapeGroup -> Architecture -> MaterialGroup -> Materials
+        GameObject toReturn;
+        ShapeGroup shapeGroup = unlockedShapeGroups.GetRandomElement();
+        ArchitecturalStyle architecture = unlockedArchitectures.GetRandomElement(); 
+        toReturn = shapeGroup.getShapeByArchitecture(architecture);
+        Material[] materialCombo = toReturn.GetComponent<Shape>().architecturalStyle.getRandomUnlockedMaterialCombo(); //zypernKatze Randomisation / locking&unlocking should be uniformly either here on in the subclasses
+        toReturn.GetComponent<Renderer>().materials = materialCombo; 
 
+        //Debug
+        return toReturn; 
     }
 
-    //PRIVATE CODE METHODS
+    public void UnlockObjectFromList<T>(List<T> lockedList, List<T> unlockedList, T toUnlock)
+    {
+        lockedList.Remove(toUnlock); 
+        unlockedList.AddAvoidDuplicate(toUnlock);
+    }
+    public void UnlockRandomSplineForm()
+    {
+        ShapeGroup shapeGroup = lockedShapeGroups.GetRandomElement(); 
+        lockedShapeGroups.Remove(shapeGroup);
+        unlockedShapeGroups.AddAvoidDuplicate(shapeGroup); 
+    }
+
+    public void UnlockRandomArchitecture()
+    {
+        ArchitecturalStyle architecture = lockedArchitectures.GetRandomElement();
+        lockedArchitectures.Remove(architecture);
+        unlockedArchitectures.AddAvoidDuplicate(architecture);
+    }
+
+    public void UnlockRandomMaterial()
+    {
+        Material material = lockedMaterials.GetRandomElement();
+        lockedMaterials.Remove(material);
+        unlockedMaterials.AddAvoidDuplicate(material);
+    }
 }

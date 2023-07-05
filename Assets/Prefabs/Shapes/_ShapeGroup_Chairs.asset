@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a95a11f67a8e144e8c5f33480b7bd51, type: 3}
+  m_Name: _ShapeGroup_Chairs
+  m_EditorClassIdentifier: 
+  shapes:
+  - {fileID: 6462628164583285710, guid: 68185f9ad82f07a43bcc9c1bddae9ef3, type: 3}
+  - {fileID: 5072929555932618170, guid: ed7e5789a5e149c4e9da54e51d19f263, type: 3}
+  - {fileID: 4511777205197884940, guid: c5dd16dfca56ccf41bd7dcadcc974119, type: 3}
+  - {fileID: 293396184168009253, guid: 20541148dc6af914da795b38abf95743, type: 3}

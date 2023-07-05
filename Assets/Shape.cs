@@ -14,6 +14,8 @@ public class Shape : MonoBehaviour
     private int numberOfPoints;
     private List<SplinePoint> splineNodePositions = new List<SplinePoint>();
 
+    public ArchitecturalStyle architecturalStyle;
+
     private void Awake()
     {
         splCompReferences = GetComponentsInChildren<SplineComputer>();

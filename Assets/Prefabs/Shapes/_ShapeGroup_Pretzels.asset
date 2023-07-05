@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a95a11f67a8e144e8c5f33480b7bd51, type: 3}
+  m_Name: _ShapeGroup_Pretzels
+  m_EditorClassIdentifier: 
+  shapes:
+  - {fileID: 4331954974927332500, guid: 089ed97b69300844ab53e3266d4d8744, type: 3}
+  - {fileID: 2542989874848631483, guid: a3cb1e305ebae0a40b0fa19c84117610, type: 3}
+  - {fileID: 3044721923025998100, guid: 6771537ede198bc44b238417dbc09c26, type: 3}
+  - {fileID: 434169157519098413, guid: d183a8f955c8f2f489f4035a26d7aefa, type: 3}
