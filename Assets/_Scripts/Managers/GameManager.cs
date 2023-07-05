@@ -141,4 +141,10 @@ public class GameManager : MonoBehaviour
     {
         currentState = GameState.GodView;
     }
+
+    public void StartCharacterPlacement()
+    {
+        currentState = GameState.CharacterPlacement;
+    }
+
 }

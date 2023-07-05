@@ -66,7 +66,7 @@ public class ShapePlacer : MonoBehaviour
                     tmp.GetComponent<MeshCollider>().enabled = true;
                     GameManager.Instance.allWalls.Add(tmp);
                     GameManager.Instance.UpdateAveragePosition();
-                    GameManager.Instance.ChangeState(GameState.GodView);
+                    GameManager.Instance.ChangeState(GameState.RewardMode);
                     tmp = null;
                 }
                 else
