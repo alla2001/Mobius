@@ -7,7 +7,7 @@ public class D_AddShapeSound : MonoBehaviour
     //REFERENCES
 
     //OTHER EDITOR VARIABLES
-    public AudioLayerManager.LayerType layerType; 
+    public AudioLayerManager.AudioLayerType layerType; 
 
     //CODE VARIABLES
 

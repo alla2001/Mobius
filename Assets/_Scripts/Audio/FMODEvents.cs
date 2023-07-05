@@ -10,7 +10,7 @@ public class FMODEvents : MonoBehaviour
     [System.Serializable]
     public class SoundLayerCollection
     {
-        AudioLayerManager.LayerType type;
+        AudioLayerManager.AudioLayerType type;
         [field: SerializeField]
         public EventReference[] sounds; 
     }

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ShapePlacer : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> shapes;
-
     private Transform levelHolder;
     private bool placingShape;
     private bool rotatingShape;
@@ -24,8 +22,6 @@ public class ShapePlacer : MonoBehaviour
     }
     private void Update()
     {
-
-
         if (GameManager.Instance.currentState == GameState.ShapePlacement)
         {
             placingShape = true;
@@ -33,7 +29,8 @@ public class ShapePlacer : MonoBehaviour
 
         if (placingShape && tmp==null) 
         {
-            tmp = Instantiate(shapes[Random.Range(0, shapes.Count)]);
+            GameObject shape = ShapeDatabase.instance.GenerateRandomShape(); 
+            tmp = Instantiate(shape);
             tmp.GetComponent<MeshCollider>().enabled = false;
             tmp.transform.parent = transform;
             tmp.transform.localPosition = OffsetToCamera;

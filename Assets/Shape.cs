@@ -4,6 +4,7 @@ using UnityEngine;
 using Dreamteck.Splines;
 using System.Linq;
 using UnityEditor.Experimental.GraphView;
+using static AudioLayerManager;
 
 public class Shape : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class Shape : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        AudioManager.instance.AddEmitterToLayer(AudioLayerType.HANGDRUM, this.gameObject);
     }
 
     // Update is called once per frame

@@ -13,7 +13,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
     //EDITOR REFERENCES
-    public Dictionary<AudioLayerManager.LayerType, AudioLayerManager> audioLayers = new Dictionary<AudioLayerManager.LayerType, AudioLayerManager>(); 
+    public Dictionary<AudioLayerManager.AudioLayerType, AudioLayerManager> audioLayers = new Dictionary<AudioLayerManager.AudioLayerType, AudioLayerManager>(); 
 
     //CODE REFERENCES
 
@@ -136,7 +136,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void AddEmitterToLayer(AudioLayerManager.LayerType layer, GameObject attachmentObject)
+    public void AddEmitterToLayer(AudioLayerManager.AudioLayerType layer, GameObject attachmentObject)
     {
         audioLayers[layer].addEventEmitter(attachmentObject); 
     }

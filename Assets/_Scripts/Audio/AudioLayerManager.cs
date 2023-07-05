@@ -12,12 +12,12 @@ public class AudioLayerManager : MonoBehaviour
 
     //OTHER EDITOR VARIABLES
     [System.Serializable]
-    public enum LayerType
+    public enum AudioLayerType
     {
         HANGDRUM, RHYTHMDRUMS, REWARDCOLLECTED, CHARACTER, ITEM
     }
     [field: SerializeField]
-    private LayerType soundType; 
+    private AudioLayerType soundType; 
 
     [field: SerializeField]
     [Range(0, 20)]
