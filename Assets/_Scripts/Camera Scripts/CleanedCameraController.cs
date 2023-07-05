@@ -224,7 +224,7 @@ public class CleanedCameraController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            Debug.Log("mouseButtonDown");
+          
             mouseLeftEdge = Input.mousePosition.x < Screen.width * 1 / 5; 
             mouseRightEdge = Input.mousePosition.x > Screen.width * 4 / 5;
         }

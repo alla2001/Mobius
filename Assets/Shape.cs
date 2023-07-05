@@ -8,7 +8,7 @@ using static AudioLayerManager;
 
 public class Shape : MonoBehaviour
 {
-    [SerializeField] private float detectRadius = 0.5f;
+    private static  float detectRadius =1f;
     public bool canBePlaced;
     private SplineComputer[] splCompReferences;
     private Vector3 overlapPos;

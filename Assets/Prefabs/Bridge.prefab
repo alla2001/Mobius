@@ -533,7 +533,7 @@ MonoBehaviour:
   animClipTo: 1
   multithreaded: 0
   buildOnAwake: 1
-  buildOnEnable: 0
+  buildOnEnable: 1
   _particleSystem: {fileID: 5846871495659297829}
   pauseWhenNotVisible: 0
   offset: {x: 0, y: 0}
@@ -616,7 +616,7 @@ PrefabInstance:
     - target: {fileID: 8078552177489839449, guid: 8eb163862e1688d42b971bee303d457d,
         type: 3}
       propertyPath: prewarm
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8078552177489839449, guid: 8eb163862e1688d42b971bee303d457d,
         type: 3}

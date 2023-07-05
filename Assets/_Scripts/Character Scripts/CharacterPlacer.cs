@@ -18,27 +18,36 @@ public class CharacterPlacer : MonoBehaviour
         mainCamera = this.GetComponent<Camera>();
     }
 
+    GameObject character;
+    bool isPlaying = false;
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.currentState == GameState.CharacterPlacement) {
+   
+        if (GameManager.Instance.currentState == GameState.CharacterPlacement  ) {
 
             Debug.Log("Can Place Character");
 
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, targetMask) && Input.GetMouseButtonDown(0))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, targetMask) && Input.GetMouseButtonDown(0) )
             {
                 SplineComputer splineComp = hit.collider.gameObject.GetComponent<SplineComputer>();
-       
 
-               
 
-                GameObject character = Instantiate(characterPrefab, targetPos, Quaternion.identity);
+
+                targetPos = splineComp.Evaluate( splineComp.Project(hit.point).percent).position;
+                character = Instantiate(characterPrefab, targetPos, Quaternion.identity);
                 character.GetComponent<SplineFollower>().spline = splineComp;
-                character.GetComponent<SplineFollower>().SetPercent(splineComp.Project(hit.point).percent); 
+                print(splineComp.Project(hit.point).percent);
+                character.GetComponent<SplineFollower>().SetPercent(splineComp.Project(hit.point).percent);
+           
+                character.GetComponent<SplineFollower>().RebuildImmediate();
+                character.GetComponent<SplineFollower>().SetPercent(splineComp.Project(hit.point).percent);
+                ItemSpawner.instace.SpawnItems();
                 GameManager.Instance.ChangeState(GameState.GodView);
+                isPlaying=true;
             }
         }
     }
@@ -46,6 +55,6 @@ public class CharacterPlacer : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
-        Gizmos.DrawSphere(targetPos, 0.2f);
+        Gizmos.DrawSphere(targetPos, 0.5f);
     }
 }

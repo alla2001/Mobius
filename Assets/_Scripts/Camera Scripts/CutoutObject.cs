@@ -33,7 +33,7 @@ public class CutoutObject : MonoBehaviour
 
             foreach (Material mat in materials)
             {
-                print(obj.name);
+              
                
                 mat.SetFloat("_CutoutSize", 0);
                 mat.SetFloat("_FalloffSize", 0);

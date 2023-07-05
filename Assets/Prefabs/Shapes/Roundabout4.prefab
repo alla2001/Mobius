@@ -58,7 +58,7 @@ MonoBehaviour:
       normal: {x: -0.000000029802322, y: 0.73529327, z: -0.0011851788}
       size: 1.3600003
       tangent: {x: 0.000025358066, y: -0.000011805958, z: 0.000024500192}
-      tangent2: {x: -0.000024612325, y: 0.00001159023, z: -0.000024899664}
+      tangent2: {x: -0.000024845762, y: 0.000011781195, z: -0.000024780595}
   - invertTangents: 0
     _pointIndex: 17
     _computer: {fileID: 341649011802433607}
@@ -69,7 +69,7 @@ MonoBehaviour:
       normal: {x: -0.000000029802322, y: 0.73529327, z: -0.0011851788}
       size: 1.3600003
       tangent: {x: 0.000025358066, y: -0.000011805958, z: 0.000024500192}
-      tangent2: {x: -0.000024612325, y: 0.00001159023, z: -0.000024899664}
+      tangent2: {x: -0.000024845762, y: 0.000011781195, z: -0.000024780595}
   _transformSize: 1
   _transformNormals: 1
   _transformTangents: 1
@@ -168,8 +168,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+  - {fileID: 2100000, guid: aa7b4c9046ff89448b17bc2fa071854e, type: 2}
   - {fileID: 2100000, guid: 8f368370059407c46b6ceb08109e61a5, type: 2}
-  - {fileID: 2100000, guid: a64860902a8dcda45863316ff0922833, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -217,7 +217,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d790a3b4c76ef7047b7df26a0cb7b730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectRadius: 0.3
   canBePlaced: 0
   architecturalStyle: {fileID: 11400000, guid: 227205d3a7584af489e017597a1aec51, type: 2}
 --- !u!54 &-4310138098936075209
@@ -6579,7 +6578,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 341649011941487608}
   m_LocalRotation: {x: 0.5675359, y: 0.02797477, z: 0.40215808, w: -0.7179063}
-  m_LocalPosition: {x: 1.8142263, y: -0.94478506, z: -3.293562}
+  m_LocalPosition: {x: 1.8142312, y: -0.94478995, z: -3.2935607}
   m_LocalScale: {x: 0.73529387, y: 0.73529404, z: 0.73529404}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6607,10 +6606,10 @@ MonoBehaviour:
       _type: 0
       position: {x: 0, y: 0, z: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
-      normal: {x: -0.00000011920929, y: 0.73448646, z: -0.034463167}
+      normal: {x: -0.00000011920929, y: 0.7344863, z: -0.034463137}
       size: 1.3600003
-      tangent: {x: 0.000008616457, y: 0.0000044467756, z: -0.0000076256088}
-      tangent2: {x: -0.000010489456, y: -0.0000039093584, z: 0.00000870765}
+      tangent: {x: 0.000009243097, y: 0.000004057002, z: -0.000008460675}
+      tangent2: {x: -0.000008287018, y: -0.0000031979134, z: 0.0000072112157}
   - invertTangents: 0
     _pointIndex: 22
     _computer: {fileID: 341649011970476432}
@@ -6618,10 +6617,10 @@ MonoBehaviour:
       _type: 0
       position: {x: 0, y: 0, z: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
-      normal: {x: -0.00000011920929, y: 0.73448646, z: -0.034463167}
+      normal: {x: -0.00000011920929, y: 0.7344863, z: -0.034463137}
       size: 1.3600003
-      tangent: {x: 0.000008616457, y: 0.0000044467756, z: -0.0000076256088}
-      tangent2: {x: -0.000010489456, y: -0.0000039093584, z: 0.00000870765}
+      tangent: {x: 0.000009243097, y: 0.000004057002, z: -0.000008460675}
+      tangent2: {x: -0.000008287018, y: -0.0000031979134, z: 0.0000072112157}
   _transformSize: 1
   _transformNormals: 1
   _transformTangents: 1
@@ -8454,7 +8453,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 341649012541805008}
   m_LocalRotation: {x: -0.50622374, y: -0.64955413, z: -0.14013872, w: 0.54970723}
-  m_LocalPosition: {x: 3.2479806, y: 1.4324559, z: -0.19220963}
+  m_LocalPosition: {x: 3.2479827, y: 1.4324551, z: -0.19220805}
   m_LocalScale: {x: 0.73529387, y: 0.73529404, z: 0.73529404}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8482,10 +8481,10 @@ MonoBehaviour:
       _type: 0
       position: {x: 0, y: 0, z: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
-      normal: {x: 0.00000020861626, y: 0.73445904, z: -0.035028517}
+      normal: {x: 0.000000074505806, y: 0.7344593, z: -0.035028696}
       size: 1.3600003
-      tangent: {x: -0.000013015219, y: 0.00000093544014, z: -0.000022863236}
-      tangent2: {x: 0.00001335649, y: 0.000000079728935, z: 0.000022673044}
+      tangent: {x: -0.00001270278, y: -0.0000005547641, z: -0.000021513468}
+      tangent2: {x: 0.000013891225, y: 0.00000027931102, z: 0.000023065364}
   - invertTangents: 0
     _pointIndex: 0
     _computer: {fileID: 341649010928062688}
@@ -8493,10 +8492,10 @@ MonoBehaviour:
       _type: 0
       position: {x: 0, y: 0, z: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
-      normal: {x: 0.00000020861626, y: 0.73445904, z: -0.035028517}
+      normal: {x: 0.000000074505806, y: 0.7344593, z: -0.035028696}
       size: 1.3600003
-      tangent: {x: -0.000013015219, y: 0.00000093544014, z: -0.000022863236}
-      tangent2: {x: 0.00001335649, y: 0.000000079728935, z: 0.000022673044}
+      tangent: {x: -0.00001270278, y: -0.0000005547641, z: -0.000021513468}
+      tangent2: {x: 0.000013891225, y: 0.00000027931102, z: 0.000023065364}
   _transformSize: 1
   _transformNormals: 1
   _transformTangents: 1

@@ -67,6 +67,8 @@ public class ShapePlacer : MonoBehaviour
                     GameManager.Instance.allWalls.Add(tmp);
                     GameManager.Instance.UpdateAveragePosition();
                     GameManager.Instance.ChangeState(GameState.RewardMode);
+                    ItemSpawner.instace.shapes.Add(tmp);
+                 
                     tmp = null;
                 }
                 else
