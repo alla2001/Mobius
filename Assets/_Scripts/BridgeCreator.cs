@@ -85,8 +85,9 @@ public class BridgeCreator : MonoBehaviour
             int index = hit.collider.GetComponent<SplineComputer>().PercentToPointIndex(hit.collider.GetComponent<SplineComputer>().Project(hit.point).percent);
             SplineSample result = hit.collider.GetComponent<SplineComputer>().Evaluate(index);
            
-           
-            if (firstBridgePoint && energy-Vector3.Distance(firstBridgePoint.transform.position, result.position) >=0)
+
+
+            if (firstBridgePoint && energy - Vector3.Distance(firstBridgePoint.transform.position, result.position) >=0)
             {
                 lineRenderer.positionCount = 2;
                 lineRenderer.SetPosition(1, result.position);
@@ -100,11 +101,16 @@ public class BridgeCreator : MonoBehaviour
 
             if (!firstBridgePoint)
             {
+               
                 firstSpline = hit.collider.GetComponent<SplineComputer>();
                 lineRenderer.positionCount = 2;
                 firstBridgePoint = Instantiate(nodePrefab).GetComponent<Node>();
-
                 index = firstSpline.PercentToPointIndex(firstSpline.Project(hit.point).percent);
+                if (IsEmptyPoint(firstSpline, index))
+                {
+                    Destroy(firstBridgePoint.gameObject);
+                    return;
+                }
                 result = firstSpline.Evaluate(index);
                 firstBridgePoint.transform.position = result.position;
                  firstBridgePoint.transform.rotation = result.rotation;
@@ -127,7 +133,13 @@ public class BridgeCreator : MonoBehaviour
                 secondBridgePoint = Instantiate(nodePrefab).GetComponent<Node>();
 
                 index = secondSpline.PercentToPointIndex(secondSpline.Project(hit.point).percent);
+                if (IsEmptyPoint(secondSpline, index))
+                {
+                    Destroy(firstBridgePoint.gameObject);
+                    Destroy(secondBridgePoint.gameObject);
 
+                    return;
+                }
                 result = secondSpline.Evaluate(index);
 
                 secondBridgePoint.transform.position = result.position;
@@ -341,7 +353,22 @@ public class BridgeCreator : MonoBehaviour
        
 
     }
-        public void LayOutObjects(int steps,GameObject prefab)
+
+    public bool IsEmptyPoint(SplineComputer spline, int index)
+    {
+
+
+        foreach (Intersection intersection in Intersection.intersections)
+        {
+            if (intersection.nodeIntersection.HasConnection(spline, index))
+            {
+                return false;
+            }
+
+        }
+        return true;
+    }
+    public void LayOutObjects(int steps,GameObject prefab)
     {
        
        

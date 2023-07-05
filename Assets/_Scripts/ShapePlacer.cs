@@ -36,33 +36,37 @@ public class ShapePlacer : MonoBehaviour
             tmp.transform.localPosition = OffsetToCamera;
 
         }
-        if (Input.GetKeyDown(KeyCode.Space) && placingShape)
+        if (placingShape)
         {
-            tmp.transform.parent = levelHolder;
-            placingShape = false;
+            
+            placingShape = true;
             //tmp = null;
             rotatingShape = true;
-        }
+       
 
-        if (rotatingShape)
-        {
-            Vector2 pastMouse = mouseInput;
-            mouseInput.x += Input.GetAxis("Mouse X")*2f;
-            mouseInput.y += Input.GetAxis("Mouse Y") * 2f;
+            if (Input.GetMouseButton(0))
+            {
+                Vector2 pastMouse = mouseInput;
+                mouseInput.x += Input.GetAxis("Mouse X")*2f;
+                mouseInput.y += Input.GetAxis("Mouse Y") * 2f;
 
-            Vector2 delta = mouseInput - pastMouse;
+                Vector2 delta = mouseInput - pastMouse;
 
-            tmp.transform.Rotate(tmp.transform.InverseTransformDirection( Camera.main.transform.up), -delta.x);
-            tmp.transform.Rotate(tmp.transform.InverseTransformDirection(Camera.main.transform.right), delta.y);
-            if (Input.GetKeyDown(KeyCode.F))
+                tmp.transform.Rotate(tmp.transform.InverseTransformDirection( Camera.main.transform.up), -delta.x);
+                tmp.transform.Rotate(tmp.transform.InverseTransformDirection(Camera.main.transform.right), delta.y);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (tmp.GetComponent<Shape>().canBePlaced)
                 {
+                    tmp.transform.parent = levelHolder;
                     placingShape = false;
                     rotatingShape = false;
                     tmp.GetComponent<MeshCollider>().enabled = true;
                     GameManager.Instance.allWalls.Add(tmp);
                     GameManager.Instance.UpdateAveragePosition();
+                    GameManager.Instance.ChangeState(GameState.GodView);
                     tmp = null;
                 }
                 else
@@ -70,6 +74,7 @@ public class ShapePlacer : MonoBehaviour
                     Debug.Log("Cant place the shape");
                 }
             }
+      
         }
 
     }

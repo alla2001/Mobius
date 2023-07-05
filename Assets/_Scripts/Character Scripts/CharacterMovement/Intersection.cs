@@ -5,6 +5,17 @@ using UnityEngine;
 public class Intersection : MonoBehaviour
 {
     public Node nodeIntersection;
+    public static List<Intersection> intersections = new List<Intersection>();
+
+
+    private void OnEnable()
+    {
+        intersections.Add(this);
+    }
+    private void OnDisable()
+    {
+        intersections.Remove(this);
+    }
 
     public Node.Connection GetNextDirection(int current)
     {

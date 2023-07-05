@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4331954974627827721}
   m_LocalRotation: {x: 0.46238467, y: -0.2782239, z: 0.7950922, w: -0.27680376}
-  m_LocalPosition: {x: 3.7470853, y: -2.711156, z: -2.3499372}
+  m_LocalPosition: {x: 3.7470846, y: -2.7111566, z: -2.3499372}
   m_LocalScale: {x: 0.73529387, y: 0.73529404, z: 0.73529404}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -584,7 +584,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4331954975105818375}
   m_LocalRotation: {x: -0.4854306, y: -0.13850214, z: -0.3271575, w: -0.7988381}
-  m_LocalPosition: {x: -3.1029577, y: 3.9595957, z: 1.2930442}
+  m_LocalPosition: {x: -3.1029572, y: 3.9595954, z: 1.293046}
   m_LocalScale: {x: 0.73529387, y: 0.73529404, z: 0.73529404}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -614,8 +614,8 @@ MonoBehaviour:
       color: {r: 1, g: 1, b: 1, a: 1}
       normal: {x: 0.00000017881393, y: 0.72027695, z: -0.14784816}
       size: 1.3600003
-      tangent: {x: -0.0000044433277, y: -0.0000021993608, z: 0.00000277433}
-      tangent2: {x: 0.000012657272, y: 0.0000025857569, z: 0.0000005499847}
+      tangent: {x: -0.0000055966916, y: -0.0000020257653, z: 0.0000026942907}
+      tangent2: {x: 0.000012385557, y: 0.0000029395462, z: -0.000000021585368}
   - invertTangents: 0
     _pointIndex: 29
     _computer: {fileID: 4331954975880310508}
@@ -625,8 +625,8 @@ MonoBehaviour:
       color: {r: 1, g: 1, b: 1, a: 1}
       normal: {x: 0.00000017881393, y: 0.72027695, z: -0.14784816}
       size: 1.3600003
-      tangent: {x: -0.0000044433277, y: -0.0000021993608, z: 0.00000277433}
-      tangent2: {x: 0.000012657272, y: 0.0000025857569, z: 0.0000005499847}
+      tangent: {x: -0.0000055966916, y: -0.0000020257653, z: 0.0000026942907}
+      tangent2: {x: 0.000012385557, y: 0.0000029395462, z: -0.000000021585368}
   _transformSize: 1
   _transformNormals: 1
   _transformTangents: 1
@@ -683,7 +683,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4331954975158211813}
   m_LocalRotation: {x: 0.7550058, y: -0.040297464, z: 0.33015648, w: -0.565101}
-  m_LocalPosition: {x: -2.6598797, y: 3.4905145, z: 0.34885266}
+  m_LocalPosition: {x: -2.6598797, y: 3.490515, z: 0.34885406}
   m_LocalScale: {x: 0.73529387, y: 0.73529404, z: 0.73529404}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -711,10 +711,10 @@ MonoBehaviour:
       _type: 0
       position: {x: 0, y: 0, z: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
-      normal: {x: -0.0000032186508, y: 0.7353548, z: -0.004135072}
+      normal: {x: -0.0000032186508, y: 0.7353544, z: -0.004134774}
       size: 1.3600003
-      tangent: {x: -0.000028663322, y: 0.0000008098465, z: 0.00004413657}
-      tangent2: {x: 0.0000020058849, y: -0.000021239903, z: 0.000023623177}
+      tangent: {x: -0.00002723112, y: 0.0000015632056, z: 0.00004403807}
+      tangent2: {x: 0.0000020670032, y: -0.000020579717, z: 0.000023156766}
   - invertTangents: 0
     _pointIndex: 0
     _computer: {fileID: 4331954975880310508}
@@ -722,10 +722,10 @@ MonoBehaviour:
       _type: 0
       position: {x: 0, y: 0, z: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
-      normal: {x: -0.0000032186508, y: 0.7353548, z: -0.004135072}
+      normal: {x: -0.0000032186508, y: 0.7353544, z: -0.004134774}
       size: 1.3600003
-      tangent: {x: -0.000028663322, y: 0.0000008098465, z: 0.00004413657}
-      tangent2: {x: 0.0000020058849, y: -0.000021239903, z: 0.000023623177}
+      tangent: {x: -0.00002723112, y: 0.0000015632056, z: 0.00004403807}
+      tangent2: {x: 0.0000020670032, y: -0.000020579717, z: 0.000023156766}
   _transformSize: 1
   _transformNormals: 1
   _transformTangents: 1
@@ -782,7 +782,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4331954975323747763}
   m_LocalRotation: {x: -0.23778394, y: -0.47354716, z: -0.3536556, w: -0.7708045}
-  m_LocalPosition: {x: 3.765931, y: -1.6863142, z: -1.6582131}
+  m_LocalPosition: {x: 3.7659302, y: -1.6863148, z: -1.6582125}
   m_LocalScale: {x: 0.73529387, y: 0.73529404, z: 0.73529404}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1281,7 +1281,6 @@ MonoBehaviour:
   _space: 1
   _sampleMode: 0
   _subscribers:
-  - {fileID: 0}
   - {fileID: 4331954975880310419}
   _rawSamples:
   - position: {x: -2.6598797, y: 3.4905143, z: 0.34885412}
@@ -3948,7 +3947,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4331954975880310422}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a8e405fbab136934590641eb781310b4, type: 3}
   m_Name: 
@@ -3973,14 +3972,14 @@ MonoBehaviour:
     useClippedPercent: 0
     keys: []
   _clipFromSample:
-    position: {x: -6.0402665, y: -75.52672, z: 15.285075}
+    position: {x: -5.8602667, y: -0.13784939, z: -1.3314146}
     up: {x: 0.416094, y: 0.6021417, z: -0.07109332}
     forward: {x: 0.78508, y: -0.52059656, z: 0.3356018}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
   _clipToSample:
-    position: {x: 5.6872196, y: -72.25006, z: 18.786888}
+    position: {x: 5.8672194, y: 3.1388078, z: 2.1703994}
     up: {x: 0.6307656, y: 0.36322352, z: -0.10421661}
     forward: {x: 0.4944732, y: -0.27419737, z: 0.8248103}
     color: {r: 1, g: 1, b: 1, a: 1}
@@ -4556,7 +4555,6 @@ MonoBehaviour:
   _space: 1
   _sampleMode: 0
   _subscribers:
-  - {fileID: 0}
   - {fileID: 4331954976231019253}
   _rawSamples:
   - position: {x: -3.1029532, y: 3.9596, z: 1.293046}
@@ -7302,14 +7300,14 @@ MonoBehaviour:
     useClippedPercent: 0
     keys: []
   _clipFromSample:
-    position: {x: -7.02801, y: -76.727104, z: 15.334376}
+    position: {x: -6.84801, y: -1.3382405, z: -1.2821133}
     up: {x: -0.51536554, y: -0.5223438, z: -0.04704898}
     forward: {x: 0.7826292, y: -0.52000403, z: 0.34218025}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
   _clipToSample:
-    position: {x: 4.3326755, y: -72.83659, z: 19.592802}
+    position: {x: 4.5126753, y: 2.5522757, z: 2.9763122}
     up: {x: -0.57240826, y: -0.44145298, z: 0.13463499}
     forward: {x: 0.35722092, y: -0.2582195, z: 0.89761686}
     color: {r: 1, g: 1, b: 1, a: 1}
