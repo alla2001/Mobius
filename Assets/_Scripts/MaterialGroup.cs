@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -16,8 +17,9 @@ public class MaterialGroup : ScriptableObject
 
         if (unlockedMaterials.Length == 0)
         {
-            Debug.LogWarning("Trying to create Material from MaterialGroup with no unlocked Materials");
-            unlockedMaterials = materials;
+            Debug.LogWarning("Trying to create Material from MaterialGroup with no unlocked Materials, unlocking random material");
+            Material mat = ShapeDatabase.instance.UnlockSpecificMaterial(materials.GetRandomElement());
+            unlockedMaterials = new Material[] { mat };
         }
         result = unlockedMaterials.GetRandomElement();
 

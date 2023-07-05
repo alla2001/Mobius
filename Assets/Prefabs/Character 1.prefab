@@ -30,8 +30,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7398564456302343874}
-  m_LocalRotation: {x: 0.22873224, y: -0.51381266, z: 0.33767053, w: 0.7547561}
-  m_LocalPosition: {x: -3.3488407, y: -0.24890515, z: 4.5168405}
+  m_LocalRotation: {x: 0.42738405, y: 0.6840388, z: -0.40822032, w: -0.42753947}
+  m_LocalPosition: {x: 3.9685822, y: 8.914944, z: 3.2948334}
   m_LocalScale: {x: 0.33948922, y: 0.33948922, z: 0.3394892}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -121,16 +121,16 @@ MonoBehaviour:
     useClippedPercent: 0
     keys: []
   _clipFromSample:
-    position: {x: -3.2299814, y: -0.3586315, z: 4.518069}
-    up: {x: -0.5402695, y: 0.4987561, z: -0.005583183}
-    forward: {x: -0.6211342, y: -0.69227296, z: 0.3673562}
+    position: {x: 3.938119, y: 8.867822, z: 3.446555}
+    up: {x: 0.13846913, y: 0.21418914, z: -0.6896427}
+    forward: {x: -0.933841, y: -0.19303, z: -0.3011324}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
   _clipToSample:
-    position: {x: -3.2299814, y: -0.3586315, z: 4.518069}
-    up: {x: -0.5402695, y: 0.49875614, z: -0.005583242}
-    forward: {x: -0.6211342, y: -0.69227296, z: 0.3673562}
+    position: {x: 2.5127206, y: -8.778905, z: 3.0934417}
+    up: {x: -0.6281664, y: 0.14318195, z: 0.3543496}
+    forward: {x: 0.70957446, y: -0.21287192, z: 0.67170686}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 1
@@ -175,16 +175,16 @@ MonoBehaviour:
   targetRigidbody2D: {fileID: 0}
   targetTransform: {fileID: 7398564456302343878}
   _result:
-    position: {x: -3.2299814, y: -0.3586315, z: 4.518069}
-    up: {x: -0.5402695, y: 0.4987561, z: -0.005583183}
-    forward: {x: -0.6211342, y: -0.69227296, z: 0.3673562}
+    position: {x: 3.938119, y: 8.867822, z: 3.446555}
+    up: {x: 0.13846913, y: 0.21418914, z: -0.6896427}
+    forward: {x: -0.933841, y: -0.19303, z: -0.3011324}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
   _finalResult:
-    position: {x: -3.2299814, y: -0.3586315, z: 4.518069}
-    up: {x: -0.5402695, y: 0.4987561, z: -0.005583183}
-    forward: {x: -0.6211342, y: -0.69227296, z: 0.3673562}
+    position: {x: 3.938119, y: 8.867822, z: 3.446555}
+    up: {x: 0.13846913, y: 0.21418914, z: -0.6896427}
+    forward: {x: -0.933841, y: -0.19303, z: -0.3011324}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0

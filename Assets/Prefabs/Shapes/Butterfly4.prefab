@@ -805,7 +805,6 @@ MonoBehaviour:
   _space: 1
   _sampleMode: 0
   _subscribers:
-  - {fileID: 0}
   - {fileID: 266478304181154678}
   _rawSamples:
   - position: {x: 0.83112365, y: -0.16466428, z: 0.6249949}
@@ -6459,14 +6458,14 @@ MonoBehaviour:
     useClippedPercent: 0
     keys: []
   _clipFromSample:
-    position: {x: 0.3916291, y: 3.191171, z: 68.89218}
+    position: {x: 0.5716291, y: -0.70882887, z: 1.0556959}
     up: {x: 0.7272279, y: 0.08630737, z: -0.065985374}
     forward: {x: 0.12656608, y: -0.8222225, z: 0.5549156}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
   _clipToSample:
-    position: {x: 0.3916291, y: 3.191171, z: 68.89218}
+    position: {x: 0.5716291, y: -0.70882887, z: 1.0556959}
     up: {x: 0.727228, y: 0.08630733, z: -0.0659854}
     forward: {x: 0.12656608, y: -0.8222225, z: 0.5549156}
     color: {r: 1, g: 1, b: 1, a: 1}
@@ -6652,7 +6651,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 266478305809644629}
-  m_Mesh: {fileID: -4827764828191164564, guid: 901236a6fa2b911489d8166fee593cb7, type: 3}
+  m_Mesh: {fileID: -1785748799496255097, guid: 5e8c248f04fb4764b9f022a8b4c5ecf4, type: 3}
 --- !u!23 &266478305809644634
 MeshRenderer:
   m_ObjectHideFlags: 0
