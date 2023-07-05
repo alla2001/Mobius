@@ -106,7 +106,7 @@ public class BridgeCreator : MonoBehaviour
                 lineRenderer.positionCount = 2;
                 firstBridgePoint = Instantiate(nodePrefab).GetComponent<Node>();
                 index = firstSpline.PercentToPointIndex(firstSpline.Project(hit.point).percent);
-                if (IsEmptyPoint(firstSpline, index))
+                if (!IsEmptyPoint(firstSpline, index))
                 {
                     Destroy(firstBridgePoint.gameObject);
                     return;
@@ -133,7 +133,7 @@ public class BridgeCreator : MonoBehaviour
                 secondBridgePoint = Instantiate(nodePrefab).GetComponent<Node>();
 
                 index = secondSpline.PercentToPointIndex(secondSpline.Project(hit.point).percent);
-                if (IsEmptyPoint(secondSpline, index))
+                if (!IsEmptyPoint(secondSpline, index))
                 {
                     Destroy(firstBridgePoint.gameObject);
                     Destroy(secondBridgePoint.gameObject);
