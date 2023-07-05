@@ -31,14 +31,13 @@ public class CharacterPlacer : MonoBehaviour
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, targetMask) && Input.GetMouseButtonDown(0))
             {
                 SplineComputer splineComp = hit.collider.gameObject.GetComponent<SplineComputer>();
-                int index = splineComp.PercentToPointIndex(splineComp.Project(hit.point).percent);
-                SplineSample result = splineComp.Evaluate(index);
+       
 
-                targetPos = result.position;
-                Debug.Log(targetPos);
+               
 
                 GameObject character = Instantiate(characterPrefab, targetPos, Quaternion.identity);
                 character.GetComponent<SplineFollower>().spline = splineComp;
+                character.GetComponent<SplineFollower>().SetPercent(splineComp.Project(hit.point).percent); 
                 GameManager.Instance.ChangeState(GameState.GodView);
             }
         }
