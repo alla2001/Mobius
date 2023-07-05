@@ -1,6 +1,7 @@
 using Dreamteck.Splines;
 using UnityEngine;
-
+using System.Collections;
+using System.Collections.Generic;
 [RequireComponent(typeof(SplineFollower))]
 public class CharacterMovement : MonoBehaviour
 {
@@ -25,14 +26,16 @@ public class CharacterMovement : MonoBehaviour
 
 
     private bool inInterSection;
-
+    public static List<CharacterMovement> characters = new List<CharacterMovement>();
     private void OnEnable()
     {
+        characters.Add(this);
         //onNode is called every time the follower passes by a Node
     }
 
     private void OnDisable()
     {
+        characters.Remove(this);
     }
 
     // Update is called once per frame

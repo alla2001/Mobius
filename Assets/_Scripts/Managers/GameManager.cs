@@ -42,13 +42,13 @@ public class GameManager : MonoBehaviour
     public CharacterMovement currentControlledCharacter;
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance == null)
         {
-            Destroy(this);
+            Instance = this;
         }
         else
         {
-            Instance = this;
+            Destroy(this);
         }
     }
 
@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
-        Debug.Log(currentState);
+        //Debug.Log(currentState);
 
         if (Input.GetKeyDown(KeyCode.J))
         {

@@ -19,6 +19,7 @@ public class BridgeCreator : MonoBehaviour
     private SplineComputer firstSpline;
     private SplineComputer secondSpline;
     private GameObject tempHilight;
+    public float energyToAdd=2;
     
         /// <summary>
         /// TODO : Implement bridge distance/length, cant place too long bridges (Based on energy)
@@ -265,13 +266,21 @@ public class BridgeCreator : MonoBehaviour
         float leftAngle = Vector3.Angle(dir, -from.transform.right);
         float topAngle = Vector3.Angle(dir, from.transform.up);
         float bottomAngle = Vector3.Angle(dir, -from.transform.up);
-        if (rightAngle <= leftAngle && rightAngle <= topAngle && rightAngle <= bottomAngle)
+        if (rightAngle <= leftAngle && rightAngle <= topAngle )
         {
-            return from.transform.up;
+            if(rightAngle <= bottomAngle)
+            {
+                return from.transform.up;
+            }
+            return -from.transform.up;
         }
-        else if (leftAngle <= rightAngle && leftAngle <= topAngle && leftAngle <= bottomAngle)
+        else if (leftAngle <= rightAngle && leftAngle <= topAngle)
         {
-            return from.transform.up;
+            if (leftAngle <= bottomAngle)
+            {
+                return from.transform.up;
+            }
+            return -from.transform.up;
         }
         else if (topAngle <= rightAngle && topAngle <= leftAngle && leftAngle <= bottomAngle)
         {
@@ -367,6 +376,13 @@ public class BridgeCreator : MonoBehaviour
 
         }
         return true;
+    }
+
+    public void AddBridgeEnergy()
+    {
+        energy += energyToAdd;
+        ItemSpawner.instace.SpawnItems();
+        GameManager.Instance.ChangeState(GameState.GodView);
     }
     public void LayOutObjects(int steps,GameObject prefab)
     {
