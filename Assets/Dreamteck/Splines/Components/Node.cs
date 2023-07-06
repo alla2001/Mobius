@@ -340,8 +340,8 @@ namespace Dreamteck.Splines
             Node connected = computer.GetNode(pointIndex);
             if (connected != null)
             {
-                Debug.LogError(computer.name + " is already connected to node " + connected.name + " at point " + pointIndex);
-                return;
+                //Debug.LogError(computer.name + " is already connected to node " + connected.name + " at point " + pointIndex);
+                //return;
             }
             SplinePoint point = computer.GetPoint(pointIndex);
             point.SetPosition(transform.position);

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Dreamteck.Splines;
 public class ShapePlacer : MonoBehaviour
 {
     private Transform levelHolder;
@@ -64,6 +64,10 @@ public class ShapePlacer : MonoBehaviour
                     placingShape = false;
                     rotatingShape = false;
                     tmp.GetComponent<MeshCollider>().enabled = true;
+                    foreach (var item in tmp.GetComponentsInChildren<SplineComputer>())
+                    {
+                        item.RebuildImmediate();
+                    }
                     GameManager.Instance.allWalls.Add(tmp);
                     GameManager.Instance.UpdateAveragePosition();
                     GameManager.Instance.ChangeState(GameState.RewardMode);

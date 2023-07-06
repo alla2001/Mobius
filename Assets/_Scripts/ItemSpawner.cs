@@ -13,9 +13,13 @@ public class ItemSpawner : MonoBehaviour
         if (!instace) instace = this;
         else Destroy(this);
 
+        
+
+
+    }
+    private void Start()
+    {
         SpawnItems();
-
-
     }
     public void SpawnItems()
     {
@@ -28,7 +32,7 @@ public class ItemSpawner : MonoBehaviour
             }
             if (spawnedItems > 0) break;
         }
-      
+        spawnedItems = 0;
     }
 
 
@@ -39,7 +43,8 @@ public class ItemSpawner : MonoBehaviour
         computers.AddRange( shape.GetComponentsInChildren<SplineComputer>());
         foreach (CharacterMovement charMove in CharacterMovement.characters)
         {
-            if (charMove.GetComponent<SplineFollower>().spline.transform.parent.gameObject == shape)
+           
+            if (computers.Contains( charMove.GetComponent<SplineFollower>().spline))
             {
                 return;
             }
@@ -52,7 +57,8 @@ public class ItemSpawner : MonoBehaviour
             if (chance == 0)
             {
                 SplinePoint point = splineComputer.GetPoint(Random.Range(0, splineComputer.pointCount));
-                Instantiate(itemPrefab, point.position + point.normal , Quaternion.identity);
+                GameObject  temp =Instantiate(itemPrefab, point.position + point.normal*0.5f , Quaternion.identity);
+                temp.transform.up = point.normal;
                 spawnedItems++;
             }
         }

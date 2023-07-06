@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638242069932271269
+  lastModified: 638240198909902093
   FileSizes: []
   Exists: 1
 --- !u!114 &-6543444884227491184
@@ -168,7 +168,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Characters.bank
   Name: Characters
   StudioPath: bank:/Characters
-  lastModified: 638240886769857186
+  lastModified: 638241499739219965
   FileSizes: []
   Exists: 1
 --- !u!114 &-4541070451326292446
@@ -480,7 +480,7 @@ MonoBehaviour:
   - {fileID: -6885711155126418999}
   StringsBanks:
   - {fileID: 7027540124532258230}
-  cacheTime: 638242070756103652
+  cacheTime: 638242316484511142
   cacheVersion: 131605
 --- !u!114 &331622543859416927
 MonoBehaviour:
@@ -497,7 +497,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank
   Name: Atmosphere
   StudioPath: bank:/Atmosphere
-  lastModified: 638238555449557484
+  lastModified: 638240198909442845
   FileSizes: []
   Exists: 1
 --- !u!114 &390539874440832980
@@ -569,7 +569,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Shape.bank
   Name: Shape
   StudioPath: bank:/Shape
-  lastModified: 638242069932602897
+  lastModified: 638242316484511142
   FileSizes: []
   Exists: 1
 --- !u!114 &786431539482606903
@@ -641,7 +641,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Bridge.bank
   Name: Bridge
   StudioPath: bank:/Bridge
-  lastModified: 638242069930823383
+  lastModified: 638242316484099855
   FileSizes: []
   Exists: 1
 --- !u!114 &1165585566370748680
@@ -820,7 +820,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Items.bank
   Name: Items
   StudioPath: bank:/Items
-  lastModified: 638242070756103652
+  lastModified: 638242316484335538
   FileSizes: []
   Exists: 1
 --- !u!114 &4111920463654774103
@@ -1054,7 +1054,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638242069932281274
+  lastModified: 638242316484395549
   FileSizes:
   - Name: 
     Value: 2658
