@@ -36,8 +36,7 @@ public class CleanedCameraController : MonoBehaviour
                     maxZoomCurrent = maxZoomGodMode;
                     break;
                 case CleanedCameraMode.FollowCharacter:
-                    minZoomCurrent = minZoomCharacterMode;
-                    maxZoomCurrent = maxZoomCharacterMode;
+
                     break;
                 default:
                     Debug.LogError("CameraMode not found");
@@ -51,9 +50,9 @@ public class CleanedCameraController : MonoBehaviour
     [SerializeField] private float zoomSpeed = 3.0f;
     [SerializeField] private float minZoomGodMode = 5.0f; 
     [SerializeField] private float maxZoomGodMode = 50.0f;
-    [SerializeField] private float minZoomCharacterMode = 5.0f;
-    [SerializeField] private float maxZoomCharacterMode = 10.0f;
-    [SerializeField] private float moveSpeed = .3f; 
+    [SerializeField] private float moveSpeed = .3f;
+    [SerializeField] private Vector3 characterModeCameraLocalPosition;
+    [SerializeField] private Vector3 CharacterModeLocalCameraAngle;
 
     //CODE VARIABLES
     private float rotationZ;
@@ -204,11 +203,15 @@ public class CleanedCameraController : MonoBehaviour
 
     private void UpdateCameraFollowCharacter()
     {
+        //zypernKatzeINPERSON why aren't we jsut setting centerPoint as the cameras parent (which would also make it way easier to adjust the position when it's behind the character)?
         centerPoint.position = currentPlayer.transform.position;
         centerPoint.rotation = currentPlayer.transform.rotation;
 
-        transform.localPosition= new Vector3( 0,0,-distanceToTarget );
-        distanceToTarget -= scrollInput * zoomSpeed;
+        transform.localPosition = new Vector3(0, 0, -distanceToTarget);
+        distanceToTarget = 10;  //zypernKatzeINPERSON this being hardcoded is not good
+        //transform.position = centerPoint.position + (Quaternion.Euler(centerPoint.forward) * Quaternion.Euler(characterModeCameraLocalPosition)).eulerAngles;
+        //transform.localRotation = centerPoint.rotation * Quaternion.Euler(CharacterModeLocalCameraAngle); 
+
         distanceToTarget = Mathf.Clamp(distanceToTarget, minZoomCurrent, maxZoomCurrent);
     }
     private void SetCameraPosition()

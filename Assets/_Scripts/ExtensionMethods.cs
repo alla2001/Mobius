@@ -29,4 +29,21 @@ public static class ExtensionMethods
 
         return set.ElementAt(Random.Range(0, set.Count));
     }
+
+    public static string GetNameIncludingParents(this GameObject gameObject)
+    {
+        List<string> names = new List<string>();
+        Transform transform = gameObject.transform; 
+        names.Add(gameObject.name);
+        while ((transform = transform.parent) != null) 
+        { 
+            names.Add(transform.name);
+        }
+        string fullName = gameObject.scene.name;
+        foreach (string name in names)
+        {
+            fullName += "->" + name;
+        }
+        return fullName;
+    }
 }

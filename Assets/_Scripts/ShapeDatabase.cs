@@ -106,7 +106,7 @@ public class ShapeDatabase : MonoBehaviour
         if (instance != null) 
         {
             DestroyImmediate(this.gameObject);
-            Debug.LogWarning("deleted second ShapeRandomiser on object: " + gameObject.name); 
+            Debug.LogWarning("deleted second ShapeRandomiser on object: " + gameObject.GetNameIncludingParents()); 
         }
         instance = this; 
     }

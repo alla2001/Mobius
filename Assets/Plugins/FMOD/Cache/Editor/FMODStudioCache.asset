@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638240886770274350
+  lastModified: 638242069932271269
   FileSizes: []
   Exists: 1
 --- !u!114 &-6543444884227491184
@@ -37,7 +37,7 @@ MonoBehaviour:
     Data3: 624388028
     Data4: 1847082190
   Banks:
-  - {fileID: -3099211219043038390}
+  - {fileID: 925677365214485793}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -99,24 +99,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 12222
---- !u!114 &-5375855821316348360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/ShapeHangDrums.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/Audio/Fmod_Banks/Desktop/ShapeHangDrums.bank
-  Name: ShapeHangDrums
-  StudioPath: bank:/ShapeHangDrums
-  lastModified: 638240625208613114
-  FileSizes: []
-  Exists: 1
 --- !u!114 &-5326185812466761663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,7 +118,7 @@ MonoBehaviour:
     Data3: 1122828989
     Data4: 689856798
   Banks:
-  - {fileID: -5375855821316348360}
+  - {fileID: 609267946938072154}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -208,7 +190,7 @@ MonoBehaviour:
     Data3: 585875084
     Data4: 894219781
   Banks:
-  - {fileID: -3099211219043038390}
+  - {fileID: 925677365214485793}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -235,7 +217,7 @@ MonoBehaviour:
     Data3: 974771874
     Data4: -886228034
   Banks:
-  - {fileID: -3099211219043038390}
+  - {fileID: 925677365214485793}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -243,24 +225,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4298
---- !u!114 &-3099211219043038390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/BridgeRhythmDrums.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/Audio/Fmod_Banks/Desktop/BridgeRhythmDrums.bank
-  Name: BridgeRhythmDrums
-  StudioPath: bank:/BridgeRhythmDrums
-  lastModified: 638240371497664784
-  FileSizes: []
-  Exists: 1
 --- !u!114 &-2773583227191892409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,7 +379,7 @@ MonoBehaviour:
     Data3: 1626157479
     Data4: 2059979463
   Banks:
-  - {fileID: -5375855821316348360}
+  - {fileID: 609267946938072154}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -442,7 +406,7 @@ MonoBehaviour:
     Data3: 1797225132
     Data4: -1097755260
   Banks:
-  - {fileID: -5375855821316348360}
+  - {fileID: 609267946938072154}
   IsStream: 1
   Is3D: 1
   IsOneShot: 1
@@ -468,8 +432,8 @@ MonoBehaviour:
   - {fileID: -6885711155126418999}
   - {fileID: 3704251704449588480}
   - {fileID: -4768914128380226247}
-  - {fileID: -3099211219043038390}
-  - {fileID: -5375855821316348360}
+  - {fileID: 925677365214485793}
+  - {fileID: 609267946938072154}
   EditorEvents:
   - {fileID: 786431539482606903}
   - {fileID: -1710990620758064757}
@@ -505,6 +469,10 @@ MonoBehaviour:
   - {fileID: 6868946108204555072}
   - {fileID: -1670708281448150015}
   - {fileID: 7770088857915720122}
+  - {fileID: 6329615687002936129}
+  - {fileID: 4407960005096794711}
+  - {fileID: 8347645474225781693}
+  - {fileID: 7482246530382363729}
   EditorParameters:
   - {fileID: 3650060901570405047}
   - {fileID: 8224879041447664527}
@@ -512,7 +480,7 @@ MonoBehaviour:
   - {fileID: -6885711155126418999}
   StringsBanks:
   - {fileID: 7027540124532258230}
-  cacheTime: 638240886770284370
+  cacheTime: 638242070756103652
   cacheVersion: 131605
 --- !u!114 &331622543859416927
 MonoBehaviour:
@@ -586,6 +554,24 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 41430
+--- !u!114 &609267946938072154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Shape.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/Fmod_Banks/Desktop/Shape.bank
+  Name: Shape
+  StudioPath: bank:/Shape
+  lastModified: 638242069932602897
+  FileSizes: []
+  Exists: 1
 --- !u!114 &786431539482606903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -632,7 +618,7 @@ MonoBehaviour:
     Data3: -348030060
     Data4: 430331523
   Banks:
-  - {fileID: -5375855821316348360}
+  - {fileID: 609267946938072154}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -640,6 +626,24 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 8888
+--- !u!114 &925677365214485793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Bridge.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/Fmod_Banks/Desktop/Bridge.bank
+  Name: Bridge
+  StudioPath: bank:/Bridge
+  lastModified: 638242069930823383
+  FileSizes: []
+  Exists: 1
 --- !u!114 &1165585566370748680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -659,7 +663,7 @@ MonoBehaviour:
     Data3: 1983942792
     Data4: 423475203
   Banks:
-  - {fileID: -5375855821316348360}
+  - {fileID: 609267946938072154}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -740,7 +744,7 @@ MonoBehaviour:
     Data3: -1568775038
     Data4: 1594208373
   Banks:
-  - {fileID: -3099211219043038390}
+  - {fileID: 925677365214485793}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -816,7 +820,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Items.bank
   Name: Items
   StudioPath: bank:/Items
-  lastModified: 638240625208144787
+  lastModified: 638242070756103652
   FileSizes: []
   Exists: 1
 --- !u!114 &4111920463654774103
@@ -838,7 +842,7 @@ MonoBehaviour:
     Data3: -1796514167
     Data4: -749441081
   Banks:
-  - {fileID: -3099211219043038390}
+  - {fileID: 925677365214485793}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -846,6 +850,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4315
+--- !u!114 &4407960005096794711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Bridge_NotBuildable
+  m_EditorClassIdentifier: 
+  Path: event:/Bridge_NotBuildable
+  Guid:
+    Data1: -560566740
+    Data2: 1137647506
+    Data3: -1448468545
+    Data4: 1290584275
+  Banks:
+  - {fileID: 925677365214485793}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000
 --- !u!114 &4875323168086856171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -892,7 +923,7 @@ MonoBehaviour:
     Data3: -531618428
     Data4: 580705907
   Banks:
-  - {fileID: -3099211219043038390}
+  - {fileID: 925677365214485793}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -900,6 +931,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4317
+--- !u!114 &6329615687002936129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Bridge_SecondClick
+  m_EditorClassIdentifier: 
+  Path: event:/Bridge_SecondClick
+  Guid:
+    Data1: -607433456
+    Data2: 1135271635
+    Data3: 1617723044
+    Data4: -878311247
+  Banks:
+  - {fileID: 925677365214485793}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2168
 --- !u!114 &6336493250397672515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -919,7 +977,7 @@ MonoBehaviour:
     Data3: -1828143729
     Data4: -1524339113
   Banks:
-  - {fileID: -3099211219043038390}
+  - {fileID: 925677365214485793}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -946,7 +1004,7 @@ MonoBehaviour:
     Data3: 1865664431
     Data4: 270422001
   Banks:
-  - {fileID: -5375855821316348360}
+  - {fileID: 609267946938072154}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -996,10 +1054,10 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638240886770284370
+  lastModified: 638242069932281274
   FileSizes:
   - Name: 
-    Value: 2476
+    Value: 2658
   Exists: 1
 --- !u!114 &7102880079406115287
 MonoBehaviour:
@@ -1020,7 +1078,7 @@ MonoBehaviour:
     Data3: -751216507
     Data4: 699190263
   Banks:
-  - {fileID: -3099211219043038390}
+  - {fileID: 925677365214485793}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -1028,6 +1086,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4315
+--- !u!114 &7482246530382363729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Bridge_InConstruction
+  m_EditorClassIdentifier: 
+  Path: event:/Bridge_InConstruction
+  Guid:
+    Data1: -46647384
+    Data2: 1223946412
+    Data3: -158015571
+    Data4: 134150908
+  Banks:
+  - {fileID: 925677365214485793}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4444
 --- !u!114 &7770088857915720122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1074,7 +1159,7 @@ MonoBehaviour:
     Data3: 883294368
     Data4: -1057797590
   Banks:
-  - {fileID: -3099211219043038390}
+  - {fileID: 925677365214485793}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -1106,6 +1191,33 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &8347645474225781693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Bridge_FirstClick
+  m_EditorClassIdentifier: 
+  Path: event:/Bridge_FirstClick
+  Guid:
+    Data1: -251565772
+    Data2: 1228074119
+    Data3: 1548401582
+    Data4: -1112994375
+  Banks:
+  - {fileID: 925677365214485793}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2168
 --- !u!114 &8492136199256825188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1152,7 +1264,7 @@ MonoBehaviour:
     Data3: 1548094627
     Data4: -1176759313
   Banks:
-  - {fileID: -3099211219043038390}
+  - {fileID: 925677365214485793}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1

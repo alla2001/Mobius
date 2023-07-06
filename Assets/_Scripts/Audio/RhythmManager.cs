@@ -32,7 +32,7 @@ public class RhythmManager : MonoBehaviour
         if (instance != null)
         {
             Destroy(this);
-            Debug.Log("Secondary RhythmManager Destroyed, name: " + gameObject.name + ", from scene: " + gameObject.scene);
+            Debug.Log("Secondary RhythmManager Destroyed, name: " + gameObject.GetNameIncludingParents());
         }
         else
         {

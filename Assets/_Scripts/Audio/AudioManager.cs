@@ -57,7 +57,7 @@ public class AudioManager : MonoBehaviour
         if (instance != null)
         {
             Destroy(this);
-            Debug.Log("Destroyed secondary AudioManager on: " + gameObject.name); 
+            Debug.Log("Destroyed secondary AudioManager on: " + gameObject.GetNameIncludingParents()); 
         }
         else
         {
@@ -125,14 +125,14 @@ public class AudioManager : MonoBehaviour
 
         foreach (AudioLayerManager audioLayer in currentSoundMode.audioLayers)
         {
-            audioLayer.turnOff(); 
+            audioLayer.Stop(); 
         }
 
         currentSoundMode = soundMode;
 
         foreach (AudioLayerManager audioLayer in currentSoundMode.audioLayers)
         {
-            audioLayer.turnOn();
+            audioLayer.Play();
         }
     }
 

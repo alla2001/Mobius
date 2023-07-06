@@ -7,7 +7,7 @@
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x4000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 0000027FA6901988 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 000001ECD3F6F978 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -18,11 +18,354 @@
 [LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
 [LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
 [LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
-[LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
-[LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
-[LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
 [LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
-[LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
+[LOG] SoundI::release                          : Atmosphere_High-006 (000001EC9CF06188)
+[LOG] SoundI::release                          :     Atmosphere_High-006 (000001EC9949BB28)
+[LOG] SoundI::release                          :     Atmosphere_High-006 (000001ECD3EA00C8)
+[LOG] SoundI::release                          : Flute_Melodies-001 (000001EC9CD286A8)
+[LOG] SoundI::release                          :     Flute_Melodies-001 (000001EB59C3AAC8)
+[LOG] SoundI::release                          :     Flute_Melodies-001 (000001ECD3F12958)
+[LOG] SystemI::createSound                     : filename = Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000001EC9CD27C88, queue head = 000001EC9B4C7DB8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001EC9CD27C88
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 4802816
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 24768
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000001EC9B2B9330
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Atmosphere_Deep1-001', format=5, channels=2, frequency=48000, lengthbytes=224864, lengthpcm=1331617, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.103363.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001EC9CD27C88
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000001EB4FBE7778, queue head = 000001EC9B4C7DB8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001EB4FBE7778
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001EB4FBE7778
+[LOG] SoundI::release                          : Atmosphere_Deep1-001 (000001EC9CD28858)
+[LOG] SoundI::release                          :     Atmosphere_Deep1-001 (000001EC9BB36578)
+[LOG] SoundI::release                          :     Atmosphere_Deep1-001 (000001EB6247C8A8)
+[LOG] SystemI::createSound                     : filename = Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000001EC9CD27E38, queue head = 000001EC9B4C7DB8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001EC9CD27E38
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 4802816
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 24768
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000001EC9B2B9AB0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Atmosphere_High-003', format=5, channels=2, frequency=48000, lengthbytes=66816, lengthpcm=317231, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.004822.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001EC9CD27E38
+[LOG] SystemI::createSound                     : filename = Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000001EC9D275748, queue head = 000001EC9B4C7DB8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001EC9D275748
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 4802816
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 24768
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000001EC9B2BCFD0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Atmosphere_High-005', format=5, channels=2, frequency=48000, lengthbytes=68544, lengthpcm=317231, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.004547.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001EC9D275748
+[LOG] SystemI::createSound                     : filename = Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000001EC9CD284F8, queue head = 000001EC9B4C7DB8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001EC9CD284F8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 4802816
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 24768
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000001EC9B2B9E70
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Atmosphere_High-004', format=5, channels=2, frequency=48000, lengthbytes=67456, lengthpcm=317231, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.004425.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001EC9CD284F8
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000001EB5C230558, queue head = 000001EC9B4C7DB8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001EB5C230558
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001EB5C230558
+[LOG] SoundI::release                          : Atmosphere_High-003 (000001EC9CD27E38)
+[LOG] SoundI::release                          :     Atmosphere_High-003 (000001EC9949C008)
+[LOG] SoundI::release                          :     Atmosphere_High-003 (000001EB4FBE75C8)
+[LOG] SoundI::release                          : Atmosphere_High-005 (000001EC9D275748)
+[LOG] SoundI::release                          :     Atmosphere_High-005 (000001EB61DC1D88)
+[LOG] SoundI::release                          :     Atmosphere_High-005 (000001EB5C230C18)
+[LOG] SoundI::release                          : Atmosphere_High-004 (000001EC9CD284F8)
+[LOG] SoundI::release                          :     Atmosphere_High-004 (000001EB61DC20C8)
+[LOG] SoundI::release                          :     Atmosphere_High-004 (000001EB5C230558)
+[LOG] SystemI::createSound                     : filename = Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000001EC9D275E08, queue head = 000001EC9B4C7DB8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001EC9D275E08
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 4802816
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 24768
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000001EC9B2BCFD0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Atmosphere_Deep1-006', format=5, channels=2, frequency=48000, lengthbytes=222368, lengthpcm=1331617, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.132477.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001EC9D275E08
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 714496
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 10784
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000004F0597F158
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF76AE3CA0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF76AE3C60
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF76AE3D80
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF76AE3E40
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001EB596AB878
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Shape_Question_H-drum-004', format=5, channels=2, frequency=48000, lengthbytes=55584, lengthpcm=264568, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.434509.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 714496
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 10784
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000004F0597F158
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFF76AE3CA0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFF76AE3C60
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFF76AE3D80
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFF76AE3E40
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001EB596AB878
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Shape_Answers_H-drum-004', format=5, channels=2, frequency=48000, lengthbytes=56352, lengthpcm=264568, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.411865.
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000001EB5C22FE98, queue head = 000001EC9B4C7DB8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001EB5C22FE98
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001EB5C22FE98
+[LOG] SoundI::release                          : Atmosphere_Deep1-001 (000001EC9CD27C88)
+[LOG] SoundI::release                          :     Atmosphere_Deep1-001 (000001EC9949AC88)
+[LOG] SoundI::release                          :     Atmosphere_Deep1-001 (000001EB4FBE7778)
+[LOG] SystemI::createSound                     : filename = Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000001EC9D275748, queue head = 000001EC9B4C7DB8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001EC9D275748
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 4802816
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 24768
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000001ED30C07DF0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Atmosphere_High-006', format=5, channels=2, frequency=48000, lengthbytes=68032, lengthpcm=317231, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.005005.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001EC9D275748
+[LOG] SystemI::createSound                     : filename = Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000001EC9D275238, queue head = 000001EC9B4C7DB8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001EC9D275238
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 4802816
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 24768
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000001ED30C086B0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Atmosphere_High-004', format=5, channels=2, frequency=48000, lengthbytes=67456, lengthpcm=317231, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.004425.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001EC9D275238
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000001EB5C230708, queue head = 000001EC9B4C7DB8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001EB5C230708
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001EB5C230708
+[LOG] SoundI::release                          : Atmosphere_High-006 (000001EC9D275748)
+[LOG] SoundI::release                          :     Atmosphere_High-006 (000001EC9963A258)
+[LOG] SoundI::release                          :     Atmosphere_High-006 (000001EB53B76CF8)
+[LOG] SoundI::release                          : Atmosphere_High-004 (000001EC9D275238)
+[LOG] SoundI::release                          :     Atmosphere_High-004 (000001EB61DC1BE8)
+[LOG] SoundI::release                          :     Atmosphere_High-004 (000001EB5C230708)
+[LOG] SystemI::createSound                     : filename = Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000001EC9D275AA8, queue head = 000001EC9B4C7DB8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001EC9D275AA8
+[LOG] SystemI::createSound                     : filename = Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank : mode 02010082
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank', mode=0x02010082
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] AsyncThread::add                         :     add sound to async queue : soundi = 000001EB55B444C8, queue head = 000001EC9B4C7DB8, queue count = 0
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 4802816
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 24768
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000001ED30C07F30
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Atmosphere_High_6Pulse-002', format=5, channels=2, frequency=48000, lengthbytes=232832, lengthpcm=1331617, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.240234.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001EC9D275AA8
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001EB55B444C8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 4802816
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 24768
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000001ED30C07CB0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Atmosphere_Deep1-006', format=5, channels=2, frequency=48000, lengthbytes=222368, lengthpcm=1331617, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.132477.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001EB55B444C8
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000001EB53B76B48, queue head = 000001EC9B4C7DB8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001EB53B76B48
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001EB53B76B48
+[LOG] SoundI::release                          : Atmosphere_Deep1-006 (000001EC9D275E08)
+[LOG] SoundI::release                          :     Atmosphere_Deep1-006 (000001EB61DC1F28)
+[LOG] SoundI::release                          :     Atmosphere_Deep1-006 (000001EB5C22FE98)
+[LOG] SoundI::release                          : Atmosphere_High_6Pulse-002 (000001EC9D275AA8)
+[LOG] SoundI::release                          :     Atmosphere_High_6Pulse-002 (000001EC9963A8D8)
+[LOG] SoundI::release                          :     Atmosphere_High_6Pulse-002 (000001EB53B77058)
+[LOG] SystemI::createSound                     : filename = Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000001EC9D2753E8, queue head = 000001EC9B4C7DB8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001EC9D2753E8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 4802816
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 24768
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000001ED30C08070
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Atmosphere_Deep1-006', format=5, channels=2, frequency=48000, lengthbytes=222368, lengthpcm=1331617, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.132477.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001EC9D2753E8
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000001EB5C230048, queue head = 000001EC9B4C7DB8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001EB5C230048
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001EB5C230048
+[LOG] SoundI::release                          : Atmosphere_Deep1-006 (000001EB55B444C8)
+[LOG] SoundI::release                          :     Atmosphere_Deep1-006 (000001EC88DB3A58)
+[LOG] SoundI::release                          :     Atmosphere_Deep1-006 (000001EB53B76B48)
+[LOG] SystemI::createSound                     : filename = Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000001EC9D275AA8, queue head = 000001EC9B4C7DB8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001EC9D275AA8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 4802816
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 24768
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000001ED30C07CB0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Atmosphere_High-004', format=5, channels=2, frequency=48000, lengthbytes=67456, lengthpcm=317231, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.004425.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001EC9D275AA8
+[LOG] SystemI::createSound                     : filename = Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000001EB55B444C8, queue head = 000001EC9B4C7DB8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001EB55B444C8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 4802816
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 24768
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000001ED30C081B0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Atmosphere_High-001', format=5, channels=2, frequency=48000, lengthbytes=64928, lengthpcm=317231, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.004944.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001EB55B444C8
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000001EB53B77058, queue head = 000001EC9B4C7DB8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001EB53B77058
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001EB53B77058
+[LOG] SoundI::release                          : Atmosphere_High-004 (000001EC9D275AA8)
+[LOG] SoundI::release                          :     Atmosphere_High-004 (000001EB5B2D5568)
+[LOG] SoundI::release                          :     Atmosphere_High-004 (000001EB570F50F8)
+[LOG] SoundI::release                          : Atmosphere_High-001 (000001EB55B444C8)
+[LOG] SoundI::release                          :     Atmosphere_High-001 (000001EC9963A8D8)
+[LOG] SoundI::release                          :     Atmosphere_High-001 (000001EB53B77058)
+[LOG] SystemI::createSound                     : filename = Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000001EC9CD28858, queue head = 000001EC9B4C7DB8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001EC9CD28858
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 4802816
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 24768
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000001EC9B2B9AB0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Atmosphere_Deep1-006', format=5, channels=2, frequency=48000, lengthbytes=222368, lengthpcm=1331617, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.132477.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001EC9CD28858
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000001ECD3F0E938, queue head = 000001EC9B4C7DB8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001ECD3F0E938
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001ECD3F0E938
+[LOG] SoundI::release                          :  (000001ECDF1C5758)
+[LOG] SoundI::release                          :     Shape_Question_H-drum-003 (000001EBE7A24E78)
+[LOG] SoundI::release                          :  (000001ECDF1C6168)
+[LOG] SoundI::release                          :     Shape_Answers_H-drum-003 (000001EBE7A244B8)
+[LOG] SoundI::release                          :  (000001EBE7F44CD8)
+[LOG] SoundI::release                          :     Shape_Answers_H-drum-001 (000001EC9963A3F8)
+[LOG] SoundI::release                          :  (000001EBE7F45578)
+[LOG] SoundI::release                          :     Shape_Question_H-drum-001 (000001EC9963A738)
+[LOG] SoundI::release                          :  (000001ECDF1C4D48)
+[LOG] SoundI::release                          :     Shape_Answers_H-drum-004 (000001EB59C3DEC8)
+[LOG] SoundI::release                          :  (000001ECDF1C4BD8)
+[LOG] SoundI::release                          :     Shape_Question_H-drum-004 (000001EB59C3FA68)
+[LOG] SoundI::release                          :  (000001ECDF1C4788)
+[LOG] SoundI::release                          :     MarimbaLeste_Question-005 (000001EC9BB36D98)
+[LOG] SoundI::release                          :  (000001ECDF1C62D8)
+[LOG] SoundI::release                          :     MarimbaLeste_Answer-005 (000001EC9BB36A58)
+[LOG] SoundI::release                          :  (000001EBE7F45128)
+[LOG] SoundI::release                          :     MarimbaLeste_Question-007 (000001EB59C3D368)
+[LOG] SoundI::release                          :  (000001EBE7F45408)
+[LOG] SoundI::release                          :     MarimbaLeste_Answer-007 (000001EB59C3D508)
+[LOG] SoundI::release                          :  (000001ECDF1C34D8)
+[LOG] SoundI::release                          :     Atmosphere_Pulse-001 (000001EB5A52D8D8)
+[LOG] SoundI::release                          :  (000001ECDF1C4A68)
+[LOG] SoundI::release                          :     Atmosphere_Pulse-002 (000001EB5A52D738)
+[LOG] SoundI::release                          :  (000001ECDF1C5BA8)
+[LOG] SoundI::release                          :     Atmosphere_Pulse-003 (000001EB59C1ED18)
+[LOG] SoundI::release                          :  (000001ECDF1C5E88)
+[LOG] SoundI::release                          :     Atmosphere_Pulse-004 (000001EB5A52DC18)
+[LOG] SoundI::release                          :  (000001ECDF1C37B8)
+[LOG] SoundI::release                          :     Atmosphere_Pulse-005 (000001EBE7A24B38)
+[LOG] SoundI::release                          :  (000001ECDF1C58C8)
+[LOG] SoundI::release                          :     Atmosphere_Pulse-006 (000001EBE7A24CD8)
+[LOG] SoundI::release                          : Atmosphere_Deep1-006 (000001EC9CD28858)
+[LOG] SoundI::release                          :     Atmosphere_Deep1-006 (000001EB59C3AE08)
+[LOG] SoundI::release                          :     Atmosphere_Deep1-006 (000001ECD3F0E938)
+[LOG] SoundI::release                          : Atmosphere_Deep1-006 (000001EC9D2753E8)
+[LOG] SoundI::release                          :     Atmosphere_Deep1-006 (000001EB61DC1D88)
+[LOG] SoundI::release                          :     Atmosphere_Deep1-006 (000001EB5C230048)
+[LOG] SoundI::release                          :  (000001ECDF1C5FF8)
+[LOG] SoundI::release                          :     Atmosphere_High-007 (000001EB5A52CF18)
+[LOG] SoundI::release                          :  (000001ECDF1C3A98)
+[LOG] SoundI::release                          :     Atmosphere_Wind00 (000001EB59C1EB78)
+[LOG] SoundI::release                          :  (000001ECDF1C5478)
+[LOG] SoundI::release                          :     Atmosphere_Wind01 (000001EBE7A24998)
+[LOG] Thread::callback                         : FMOD Studio update thread finished.
+[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] SystemI::close                           : Closed.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 
@@ -30,3 +373,5 @@
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
 [LOG] SystemI::close                           : Closed.
+[LOG] Thread::callback                         : FMOD nonblocking thread (0) finished.
+[LOG] Thread::callback                         : FMOD file thread finished.

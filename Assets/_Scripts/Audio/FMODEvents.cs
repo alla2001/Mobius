@@ -17,10 +17,10 @@ public class FMODEvents : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null)
+        if (instance != null && instance != this)
         {
             Destroy(this);
-            Debug.LogError("Secondary Soundmanager destroyed on: " + gameObject.name);
+            Debug.LogError("Secondary AudioManager destroyed on: " + gameObject.GetNameIncludingParents());
         }
         instance = this;
     }

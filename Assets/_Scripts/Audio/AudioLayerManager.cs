@@ -7,6 +7,7 @@ public class AudioLayerManager : MonoBehaviour
 {
     //PUBLIC STATICS & EVENTS
     private bool isPlaying;
+    private bool canOverlap; 
 
     //REFERENCES
 
@@ -20,7 +21,7 @@ public class AudioLayerManager : MonoBehaviour
     private AudioLayerType soundType; 
 
     [field: SerializeField]
-    [Range(0, 20)]
+    [Range(0, 32)]
     private int averageBeatsBetweenSounds;
     [field: SerializeField]
     [Range(0, 100)]
@@ -48,7 +49,7 @@ public class AudioLayerManager : MonoBehaviour
         if (AudioManager.instance.audioLayers.ContainsKey(soundType)) //if AudioManager.instance is null at this point, than the ScriptExecution-order was not git-pushed correctly (AudioManager.Awake should run before the LayerManager.Awake)
         {
             Destroy(this);
-            //Debug.Log("Destroyed secondary AudioManager on: " + gameObject.name);
+            Debug.Log("Destroyed secondary AudioLayerManager on: " + gameObject.GetNameIncludingParents());
         }
         else
         {
@@ -56,9 +57,16 @@ public class AudioLayerManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        RhythmManager.instance.beatEvent += beatUpdate;
+        SubscribeBeatUpdate();
+        GameManager.Instance.onStateChange.AddListener(ReactGameStateChange); 
+    }
+
+    private void OnDisable()
+    {
+        UnsubscribeBeatUpdate();
+        GameManager.Instance.onStateChange.RemoveListener(ReactGameStateChange);
     }
 
     private void beatUpdate(int bar, int beat)
@@ -68,7 +76,7 @@ public class AudioLayerManager : MonoBehaviour
             return; 
         }
 
-        if (isPlaying) //zypernKatze this should be something adjustable for each AudioLayer
+        if (isPlaying) 
         {
             if (!currentEventEmitter.IsPlaying())
             {
@@ -90,7 +98,7 @@ public class AudioLayerManager : MonoBehaviour
 
     //PUBLIC CODE METHODS
     [ContextMenu("TurnOn")]
-    public void turnOn()
+    public void Play()
     {
         foreach (StudioEventEmitter layerEventInstance in eventEmitters)
         {
@@ -99,7 +107,7 @@ public class AudioLayerManager : MonoBehaviour
     }
 
     [ContextMenu("TurnOff")]
-    public void turnOff()
+    public void Stop()
     {
         foreach (StudioEventEmitter layerEventInstance in eventEmitters)
         {
@@ -114,6 +122,13 @@ public class AudioLayerManager : MonoBehaviour
             modeEventInstances.Add(eI);
         }
         */
+    }
+
+    public void switchMode(bool canOverlap, float minAttenuationRange, float maxAttenuationRange)
+    {
+        this.canOverlap = canOverlap;
+        this.minAttenuationRange = minAttenuationRange;
+        this.maxAttenuationRange = maxAttenuationRange; 
     }
 
     public StudioEventEmitter addEventEmitter(GameObject attachmentObject)
@@ -135,6 +150,8 @@ public class AudioLayerManager : MonoBehaviour
         return eventEmitter; 
     }
 
+
+    //PRIVATE CODE METHODS
     private bool CheckPlayChance(int bar, int beat)
     {
         float soundProbabilityThisFrame = RhythmManager.instance.differenceBetweenBeats(lastSound[0], lastSound[1], bar, beat) * probabiltyOfSoundOnFirstBeat * 100;
@@ -159,5 +176,41 @@ public class AudioLayerManager : MonoBehaviour
         currentEventEmitter.Play();
         //Debug.Log("now playing: " + currentShapeEventEmitter); 
         isPlaying = true; 
+    }
+
+
+    private void ReactGameStateChange(GameState gameState)
+    {
+        switch (gameState)
+        {
+            case GameState.GodView:
+                SubscribeBeatUpdate();
+                Stop();
+                break;
+            case GameState.CharacterView:
+                UnsubscribeBeatUpdate();
+                Play();
+                break;
+            case GameState.ShapePlacement:
+
+                break;
+            case GameState.CharacterPlacement:
+
+                break;
+            case GameState.RewardMode:
+
+                break;
+        }
+    }
+
+    private void SubscribeBeatUpdate()
+    {
+
+        RhythmManager.instance.beatEvent += beatUpdate;
+    }
+
+    private void UnsubscribeBeatUpdate()
+    {
+        RhythmManager.instance.beatEvent -= beatUpdate;
     }
 }
