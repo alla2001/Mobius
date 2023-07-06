@@ -1,6 +1,7 @@
 using Dreamteck.Splines;
 using UnityEngine;
-
+using System.Collections.Generic;
+using UnityEngine.Rendering;
 public class BridgeCreator : MonoBehaviour
 {
     public bool inPortalCreationMode;
@@ -20,6 +21,7 @@ public class BridgeCreator : MonoBehaviour
     private SplineComputer secondSpline;
     private GameObject tempHilight;
     public float energyToAdd=2;
+    public List<GameObject> Bridgeparts = new List<GameObject>();   
     
         /// <summary>
         /// TODO : Implement bridge distance/length, cant place too long bridges (Based on energy)
@@ -30,6 +32,17 @@ public class BridgeCreator : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        RenderPipelineManager.beginCameraRendering += OnBeginCameraRendering;
+    }
+    void OnBeginCameraRendering(ScriptableRenderContext context, Camera camera)
+    {
+        // Put the code that you want to execute before the camera renders here
+        // If you are using URP or HDRP, Unity calls this method automatically
+        // If you are writing a custom SRP, you must call RenderPipeline.BeginCameraRendering
+        foreach (var item in FindObjectsOfType<MeshRenderer>())
+        {
+
+        } 
     }
 
     private void OnDrawGizmos()
@@ -86,10 +99,11 @@ public class BridgeCreator : MonoBehaviour
          
             if (tempHilight == null)
             {
-                tempHilight = Instantiate(hilightPrefab);
+                tempHilight = Instantiate(Bridgeparts[Random.Range(0,Bridgeparts.Count)]);
+                tempHilight.transform.localScale = Vector3.one * 5;
             }
 
-            tempHilight.transform.position = hit.point;
+            tempHilight.transform.position = hit.point + hit.normal*0.5f;
             int index = hit.collider.GetComponent<SplineComputer>().PercentToPointIndex(hit.collider.GetComponent<SplineComputer>().Project(hit.point).percent);
             SplineSample result = hit.collider.GetComponent<SplineComputer>().Evaluate(index);
            
@@ -221,7 +235,9 @@ public class BridgeCreator : MonoBehaviour
                     splineBridge.SetPoints(points);
                     firstBridgePoint.AddConnection(splineBridge, 0);
                     secondBridgePoint.AddConnection(splineBridge, 1);
-
+                    float length = splineBridge.CalculateLength();
+                    splineBridge.GetComponent<ObjectController>().spawnCount = (int)(distance * 5);
+                    splineBridge.GetComponent<ObjectController>().RebuildImmediate();
                     splineBridge.onRebuild += OnReBuild;
 
                     splineBridge.GetComponent<SplineMesh>().RebuildImmediate();
