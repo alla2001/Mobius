@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -6,12 +7,14 @@ public enum CleanedCameraMode
 {
     GodModeGlobal,
     GodModeLocal,
-    FollowCharacter
+    FollowCharacter,
+    DeathCamera
 }
 
 public class CleanedCameraController : MonoBehaviour
 {
     public Transform godModeCenterPoint;
+    private Vector3 godPosition;
 
     public CharacterMovement currentPlayer;
     //EDITOR VARIABLES
@@ -37,6 +40,13 @@ public class CleanedCameraController : MonoBehaviour
                     break;
                 case CleanedCameraMode.FollowCharacter:
                     transform.SetParent(GameManager.Instance.currentControlledCharacter.transform); 
+                    break;
+                case CleanedCameraMode.DeathCamera:
+                    transform.SetParent(godModeCenterPoint);
+                    GameManager.Instance.UpdateAveragePosition();
+                    godModeCenterPoint.transform.position = GameManager.Instance.averageCenterPointPosition;
+                    distanceToTarget = maxZoomGodMode;
+                    SetCameraPosition();
                     break;
                 default:
                     Debug.LogError("CameraMode not found");
@@ -77,18 +87,22 @@ public class CleanedCameraController : MonoBehaviour
     private void Start()
     {
         godModeCenterPoint = transform.parent;
-        
-        cameraMode = CleanedCameraMode.GodModeLocal;
+
+        ChangeCameraMode(CleanedCameraMode.GodModeLocal); 
+        transform.localRotation = Quaternion.identity;
 
         GameManager.Instance.onStateChange.AddListener((state) => {
 
             if (state == GameState.CharacterView)
             {
-                cameraMode = CleanedCameraMode.FollowCharacter;
+               ChangeCameraMode(CleanedCameraMode.FollowCharacter) ;
             }
             else
             {
-                cameraMode = CleanedCameraMode.GodModeLocal;
+                ChangeCameraMode(CleanedCameraMode.GodModeLocal);
+              
+                transform.localPosition = godPosition;
+                transform.localRotation = Quaternion.identity;
             }
         
         });
@@ -115,15 +129,22 @@ public class CleanedCameraController : MonoBehaviour
             //    isGodModeLocal = !isGodModeLocal; //zypernKatze is not sure whether this might break stuff (cause a global cam can't ever be rotated in roll direction)
             //}
             //cameraMode = isGodModeLocal ? CleanedCameraMode.GodModeLocal : CleanedCameraMode.GodModeGlobal;
-            cameraMode = CleanedCameraMode.GodModeLocal;
-
+            ChangeCameraMode(CleanedCameraMode.GodModeLocal);
+       
             GameManager.Instance.ChangeState(GameState.GodView);
             GameManager.Instance.currentControlledCharacter = null;
         }
-        if (currentPlayer==null)
+        if (currentPlayer==null && cameraMode == CleanedCameraMode.FollowCharacter)
         {
-            cameraMode= CleanedCameraMode.GodModeLocal;
+            ChangeCameraMode(CleanedCameraMode.GodModeLocal);
+
         }
+
+        if (GameManager.Instance.currentState == GameState.GameOver)
+        {
+            ChangeCameraMode(CleanedCameraMode.DeathCamera);
+        }
+
         if (cameraMode != CleanedCameraMode.FollowCharacter)
         {
             CheckCharacterClick(); 
@@ -133,19 +154,41 @@ public class CleanedCameraController : MonoBehaviour
     private void CheckCharacterClick()
     {
         RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
+        Ray ray = GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+      
         if (Physics.Raycast(ray, out hit))
         {
+           
             if (hit.transform.gameObject.tag == "Player" && Input.GetMouseButtonDown(0))
             {
                 currentPlayer = hit.collider.gameObject.GetComponent<CharacterMovement>();
                 GameManager.Instance.currentControlledCharacter = currentPlayer;
-                cameraMode = CleanedCameraMode.FollowCharacter;
+          
+           
+                ChangeCameraMode(CleanedCameraMode.FollowCharacter);
             }
         }
     }
-
+    
+    public void ChangeCameraMode(CleanedCameraMode newMode)
+    {
+        
+        cameraMode = newMode;
+        switch (cameraMode)
+        {
+            case CleanedCameraMode.GodModeGlobal:
+                break;
+            case CleanedCameraMode.GodModeLocal:
+                transform.localPosition = godPosition;
+                transform.localRotation = Quaternion.identity;
+                break;
+            case CleanedCameraMode.FollowCharacter:
+                godPosition = transform.localPosition;
+                break;
+            default:
+                break;
+        }
+    }
     private void UpdateCameraBasedOnMode()
     {
         switch (cameraMode)
@@ -162,10 +205,19 @@ public class CleanedCameraController : MonoBehaviour
                 GameManager.Instance.ChangeState(GameState.CharacterView);
                 UpdateCameraFollowCharacter();
                 break;
+            case CleanedCameraMode.DeathCamera:
+                UpdateCameraDeath();
+                break;
             default:
                 Debug.LogError("CameraMode not found");
                 break; 
         }
+    }
+
+    private void UpdateCameraDeath()
+    {
+        distanceToTarget = maxZoomGodMode;
+        godModeCenterPoint.Rotate(Vector3.up, 20 * Time.deltaTime);
     }
 
     private void UpdateCameraGodmodeGlobal()
@@ -270,7 +322,9 @@ public class CleanedCameraController : MonoBehaviour
     {
         if (GameManager.Instance.currentState != GameState.CharacterView)
         {
-            cameraMode = CleanedCameraMode.GodModeLocal; 
+            ChangeCameraMode(CleanedCameraMode.GodModeLocal);
+     
+         
         }
     }
 }

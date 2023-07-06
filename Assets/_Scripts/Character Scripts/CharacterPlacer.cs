@@ -11,25 +11,65 @@ public class CharacterPlacer : MonoBehaviour
     private Vector3 targetPos;
 
     [SerializeField] private GameObject characterPrefab;
-
+    [SerializeField] private GameObject characterImage;
     // Start is called before the first frame update
     void Start()
     {
+        characterImage.transform.position = new Vector3(-10000, -10000);
         mainCamera = this.GetComponent<Camera>();
     }
 
     GameObject character;
     bool isPlaying = false;
+    GameObject Hilight;
     // Update is called once per frame
     void Update()
     {
    
         if (GameManager.Instance.currentState == GameState.CharacterPlacement  ) {
 
-            Debug.Log("Can Place Character");
 
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, targetMask) )
+            {
+                SplineComputer splineComp = hit.collider.gameObject.GetComponent<SplineComputer>();
+
+
+                if (Hilight == null)
+                {
+                    Hilight = Instantiate(characterPrefab, targetPos, Quaternion.identity);
+                }
+                if (Hilight != null && Hilight.name== characterImage.name)
+                {
+
+                    Hilight.transform.position = new Vector3(-10000,-10000);
+                    Hilight = Instantiate(characterPrefab, targetPos, Quaternion.identity);
+                }
+                Destroy(Hilight.GetComponent<CharacterMovement>());
+                Destroy(Hilight.GetComponent<SplineFollower>());
+                targetPos = splineComp.Evaluate(splineComp.Project(hit.point).percent).position + splineComp.Evaluate(splineComp.Project(hit.point).percent).up * 0.5f;
+                Hilight.transform.position = targetPos;
+                Hilight.transform.up = splineComp.Evaluate(splineComp.Project(hit.point).percent).up;
+                Debug.DrawLine(splineComp.Evaluate(splineComp.Project(hit.point).percent).position,targetPos,Color.blue,100);
+              
+            }
+            else
+            {
+               
+                if (Hilight != null &&  Hilight.name!=characterImage.name)
+                {
+                    Destroy(Hilight);
+                    Hilight = characterImage;
+                }
+                if (Hilight == null)
+                {
+                    Hilight = characterImage;
+                }
+
+                Hilight.transform.position = Input.mousePosition;
+            }
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, targetMask) && Input.GetMouseButtonDown(0) )
             {
@@ -48,6 +88,18 @@ public class CharacterPlacer : MonoBehaviour
                 ItemSpawner.instace.SpawnItems();
                 GameManager.Instance.ChangeState(GameState.GodView);
                 isPlaying=true;
+
+                if (Hilight != null && Hilight.name != characterPrefab.name)
+                {
+
+                    Hilight.transform.position = new Vector3(-10000, -10000);
+                 
+                }
+                if (Hilight != null && Hilight.name != characterImage.name)
+                {
+                    Destroy(Hilight);
+          
+                }
             }
         }
     }
