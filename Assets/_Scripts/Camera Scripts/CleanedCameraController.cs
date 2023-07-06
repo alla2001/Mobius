@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -6,7 +7,8 @@ public enum CleanedCameraMode
 {
     GodModeGlobal,
     GodModeLocal,
-    FollowCharacter
+    FollowCharacter,
+    DeathCamera
 }
 
 public class CleanedCameraController : MonoBehaviour
@@ -38,6 +40,13 @@ public class CleanedCameraController : MonoBehaviour
                     break;
                 case CleanedCameraMode.FollowCharacter:
                     transform.SetParent(GameManager.Instance.currentControlledCharacter.transform); 
+                    break;
+                case CleanedCameraMode.DeathCamera:
+                    transform.SetParent(godModeCenterPoint);
+                    GameManager.Instance.UpdateAveragePosition();
+                    godModeCenterPoint.transform.position = GameManager.Instance.averageCenterPointPosition;
+                    distanceToTarget = maxZoomGodMode;
+                    SetCameraPosition();
                     break;
                 default:
                     Debug.LogError("CameraMode not found");
@@ -130,6 +139,12 @@ public class CleanedCameraController : MonoBehaviour
             ChangeCameraMode(CleanedCameraMode.GodModeLocal);
 
         }
+
+        if (GameManager.Instance.currentState == GameState.GameOver)
+        {
+            ChangeCameraMode(CleanedCameraMode.DeathCamera);
+        }
+
         if (cameraMode != CleanedCameraMode.FollowCharacter)
         {
             CheckCharacterClick(); 
@@ -190,10 +205,19 @@ public class CleanedCameraController : MonoBehaviour
                 GameManager.Instance.ChangeState(GameState.CharacterView);
                 UpdateCameraFollowCharacter();
                 break;
+            case CleanedCameraMode.DeathCamera:
+                UpdateCameraDeath();
+                break;
             default:
                 Debug.LogError("CameraMode not found");
                 break; 
         }
+    }
+
+    private void UpdateCameraDeath()
+    {
+        distanceToTarget = maxZoomGodMode;
+        godModeCenterPoint.Rotate(Vector3.up, 20 * Time.deltaTime);
     }
 
     private void UpdateCameraGodmodeGlobal()
