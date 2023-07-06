@@ -210,7 +210,7 @@ public class CleanedCameraController : MonoBehaviour
     {
         scrollInput = Input.mouseScrollDelta.y;
 
-        if (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2))
         {
             mouseLeftEdge = Input.mousePosition.x < Screen.width * 1 / 5; 
             mouseRightEdge = Input.mousePosition.x > Screen.width * 4 / 5;
