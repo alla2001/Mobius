@@ -47,9 +47,12 @@ public class CharacterPlacer : MonoBehaviour
                     Hilight.transform.position = new Vector3(-10000,-10000);
                     Hilight = Instantiate(characterPrefab, targetPos, Quaternion.identity);
                 }
-                Hilight.GetComponent<SplineFollower>().enabled= false;
-                Hilight.transform.position = splineComp.Evaluate(splineComp.Project(hit.point).percent).position;
-                targetPos = splineComp.Evaluate(splineComp.Project(hit.point).percent).position;
+                Destroy(Hilight.GetComponent<SplineFollower>());
+                targetPos = splineComp.Evaluate(splineComp.Project(hit.point).percent).position + splineComp.Evaluate(splineComp.Project(hit.point).percent).up * 0.5f;
+                Hilight.transform.position = targetPos;
+                Hilight.transform.up = splineComp.Evaluate(splineComp.Project(hit.point).percent).up;
+                Debug.DrawLine(splineComp.Evaluate(splineComp.Project(hit.point).percent).position,targetPos,Color.blue,100);
+              
             }
             else
             {
