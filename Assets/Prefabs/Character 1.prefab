@@ -175,18 +175,18 @@ MonoBehaviour:
   targetRigidbody2D: {fileID: 0}
   targetTransform: {fileID: 7398564456302343878}
   _result:
-    position: {x: 3.938119, y: 8.867822, z: 3.446555}
-    up: {x: 0.13846913, y: 0.21418914, z: -0.6896427}
-    forward: {x: -0.933841, y: -0.19303, z: -0.3011324}
-    color: {r: 1, g: 1, b: 1, a: 1}
-    size: 1
+    position: {x: 0, y: 0, z: 0}
+    up: {x: 0, y: 0, z: 0}
+    forward: {x: 0, y: 0, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    size: 0
     percent: 0
   _finalResult:
-    position: {x: 3.938119, y: 8.867822, z: 3.446555}
-    up: {x: 0.13846913, y: 0.21418914, z: -0.6896427}
-    forward: {x: -0.933841, y: -0.19303, z: -0.3011324}
-    color: {r: 1, g: 1, b: 1, a: 1}
-    size: 1
+    position: {x: 0, y: 0, z: 0}
+    up: {x: 0, y: 0, z: 0}
+    forward: {x: 0, y: 0, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    size: 0
     percent: 0
   wrapMode: 1
   followMode: 0
@@ -259,8 +259,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5476143f4c699d74287c68f27e6d77be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBeforeDeath: 20
-  timeGainedFromItem: 20
+  timeBeforeDeath: 50
+  timeGainedFromItem: 50
 --- !u!1001 &7398564456127658184
 PrefabInstance:
   m_ObjectHideFlags: 0

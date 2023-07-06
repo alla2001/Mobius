@@ -11,8 +11,7 @@ public enum CleanedCameraMode
 
 public class CleanedCameraController : MonoBehaviour
 {
-   
-    private Transform centerPoint;
+    public Transform godModeCenterPoint;
 
     public CharacterMovement currentPlayer;
     //EDITOR VARIABLES
@@ -32,11 +31,12 @@ public class CleanedCameraController : MonoBehaviour
             {
                 case CleanedCameraMode.GodModeGlobal:
                 case CleanedCameraMode.GodModeLocal:
-                    minZoomCurrent = minZoomGodMode;
-                    maxZoomCurrent = maxZoomGodMode;
+                    transform.SetParent(godModeCenterPoint);
+                    GameManager.Instance.UpdateAveragePosition(); 
+                    godModeCenterPoint.transform.position = GameManager.Instance.averageCenterPointPosition; 
                     break;
                 case CleanedCameraMode.FollowCharacter:
-
+                    transform.SetParent(GameManager.Instance.currentControlledCharacter.transform); 
                     break;
                 default:
                     Debug.LogError("CameraMode not found");
@@ -50,9 +50,10 @@ public class CleanedCameraController : MonoBehaviour
     [SerializeField] private float zoomSpeed = 3.0f;
     [SerializeField] private float minZoomGodMode = 5.0f; 
     [SerializeField] private float maxZoomGodMode = 50.0f;
-    [SerializeField] private float moveSpeed = .3f;
+    [SerializeField] private float offSetMoveSpeed = .3f;
+    [SerializeField] private float maxOffset = 25f; 
     [SerializeField] private Vector3 characterModeCameraLocalPosition;
-    [SerializeField] private Vector3 CharacterModeLocalCameraAngle;
+    [SerializeField] private Vector3 characterModeLocalEulerAngles;
 
     //CODE VARIABLES
     private float rotationZ;
@@ -67,8 +68,6 @@ public class CleanedCameraController : MonoBehaviour
     private bool mouseRightEdge; 
 
     private float distanceToTarget = 10.0f;
-    private float minZoomCurrent;
-    private float maxZoomCurrent;
     private float scrollInput;
     private Vector3 cameraOffSet; 
 
@@ -77,16 +76,15 @@ public class CleanedCameraController : MonoBehaviour
     //MONOBEHAVIOUR METHODS
     private void Start()
     {
-        centerPoint = transform.parent;
+        godModeCenterPoint = transform.parent;
         
-
         cameraMode = CleanedCameraMode.GodModeLocal;
 
         GameManager.Instance.onStateChange.AddListener((state) => {
 
-            if (state ==GameState.CharacterView)
+            if (state == GameState.CharacterView)
             {
-                cameraMode= CleanedCameraMode.FollowCharacter;
+                cameraMode = CleanedCameraMode.FollowCharacter;
             }
             else
             {
@@ -118,6 +116,7 @@ public class CleanedCameraController : MonoBehaviour
             //}
             //cameraMode = isGodModeLocal ? CleanedCameraMode.GodModeLocal : CleanedCameraMode.GodModeGlobal;
             cameraMode = CleanedCameraMode.GodModeLocal;
+
             GameManager.Instance.ChangeState(GameState.GodView);
             GameManager.Instance.currentControlledCharacter = null;
         }
@@ -171,63 +170,48 @@ public class CleanedCameraController : MonoBehaviour
 
     private void UpdateCameraGodmodeGlobal()
     {
-      
-
-        MoveCameraPivot();
+        AdjustCameraPivotOffset();
         SetCameraPosition();
 
-        centerPoint.position = GameManager.Instance.averageCenterPointPosition;
-
-        //RotateGlobal
+        //RotateGlobalCameraView
         if (Input.GetMouseButton(1))
         {
-            centerPoint.eulerAngles = rotationVector;
+            godModeCenterPoint.localEulerAngles = rotationVector;
         }
     }
 
     private void UpdateCameraGodModeLocal()
     {
-     
-
-        MoveCameraPivot();
+        AdjustCameraPivotOffset();
         SetCameraPosition();
 
-        centerPoint.position = GameManager.Instance.averageCenterPointPosition;
-
-        //RotateLocal
         if (Input.GetMouseButton(1))
         {
-            centerPoint.Rotate(rotationUpdateVector);
+            godModeCenterPoint.Rotate(rotationUpdateVector);
         }
     }
 
     private void UpdateCameraFollowCharacter()
     {
-        //zypernKatzeINPERSON why aren't we jsut setting centerPoint as the cameras parent (which would also make it way easier to adjust the position when it's behind the character)?
-        centerPoint.position = currentPlayer.transform.position;
-        centerPoint.rotation = currentPlayer.transform.rotation;
+        AdjustCameraPivotOffset();
+        transform.localPosition = characterModeCameraLocalPosition;
+        transform.localEulerAngles = characterModeLocalEulerAngles; 
 
-        transform.localPosition = new Vector3(0, 0, -distanceToTarget);
-        distanceToTarget = 10;  //zypernKatzeINPERSON this being hardcoded is not good
-        //transform.position = centerPoint.position + (Quaternion.Euler(centerPoint.forward) * Quaternion.Euler(characterModeCameraLocalPosition)).eulerAngles;
-        //transform.localRotation = centerPoint.rotation * Quaternion.Euler(CharacterModeLocalCameraAngle); 
 
-        distanceToTarget = Mathf.Clamp(distanceToTarget, minZoomCurrent, maxZoomCurrent);
     }
     private void SetCameraPosition()
     {
-        transform.position = centerPoint.position - transform.forward * distanceToTarget + cameraOffSet;
         distanceToTarget -= scrollInput * zoomSpeed;
-        distanceToTarget = Mathf.Clamp(distanceToTarget, minZoomCurrent, maxZoomCurrent);
+        distanceToTarget = Mathf.Clamp(distanceToTarget, minZoomGodMode, maxZoomGodMode); 
+        transform.localPosition = Vector3.forward * -distanceToTarget + cameraOffSet;
     }
 
     private void GetMouseInput()
     {
         scrollInput = Input.mouseScrollDelta.y;
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0))
         {
-          
             mouseLeftEdge = Input.mousePosition.x < Screen.width * 1 / 5; 
             mouseRightEdge = Input.mousePosition.x > Screen.width * 4 / 5;
         }
@@ -273,11 +257,20 @@ public class CleanedCameraController : MonoBehaviour
         rotationUpdateVector = new Vector3(mouseY, mouseX, mouseZ);
     }
 
-    private void MoveCameraPivot()
+    private void AdjustCameraPivotOffset()
     { 
         if (Input.GetMouseButton(2))
         {
-            cameraOffSet += (-centerPoint.right * mouseX + centerPoint.up * mouseY) * moveSpeed;
+            cameraOffSet += (Vector3.right * -mouseX + Vector3.up * mouseY) * offSetMoveSpeed * distanceToTarget / maxZoomGodMode;
+            cameraOffSet = cameraOffSet.ClampVectorComponentWise(-maxOffset, maxOffset); 
+        }
+    }
+
+    private void OnDisable() //zypernKatze very much not the clean method
+    {
+        if (GameManager.Instance.currentState != GameState.CharacterView)
+        {
+            cameraMode = CleanedCameraMode.GodModeLocal; 
         }
     }
 }

@@ -46,4 +46,50 @@ public static class ExtensionMethods
         }
         return fullName;
     }
+
+    public static Vector3 ClampVector(this Vector3 vector3, Vector3 lowerClamp, Vector3 higherClamp)
+    {
+        return new Vector3
+        (
+            Mathf.Clamp(vector3.x, lowerClamp.x, higherClamp.x),
+            Mathf.Clamp(vector3.y, lowerClamp.y, higherClamp.y),
+            Mathf.Clamp(vector3.z, lowerClamp.z, higherClamp.z)
+        ); 
+    }
+
+    public static Vector3 ClampVectorComponentWise(this Vector3 vector3, float lowerClamp, float higherClamp)
+    {
+        return new Vector3
+        (
+            Mathf.Clamp(vector3.x, lowerClamp, higherClamp),
+            Mathf.Clamp(vector3.y, lowerClamp, higherClamp),
+            Mathf.Clamp(vector3.z, lowerClamp, higherClamp)
+        );
+    }
+
+    public static Vector3 ClampVectorMagnitude(this Vector3 vector3, float minMagnitude, float maxMagnitude)
+    {
+        float magnitude = vector3.magnitude;
+        float multiplyValue; 
+        if (magnitude > maxMagnitude)
+        {
+            multiplyValue = maxMagnitude/magnitude;
+        }
+        else if (magnitude < minMagnitude) 
+        { 
+            multiplyValue= minMagnitude/magnitude;
+        }
+        else
+        {
+            multiplyValue = magnitude; 
+        }
+
+        vector3 = new Vector3
+        (
+            vector3.x * multiplyValue,
+            vector3.y * multiplyValue,
+            vector3.z * multiplyValue
+        );
+        return vector3; 
+    }
 }
