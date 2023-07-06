@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,7 +12,8 @@ public enum GameState
     RewardMode,
     ShapePlacement,
     CharacterPlacement,
-    CharacterView
+    CharacterView,
+    GameOver
 }
 
 
@@ -36,9 +38,8 @@ public class GameManager : MonoBehaviour
     public float speedForCharacterMode = 2f;
     public float speedForGodMode = 0.5f;
 
-    [HideInInspector] public float timeLeft;
-    int minutes;
-    int seconds;
+    [SerializeField] private GameObject gameOverPanel;
+
     public CharacterMovement currentControlledCharacter;
     private void Awake()
     {
@@ -55,9 +56,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ChangeState(GameState.GodView); 
-        timeLeft = 300;
+        ChangeState(GameState.GodView);
 
+        gameOverPanel.SetActive(false);
         allCharacters = new List<Character>(FindObjectsOfType<Character>());
         allWalls = new List<GameObject>(GameObject.FindGameObjectsWithTag("wall"));
         UpdateAveragePosition();
@@ -96,7 +97,11 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < allWalls.Count; i++)
         {
-            allWallPositions.Add(allWalls[i].gameObject.transform.position);
+            if (allWalls[i] != null) 
+            {
+                allWallPositions.Add(allWalls[i].gameObject.transform.position);
+            }
+            
         }
 
         averageCenterPointPosition = GetMeanVector(allWallPositions);
@@ -105,17 +110,14 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        //Debug.Log(currentState);
-
-        if (Input.GetKeyDown(KeyCode.J))
+        if (currentState == GameState.GameOver)
         {
-            currentState = GameState.CharacterPlacement;
+            gameOverPanel.SetActive(true);
         }
 
-        if (allCharacters.Count <= 0)
+        if (CharacterMovement.characters.Count() == 0)
         {
-            //Death();
+            Death();
         }
     }
 
@@ -139,7 +141,7 @@ public class GameManager : MonoBehaviour
 
     void Death()
     {
-        currentState = GameState.GodView;
+        currentState = GameState.GameOver;
     }
 
     public void StartCharacterPlacement()
