@@ -63,11 +63,18 @@ public class BridgeCreator : MonoBehaviour
 
         }
         if (!inPortalCreationMode) return;
+
+        if (Input.GetKeyDown(KeyCode.Escape) && firstBridgePoint != null)
+        {
+            Destroy(firstBridgePoint);
+            lineRenderer.positionCount = 0;
+            return;
+        }
+
         Ray r = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(r, out hit , 1000,~ignoreMask))
         {
-
             
 
             if (firstBridgePoint != null && Vector3.Distance(firstBridgePoint.transform.position, hit.point) > maxPortalDistance)
@@ -93,11 +100,14 @@ public class BridgeCreator : MonoBehaviour
                 lineRenderer.positionCount = 2;
                 lineRenderer.SetPosition(1, result.position);
             }
+
+          
          
             if (!Input.GetMouseButtonDown(0))
             {
                 return;
             }
+            
             Destroy(tempHilight);
 
             if (!firstBridgePoint)
@@ -232,6 +242,12 @@ public class BridgeCreator : MonoBehaviour
                     Destroy(secondBridgePoint.gameObject);
                 }
             }
+            return;
+        }
+        else if (Input.GetMouseButtonDown(0) && firstBridgePoint != null)
+        {
+            Destroy(firstBridgePoint);
+            lineRenderer.positionCount = 0;
             return;
         }
         if (tempHilight != null)
