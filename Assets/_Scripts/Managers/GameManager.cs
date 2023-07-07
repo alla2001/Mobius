@@ -34,9 +34,9 @@ public class GameManager : MonoBehaviour
     private List<Vector3> allWallPositions = new List<Vector3>();
      public Vector3 averageCenterPointPosition;
 
-
-    public float speedForCharacterMode = 2f;
-    public float speedForGodMode = 0.5f;
+    [SerializeField]
+    private float godModeTimeMultiplier;
+   
 
     [SerializeField] private GameObject gameOverPanel;
 
@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Time.timeScale = 0.5f;
+            Time.timeScale = godModeTimeMultiplier;
           
         }
 

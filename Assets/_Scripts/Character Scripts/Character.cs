@@ -22,17 +22,7 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.currentState == GameState.CharacterView)
-        {
-            secondsLeft -= Time.deltaTime * GameManager.Instance.gameTimeScaleCharacter;
-            splineFollower.followSpeed = GameManager.Instance.speedForCharacterMode;
-        }
-
-        else
-        {
-            secondsLeft -= Time.deltaTime * GameManager.Instance.gameTimeScaleGodmode;
-            splineFollower.followSpeed = GameManager.Instance.speedForGodMode;
-        }
+        
 
         if (secondsLeft <= 0)
         {

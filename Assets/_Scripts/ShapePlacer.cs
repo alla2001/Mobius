@@ -11,7 +11,8 @@ public class ShapePlacer : MonoBehaviour
     private bool canPlace;
     Vector2 mouseInput;
     [SerializeField]
-    private Vector3 OffsetToCamera; 
+    private Vector3 OffsetToCamera;
+    [HideInInspector]public int ShapesPlaced;
 
     private void Start()
     {
@@ -29,6 +30,7 @@ public class ShapePlacer : MonoBehaviour
 
         if (placingShape && tmp==null) 
         {
+            ShapeDatabase.instance.CheckUnlock(ShapesPlaced);
             GameObject shape = ShapeDatabase.instance.GenerateRandomShape(); 
             tmp = Instantiate(shape);
             tmp.GetComponent<MeshCollider>().enabled = false;

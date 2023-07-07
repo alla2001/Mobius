@@ -7020,7 +7020,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d790a3b4c76ef7047b7df26a0cb7b730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectRadius: 0.3
   canBePlaced: 0
   architecturalStyle: {fileID: 11400000, guid: 227205d3a7584af489e017597a1aec51, type: 2}
 --- !u!54 &-6176226334124806497

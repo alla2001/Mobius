@@ -163,8 +163,8 @@ public class CleanedCameraController : MonoBehaviour
             {
                 currentPlayer = hit.collider.gameObject.GetComponent<CharacterMovement>();
                 GameManager.Instance.currentControlledCharacter = currentPlayer;
-          
-           
+
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.characterControlRequest);
                 ChangeCameraMode(CleanedCameraMode.FollowCharacter);
             }
         }

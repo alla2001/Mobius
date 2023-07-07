@@ -2,6 +2,9 @@ using Dreamteck.Splines;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Rendering;
+using FMOD;
+using FMODUnity;
+
 public class BridgeCreator : MonoBehaviour
 {
     public bool inPortalCreationMode;
@@ -54,7 +57,7 @@ public class BridgeCreator : MonoBehaviour
 
     Vector3 pointNoraml1;
     Vector3 pointNoraml2;
-
+    StudioEventEmitter emitter;
     // Update is called once per frame
     private void Update()
     {
@@ -80,6 +83,7 @@ public class BridgeCreator : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && firstBridgePoint != null)
         {
             Destroy(firstBridgePoint);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.bridgeNotPossible);
             lineRenderer.positionCount = 0;
             return;
         }
@@ -133,6 +137,7 @@ public class BridgeCreator : MonoBehaviour
                 index = firstSpline.PercentToPointIndex(firstSpline.Project(hit.point).percent);
                 if (!IsEmptyPoint(firstSpline, index))
                 {
+                    emitter.Stop();
                     Destroy(firstBridgePoint.gameObject);
                     return;
                 }
@@ -142,6 +147,9 @@ public class BridgeCreator : MonoBehaviour
 
                 lineRenderer.SetPosition(0, result.position);
                 firstBridgePoint.GetComponent<Node>().AddConnection(firstSpline, firstSpline.PercentToPointIndex(firstSpline.Project(hit.point).percent));
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.bridgeFirstClick);
+                emitter = AudioManager.instance.CreateEventEmitter(FMODEvents.instance.bridgeInConstruction, this.gameObject);
+                emitter.Play(); 
             }
             else
             {
@@ -150,7 +158,7 @@ public class BridgeCreator : MonoBehaviour
                 if (secondSpline == null) return;
                 if (firstSpline == secondSpline) 
                 {
-
+                    emitter.Stop();
                     Destroy(firstBridgePoint.gameObject);
            
                     return;
@@ -160,6 +168,7 @@ public class BridgeCreator : MonoBehaviour
                 index = secondSpline.PercentToPointIndex(secondSpline.Project(hit.point).percent);
                 if (!IsEmptyPoint(secondSpline, index))
                 {
+                    emitter.Stop();
                     Destroy(firstBridgePoint.gameObject);
                     Destroy(secondBridgePoint.gameObject);
 
@@ -204,7 +213,7 @@ public class BridgeCreator : MonoBehaviour
                 energy -= distance;
 
             
-                Debug.DrawLine(rayCastPoint1, rayCastPoint2, Color.red, 1000);
+                //Debug.DrawLine(rayCastPoint1, rayCastPoint2, Color.red, 1000);
 
                 if (!Physics.SphereCast(rayCastPoint1, 0.15f, rayCastPoint2 - rayCastPoint1,out hit, Vector3.Distance(rayCastPoint2 ,rayCastPoint1)))
                 {
@@ -241,19 +250,21 @@ public class BridgeCreator : MonoBehaviour
                     splineBridge.onRebuild += OnReBuild;
 
                     splineBridge.GetComponent<SplineMesh>().RebuildImmediate();
-
-             
-
-                  
+                    emitter.Stop();
+                    AudioManager.instance.PlayOneShot(FMODEvents.instance.bridgeSecondClick);
 
 
+                 
 
 
-                   
+
+
 
                 }
                 else
                 {
+                    AudioManager.instance.PlayOneShot(FMODEvents.instance.bridgeNotPossible);
+                    emitter.Stop();
                     Destroy(firstBridgePoint.gameObject);
                     Destroy(secondBridgePoint.gameObject);
                 }
@@ -263,6 +274,8 @@ public class BridgeCreator : MonoBehaviour
         else if (Input.GetMouseButtonDown(0) && firstBridgePoint != null)
         {
             Destroy(firstBridgePoint);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.bridgeNotPossible);
+            emitter.Stop();
             lineRenderer.positionCount = 0;
             return;
         }

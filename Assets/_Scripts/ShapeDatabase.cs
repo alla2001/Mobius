@@ -74,10 +74,12 @@ public class ShapeDatabase : MonoBehaviour
     //PUBLIC STATICS & EVENTS & PUBLIC SUBCLASSES
     public static ShapeDatabase instance;
 
-    //EDITOR REFERENCES
+    //REFERENCES
     public GameObject characterPrefab;
     public GameObject itemPrefab;
-    public string prefabFolderPath; 
+    public string prefabFolderPath;
+    
+
 
     public List<ShapeGroup> lockedShapeGroups = new List<ShapeGroup>();
     public List<ArchitecturalStyle> lockedArchitectures = new List<ArchitecturalStyle>();
@@ -87,12 +89,19 @@ public class ShapeDatabase : MonoBehaviour
     public List<ArchitecturalStyle> unlockedArchitectures = new List<ArchitecturalStyle>();
     public List<Material> unlockedMaterials = new List<Material>();
 
-    //CODE REFERENCES
 
     //EDITOR VARIABLES
 
+    public int everyXTimesUnlockShape;
+    public int everyXTimesUnlockArchitecture;
+    public int everyXTimesUnlockMaterial;
+
+
+
     //CODE VARIABLES
 
+    
+   
     //PUBLIC STATIC METHODS
 
     //MONOBEHAVIOUR METHODS
@@ -128,6 +137,24 @@ public class ShapeDatabase : MonoBehaviour
         return toReturn; 
     }
 
+    public void CheckUnlock(int shapesPlaced)
+    {
+        if (shapesPlaced % everyXTimesUnlockShape == 0)
+        {
+            UnlockRandomShapeGroup();
+        }
+        if ( shapesPlaced % everyXTimesUnlockArchitecture ==0)
+        {
+            UnlockRandomArchitecture();
+        }
+       
+        if (shapesPlaced % everyXTimesUnlockMaterial == 0)
+        {
+            UnlockRandomMaterial();
+
+        }
+
+    }
     public void UnlockObjectFromList<T>(List<T> lockedList, List<T> unlockedList, T toUnlock)
     {
         lockedList.Remove(toUnlock); 
