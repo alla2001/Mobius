@@ -1368,7 +1368,7 @@ namespace FMOD.Studio
         {
             return FMOD_Studio_EventInstance_SetPaused(this.handle, paused);
         }
-        public RESULT start()
+        public RESULT Play()
         {
             return FMOD_Studio_EventInstance_Start(this.handle);
         }

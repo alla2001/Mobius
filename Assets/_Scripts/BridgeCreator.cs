@@ -57,7 +57,7 @@ public class BridgeCreator : MonoBehaviour
 
     Vector3 pointNoraml1;
     Vector3 pointNoraml2;
-    StudioEventEmitter emitter;
+    FMODUnity.StudioEventEmitter emitter;
     // Update is called once per frame
     private void Update()
     {
@@ -148,7 +148,7 @@ public class BridgeCreator : MonoBehaviour
                 lineRenderer.SetPosition(0, result.position);
                 firstBridgePoint.GetComponent<Node>().AddConnection(firstSpline, firstSpline.PercentToPointIndex(firstSpline.Project(hit.point).percent));
                 AudioManager.instance.PlayOneShot(FMODEvents.instance.bridgeFirstClick);
-                emitter = AudioManager.instance.CreateEventEmitter(FMODEvents.instance.bridgeInConstruction, this.gameObject);
+                emitter = AudioManager.instance.AddEventEmitterComponent(FMODEvents.instance.bridgeInConstruction, this.gameObject);
                 emitter.Play(); 
             }
             else

@@ -4,7 +4,7 @@ using UnityEngine;
 using Dreamteck.Splines;
 using System.Linq;
 using UnityEditor.Experimental.GraphView;
-using static AudioLayerManager;
+using static AudioLayerGodMode;
 
 public class Shape : MonoBehaviour
 {

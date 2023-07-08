@@ -1169,7 +1169,7 @@ retry:
         {
             var instance = CreateInstance(guid);
             instance.set3DAttributes(RuntimeUtils.To3DAttributes(position));
-            instance.start();
+            instance.Play();
             instance.release();
         }
 
@@ -1207,7 +1207,7 @@ retry:
             #else
             AttachInstanceToGameObject(instance, gameObject.transform);
             #endif
-            instance.start();
+            instance.Play();
             instance.release();
         }
 

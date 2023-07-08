@@ -288,7 +288,7 @@ namespace FMODUnity
                 instance.setProperty(FMOD.Studio.EVENT_PROPERTY.MAXIMUM_DISTANCE, OverrideMaxDistance);
             }
 
-            instance.start();
+            instance.Play();
 
             hasTriggered = true;
         }

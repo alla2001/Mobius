@@ -9,40 +9,43 @@ using static Unity.Burst.Intrinsics.X86;
 
 public class AudioManager : MonoBehaviour
 {
-    //PUBLIC STATICS & EVENTS
+    //PUBLIC STATICS & EVENTS & private classes
     public static AudioManager instance;
-
-    //EDITOR REFERENCES
-    public Dictionary<AudioLayerManager.AudioLayerType, AudioLayerManager> audioLayers = new Dictionary<AudioLayerManager.AudioLayerType, AudioLayerManager>(); 
-
-    //CODE REFERENCES
-
-    //EDITOR VARIABLES
-
-    //CODE VARIABLES
-
-    //zypernKAtze SoundModes
-
     private class SoundQueueElement
     {
         public SoundQueueElement(EventInstance eI, bool start, int bar, int beat)
         {
-            eventInstance = eI; 
+            eventInstance = eI;
+            this.start = start;
+            this.bar = bar;
+            this.beat = beat;
+        }
+
+        public SoundQueueElement(FMODUnity.StudioEventEmitter eventEmitter, bool start, int bar, int beat)
+        {
+            this.eventEmitter = eventEmitter;
             this.start = start;
             this.bar = bar;
             this.beat = beat;
         }
 
         public EventInstance eventInstance;
+        public FMODUnity.StudioEventEmitter eventEmitter;
         public bool start;
         public int bar;
-        public int beat; 
+        public int beat;
     }
 
+    //REFERENCES
+
+    //PUBLIC VARIABLES
+    //public List<SoundMode> soundModesList = new List<SoundMode>() { SoundMode.godMode, SoundMode.characterMode };  
+    public SoundMode soundModeActive = SoundMode.godMode;
+
+    //PRIVATE VARIABLES
     private List<EventInstance> eventInstances;
-    private SoundMode currentSoundMode; 
     private List<SoundQueueElement> soundQueueElements; 
-    private List<StudioEventEmitter> eventEmitters;
+    private List<FMODUnity.StudioEventEmitter> eventEmitters;
 
     private Bus masterBus;
     private Bus ambienceBus;
@@ -65,7 +68,7 @@ public class AudioManager : MonoBehaviour
         }
 
         eventInstances = new List<EventInstance>();
-        eventEmitters = new List<StudioEventEmitter>();
+        eventEmitters = new List<FMODUnity.StudioEventEmitter>();
         soundQueueElements = new List<SoundQueueElement>(); 
 
         /*
@@ -117,33 +120,29 @@ public class AudioManager : MonoBehaviour
 
     public void ChangeSoundMode(SoundMode soundMode)
     {
-        if (!soundMode.startingEvent.IsNull)
-        {
-            EventInstance eI = CreateEventInstance(soundMode.startingEvent);
-            eI.start();
-        }
-
-        foreach (AudioLayerManager audioLayer in currentSoundMode.audioLayers)
-        {
-            audioLayer.Stop(); 
-        }
-
-        currentSoundMode = soundMode;
-
-        foreach (AudioLayerManager audioLayer in currentSoundMode.audioLayers)
-        {
-            audioLayer.Play();
-        }
+        this.soundModeActive.Stop();
+        this.soundModeActive = soundMode;
+        this.soundModeActive.Play(); 
     }
 
-    public void AddEmitterToLayer(AudioLayerManager.AudioLayerType layer, GameObject attachmentObject)
+    public void AddAudioLayerToSoundMode(SoundMode soundMode, AudioLayer audioLayer)
     {
-        audioLayers[layer].addEventEmitter(attachmentObject); 
+        soundMode.audioLayers.Add(audioLayer.layerType, audioLayer); 
     }
 
-    public void QueueSound(EventInstance eI, bool start, int bar, int beat)
+    public void AddEventEmitter(SoundMode soundMode, AudioLayerType layerType, StudioEventEmitter eventEmitter, object args)
     {
-        soundQueueElements.Add(new SoundQueueElement(eI, start, bar, beat));
+        soundMode.AddEmitter(layerType, eventEmitter, args);  
+    }
+
+    public void QueueSound(EventInstance eventInstance, bool start, int bar, int beat)
+    {
+        soundQueueElements.Add(new SoundQueueElement(eventInstance, start, bar, beat));
+    }
+
+    public void QueueSound(StudioEventEmitter eventEmitter, bool start, int bar, int beat)
+    {
+        soundQueueElements.Add(new SoundQueueElement(eventEmitter, start, bar, beat));
     }
 
     public EventInstance CreateEventInstance(EventReference eventReference)
@@ -153,7 +152,7 @@ public class AudioManager : MonoBehaviour
         return eventInstance;
     }
 
-    public StudioEventEmitter CreateEventEmitter(EventReference eventReference, GameObject emitterGameObject)
+    public StudioEventEmitter AddEventEmitterComponent(EventReference eventReference, GameObject emitterGameObject)
     {
         StudioEventEmitter emitter = emitterGameObject.AddComponent<StudioEventEmitter>();
         emitter.EventReference = eventReference;
@@ -171,7 +170,7 @@ public class AudioManager : MonoBehaviour
             eventInstance.release();
         }
         // stop all of the event emitters, because if we don't they may hang around in other scenes
-        foreach (StudioEventEmitter emitter in eventEmitters)
+        foreach (FMODUnity.StudioEventEmitter emitter in eventEmitters)
         {
             emitter.Stop();
         }
@@ -185,11 +184,25 @@ public class AudioManager : MonoBehaviour
             {
                 if (soundQueueElements[i].start)
                 {
-                    soundQueueElements[i].eventInstance.start();
+                    if (soundQueueElements[i] != null)
+                    {
+                        soundQueueElements[i].eventEmitter.Play(); 
+                    }
+                    else
+                    {
+                        soundQueueElements[i].eventInstance.Play();
+                    }
                 }
                 else
                 {
-                    soundQueueElements[i].eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    if (soundQueueElements[i] != null)
+                    {
+                        soundQueueElements[i].eventEmitter.Stop();
+                    }
+                    else
+                    {
+                        soundQueueElements[i].eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    }
                 }
                 soundQueueElements.RemoveAt(i); 
             }

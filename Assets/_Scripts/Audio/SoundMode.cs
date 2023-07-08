@@ -1,24 +1,88 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 
-public class SoundMode
+public class SoundMode : MonoBehaviour //must be Monobehaviour because it can have a startingEvent
 {
-    public string name;
+    public static SoundMode godMode;
+    public static SoundMode characterMode;
+
+    public bool isGodMode;
+    public bool isCharacterMode;
+    public bool isStartingSoundMode = false; 
 
     [field: SerializeField] public EventReference startingEvent { get; private set; }
     [field: SerializeField] public int deltaBarsToLayerStart { get; private set; }
-    [field: SerializeField] public List<AudioLayerManager> audioLayers { get; private set; }
+    
+    public Dictionary<AudioLayerType, AudioLayer> audioLayers = new Dictionary<AudioLayerType, AudioLayer>();
 
-    //zypernKatze make sure that the soundModes get used correctly
-
-    public void StopSoundMode()
+    private void Awake()
     {
-        //zypernKatze write this for soundModes to work
+        if (isGodMode)
+        {
+            godMode = this; 
+        }
+        if (isCharacterMode)
+        {
+            characterMode = this; 
+        }
+        if (isStartingSoundMode)
+        {
+            Play();
+            AudioManager.instance.soundModeActive = this; 
+        }
+        else
+        {
+            Stop();
+        }
     }
 
-    public void StartSoundMode()
+    public void AddEmitter(AudioLayerType audioLayerType, StudioEventEmitter eventEmitter, object args)
     {
-        //zypernKatze write this for soundModes to work 
+        if (audioLayers[audioLayerType] == null)
+        { 
+            Debug.LogError("trying to add eventEmitter to non-existent AudioLayer");
+            throw new System.Exception();  
+        }
+        audioLayers[audioLayerType].AddEventEmitter(eventEmitter, args);
+    }
+
+    public void RemoveEmitter(AudioLayerType audioLayerType, StudioEventEmitter eventEmitter)
+    {
+        if (audioLayers[audioLayerType] == null)
+        {
+            Debug.LogError("trying to add eventEmitter to non-existent AudioLayer");
+            throw new System.Exception();
+        }
+        audioLayers[audioLayerType].RemoveEventEmitter(eventEmitter);
+    }
+
+    public void Play()
+    {
+        if (!startingEvent.IsNull)
+        {
+            AudioManager.instance.PlayOneShot(startingEvent);
+        }
+        if (c_StartSoundMode != null) { StopCoroutine(c_StartSoundMode); }
+        c_StartSoundMode = StartCoroutine(C_StartSoundMode());
+    }
+
+    Coroutine c_StartSoundMode;
+    private IEnumerator C_StartSoundMode()
+    {
+        yield return new WaitForSeconds(deltaBarsToLayerStart * RhythmManager.instance.BPM);
+        foreach (AudioLayer audioLayer in audioLayers.Values)
+        {
+            audioLayer.Play();
+        }
+    }
+
+    public void Stop()
+    {
+        foreach (AudioLayer audioLayer in audioLayers.Values)
+        {
+            audioLayer.Stop();
+        }
     }
 }

@@ -23,7 +23,7 @@ public class CharacterInfo : MonoBehaviour
             emitter.Stop();
         }
     }
-    StudioEventEmitter emitter;
+    FMODUnity.StudioEventEmitter emitter;
     private void Update()
     {
         bool wentlow=false;
@@ -34,7 +34,7 @@ public class CharacterInfo : MonoBehaviour
         timeBeforeDeath -= Time.deltaTime;
         if (timeBeforeDeath<lowHealthThreshhold && wentlow)
         {
-            emitter = AudioManager.instance.CreateEventEmitter(FMODEvents.instance.characterDeathWarning,this.gameObject);
+            emitter = AudioManager.instance.AddEventEmitterComponent(FMODEvents.instance.characterDeathWarning,this.gameObject);
             emitter.Play();
         }
         if (timeBeforeDeath <= 0)

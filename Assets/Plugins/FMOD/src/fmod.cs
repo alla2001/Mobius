@@ -354,7 +354,7 @@ namespace FMOD
         MEMORY_TRACKING            = 0x00400000,
     }
 
-    public enum SOUND_TYPE : int
+    public enum AUDIO_TYPE : int
     {
         UNKNOWN,
         AIFF,
@@ -678,7 +678,7 @@ namespace FMOD
         public IntPtr                      encryptionkey;
         public int                         maxpolyphony;
         public IntPtr                      userdata;
-        public SOUND_TYPE                  suggestedsoundtype;
+        public AUDIO_TYPE                  suggestedsoundtype;
         public IntPtr                      fileuseropen_internal;
         public IntPtr                      fileuserclose_internal;
         public IntPtr                      fileuserread_internal;
@@ -1810,7 +1810,7 @@ namespace FMOD
         {
             return FMOD5_Sound_GetLength(this.handle, out length, lengthtype);
         }
-        public RESULT getFormat(out SOUND_TYPE type, out SOUND_FORMAT format, out int channels, out int bits)
+        public RESULT getFormat(out AUDIO_TYPE type, out SOUND_FORMAT format, out int channels, out int bits)
         {
             return FMOD5_Sound_GetFormat(this.handle, out type, out format, out channels, out bits);
         }
@@ -1989,7 +1989,7 @@ namespace FMOD
         [DllImport(VERSION.dll)]
         private static extern RESULT FMOD5_Sound_GetLength               (IntPtr sound, out uint length, TIMEUNIT lengthtype);
         [DllImport(VERSION.dll)]
-        private static extern RESULT FMOD5_Sound_GetFormat               (IntPtr sound, out SOUND_TYPE type, out SOUND_FORMAT format, out int channels, out int bits);
+        private static extern RESULT FMOD5_Sound_GetFormat               (IntPtr sound, out AUDIO_TYPE type, out SOUND_FORMAT format, out int channels, out int bits);
         [DllImport(VERSION.dll)]
         private static extern RESULT FMOD5_Sound_GetNumSubSounds         (IntPtr sound, out int numsubsounds);
         [DllImport(VERSION.dll)]

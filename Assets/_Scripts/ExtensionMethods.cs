@@ -24,6 +24,16 @@ public static class ExtensionMethods
         return false; 
     }
 
+    public static bool InsertAvoidDuplicate<T>(this List<T> list, T toAdd, int index)
+    {
+        if (!list.Contains(toAdd))
+        {
+            list.Insert(0, toAdd);
+            return true;
+        }
+        return false;
+    }
+
     public static T GetRandomElement<T>(this HashSet<T> set)
     {
 

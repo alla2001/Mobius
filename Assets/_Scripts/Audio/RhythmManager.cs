@@ -86,6 +86,18 @@ public class RhythmManager : MonoBehaviour
         return (lateBar - earlyBar) * 4 + lateBeat - earlyBeat; 
     }
 
+    public int[] nextBeat()
+    {
+        if (currentBeat != 4)
+        {
+            return new int[2] { currentBar, currentBeat + 1 }; 
+        } 
+        else
+        {
+            return new int[2] { currentBar + 1, 1 }; 
+        }
+    }
+
     //PRIVATE CODE METHODS
     private void printBarAndBeat()
     {

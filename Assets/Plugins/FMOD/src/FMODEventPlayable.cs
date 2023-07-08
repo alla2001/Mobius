@@ -247,7 +247,7 @@ namespace FMODUnity
 
                 eventInstance.setVolume(CurrentVolume);
                 eventInstance.setTimelinePosition((int)(ClipStartTime * 1000.0f));
-                eventInstance.start();
+                eventInstance.Play();
             }
         }
 

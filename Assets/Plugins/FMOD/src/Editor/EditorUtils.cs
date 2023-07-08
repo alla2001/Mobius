@@ -753,7 +753,7 @@ namespace FMODUnity
 
             CheckResult(eventInstance.setVolume(volume));
             CheckResult(eventInstance.setTimelinePosition((int)(startTime * 1000.0f)));
-            CheckResult(eventInstance.start());
+            CheckResult(eventInstance.Play());
 
             previewEventInstances.Add(eventInstance);
 
