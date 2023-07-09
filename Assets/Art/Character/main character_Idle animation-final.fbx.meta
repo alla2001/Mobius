@@ -3,7 +3,27 @@ guid: 712d79f68100c614aab58fd1340e1ea8
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aiStandardSurface2
+    second: {fileID: 2100000, guid: b86f5b8ae8a974845a56465fd6e77b7b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cage
+    second: {fileID: 2100000, guid: f81c8df778f432e42b10c711fc98494e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__aiStandardSurface2
+    second: {fileID: 2100000, guid: 14096c40d793e0d418591c325519d95e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: stones2
+    second: {fileID: 2100000, guid: 1246cdc691f87594bb267245a0c1ef6a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
