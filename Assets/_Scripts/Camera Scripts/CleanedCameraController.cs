@@ -98,7 +98,7 @@ public class CleanedCameraController : MonoBehaviour
             SetupLerp(followObject, savedGodModeGameObject, CleanedCameraMode.GODMODE);
             ChangeCameraMode(CleanedCameraMode.LERPMODE); 
         }
-        if (currentCameraMode == CleanedCameraMode.GODMODE)
+        if (currentCameraMode == CleanedCameraMode.GODMODE && GameManager.Instance.currentState == GameState.GodView)
         {
             CheckCharacterClick();
         }
@@ -218,7 +218,7 @@ public class CleanedCameraController : MonoBehaviour
     private void UpdateCameraCharacterMode()
     {
         //zypernKatze maybe add some options here
-        FollowObject(); 
+        LerpFollowObject(); 
     }
 
     private void UpdateCameraLerpMode()
@@ -322,11 +322,17 @@ public class CleanedCameraController : MonoBehaviour
         transform.eulerAngles = followObject.transform.eulerAngles; 
     }
 
+    private void LerpFollowObject()
+    {
+        transform.position = Vector3.Lerp(transform.position, followObject.transform.position, 3f * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, followObject.transform.rotation, 3f * Time.deltaTime);
+    }
+
     private void SetupFollowObject(Transform parent, Vector3 localPosition, Vector3 localEulerAngle)
     {
         if (followObject == null)
         {
-            followObject = Instantiate(emptyPrefab);
+            followObject = new GameObject(); 
             followObject.name = "cameraFollowObject";
         }
         followObject.transform.SetParent(parent);
@@ -353,7 +359,7 @@ public class CleanedCameraController : MonoBehaviour
     {
         if (savedGodModeGameObject == null)
         {
-            savedGodModeGameObject = Instantiate(emptyPrefab); 
+            savedGodModeGameObject = new GameObject(); 
         }
         savedGodModeGameObject.transform.position = transform.position; 
         savedGodModeGameObject.transform.rotation = transform.rotation; 
@@ -383,7 +389,7 @@ public class CleanedCameraController : MonoBehaviour
     {
         if (godModePivotPoint == null)
         {
-            godModePivotPoint = Instantiate(emptyPrefab).transform; 
+            godModePivotPoint = (new GameObject()).transform; 
         }
         GameManager.Instance.UpdateAveragePosition(); 
         godModePivotPoint.transform.position = GameManager.Instance.averageCenterPointPosition; 

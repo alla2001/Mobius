@@ -21,6 +21,15 @@ public class D_AudioTrigger : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            GameObject gO = new GameObject();
+            gO.name = "newGameObject"; 
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Time.timeScale = 0.3f; 
+        }
         if (Input.GetKeyDown(playSoundKey))
         {
             AudioManager.instance.AddEventEmitter(AudioMode.characterMode, audioLayerType, GetComponent<StudioEventEmitter>(), null);

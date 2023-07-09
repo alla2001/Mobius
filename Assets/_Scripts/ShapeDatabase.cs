@@ -6,9 +6,22 @@ using UnityEngine;
 public class ShapeDatabase : MonoBehaviour
 {
     //DEBUG
-    [ContextMenu("GenerateRandomStartingSetup")]
-    public void GenerateRandomStartingSetup()
+    [ContextMenu("NextRandomStartingSetup")]
+    public void NextRandomStartingSetup()
     {
+        startingPositionNumber++; 
+        RegenerateRandomStartingSetup(); 
+    }
+
+    [ContextMenu("RegnerateRandomStartingSetup")]
+    public void RegenerateRandomStartingSetup()
+    {
+        //Creating a copy of this object from which I can create the next starting position
+        GameObject newManager = Instantiate(managerPrefab);
+        newManager.name = "Manager" + (startingPositionNumber+1); 
+        GameObject fullPosition = Instantiate(startingPositionPrefab);
+        fullPosition.name = "startingPosition" + startingPositionNumber; 
+        
         Awake();
  
         UnlockForStartingSetup();
@@ -18,7 +31,7 @@ public class ShapeDatabase : MonoBehaviour
         for(int i = 0; i < 3; i++)
         {
             GameObject gO = GenerateRandomShape();
-            gO = Instantiate(gO, Vector3.zero, Quaternion.identity, transform.parent);
+            gO = Instantiate(gO, Vector3.zero, Quaternion.identity, fullPosition.transform);
             Undo.RegisterCreatedObjectUndo(gO, "Created new Shape");
             startingObjects[i] = gO;
         }
@@ -32,19 +45,14 @@ public class ShapeDatabase : MonoBehaviour
         //zypernKatze need to check whether shapes are overlapping
 
         //Setting Up Character
-        GameObject character = Instantiate(characterPrefab, transform.parent);
-        SplineComputer[] splines = FindObjectsByType<SplineComputer>(FindObjectsSortMode.None);
-        characterPrefab.GetComponent<SplineFollower>().spline = splines.GetRandomElement();
+        GameObject character = Instantiate(characterPrefab, fullPosition.transform);
         Undo.RegisterCreatedObjectUndo(character, "Created Character");
 
-        //Spawn Random Item
-        List<GameObject> itemsCreated = SpawnItemOnShape(splines.GetRandomElement().gameObject); //zypernKatze this should be replaced with a proper spawning method
-        foreach(GameObject gO in itemsCreated)
-        {
-            Undo.RegisterCreatedObjectUndo(gO, "item spawned");
-            gO.transform.parent = transform.parent; 
-        }
-
+        /* I have to do this manually
+        SplineComputer[] splines = FindObjectsByType<SplineComputer>(FindObjectsSortMode.None);
+        characterPrefab.GetComponent<SplineFollower>().spline = splines.GetRandomElement();
+        character.transform.parent = fullPosition.transform; 
+        */
         Undo.SetCurrentGroupName("CreatedStartingSetup"); 
     }
     
@@ -75,11 +83,10 @@ public class ShapeDatabase : MonoBehaviour
     public static ShapeDatabase instance;
 
     //REFERENCES
-    public GameObject characterPrefab;
-    public GameObject itemPrefab;
-    public string prefabFolderPath;
-    
-
+    [SerializeField] private GameObject characterPrefab;
+    [SerializeField] private GameObject itemPrefab;
+    [SerializeField] private GameObject managerPrefab;
+    [SerializeField] private GameObject startingPositionPrefab;
 
     public List<ShapeGroup> lockedShapeGroups = new List<ShapeGroup>();
     public List<ArchitecturalStyle> lockedArchitectures = new List<ArchitecturalStyle>();
@@ -91,7 +98,7 @@ public class ShapeDatabase : MonoBehaviour
 
 
     //EDITOR VARIABLES
-
+    public int startingPositionNumber; 
     public int everyXTimesUnlockShape;
     public int everyXTimesUnlockArchitecture;
     public int everyXTimesUnlockMaterial;
@@ -114,7 +121,7 @@ public class ShapeDatabase : MonoBehaviour
         }
         if (instance != null) 
         {
-            DestroyImmediate(this.gameObject);
+            DestroyImmediate(instance); //zypernKAtze fix
             Debug.LogWarning("deleted second ShapeRandomiser on object: " + gameObject.GetNameIncludingParents()); 
         }
         instance = this; 

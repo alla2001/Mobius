@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Dreamteck.Splines;
+using System.Linq;
+
 public class ItemSpawner : MonoBehaviour
 {
-    public List<GameObject> shapes = new List<GameObject>();
+    public List<Shape> shapes = new List<Shape>();
     public GameObject itemPrefab;
     int spawnedItems;
     public static ItemSpawner instace;
@@ -12,13 +14,10 @@ public class ItemSpawner : MonoBehaviour
     {
         if (!instace) instace = this;
         else Destroy(this);
-
-        
-
-
     }
     private void Start()
     {
+        shapes = FindObjectsByType<Shape>(FindObjectsSortMode.None).ToList();
         SpawnItems();
     }
     public void SpawnItems()
@@ -36,7 +35,7 @@ public class ItemSpawner : MonoBehaviour
     }
 
 
-    public void SpawnInShape(GameObject shape)
+    public void SpawnInShape(Shape shape)
     {
        
         List<SplineComputer> computers = new List<SplineComputer>();
@@ -57,7 +56,7 @@ public class ItemSpawner : MonoBehaviour
             if (chance == 0)
             {
                 SplinePoint point = splineComputer.GetPoint(Random.Range(0, splineComputer.pointCount));
-                GameObject  temp =Instantiate(itemPrefab, point.position + point.normal*0.5f , Quaternion.identity);
+                GameObject  temp = Instantiate(itemPrefab, point.position + point.normal*0.5f , Quaternion.identity);
                 temp.transform.up = point.normal;
                 spawnedItems++;
             }

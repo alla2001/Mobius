@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[SelectionBase]
 public class CharacterInfo : MonoBehaviour
 {
     public float timeBeforeDeath =  60f;

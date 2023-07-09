@@ -10,6 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a95a11f67a8e144e8c5f33480b7bd51, type: 3}
-  m_Name: __SKYSCRAPERS_ARE_MISSING
+  m_Name: _ShapeGroup_Skyscapers
   m_EditorClassIdentifier: 
-  shapes: []
+  shapes:
+  - {fileID: 2229095332859958810, guid: 6c78b52d5c656334d967e4efe56c255a, type: 3}
+  - {fileID: 4618766684645812629, guid: f88307a6582bfc2409a1fd05a718a21c, type: 3}
+  - {fileID: 8176468588878638739, guid: f16c069a39727bd419fc92eabd515833, type: 3}
+  - {fileID: 8915647270781136952, guid: 4a43aa43668a4a047963c04502095853, type: 3}
