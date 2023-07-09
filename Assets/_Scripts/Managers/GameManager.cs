@@ -40,7 +40,21 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject gameOverPanel;
 
-    public CharacterMovement currentControlledCharacter;
+    private CharacterMovement p_currentControlledCharacter; 
+
+    public CharacterMovement currentControlledCharacter
+    {
+        get 
+        { 
+            return p_currentControlledCharacter; 
+        }
+        set
+        {
+            if (p_currentControlledCharacter != null) { p_currentControlledCharacter.tag = "Untagged"; }
+            p_currentControlledCharacter = value;
+            if (value != null) { p_currentControlledCharacter.gameObject.tag = "Player"; }
+        }
+    }
     private void Awake()
     {
         if (Instance == null)
@@ -141,12 +155,12 @@ public class GameManager : MonoBehaviour
 
     void Death()
     {
-        currentState = GameState.GameOver;
+        ChangeState(GameState.GameOver);
     }
 
     public void StartCharacterPlacement()
     {
-        currentState = GameState.CharacterPlacement;
+        ChangeState(GameState.CharacterPlacement); 
     }
 
 }

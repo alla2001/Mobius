@@ -11,8 +11,7 @@ public class CharacterInfo : MonoBehaviour
 
     public void Start()
     {
-     
-
+        emitter = AudioManager.instance.AddEventEmitterComponent(FMODEvents.instance.characterDeathWarning, this.gameObject);
     }
 
     public void RewardTime()
@@ -34,14 +33,18 @@ public class CharacterInfo : MonoBehaviour
         timeBeforeDeath -= Time.deltaTime;
         if (timeBeforeDeath<lowHealthThreshhold && wentlow)
         {
-            emitter = AudioManager.instance.AddEventEmitterComponent(FMODEvents.instance.characterDeathWarning,this.gameObject);
+            
             emitter.Play();
         }
         if (timeBeforeDeath <= 0)
         {
             emitter.Stop();
             AudioManager.instance.PlayOneShot(FMODEvents.instance.characterDeath);
-            Destroy(gameObject);
+            if (tag == "Player")
+            {
+                GameManager.Instance.ChangeState(GameState.GodView); 
+            }
+            Destroy(gameObject); //should play deathAnimation here
 
         }
     }

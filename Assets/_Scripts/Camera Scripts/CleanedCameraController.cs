@@ -248,6 +248,7 @@ public class CleanedCameraController : MonoBehaviour
     private void UpdateCameraDeadMode()
     {
         godModePivotPoint.Rotate(Vector3.up, 20 * Time.deltaTime);
+        FollowObject();
     }
 
 
@@ -286,15 +287,15 @@ public class CleanedCameraController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            if (hit.transform.gameObject.tag == "Player" && Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && hit.collider.GetComponent<CharacterMovement>() != null)
             {
                 GameManager.Instance.currentControlledCharacter = hit.collider.gameObject.GetComponent<CharacterMovement>();
                 AudioManager.instance.PlayOneShot(FMODEvents.instance.characterTakeControl);
-                
-                SaveGodModePosition(); 
+
+                SaveGodModePosition();
                 SetupLerp(savedGodModeGameObject, followObject, CleanedCameraMode.CHARACTERMODE);
-                
-                ChangeCameraMode(CleanedCameraMode.LERPMODE); 
+
+                ChangeCameraMode(CleanedCameraMode.LERPMODE);
             }
         }
     }
