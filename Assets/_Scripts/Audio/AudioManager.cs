@@ -40,7 +40,7 @@ public class AudioManager : MonoBehaviour
 
     //PUBLIC VARIABLES
     //public List<SoundMode> soundModesList = new List<SoundMode>() { SoundMode.godMode, SoundMode.characterMode };  
-    public SoundMode soundModeActive = SoundMode.godMode;
+    public AudioMode soundModeActive = AudioMode.godMode;
 
     //PRIVATE VARIABLES
     private List<EventInstance> eventInstances;
@@ -82,22 +82,18 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         RhythmManager.instance.beatEvent += OnBeatUpdate;
+        GameManager.Instance.onStateChange.AddListener(OnGameStateChange); 
     }
 
     private void OnBeatUpdate(int bar, int beat)
     {
         CheckSoundQueue(bar, beat); 
     }
-
-    private void Update()
-    {
-        
-    }
-
     private void OnDestroy()
     {
         CleanUp();
         RhythmManager.instance.beatEvent -= OnBeatUpdate;
+        GameManager.Instance.onStateChange.RemoveListener(OnGameStateChange);
     }
 
     //IN SCENE METHODS (e.g. things that need to be accessed by unityEvents)
@@ -118,19 +114,19 @@ public class AudioManager : MonoBehaviour
         RuntimeManager.PlayOneShot(sound, worldPos);
     }
 
-    public void ChangeSoundMode(SoundMode soundMode)
+    public void ChangeAudioMode(AudioMode soundMode)
     {
         this.soundModeActive.Stop();
         this.soundModeActive = soundMode;
         this.soundModeActive.Play(); 
     }
 
-    public void AddAudioLayerToSoundMode(SoundMode soundMode, AudioLayer audioLayer)
+    public void AddAudioLayerToSoundMode(AudioMode soundMode, AudioLayer audioLayer)
     {
         soundMode.audioLayers.Add(audioLayer.layerType, audioLayer); 
     }
 
-    public void AddEventEmitter(SoundMode soundMode, AudioLayerType layerType, StudioEventEmitter eventEmitter, object args)
+    public void AddEventEmitter(AudioMode soundMode, AudioLayerType layerType, StudioEventEmitter eventEmitter, object args)
     {
         soundMode.AddEmitter(layerType, eventEmitter, args);  
     }
@@ -206,6 +202,28 @@ public class AudioManager : MonoBehaviour
                 }
                 soundQueueElements.RemoveAt(i); 
             }
+        }
+    }
+
+    private void OnGameStateChange(GameState state)
+    {
+        switch(state)
+        {
+            case GameState.GodView:
+                ChangeAudioMode(AudioMode.godMode); 
+                break;
+            case GameState.CharacterView:
+                ChangeAudioMode(AudioMode.characterMode);
+                break;
+            case GameState.ShapePlacement:
+                ChangeAudioMode(AudioMode.godMode);
+                break;
+            case GameState.CharacterPlacement:
+                ChangeAudioMode(AudioMode.godMode);
+                break;
+            case GameState.RewardMode:
+                ChangeAudioMode(AudioMode.godMode);
+                break;
         }
     }
 }

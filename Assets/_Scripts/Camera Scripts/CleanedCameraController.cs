@@ -1,330 +1,390 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using static UnityEditor.SceneView;
+
+/*The Camera has multiple modes
+ *In GodMode and in CharacterMode it has a point that it follows (if the point is deleted it recreates itself at the proper position)
+ *In LerpMode the Camera moves one Object to another one (these can also be moving objects)  
+*/
 
 public enum CleanedCameraMode
 {
-    GodModeGlobal,
-    GodModeLocal,
-    FollowCharacter,
-    DeathCamera
+    GODMODE,
+    CHARACTERMODE,
+    LERPMODE,
+    DEAD
 }
 
 public class CleanedCameraController : MonoBehaviour
 {
-    public Transform godModeCenterPoint;
-    private Vector3 godPosition;
+    //PUBLIC STATICS & EVENTS
 
-    public CharacterMovement currentPlayer;
+    //REFERENCES
+
+
     //EDITOR VARIABLES
-    [Header("Camera Modes")]
-    [SerializeField]
-    private CleanedCameraMode p_cameraMode;
+    public GameObject emptyPrefab;
+    public GameObject savedGodModeGameObject;
+    public Transform godModePivotPoint;
+    public GameObject followObject;
 
-
-    //ensuring you can't change camera mode without changing the min & the max Zoom
-    public CleanedCameraMode cameraMode
-    {
-        get { return p_cameraMode; }
-        set
-        {
-            p_cameraMode = value;
-            switch (p_cameraMode)
-            {
-                case CleanedCameraMode.GodModeGlobal:
-                case CleanedCameraMode.GodModeLocal:
-                    transform.SetParent(godModeCenterPoint);
-                    GameManager.Instance.UpdateAveragePosition(); 
-                    godModeCenterPoint.transform.position = GameManager.Instance.averageCenterPointPosition; 
-                    break;
-                case CleanedCameraMode.FollowCharacter:
-                    transform.SetParent(GameManager.Instance.currentControlledCharacter.transform); 
-                    break;
-                case CleanedCameraMode.DeathCamera:
-                    transform.SetParent(godModeCenterPoint);
-                    GameManager.Instance.UpdateAveragePosition();
-                    godModeCenterPoint.transform.position = GameManager.Instance.averageCenterPointPosition;
-                    distanceToTarget = maxZoomGodMode;
-                    SetCameraPosition();
-                    break;
-                default:
-                    Debug.LogError("CameraMode not found");
-                    break;
-            }
-        }
-    }
-
-    [Header("Camera Settings")]
+    [Header("GodMode Camera Settings")]
     [SerializeField] private float mouseSensitivity = 3.0f;
     [SerializeField] private float zoomSpeed = 3.0f;
-    [SerializeField] private float minZoomGodMode = 5.0f; 
+    [SerializeField] private float minZoomGodMode = 5.0f;
     [SerializeField] private float maxZoomGodMode = 50.0f;
-    [SerializeField] private float offSetMoveSpeed = .3f;
-    [SerializeField] private float maxOffset = 25f; 
+    [SerializeField] private float offSetMoveSpeed = .5f;
+    [SerializeField] private float maxOffset = 25f;
+
+    [Header("CharacterMode Camera Settings")]
     [SerializeField] private Vector3 characterModeCameraLocalPosition;
     [SerializeField] private Vector3 characterModeLocalEulerAngles;
 
-    //CODE VARIABLES
-    private float rotationZ;
-    private float rotationY;
-    private float rotationX;
-    private Vector3 rotationVector;
-    private Vector3 rotationUpdateVector;
-    private float mouseX;
-    private float mouseY;
-    private float mouseZ;
-    private bool mouseLeftEdge;
-    private bool mouseRightEdge; 
+    [Header("LerpMode Camera Settings")]
+    [SerializeField] private float lerpStartUpTime;
+    [SerializeField] private float lerpTime;
 
-    private float distanceToTarget = 10.0f;
+    [Header("DeadMode Camera Settings")]
+
+
+    //CODE VARIABLES
+    //Inputs
+    private float mouseX, mouseY, mouseZ;
+    private bool isMouseOnLeftEdge, isMouseOnRightEdge;
     private float scrollInput;
-    private Vector3 cameraOffSet; 
+
+    //State-Variables
+    private CleanedCameraMode currentCameraMode; 
+
+    private float rotationX, rotationY, rotationZ;
+    private Vector3 rotationVector, rotationUpdateVector; 
+    private float distanceToTarget;
+    private Vector3 cameraLocalOffset;
+
+    private bool isLerpSetup; 
+    private float currentLerpTime;
+    private GameObject lerpFromObject, lerpToObject;
+    private CleanedCameraMode lerpToMode; 
+
 
     //PUBLIC STATIC METHODS
 
     //MONOBEHAVIOUR METHODS
     private void Start()
     {
-        godModeCenterPoint = transform.parent;
-
-        ChangeCameraMode(CleanedCameraMode.GodModeLocal); 
-        transform.localRotation = Quaternion.identity;
-
-        GameManager.Instance.onStateChange.AddListener((state) => {
-
-            if (state == GameState.CharacterView)
-            {
-               ChangeCameraMode(CleanedCameraMode.FollowCharacter) ;
-            }
-            else
-            {
-                ChangeCameraMode(CleanedCameraMode.GodModeLocal);
-              
-                transform.localPosition = godPosition;
-                transform.localRotation = Quaternion.identity;
-            }
-        
-        });
+        SetupCameraStart();
+        ListenToGameManager(); 
     }
 
     private void Update()
     {
-        GetMouseInput();
-        CheckCameraModeChange();
+        CheckModeChange(); 
+        TakeInput();
         UpdateCameraBasedOnMode(); 
     }
 
     //IN SCENE METHODS (e.g. things that need to be accessed by unityEvents)
 
     //PUBLIC CODE METHODS
-
+    
     //PRIVATE CODE METHODS
-    private void CheckCameraModeChange()
+    public void CheckModeChange()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            //if (cameraMode == CleanedCameraMode.GodModeGlobal || cameraMode == CleanedCameraMode.GodModeLocal) 
-            //{
-            //    isGodModeLocal = !isGodModeLocal; //zypernKatze is not sure whether this might break stuff (cause a global cam can't ever be rotated in roll direction)
-            //}
-            //cameraMode = isGodModeLocal ? CleanedCameraMode.GodModeLocal : CleanedCameraMode.GodModeGlobal;
-            ChangeCameraMode(CleanedCameraMode.GodModeLocal);
-       
-            GameManager.Instance.ChangeState(GameState.GodView);
-            GameManager.Instance.currentControlledCharacter = null;
+            SetupLerp(followObject, savedGodModeGameObject, CleanedCameraMode.GODMODE);
+            ChangeCameraMode(CleanedCameraMode.LERPMODE); 
         }
-        if (currentPlayer==null && cameraMode == CleanedCameraMode.FollowCharacter)
+        if (currentCameraMode == CleanedCameraMode.GODMODE)
         {
-            ChangeCameraMode(CleanedCameraMode.GodModeLocal);
-
-        }
-
-        if (GameManager.Instance.currentState == GameState.GameOver)
-        {
-            ChangeCameraMode(CleanedCameraMode.DeathCamera);
-        }
-
-        if (cameraMode != CleanedCameraMode.FollowCharacter)
-        {
-            CheckCharacterClick(); 
+            CheckCharacterClick();
         }
     }
 
-    private void CheckCharacterClick()
+    public void ChangeCameraMode(CleanedCameraMode cameraMode)
     {
-        RaycastHit hit;
-        Ray ray = GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
-      
-        if (Physics.Raycast(ray, out hit))
-        {
-           
-            if (hit.transform.gameObject.tag == "Player" && Input.GetMouseButtonDown(0))
-            {
-                currentPlayer = hit.collider.gameObject.GetComponent<CharacterMovement>();
-                GameManager.Instance.currentControlledCharacter = currentPlayer;
-
-                AudioManager.instance.PlayOneShot(FMODEvents.instance.characterControlRequest);
-                ChangeCameraMode(CleanedCameraMode.FollowCharacter);
-            }
-        }
-    }
-    
-    public void ChangeCameraMode(CleanedCameraMode newMode)
-    {
-        
-        cameraMode = newMode;
-        switch (cameraMode)
-        {
-            case CleanedCameraMode.GodModeGlobal:
-                break;
-            case CleanedCameraMode.GodModeLocal:
-                transform.localPosition = godPosition;
-                transform.localRotation = Quaternion.identity;
-                break;
-            case CleanedCameraMode.FollowCharacter:
-                godPosition = transform.localPosition;
-                break;
-            default:
-                break;
-        }
-    }
-    private void UpdateCameraBasedOnMode()
-    {
-        switch (cameraMode)
-        {
-            case CleanedCameraMode.GodModeGlobal:
-                //GameManager.Instance.currentState = GameState.GodView;
-                UpdateCameraGodmodeGlobal(); 
-                break;
-            case CleanedCameraMode.GodModeLocal:
-                //GameManager.Instance.currentState = GameState.GodView;
-                UpdateCameraGodModeLocal();
-                break; 
-            case CleanedCameraMode.FollowCharacter:
-                GameManager.Instance.ChangeState(GameState.CharacterView);
-                UpdateCameraFollowCharacter();
-                break;
-            case CleanedCameraMode.DeathCamera:
-                UpdateCameraDeath();
-                break;
-            default:
-                Debug.LogError("CameraMode not found");
-                break; 
-        }
+        DeactivateCameraMode(currentCameraMode);
+        currentCameraMode = cameraMode;
+        ActivateCameraMode(currentCameraMode); 
     }
 
-    private void UpdateCameraDeath()
-    {
-        distanceToTarget = maxZoomGodMode;
-        godModeCenterPoint.Rotate(Vector3.up, 20 * Time.deltaTime);
-    }
-
-    private void UpdateCameraGodmodeGlobal()
-    {
-        AdjustCameraPivotOffset();
-        SetCameraPosition();
-
-        //RotateGlobalCameraView
-        if (Input.GetMouseButton(1))
-        {
-            godModeCenterPoint.localEulerAngles = rotationVector;
-        }
-    }
-
-    private void UpdateCameraGodModeLocal()
-    {
-        AdjustCameraPivotOffset();
-        SetCameraPosition();
-
-        if (Input.GetMouseButton(1))
-        {
-            godModeCenterPoint.Rotate(rotationUpdateVector);
-        }
-    }
-
-    private void UpdateCameraFollowCharacter()
-    {
-        AdjustCameraPivotOffset();
-        transform.localPosition = characterModeCameraLocalPosition;
-        transform.localEulerAngles = characterModeLocalEulerAngles; 
-
-
-    }
-    private void SetCameraPosition()
-    {
-        distanceToTarget -= scrollInput * zoomSpeed;
-        distanceToTarget = Mathf.Clamp(distanceToTarget, minZoomGodMode, maxZoomGodMode); 
-        transform.localPosition = Vector3.forward * -distanceToTarget + cameraOffSet;
-    }
-
-    private void GetMouseInput()
+    private void TakeInput()
     {
         scrollInput = Input.mouseScrollDelta.y;
 
+        //when clicking on the screens edge the player can do a roll rotation; therefore the input is saved into z-axis instead of y-axis
         if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2))
         {
-            mouseLeftEdge = Input.mousePosition.x < Screen.width * 1 / 5; 
-            mouseRightEdge = Input.mousePosition.x > Screen.width * 4 / 5;
+            isMouseOnLeftEdge = Input.mousePosition.x < Screen.width * 1 / 5;
+            isMouseOnRightEdge = Input.mousePosition.x > Screen.width * 4 / 5;
         }
-        //When the player grabs the screen at the edge, they can do a roll-rotation
 
         mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-        if (!(mouseLeftEdge || mouseRightEdge))
+
+        if (!(isMouseOnLeftEdge || isMouseOnRightEdge))
         {
             mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * -1f;
-            mouseZ = 0; 
+            mouseZ = 0;
         }
-        else if (mouseLeftEdge)
+        else if (isMouseOnLeftEdge)
         {
             mouseY = 0;
             mouseZ = Input.GetAxis("Mouse Y") * mouseSensitivity * 1f;
         }
-        else if (mouseRightEdge)
+        else if (isMouseOnRightEdge)
         {
             mouseY = 0;
             mouseZ = Input.GetAxis("Mouse Y") * mouseSensitivity * -1f;
         }
         else
         {
-            Debug.LogError("mousePosition not recognised"); 
-        }
-
-        if (Input.GetMouseButton(1))
-        {
-            CalcRotationValues(); 
+            Debug.LogError("mousePosition not recognised");
         }
     }
 
-    private void CalcRotationValues()
+    private void UpdateCameraBasedOnMode()
     {
-        rotationX += mouseY;
-        rotationY += mouseX;
-        rotationZ += mouseZ;
+        switch(currentCameraMode)
+        {
+            case CleanedCameraMode.GODMODE:
+                UpdateCameraGodMode(); 
+                break;
+            case CleanedCameraMode.CHARACTERMODE:
+                UpdateCameraCharacterMode(); 
+                break;
+            case CleanedCameraMode.LERPMODE:
+                UpdateCameraLerpMode(); 
+                break;
+            case CleanedCameraMode.DEAD:
+                UpdateCameraDeadMode(); 
+                break;
+        }
+    }
 
-        rotationX = Mathf.Clamp(rotationX, -90, 90);
+    private void DeactivateCameraMode(CleanedCameraMode cameraMode)
+    {
+        switch (cameraMode)
+        {
+            case CleanedCameraMode.GODMODE:
+                SaveGodModePosition(); 
+                break;
+            case CleanedCameraMode.CHARACTERMODE:
+                GameManager.Instance.currentControlledCharacter = null;
+                break;
+            case CleanedCameraMode.LERPMODE:
+                //nothing
+                break;
+            case CleanedCameraMode.DEAD:
+                //never happens?
+                break;
+        }
+    }
 
-        rotationVector = new Vector3(rotationX, rotationY, rotationZ);
+    private void ActivateCameraMode(CleanedCameraMode cameraMode)
+    {
+        switch (cameraMode)
+        {
+            case CleanedCameraMode.GODMODE:
+                SetupGodModePivotPoint();
+                SetupGodModeFollowObject(); 
+                break;
+            case CleanedCameraMode.CHARACTERMODE:
+                SetupCharacterFollowObject(); 
+                break;
+            case CleanedCameraMode.LERPMODE:
+                if (!isLerpSetup) { throw new Exception("cameraLerp is not setup before switching to LerpMode"); } 
+                break;
+            case CleanedCameraMode.DEAD:
+                SetupGodModePivotPoint(); 
+                SetupDeadModeFollowObject(); 
+                break;
+        }
+    }
 
-        rotationUpdateVector = new Vector3(mouseY, mouseX, mouseZ);
+    private void UpdateCameraGodMode()
+    {
+        AdjustCameraPivotOffset();
+        AdjustCameraDistance();
+        if (Input.GetMouseButton(1)) 
+        { 
+            godModePivotPoint.Rotate(new Vector3(mouseY, mouseX, mouseZ));
+        }
+        FollowObject(); 
+    }
+
+    private void UpdateCameraCharacterMode()
+    {
+        //zypernKatze maybe add some options here
+        FollowObject(); 
+    }
+
+    private void UpdateCameraLerpMode()
+    {
+        currentLerpTime += Time.deltaTime;
+
+        if (currentLerpTime < 0) { return; }
+        transform.position = Vector3.Lerp(lerpFromObject.transform.position, lerpToObject.transform.position, Mathf.Pow(currentLerpTime / lerpTime, 0.33f));
+        transform.rotation = Quaternion.Lerp(lerpFromObject.transform.rotation, lerpToObject.transform.rotation, Mathf.Pow(currentLerpTime / lerpTime, 0.33f)); 
+
+        //upon finishing the lerp the gamestate & therefore the cameraMode is set to the new State/Mode
+        if (currentLerpTime >= lerpTime)
+        {
+            isLerpSetup = false;
+
+            if (lerpToMode == CleanedCameraMode.CHARACTERMODE)
+            {
+                GameManager.Instance.ChangeState(GameState.CharacterView); //this also calls the camera to change mode
+            }
+            else if (lerpToMode == CleanedCameraMode.GODMODE)
+            {
+                GameManager.Instance.ChangeState(GameState.GodView); //this also calls the camera to change mode
+            }
+        }
+    }
+
+    private void UpdateCameraDeadMode()
+    {
+        godModePivotPoint.Rotate(Vector3.up, 20 * Time.deltaTime);
+    }
+
+
+    //SUPPORTING METHODS
+    private void SetupCameraStart()
+    {
+        SetupGodModePivotPoint();
+        SetupGodModeFollowObject();
+        currentCameraMode = CleanedCameraMode.GODMODE;
+    }
+
+    private void ListenToGameManager()
+    {
+        GameManager.Instance.onStateChange.AddListener((state) => {
+            switch(state)
+            {
+                case GameState.GodView:
+                case GameState.RewardMode:
+                case GameState.ShapePlacement:
+                    ChangeCameraMode(CleanedCameraMode.GODMODE);
+                    break;
+                case GameState.CharacterView:
+                    ChangeCameraMode(CleanedCameraMode.CHARACTERMODE);
+                    break;
+                case GameState.GameOver:
+                    ChangeCameraMode(CleanedCameraMode.DEAD); 
+                    break; 
+            }
+        });
+    }
+
+    private void CheckCharacterClick()
+    {
+        RaycastHit hit;
+        Ray ray = GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.transform.gameObject.tag == "Player" && Input.GetMouseButtonDown(0))
+            {
+                GameManager.Instance.currentControlledCharacter = hit.collider.gameObject.GetComponent<CharacterMovement>();
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.characterTakeControl);
+                
+                SaveGodModePosition(); 
+                SetupLerp(savedGodModeGameObject, followObject, CleanedCameraMode.CHARACTERMODE);
+                
+                ChangeCameraMode(CleanedCameraMode.LERPMODE); 
+            }
+        }
     }
 
     private void AdjustCameraPivotOffset()
-    { 
+    {
         if (Input.GetMouseButton(2))
         {
-            cameraOffSet += (Vector3.right * -mouseX + Vector3.up * mouseY) * offSetMoveSpeed * distanceToTarget / maxZoomGodMode;
-            cameraOffSet = cameraOffSet.ClampVectorComponentWise(-maxOffset, maxOffset); 
+            cameraLocalOffset += (Vector3.right * -mouseX + Vector3.up * mouseY) * offSetMoveSpeed * distanceToTarget / maxZoomGodMode;
+            cameraLocalOffset = cameraLocalOffset.ClampVectorComponentWise(-maxOffset, maxOffset);
         }
     }
 
-    private void OnDisable() //zypernKatze very much not the clean method
+    private void AdjustCameraDistance()
     {
-        if (GameManager.Instance.currentState != GameState.CharacterView)
+        distanceToTarget -= scrollInput * zoomSpeed;
+        distanceToTarget = Mathf.Clamp(distanceToTarget, minZoomGodMode, maxZoomGodMode);
+        followObject.transform.localPosition = Vector3.forward * -distanceToTarget + cameraLocalOffset;
+    }
+
+    private void FollowObject()
+    {
+        transform.position = followObject.transform.position;
+        transform.eulerAngles = followObject.transform.eulerAngles; 
+    }
+
+    private void SetupFollowObject(Transform parent, Vector3 localPosition, Vector3 localEulerAngle)
+    {
+        if (followObject == null)
         {
-            ChangeCameraMode(CleanedCameraMode.GodModeLocal);
-     
-         
+            followObject = Instantiate(emptyPrefab);
+            followObject.name = "cameraFollowObject";
         }
+        followObject.transform.SetParent(parent);
+        followObject.transform.localPosition = localPosition;
+        followObject.transform.localEulerAngles = localEulerAngle;
+    }
+
+    private void SetupCharacterFollowObject()
+    {
+        SetupFollowObject(GameManager.Instance.currentControlledCharacter.transform, characterModeCameraLocalPosition, characterModeLocalEulerAngles); 
+    }
+
+    private void SetupGodModeFollowObject()
+    {
+        SetupFollowObject(godModePivotPoint.transform, savedGodModeGameObject.transform.position, savedGodModeGameObject.transform.localEulerAngles);
+    }
+
+    private void SetupDeadModeFollowObject()
+    {
+        SetupFollowObject(godModePivotPoint.transform, Vector3.back * maxZoomGodMode, savedGodModeGameObject.transform.localEulerAngles); 
+    }
+
+    private void SaveGodModePosition()
+    {
+        if (savedGodModeGameObject == null)
+        {
+            savedGodModeGameObject = Instantiate(emptyPrefab); 
+        }
+        savedGodModeGameObject.transform.position = transform.position; 
+        savedGodModeGameObject.transform.rotation = transform.rotation; 
+    }
+
+    private void SetupLerp(GameObject from, GameObject to, CleanedCameraMode lerpToMode)
+    {
+        if (currentCameraMode == CleanedCameraMode.LERPMODE)
+        {
+            throw new Exception("trying to setup lerp, while camera is already lerping"); 
+        }
+        
+        lerpFromObject = from;
+        lerpToObject = to;
+        this.lerpToMode = lerpToMode; 
+        currentLerpTime = -lerpStartUpTime;
+
+        if (lerpToMode == CleanedCameraMode.CHARACTERMODE) //zypernKatze is setting the FollowObject before saving its position
+        {
+            SetupCharacterFollowObject();
+        }
+
+        isLerpSetup = true; 
+    }
+
+    private void SetupGodModePivotPoint()
+    {
+        if (godModePivotPoint == null)
+        {
+            godModePivotPoint = Instantiate(emptyPrefab).transform; 
+        }
+        GameManager.Instance.UpdateAveragePosition(); 
+        godModePivotPoint.transform.position = GameManager.Instance.averageCenterPointPosition; 
     }
 }

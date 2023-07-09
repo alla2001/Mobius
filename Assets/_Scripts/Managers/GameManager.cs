@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
 
         }
     }
-    public void UpdateAveragePosition()
+    public Vector3 UpdateAveragePosition()
     {
         for (int i = 0; i < allWalls.Count; i++)
         {
@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
             
         }
 
-        averageCenterPointPosition = GetMeanVector(allWallPositions);
+        return averageCenterPointPosition = GetMeanVector(allWallPositions);
     }
 
     // Update is called once per frame

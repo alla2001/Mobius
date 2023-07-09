@@ -23,7 +23,7 @@ public class AudioLayerCharacterMode : AudioLayer
     //MONOBEHAVIOUR METHODS
     private void Awake()
     {
-        SoundMode.characterMode.audioLayers.Add(this.layerType, this);
+        AudioMode.characterMode.audioLayers.Add(this.layerType, this);
     }
 
     //IN SCENE METHODS (e.g. things that need to be accessed by unityEvents)
@@ -60,7 +60,7 @@ public class AudioLayerCharacterMode : AudioLayer
             return false; 
         }
         //the following if-condition shouldn't happen, but for safety reasons it's implemented
-        if (AudioManager.instance.soundModeActive != SoundMode.characterMode)
+        if (AudioManager.instance.soundModeActive != AudioMode.characterMode)
         {
             throw new System.Exception("trying to add sound to characterMode while not in characterMode"); 
         }

@@ -56,6 +56,12 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
+    private void OnMouseEnter()
+    {
+        Debug.Log("MouseOverCharacter");
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.characterHoverOver);
+    }
+
     private void GoBack()
     {
         if (follower.direction == Spline.Direction.Forward)
