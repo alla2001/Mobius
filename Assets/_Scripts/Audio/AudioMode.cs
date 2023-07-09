@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 
-public class SoundMode : MonoBehaviour //must be Monobehaviour because it can have a startingEvent
+public class AudioMode : MonoBehaviour //must be Monobehaviour because it can have a startingEvent
 {
-    public static SoundMode godMode;
-    public static SoundMode characterMode;
+    public static AudioMode godMode;
+    public static AudioMode characterMode;
 
     public bool isGodMode;
     public bool isCharacterMode;

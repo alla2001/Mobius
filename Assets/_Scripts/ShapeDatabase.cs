@@ -158,7 +158,7 @@ public class ShapeDatabase : MonoBehaviour
     public void UnlockObjectFromList<T>(List<T> lockedList, List<T> unlockedList, T toUnlock)
     {
         lockedList.Remove(toUnlock); 
-        unlockedList.AddAvoidDuplicate(toUnlock);
+        unlockedList.Add(toUnlock);
     }
     public ShapeGroup UnlockRandomShapeGroup()
     {
@@ -166,7 +166,7 @@ public class ShapeDatabase : MonoBehaviour
         lockedShapeGroups.Remove(shapeGroup);
         Undo.RecordObject(this, ("unlockedShapeGroup: " + shapeGroup.name));
 
-        unlockedShapeGroups.AddAvoidDuplicate(shapeGroup);
+        unlockedShapeGroups.Add(shapeGroup);
         Undo.RecordObject(this, ("unlockedShapeGroup: " + shapeGroup.name));
 
         return shapeGroup; 
@@ -176,7 +176,7 @@ public class ShapeDatabase : MonoBehaviour
     {
         ArchitecturalStyle architecture = lockedArchitectures.GetRandomElement();
         lockedArchitectures.Remove(architecture);
-        unlockedArchitectures.AddAvoidDuplicate(architecture);
+        unlockedArchitectures.Add(architecture);
 
         Undo.RecordObject(this, ("unlockedArchitecturalStyle: " + architecture.name));
         return architecture; 
@@ -186,7 +186,7 @@ public class ShapeDatabase : MonoBehaviour
     {
         Material material = lockedMaterials.GetRandomElement();
         lockedMaterials.Remove(material);
-        unlockedMaterials.AddAvoidDuplicate(material);
+        unlockedMaterials.Add(material);
 
         Undo.RecordObject(this, ("unlockedRandomMaterial: " + material.name));
         return material; 
@@ -195,7 +195,7 @@ public class ShapeDatabase : MonoBehaviour
     public Material UnlockSpecificMaterial(Material material)
     {
         lockedMaterials.Remove(material); 
-        unlockedMaterials.AddAvoidDuplicate(material); 
+        unlockedMaterials.Add(material); 
         Undo.RecordObject(this, ("unlockedMaterial: " + material.name));
 
         return material; 

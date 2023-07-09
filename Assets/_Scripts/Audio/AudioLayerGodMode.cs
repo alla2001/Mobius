@@ -33,7 +33,7 @@ public class AudioLayerGodMode : AudioLayer
     //MONOBEHAVIOUR METHODS
     private void Awake()
     {
-        SoundMode.godMode.audioLayers.Add(this.layerType, this); 
+        AudioMode.godMode.audioLayers.Add(this.layerType, this); 
     }
 
     public override void BeatUpdate(int bar, int beat)

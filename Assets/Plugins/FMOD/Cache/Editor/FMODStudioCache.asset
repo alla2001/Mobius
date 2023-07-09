@@ -232,7 +232,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Bridge.bank
   Name: Bridge
   StudioPath: bank:/Bridge
-  lastModified: 638242069930823383
+  lastModified: 638244763636644836
   FileSizes: []
   Exists: 1
 --- !u!114 &-6482510449710982874
@@ -255,7 +255,7 @@ MonoBehaviour:
     Data4: -1634518504
   Banks:
   - {fileID: 1345928142796064524}
-  IsStream: 1
+  IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters: []
@@ -283,7 +283,7 @@ MonoBehaviour:
     data1: 1255039407
     data2: 2964793031
   Type: 1
-  IsGlobal: 0
+  IsGlobal: 1
   Labels: []
   Exists: 1
 --- !u!114 &-5612317060902982562
@@ -613,7 +613,7 @@ MonoBehaviour:
     data1: 1255039407
     data2: 2964793031
   Type: 1
-  IsGlobal: 0
+  IsGlobal: 1
   Labels: []
   Exists: 1
 --- !u!114 &-3000122282362449262
@@ -640,6 +640,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-2909646085119642762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/empty
+  m_EditorClassIdentifier: 
+  Path: event:/empty
+  Guid:
+    Data1: 1584323890
+    Data2: 1153233405
+    Data3: 2080631458
+    Data4: -795986858
+  Banks:
+  - {fileID: 7926843185186412368}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-2103192272333881904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -715,7 +742,7 @@ MonoBehaviour:
     data1: 1255039407
     data2: 2964793031
   Type: 1
-  IsGlobal: 0
+  IsGlobal: 1
   Labels: []
   Exists: 1
 --- !u!114 &-960516085836620300
@@ -772,6 +799,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4306
+--- !u!114 &-115373438998531269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Mode
+  m_EditorClassIdentifier: 
+  Name: Mode
+  StudioPath: parameter:/Mode
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1255039407
+    data2: 2964793031
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -831,14 +882,17 @@ MonoBehaviour:
   - {fileID: -7290921170821789848}
   - {fileID: 3435657843346568063}
   - {fileID: -7718468317345143029}
+  - {fileID: 1505181566097677450}
+  - {fileID: -2909646085119642762}
   EditorParameters:
   - {fileID: 6886616092639955599}
   - {fileID: -5518897251353471504}
+  - {fileID: -115373438998531269}
   MasterBanks:
   - {fileID: 7926843185186412368}
   StringsBanks:
   - {fileID: 4965414560237861951}
-  cacheTime: 638243805439398026
+  cacheTime: 638244784059895189
   cacheVersion: 131605
 --- !u!114 &1148246024145944954
 MonoBehaviour:
@@ -911,9 +965,36 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Characters.bank
   Name: Characters
   StudioPath: bank:/Characters
-  lastModified: 638243805438701995
+  lastModified: 638244784059895189
   FileSizes: []
   Exists: 1
+--- !u!114 &1505181566097677450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Character_HoverOver
+  m_EditorClassIdentifier: 
+  Path: event:/Character_HoverOver
+  Guid:
+    Data1: -1578186884
+    Data2: 1268993689
+    Data3: -2101185623
+    Data4: -989066489
+  Banks:
+  - {fileID: 1345928142796064524}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3291
 --- !u!114 &1629751363515970016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -989,7 +1070,7 @@ MonoBehaviour:
     data1: 1255039407
     data2: 2964793031
   Type: 1
-  IsGlobal: 0
+  IsGlobal: 1
   Labels: []
   Exists: 1
 --- !u!114 &1904841992792945617
@@ -1012,7 +1093,7 @@ MonoBehaviour:
     Data4: -383174811
   Banks:
   - {fileID: 1345928142796064524}
-  IsStream: 1
+  IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters: []
@@ -1084,7 +1165,7 @@ MonoBehaviour:
     Data4: -1508797251
   Banks:
   - {fileID: 1345928142796064524}
-  IsStream: 1
+  IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters: []
@@ -1159,10 +1240,10 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638243805438960631
+  lastModified: 638244749234805329
   FileSizes:
   - Name: 
-    Value: 2730
+    Value: 2806
   Exists: 1
 --- !u!114 &5016861346092199377
 MonoBehaviour:
@@ -1295,7 +1376,7 @@ MonoBehaviour:
     data1: 1255039407
     data2: 2964793031
   Type: 1
-  IsGlobal: 0
+  IsGlobal: 1
   Labels: []
   Exists: 1
 --- !u!114 &6886616092639955599
@@ -1350,7 +1431,7 @@ MonoBehaviour:
   - {fileID: -3000122282362449262}
   MinDistance: 1
   MaxDistance: 20
-  Length: 15516
+  Length: 12183
 --- !u!114 &7110632977798779832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1395,7 +1476,7 @@ MonoBehaviour:
     Data4: -1959585439
   Banks:
   - {fileID: 1345928142796064524}
-  IsStream: 1
+  IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters: []
@@ -1423,7 +1504,7 @@ MonoBehaviour:
     data1: 1255039407
     data2: 2964793031
   Type: 1
-  IsGlobal: 0
+  IsGlobal: 1
   Labels: []
   Exists: 1
 --- !u!114 &7283497362103259185
@@ -1495,7 +1576,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638243805438940142
+  lastModified: 638244749234795328
   FileSizes: []
   Exists: 1
 --- !u!114 &7961257047714079726
@@ -1540,7 +1621,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Shape.bank
   Name: Shape
   StudioPath: bank:/Shape
-  lastModified: 638243805439398026
+  lastModified: 638244771558060922
   FileSizes: []
   Exists: 1
 --- !u!114 &8995844917150448218
@@ -1557,10 +1638,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Character_TakeControl
   Guid:
-    Data1: -1578186884
-    Data2: 1268993689
-    Data3: -2101185623
-    Data4: -989066489
+    Data1: 1054996441
+    Data2: 1310006261
+    Data3: 2113636000
+    Data4: -446142214
   Banks:
   - {fileID: 1345928142796064524}
   IsStream: 0
@@ -1569,4 +1650,4 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 6069
+  Length: 5513

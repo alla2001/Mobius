@@ -15,28 +15,28 @@ public class D_AudioTrigger : MonoBehaviour
 
     private void Start()
     {
-        eventEmitter = AudioManager.instance.AddEventEmitterComponent(FMODEvents.instance.shapeSounds.GetRandomElement(), this.gameObject); 
-        AudioManager.instance.AddEventEmitter(SoundMode.godMode, audioLayerType, GetComponent<StudioEventEmitter>(), null);
+        eventEmitter = AudioManager.instance.AddEventEmitterComponent(FMODEvents.instance.GetRandomEventReferenceByAudioLayer(audioLayerType), this.gameObject); 
+        AudioManager.instance.AddEventEmitter(AudioMode.godMode, audioLayerType, GetComponent<StudioEventEmitter>(), null);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(playSoundKey))
         {
-            AudioManager.instance.AddEventEmitter(SoundMode.characterMode, audioLayerType, GetComponent<StudioEventEmitter>(), null);
+            AudioManager.instance.AddEventEmitter(AudioMode.characterMode, audioLayerType, GetComponent<StudioEventEmitter>(), null);
         }
     }
 
     [ContextMenu("SwtichMode")]
     public void SwitchSoundMode()
     {
-        if (AudioManager.instance.soundModeActive == SoundMode.godMode) 
+        if (AudioManager.instance.soundModeActive == AudioMode.godMode) 
         { 
-            AudioManager.instance.ChangeSoundMode(SoundMode.characterMode);
+            AudioManager.instance.ChangeAudioMode(AudioMode.characterMode);
         }
         else
         {
-            AudioManager.instance.ChangeSoundMode(SoundMode.godMode);
+            AudioManager.instance.ChangeAudioMode(AudioMode.godMode);
         }
     }
 
