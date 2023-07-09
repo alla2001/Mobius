@@ -27,26 +27,13 @@ public class BridgeCreator : MonoBehaviour
     public List<GameObject> Bridgeparts = new List<GameObject>();   
     
         /// <summary>
-        /// TODO : Implement bridge distance/length, cant place too long bridges (Based on energy)
-        /// TODO : Energy based on length, more length used less energy you have
-        /// TODO : Number of scattered objectects depends on legnth 
+        /// DONE : Implement bridge distance/length, cant place too long bridges (Based on energy)
+        /// DONE : Energy based on length, more length used less energy you have
+        /// DONE : Number of scattered objectects depends on legnth 
         /// TODO : 
         /// </summary>
     // Start is called before the first frame update
-    private void Start()
-    {
-        RenderPipelineManager.beginCameraRendering += OnBeginCameraRendering;
-    }
-    void OnBeginCameraRendering(ScriptableRenderContext context, Camera camera)
-    {
-        // Put the code that you want to execute before the camera renders here
-        // If you are using URP or HDRP, Unity calls this method automatically
-        // If you are writing a custom SRP, you must call RenderPipeline.BeginCameraRendering
-        foreach (var item in FindObjectsOfType<MeshRenderer>())
-        {
-
-        } 
-    }
+ 
 
     private void OnDrawGizmos()
     {
@@ -113,13 +100,36 @@ public class BridgeCreator : MonoBehaviour
            
 
 
-            if (firstBridgePoint && energy - Vector3.Distance(firstBridgePoint.transform.position, result.position) >=0)
+            if (firstBridgePoint )
             {
+                secondSpline = hit.collider.GetComponent<SplineComputer>();
+                if (secondSpline == null) return;
+                secondBridgePoint = Instantiate(nodePrefab).GetComponent<Node>();
+                index = secondSpline.PercentToPointIndex(secondSpline.Project(hit.point).percent);
+                result = secondSpline.Evaluate(index);
+                secondBridgePoint.transform.position = result.position;
+                secondBridgePoint.transform.rotation = result.rotation;
+                secondBridgePoint.GetComponent<Node>().AddConnection(secondSpline, secondSpline.PercentToPointIndex(secondSpline.Project(hit.point).percent));
+                
+                if (!IsValidBridge() || energy - Vector3.Distance(firstBridgePoint.transform.position, result.position) < 0 || firstSpline== secondSpline || !IsEmptyPoint(secondSpline, index))
+                {
+                    lineRenderer.material.color = Color.red;
+                    lineRenderer.material.SetColor("_EmissionColor", Color.red);
+                    
+                }
+                else
+                {
+                    lineRenderer.material.color = Color.blue;
+                    lineRenderer.material.SetColor("_EmissionColor", Color.blue);
+                }
                 lineRenderer.positionCount = 2;
                 lineRenderer.SetPosition(1, result.position);
+                secondSpline = null;
+                Destroy(secondBridgePoint.gameObject);
+                secondSpline = null;
             }
 
-          
+           
          
             if (!Input.GetMouseButtonDown(0))
             {
@@ -132,7 +142,7 @@ public class BridgeCreator : MonoBehaviour
             {
                
                 firstSpline = hit.collider.GetComponent<SplineComputer>();
-                lineRenderer.positionCount = 2;
+                lineRenderer.positionCount = 1;
                 firstBridgePoint = Instantiate(nodePrefab).GetComponent<Node>();
                 index = firstSpline.PercentToPointIndex(firstSpline.Project(hit.point).percent);
                 if (!IsEmptyPoint(firstSpline, index))
@@ -245,7 +255,7 @@ public class BridgeCreator : MonoBehaviour
                     firstBridgePoint.AddConnection(splineBridge, 0);
                     secondBridgePoint.AddConnection(splineBridge, 1);
                     float length = splineBridge.CalculateLength();
-                    splineBridge.GetComponent<ObjectController>().spawnCount = (int)(distance * 5);
+                    splineBridge.GetComponent<ObjectController>().spawnCount = (int)(distance *2);
                     splineBridge.GetComponent<ObjectController>().RebuildImmediate();
                     splineBridge.onRebuild += OnReBuild;
 
@@ -271,12 +281,36 @@ public class BridgeCreator : MonoBehaviour
             }
             return;
         }
-        else if (Input.GetMouseButtonDown(0) && firstBridgePoint != null)
+        else if ( firstBridgePoint != null)
         {
-            Destroy(firstBridgePoint);
-            AudioManager.instance.PlayOneShot(FMODEvents.instance.bridgeNotPossible);
-            emitter.Stop();
-            lineRenderer.positionCount = 0;
+           
+            if (Input.GetMouseButtonDown(0))
+            {
+                Destroy(firstBridgePoint);
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.bridgeNotPossible);
+                emitter.Stop();
+                lineRenderer.positionCount = 0;
+               
+            }
+            else
+            {
+                Vector3 point = Vector3.Distance( Camera.main.transform.position,firstBridgePoint.transform.position ) * Camera.main.ScreenPointToRay(Input.mousePosition).direction + Camera.main.transform.position;
+                if (energy - Vector3.Distance(firstBridgePoint.transform.position, point) < 0)
+                {
+                    lineRenderer.material.color = Color.red;
+                    lineRenderer.material.SetColor("_EmissionColor", Color.red);
+                }
+                else
+                {
+                    lineRenderer.material.color = Color.gray;
+                    lineRenderer.material.SetColor("_EmissionColor", Color.gray);
+                }
+                lineRenderer.positionCount = 2;
+                lineRenderer.SetPosition(1, point);
+               
+                
+            }
+            
             return;
         }
         if (tempHilight != null)
@@ -350,7 +384,30 @@ public class BridgeCreator : MonoBehaviour
 
 
     }
-  
+    public bool IsValidBridge()
+    {
+        float w1 = firstSpline.GetComponent<SplineMesh>().GetChannel(0).minScale.x / 2 + 0.22f;
+        Vector3 rayCastPoint1 = firstBridgePoint.transform.position + FindRayCastTangent(firstBridgePoint, secondBridgePoint) * w1;
+
+        float w2 = secondSpline.GetComponent<SplineMesh>().GetChannel(0).minScale.x / 2 + 0.22f;
+        Vector3 rayCastPoint2 = secondBridgePoint.transform.position + FindRayCastTangent(secondBridgePoint, firstBridgePoint) * w2;
+
+        float distance = Vector3.Distance(rayCastPoint1, rayCastPoint2);
+        if (energy - distance < 0)
+        {
+            return false;
+        }
+
+
+
+        //Debug.DrawLine(rayCastPoint1, rayCastPoint2, Color.red, 1000);
+        RaycastHit hit;
+        if (!Physics.SphereCast(rayCastPoint1, 0.15f, rayCastPoint2 - rayCastPoint1, out hit, Vector3.Distance(rayCastPoint2, rayCastPoint1)))
+        {
+            return true;
+        }
+        return false;
+    }
     public Vector3 FindConnnectionTangent(Node from, Node To)
     {
         Vector3 dir = To.transform.position - from.transform.position;

@@ -33,6 +33,7 @@ public class ShapePlacer : MonoBehaviour
             ShapeDatabase.instance.CheckUnlock(ShapesPlaced);
             GameObject shape = ShapeDatabase.instance.GenerateRandomShape(); 
             tmp = Instantiate(shape);
+            tmp.gameObject.layer = LayerMask.NameToLayer("Desaturate");
             tmp.GetComponent<MeshCollider>().enabled = false;
             tmp.transform.parent = transform;
             tmp.transform.localPosition = OffsetToCamera;
@@ -74,7 +75,7 @@ public class ShapePlacer : MonoBehaviour
                     GameManager.Instance.UpdateAveragePosition();
                     GameManager.Instance.ChangeState(GameState.RewardMode);
                     ItemSpawner.instace.shapes.Add(tmp);
-                 
+                    tmp.layer = LayerMask.NameToLayer("Default");
                     tmp = null;
                 }
                 else
