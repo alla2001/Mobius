@@ -107,7 +107,7 @@ public class CleanedCameraController : MonoBehaviour
                 (CheckCharacterClick() != null && CheckCharacterClick() == GameManager.Instance.currentControlledCharacter)
                 )
             {
-                SetupLerp(followObject, GetSavedGodMode(), CleanedCameraMode.GODMODE);
+                SetupLerp(followObject, GetSavedGodMode(), CleanedCameraMode.GODMODE, this.lerpStartUpTime);
                 ChangeCameraMode(CleanedCameraMode.LERPMODE); 
                 GameManager.Instance.ChangeState(GameState.GodView); 
             }
@@ -311,7 +311,8 @@ public class CleanedCameraController : MonoBehaviour
         //zypernKatze should change sound here, when the character is low on energy
 
         SaveGodModePosition();
-        SetupLerp(GetSavedGodMode(), followObject, CleanedCameraMode.CHARACTERMODE);
+        SetupLerp(GetSavedGodMode(), followObject, CleanedCameraMode.CHARACTERMODE, 0.4f);
+        
         GameManager.Instance.ChangeState(GameState.CharacterView); //changing cameraMode happens via ListenToGameManager
 
         ChangeCameraMode(CleanedCameraMode.LERPMODE);
@@ -424,7 +425,7 @@ public class CleanedCameraController : MonoBehaviour
         Destroy(savedGodModeGameObject); 
     }
 
-    private void SetupLerp(GameObject from, GameObject to, CleanedCameraMode lerpToMode)
+    private void SetupLerp(GameObject from, GameObject to, CleanedCameraMode lerpToMode, float lerpStartUpTime = 0f)
     {
         if (currentCameraMode == CleanedCameraMode.LERPMODE)
         {
