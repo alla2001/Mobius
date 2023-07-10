@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3642999204307495867}
   - component: {fileID: 3642999204307495866}
   m_Layer: 0
-  m_Name: startingPosition2
+  m_Name: StartingPosition2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8150,8 +8150,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e7d0e83d935199947876fc2cde7a984c, type: 2}
-  - {fileID: 2100000, guid: e7d0e83d935199947876fc2cde7a984c, type: 2}
+  - {fileID: 2100000, guid: 2b71d3b426d8b4441b8c8a79f49c9eaa, type: 2}
+  - {fileID: 2100000, guid: 8f368370059407c46b6ceb08109e61a5, type: 2}
   - {fileID: 2100000, guid: 994a5fbb75397104f90db5de3baf84a4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

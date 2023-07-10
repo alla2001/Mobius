@@ -84,16 +84,16 @@ MonoBehaviour:
   active: 1
   postExposure:
     m_OverrideState: 1
-    m_Value: -0.5
+    m_Value: -0.23
   contrast:
     m_OverrideState: 1
-    m_Value: 3
+    m_Value: 4
   colorFilter:
-    m_OverrideState: 0
-    m_Value: {r: 0.97981817, g: 0.9575472, b: 1, a: 1}
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 0.92156863, b: 0.9302617, a: 1}
   hueShift:
     m_OverrideState: 0
-    m_Value: 180
+    m_Value: 6
   saturation:
     m_OverrideState: 1
     m_Value: 4
@@ -137,16 +137,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5485954d14dfb9a4c8ead8edb0ded5b1, type: 3}
   m_Name: LiftGammaGain
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   lift:
-    m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_OverrideState: 0
+    m_Value: {x: 1, y: 1, z: 1, w: -0.017108576}
   gamma:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: -0.12163337}
+    m_Value: {x: 1, y: 1, z: 1, w: -0.059880365}
   gain:
-    m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_OverrideState: 0
+    m_Value: {x: 1, y: 1, z: 1, w: 0.37639}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,13 +214,13 @@ MonoBehaviour:
     m_Value: 0
   focusDistance:
     m_OverrideState: 1
-    m_Value: 32.06
+    m_Value: 15.2
   aperture:
     m_OverrideState: 1
-    m_Value: 3.7
+    m_Value: 32
   focalLength:
     m_OverrideState: 1
-    m_Value: 101
+    m_Value: 27
   bladeCount:
     m_OverrideState: 0
     m_Value: 5
