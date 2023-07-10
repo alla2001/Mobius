@@ -294,7 +294,6 @@ MonoBehaviour:
   _space: 1
   _sampleMode: 0
   _subscribers:
-  - {fileID: 0}
   - {fileID: 6462628163737340320}
   _rawSamples:
   - position: {x: -4.879519, y: 0.5200005, z: -2.052451}
@@ -2006,14 +2005,14 @@ MonoBehaviour:
     useClippedPercent: 0
     keys: []
   _clipFromSample:
-    position: {x: -3.3027365, y: -21.98285, z: 61.422142}
+    position: {x: -3.1227365, y: 1.5260116, z: -6.414349}
     up: {x: -0.07222245, y: 0.57895404, z: -0.44749698}
     forward: {x: 0.56273675, y: -0.47604865, z: -0.6757997}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
   _clipToSample:
-    position: {x: -3.3027365, y: -21.98285, z: 61.422142}
+    position: {x: -3.1227365, y: 1.5260116, z: -6.414349}
     up: {x: -0.072222576, y: 0.5789542, z: -0.44749683}
     forward: {x: 0.56273675, y: -0.47604865, z: -0.6757997}
     color: {r: 1, g: 1, b: 1, a: 1}
@@ -2133,7 +2132,7 @@ MonoBehaviour:
     _maxOffset: {x: 0, y: 0}
     _randomScale: 0
     _uniformRandomScale: 0
-    _minScale: {x: 0.55, y: 1, z: 1}
+    _minScale: {x: 0.61, y: 1, z: 1}
     _maxScale: {x: 1, y: 1, z: 1}
     _overrideMaterialID: 0
     _targetMaterialID: 0
@@ -2442,7 +2441,6 @@ MonoBehaviour:
   _space: 1
   _sampleMode: 0
   _subscribers:
-  - {fileID: 0}
   - {fileID: 6462628164007596497}
   _rawSamples:
   - position: {x: -1.6697745, y: -0.48457658, z: -2.4153454}
@@ -4100,14 +4098,14 @@ MonoBehaviour:
     useClippedPercent: 0
     keys: []
   _clipFromSample:
-    position: {x: -0.1561302, y: -20.994959, z: 64.629715}
+    position: {x: 0.023869833, y: 2.5139015, z: -3.2067761}
     up: {x: 0.06690483, y: 0.72989035, z: -0.058575332}
     forward: {x: 0.54299366, y: -0.055666193, z: 0.8378897}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
   _clipToSample:
-    position: {x: -0.1561302, y: -20.994959, z: 64.629715}
+    position: {x: 0.023869833, y: 2.5139015, z: -3.2067761}
     up: {x: 0.06690474, y: 0.72989035, z: -0.058575485}
     forward: {x: 0.54299366, y: -0.055666193, z: 0.8378897}
     color: {r: 1, g: 1, b: 1, a: 1}
@@ -4227,7 +4225,7 @@ MonoBehaviour:
     _maxOffset: {x: 0, y: 0}
     _randomScale: 0
     _uniformRandomScale: 0
-    _minScale: {x: 0.55, y: 1, z: 1}
+    _minScale: {x: 0.65, y: 1, z: 1}
     _maxScale: {x: 1, y: 1, z: 1}
     _overrideMaterialID: 0
     _targetMaterialID: 0
@@ -4473,7 +4471,6 @@ MonoBehaviour:
   _space: 1
   _sampleMode: 0
   _subscribers:
-  - {fileID: 0}
   - {fileID: 6462628164402022730}
   _rawSamples:
   - position: {x: -3.0458572, y: -3.6448479, z: 0.9004392}
@@ -5645,14 +5642,14 @@ MonoBehaviour:
     useClippedPercent: 0
     keys: []
   _clipFromSample:
-    position: {x: 2.3378356, y: -26.61365, z: 62.50352}
+    position: {x: 2.5178356, y: -3.1047888, z: -5.33297}
     up: {x: -0.54525405, y: 0.12376109, z: 0.47753227}
     forward: {x: 0.2501693, y: -0.7958441, z: 0.5514052}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
   _clipToSample:
-    position: {x: 2.3378356, y: -26.61365, z: 62.50352}
+    position: {x: 2.5178356, y: -3.1047888, z: -5.33297}
     up: {x: -0.54525405, y: 0.12376101, z: 0.47753236}
     forward: {x: 0.2501693, y: -0.7958441, z: 0.5514052}
     color: {r: 1, g: 1, b: 1, a: 1}
@@ -5772,7 +5769,7 @@ MonoBehaviour:
     _maxOffset: {x: 0, y: 0}
     _randomScale: 0
     _uniformRandomScale: 0
-    _minScale: {x: 0.55, y: 1, z: 1}
+    _minScale: {x: 0.61, y: 1, z: 1}
     _maxScale: {x: 1, y: 1, z: 1}
     _overrideMaterialID: 0
     _targetMaterialID: 0
@@ -6160,7 +6157,6 @@ MonoBehaviour:
   _space: 1
   _sampleMode: 0
   _subscribers:
-  - {fileID: 0}
   - {fileID: 6462628164898299109}
   _rawSamples:
   - position: {x: -4.106374, y: -3.2691479, z: 0.5797897}
@@ -7386,14 +7382,14 @@ MonoBehaviour:
     useClippedPercent: 0
     keys: []
   _clipFromSample:
-    position: {x: 1.3191098, y: -26.353506, z: 61.30937}
+    position: {x: 1.4991097, y: -2.8446455, z: -6.527123}
     up: {x: -0.48910913, y: -0.12073594, z: 0.5355811}
     forward: {x: 0.58371264, y: -0.68930835, z: 0.4291079}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
   _clipToSample:
-    position: {x: 1.3191098, y: -26.353506, z: 61.30937}
+    position: {x: 1.4991097, y: -2.8446455, z: -6.527123}
     up: {x: -0.48910922, y: -0.12073581, z: 0.535581}
     forward: {x: 0.58371264, y: -0.68930835, z: 0.4291079}
     color: {r: 1, g: 1, b: 1, a: 1}
@@ -7513,7 +7509,7 @@ MonoBehaviour:
     _maxOffset: {x: 0, y: 0}
     _randomScale: 0
     _uniformRandomScale: 0
-    _minScale: {x: 0.55, y: 1, z: 1}
+    _minScale: {x: 0.62, y: 1, z: 1}
     _maxScale: {x: 1, y: 1, z: 1}
     _overrideMaterialID: 0
     _targetMaterialID: 0

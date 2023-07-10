@@ -322,7 +322,6 @@ MonoBehaviour:
   _space: 1
   _sampleMode: 0
   _subscribers:
-  - {fileID: 0}
   - {fileID: 2704256318196126007}
   _rawSamples:
   - position: {x: -1.0581543, y: 1.2034447, z: -0.15803915}
@@ -2250,14 +2249,14 @@ MonoBehaviour:
     useClippedPercent: 0
     keys: []
   _clipFromSample:
-    position: {x: -2.2390373, y: -63.007973, z: 52.554916}
+    position: {x: -2.0590372, y: 0.24088904, z: -0.7815692}
     up: {x: 0.61705565, y: -0.34606698, z: -0.20034288}
     forward: {x: 0.27647576, y: 0.8657178, z: -0.41724545}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
   _clipToSample:
-    position: {x: -2.2390373, y: -63.007973, z: 52.554916}
+    position: {x: -2.0590372, y: 0.24088904, z: -0.7815692}
     up: {x: 0.6170556, y: -0.3460669, z: -0.20034292}
     forward: {x: 0.27647576, y: 0.8657178, z: -0.41724545}
     color: {r: 1, g: 1, b: 1, a: 1}
@@ -2377,7 +2376,7 @@ MonoBehaviour:
     _maxOffset: {x: 0, y: 0}
     _randomScale: 0
     _uniformRandomScale: 0
-    _minScale: {x: 0.55, y: 1, z: 1}
+    _minScale: {x: 1.1, y: 1, z: 1}
     _maxScale: {x: 1, y: 1, z: 1}
     _overrideMaterialID: 0
     _targetMaterialID: 0
@@ -2464,8 +2463,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 689e534edeebbac468b755fe84e9f6e1, type: 2}
-  - {fileID: 2100000, guid: 8f368370059407c46b6ceb08109e61a5, type: 2}
+  - {fileID: 2100000, guid: a64860902a8dcda45863316ff0922833, type: 2}
+  - {fileID: 2100000, guid: a64860902a8dcda45863316ff0922833, type: 2}
   - {fileID: 2100000, guid: 93abfe297dee77b49b1dc40c83b87056, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

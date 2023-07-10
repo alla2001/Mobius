@@ -3306,7 +3306,7 @@ MonoBehaviour:
     _maxOffset: {x: 0, y: 0}
     _randomScale: 0
     _uniformRandomScale: 0
-    _minScale: {x: 0.55, y: 1, z: 1}
+    _minScale: {x: 0.68, y: 1, z: 1}
     _maxScale: {x: 1, y: 1, z: 1}
     _overrideMaterialID: 0
     _targetMaterialID: 0
@@ -3385,7 +3385,7 @@ MonoBehaviour:
       color: {r: 1, g: 1, b: 1, a: 1}
       normal: {x: -0.000000029802322, y: 0.7350333, z: 0.019608736}
       size: 1.3600003
-      tangent: {x: -0.0000067673254, y: -0.0000050229796, z: 0.0000003888279}
+      tangent: {x: -0.0000069207817, y: -0.0000046901982, z: -0.00000014620248}
       tangent2: {x: 0.000008263405, y: 0.0000064520755, z: -0.0000030731758}
   - invertTangents: 0
     _pointIndex: 49
@@ -3396,7 +3396,7 @@ MonoBehaviour:
       color: {r: 1, g: 1, b: 1, a: 1}
       normal: {x: -0.000000029802322, y: 0.7350333, z: 0.019608736}
       size: 1.3600003
-      tangent: {x: -0.0000067673254, y: -0.0000050229796, z: 0.0000003888279}
+      tangent: {x: -0.0000069207817, y: -0.0000046901982, z: -0.00000014620248}
       tangent2: {x: 0.000008263405, y: 0.0000064520755, z: -0.0000030731758}
   _transformSize: 1
   _transformNormals: 1
@@ -3454,7 +3454,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2542989874203584494}
   m_LocalRotation: {x: -0.80612314, y: -0.18834592, z: 0.5430175, w: 0.14079545}
-  m_LocalPosition: {x: 3.7953503, y: -2.026483, z: -2.5660553}
+  m_LocalPosition: {x: 3.7953503, y: -2.0264833, z: -2.5660553}
   m_LocalScale: {x: 0.73529387, y: 0.73529404, z: 0.73529404}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3485,7 +3485,7 @@ MonoBehaviour:
       normal: {x: -0.00000013411045, y: 0.7352878, z: -0.00321275}
       size: 1.3600003
       tangent: {x: -0.000004198121, y: 0.000011624919, z: 0.000011528051}
-      tangent2: {x: 0.0000057043753, y: -0.000013370498, z: -0.000010213375}
+      tangent2: {x: 0.000005852418, y: -0.000013658887, z: -0.000010206097}
   - invertTangents: 0
     _pointIndex: 29
     _computer: {fileID: 2542989873354305631}
@@ -3496,7 +3496,7 @@ MonoBehaviour:
       normal: {x: -0.00000013411045, y: 0.7352878, z: -0.00321275}
       size: 1.3600003
       tangent: {x: -0.000004198121, y: 0.000011624919, z: 0.000011528051}
-      tangent2: {x: 0.0000057043753, y: -0.000013370498, z: -0.000010213375}
+      tangent2: {x: 0.000005852418, y: -0.000013658887, z: -0.000010206097}
   _transformSize: 1
   _transformNormals: 1
   _transformTangents: 1
@@ -3553,7 +3553,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2542989874629448707}
   m_LocalRotation: {x: -0.81203806, y: -0.35876617, z: 0.17481752, w: 0.4258167}
-  m_LocalPosition: {x: -2.8260937, y: 3.564656, z: 0.4057593}
+  m_LocalPosition: {x: -2.8260937, y: 3.5646565, z: 0.4057593}
   m_LocalScale: {x: 0.73529387, y: 0.73529404, z: 0.73529404}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3583,8 +3583,8 @@ MonoBehaviour:
       color: {r: 1, g: 1, b: 1, a: 1}
       normal: {x: -0.0000006556511, y: 0.7213119, z: -0.14271253}
       size: 1.3600003
-      tangent: {x: 0.00000005351617, y: -0.0000013224253, z: 0.00000018885495}
-      tangent2: {x: 0.00000005351617, y: -0.0000013224253, z: 0.00000018885495}
+      tangent: {x: -0.00000018368652, y: -0.0000011992321, z: 0.000000005290431}
+      tangent2: {x: -0.00000018368652, y: -0.0000011992321, z: 0.000000005290431}
   - invertTangents: 0
     _pointIndex: 14
     _computer: {fileID: 2542989873354305631}
@@ -3594,8 +3594,8 @@ MonoBehaviour:
       color: {r: 1, g: 1, b: 1, a: 1}
       normal: {x: -0.0000006556511, y: 0.7213119, z: -0.14271253}
       size: 1.3600003
-      tangent: {x: 0.00000005351617, y: -0.0000013224253, z: 0.00000018885495}
-      tangent2: {x: 0.00000005351617, y: -0.0000013224253, z: 0.00000018885495}
+      tangent: {x: -0.00000018368652, y: -0.0000011992321, z: 0.000000005290431}
+      tangent2: {x: -0.00000018368652, y: -0.0000011992321, z: 0.000000005290431}
   _transformSize: 1
   _transformNormals: 1
   _transformTangents: 1
@@ -4066,7 +4066,6 @@ MonoBehaviour:
   _space: 1
   _sampleMode: 0
   _subscribers:
-  - {fileID: 0}
   - {fileID: 2542989874803348683}
   _rawSamples:
   - position: {x: 3.7953491, y: -2.0264826, z: -2.566055}
@@ -6993,7 +6992,7 @@ MonoBehaviour:
     _maxOffset: {x: 0, y: 0}
     _randomScale: 0
     _uniformRandomScale: 0
-    _minScale: {x: 0.55, y: 1, z: 1}
+    _minScale: {x: 0.76, y: 1, z: 1}
     _maxScale: {x: 1, y: 1, z: 1}
     _overrideMaterialID: 0
     _targetMaterialID: 0
@@ -7177,7 +7176,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2542989875010408498}
   m_LocalRotation: {x: -0.07281277, y: -0.82217, z: -0.50775397, w: -0.246821}
-  m_LocalPosition: {x: 3.7968524, y: -1.4153647, z: -1.9783826}
+  m_LocalPosition: {x: 3.7968524, y: -1.4153649, z: -1.9783826}
   m_LocalScale: {x: 0.73529387, y: 0.73529404, z: 0.73529404}
   m_ConstrainProportionsScale: 0
   m_Children: []
