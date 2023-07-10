@@ -98,6 +98,7 @@ public class UIManager : MonoBehaviour
                 break;
             case GameState.RewardMode:
                 rewardSelectionPanel.SetActive(true);
+                GameManager.Instance.DetermineReward();
 
                 break;
             case GameState.CharacterPlacement:
