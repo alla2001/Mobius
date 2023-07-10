@@ -246,9 +246,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5476143f4c699d74287c68f27e6d77be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBeforeDeath: 60
-  timeGainedFromItem: 20
-  lowHealthThreshhold: 20
+  timeBeforeDeath: 150
+  timeGainedFromItem: 50
+  lowHealthThreshhold: 50
 --- !u!136 &7005444113296533282
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -283,7 +283,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 712d79f68100c614aab58fd1340e1ea8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 712d79f68100c614aab58fd1340e1ea8,
         type: 3}

@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public float gameTimeScaleGodmode = 0.5f;
     public UnityEvent<GameState> onStateChange = new UnityEvent<GameState>();
     [HideInInspector] public List<Character> allCharacters;
+    [SerializeField] private List<GameObject> startingPositionPrefabs; 
 
     [HideInInspector] public List<GameObject> allWalls;
     private List<Vector3> allWallPositions = new List<Vector3>();
@@ -37,7 +38,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float godModeTimeMultiplier;
    
-
     [SerializeField] private GameObject gameOverPanel;
 
     private CharacterMovement p_currentControlledCharacter; 
@@ -65,6 +65,12 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this);
         }
+        SpawnRandomStartingPosition(); 
+    }
+
+    private void SpawnRandomStartingPosition()
+    {
+        Instantiate(startingPositionPrefabs.GetRandomElement()); 
     }
 
     // Start is called before the first frame update
@@ -162,5 +168,4 @@ public class GameManager : MonoBehaviour
     {
         ChangeState(GameState.CharacterPlacement); 
     }
-
 }

@@ -68,7 +68,7 @@ public class AudioManager : MonoBehaviour
         }
 
         eventInstances = new List<EventInstance>();
-        eventEmitters = new List<FMODUnity.StudioEventEmitter>();
+        eventEmitters = new List<StudioEventEmitter>();
         soundQueueElements = new List<SoundQueueElement>(); 
 
         /*

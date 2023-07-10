@@ -18,10 +18,9 @@ public class ShapeDatabase : MonoBehaviour
     {
         //Creating a copy of this object from which I can create the next starting position
         GameObject newManager = Instantiate(managerPrefab);
-        newManager.name = "Manager" + (startingPositionNumber+1); 
-        GameObject fullPosition = Instantiate(startingPositionPrefab);
-        fullPosition.name = "startingPosition" + startingPositionNumber; 
-        
+        newManager.name = "Manager" + (startingPositionNumber + 1);
+        this.name = "startingPosition" + startingPositionNumber; 
+
         Awake();
  
         UnlockForStartingSetup();
@@ -31,8 +30,8 @@ public class ShapeDatabase : MonoBehaviour
         for(int i = 0; i < 3; i++)
         {
             GameObject gO = GenerateRandomShape();
-            gO = Instantiate(gO, Vector3.zero, Quaternion.identity, fullPosition.transform);
-            Undo.RegisterCreatedObjectUndo(gO, "Created new Shape");
+            gO = Instantiate(gO, Vector3.zero, Quaternion.identity, this.transform);
+            //Undo.RegisterCreatedObjectUndo(gO, "Created new Shape");
             startingObjects[i] = gO;
         }
 
@@ -45,15 +44,15 @@ public class ShapeDatabase : MonoBehaviour
         //zypernKatze need to check whether shapes are overlapping
 
         //Setting Up Character
-        GameObject character = Instantiate(characterPrefab, fullPosition.transform);
-        Undo.RegisterCreatedObjectUndo(character, "Created Character");
+        GameObject character = Instantiate(characterPrefab, this.transform);
+        //Undo.RegisterCreatedObjectUndo(character, "Created Character");
 
         /* I have to do this manually
         SplineComputer[] splines = FindObjectsByType<SplineComputer>(FindObjectsSortMode.None);
         characterPrefab.GetComponent<SplineFollower>().spline = splines.GetRandomElement();
         character.transform.parent = fullPosition.transform; 
         */
-        Undo.SetCurrentGroupName("CreatedStartingSetup"); 
+        //Undo.SetCurrentGroupName("CreatedStartingSetup"); 
     }
     
 
@@ -86,7 +85,6 @@ public class ShapeDatabase : MonoBehaviour
     [SerializeField] private GameObject characterPrefab;
     [SerializeField] private GameObject itemPrefab;
     [SerializeField] private GameObject managerPrefab;
-    [SerializeField] private GameObject startingPositionPrefab;
 
     public List<ShapeGroup> lockedShapeGroups = new List<ShapeGroup>();
     public List<ArchitecturalStyle> lockedArchitectures = new List<ArchitecturalStyle>();
@@ -119,10 +117,10 @@ public class ShapeDatabase : MonoBehaviour
         {
             return; 
         }
-        if (instance != null) 
+        if (instance != null)
         {
-            DestroyImmediate(instance); //zypernKAtze fix
-            Debug.LogWarning("deleted second ShapeRandomiser on object: " + gameObject.GetNameIncludingParents()); 
+            Debug.LogWarning("destroying second ShapeDatabase on object: " + gameObject.GetNameIncludingParents() + "\n first ShapeDatabase is on: " + gameObject.GetNameIncludingParents());
+            DestroyImmediate(this.gameObject); 
         }
         instance = this; 
     }
@@ -169,33 +167,36 @@ public class ShapeDatabase : MonoBehaviour
     }
     public ShapeGroup UnlockRandomShapeGroup()
     {
+        if (lockedShapeGroups.Count == 0) { return null; }
         ShapeGroup shapeGroup = lockedShapeGroups.GetRandomElement(); 
         lockedShapeGroups.Remove(shapeGroup);
-        Undo.RecordObject(this, ("unlockedShapeGroup: " + shapeGroup.name));
+        //Undo.RecordObject(this, ("unlockedShapeGroup: " + shapeGroup.name));
 
         unlockedShapeGroups.Add(shapeGroup);
-        Undo.RecordObject(this, ("unlockedShapeGroup: " + shapeGroup.name));
+        //Undo.RecordObject(this, ("unlockedShapeGroup: " + shapeGroup.name));
 
         return shapeGroup; 
     }
 
     public ArchitecturalStyle UnlockRandomArchitecture()
     {
+        if (lockedArchitectures.Count == 0) { return null; }
         ArchitecturalStyle architecture = lockedArchitectures.GetRandomElement();
         lockedArchitectures.Remove(architecture);
         unlockedArchitectures.Add(architecture);
 
-        Undo.RecordObject(this, ("unlockedArchitecturalStyle: " + architecture.name));
+        //Undo.RecordObject(this, ("unlockedArchitecturalStyle: " + architecture.name));
         return architecture; 
     }
 
     public Material UnlockRandomMaterial()
     {
+        if (lockedMaterials.Count == 0) { return null; }
         Material material = lockedMaterials.GetRandomElement();
         lockedMaterials.Remove(material);
         unlockedMaterials.Add(material);
 
-        Undo.RecordObject(this, ("unlockedRandomMaterial: " + material.name));
+        //Undo.RecordObject(this, ("unlockedRandomMaterial: " + material.name));
         return material; 
     }
 
@@ -203,7 +204,7 @@ public class ShapeDatabase : MonoBehaviour
     {
         lockedMaterials.Remove(material); 
         unlockedMaterials.Add(material); 
-        Undo.RecordObject(this, ("unlockedMaterial: " + material.name));
+        //Undo.RecordObject(this, ("unlockedMaterial: " + material.name));
 
         return material; 
     }

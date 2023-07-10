@@ -2,28 +2,110 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UIElements;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] GameObject panelRefernce;
+    [Header("Icons")]
+    [SerializeField] GameObject clockIcon; 
+    [SerializeField] GameObject energyIcon; 
+    [SerializeField] TextField energyText;
 
-    // Start is called before the first frame update
+    [Header("Explanations")]
+    [SerializeField] GameObject godViewControls; 
+    [SerializeField] GameObject characterViewControls; 
+    [SerializeField] GameObject rewardSelectionPanel;
+    [SerializeField] GameObject characterIcon;
+
+    private GameState gameState; 
+
     void Start()
     {
-        panelRefernce.SetActive(false);
+        GameManager.Instance.onStateChange.AddListener(ListenToGameState);
+
+        clockIcon.SetActive(true);
+        energyIcon.SetActive(true);
+
+        DeactivateUI(GameState.GodView); 
+        DeactivateUI(GameState.CharacterView); 
+        DeactivateUI(GameState.ShapePlacement);  
+        DeactivateUI(GameState.RewardMode);
+        DeactivateUI(GameState.CharacterPlacement);
+
+        ActivateUI(gameState); 
     }
 
-    // Update is called once per frame
+    private void OnDestroy()
+    {
+        GameManager.Instance.onStateChange.RemoveListener(ListenToGameState);
+    }
+
     void Update()
     {
-        if (GameManager.Instance.currentState == GameState.RewardMode)
+        //zypernKatze update the energy of bridges 
+    }
+
+    private void ListenToGameState(GameState gameState)
+    {
+        DeactivateUI(this.gameState);
+        this.gameState = gameState; 
+        ActivateUI(this.gameState); 
+    }
+    
+
+    private void DeactivateUI(GameState gameState)
+    {
+        switch (gameState)
         {
-            panelRefernce.gameObject.SetActive(true);
-        }
-        else
-        {
-            panelRefernce.gameObject.SetActive(false);
+            case GameState.GodView:
+                godViewControls.SetActive(false); 
+
+                break;
+            case GameState.CharacterView:
+                characterViewControls.SetActive(false); 
+
+                break;
+            case GameState.RewardMode:
+                rewardSelectionPanel.SetActive(false); 
+
+                break;
+            case GameState.CharacterPlacement:
+                godViewControls.SetActive(false);
+                characterIcon.SetActive(false); 
+
+                break;
+            case GameState.ShapePlacement:
+                godViewControls.SetActive(false);
+
+                break; 
         }
     }
 
+    private void ActivateUI(GameState gameState)
+    {
+        switch (gameState)
+        {
+            case GameState.GodView:
+                godViewControls.SetActive(true);
+
+                break;
+            case GameState.CharacterView:
+                characterViewControls.SetActive(true);
+
+                break;
+            case GameState.RewardMode:
+                rewardSelectionPanel.SetActive(true);
+
+                break;
+            case GameState.CharacterPlacement:
+                godViewControls.SetActive(true);
+                characterIcon.SetActive(true);
+
+                break;
+            case GameState.ShapePlacement:
+                godViewControls.SetActive(true);
+
+                break;
+        }
+    }
 }

@@ -12,7 +12,7 @@ public class FMODEvents : MonoBehaviour
         if (instance != null && instance != this)
         {
             Destroy(this);
-            Debug.LogError("Secondary AudioManager destroyed on: " + gameObject.GetNameIncludingParents());
+            Debug.LogError("Secondary FMODEvents destroyed on: " + gameObject.GetNameIncludingParents() + "\nFirst FMODEvents found on: " + instance.gameObject.GetNameIncludingParents());
         }
         instance = this;
     }

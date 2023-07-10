@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -23,7 +24,7 @@ public class CleanedCameraController : MonoBehaviour
     //PUBLIC STATICS & EVENTS
 
     //REFERENCES
-
+    public Camera camera; 
 
     //EDITOR VARIABLES
     public GameObject emptyPrefab;
@@ -42,6 +43,7 @@ public class CleanedCameraController : MonoBehaviour
     [Header("CharacterMode Camera Settings")]
     [SerializeField] private Vector3 characterModeCameraLocalPosition;
     [SerializeField] private Vector3 characterModeLocalEulerAngles;
+    [SerializeField] private float nearClipPlane; 
 
     [Header("LerpMode Camera Settings")]
     [SerializeField] private float lerpStartUpTime;
@@ -51,7 +53,7 @@ public class CleanedCameraController : MonoBehaviour
 
 
     //CODE VARIABLES
-    //Inputs
+    //Input-Savers
     private float mouseX, mouseY, mouseZ;
     private bool isMouseOnLeftEdge, isMouseOnRightEdge;
     private float scrollInput;
@@ -59,10 +61,8 @@ public class CleanedCameraController : MonoBehaviour
     //State-Variables
     private CleanedCameraMode currentCameraMode; 
 
-    private float rotationX, rotationY, rotationZ;
-    private Vector3 rotationVector, rotationUpdateVector; 
     private float distanceToTarget;
-    private Vector3 cameraLocalOffset;
+    private Vector3 cameraOffset;
 
     private bool isLerpSetup; 
     private float currentLerpTime;
@@ -76,10 +76,15 @@ public class CleanedCameraController : MonoBehaviour
     private void Start()
     {
         SetupCameraStart();
-        ListenToGameManager(); 
+        GameManager.Instance.onStateChange.AddListener(ListenToGameManager);
     }
 
-    private void Update()
+    private void OnDestroy()
+    {
+        GameManager.Instance.onStateChange.RemoveListener(ListenToGameManager);
+    }
+
+    private void LateUpdate() //making sure the character ( & followpoint) have moved already)
     {
         CheckModeChange(); 
         TakeInput();
@@ -93,14 +98,24 @@ public class CleanedCameraController : MonoBehaviour
     //PRIVATE CODE METHODS
     public void CheckModeChange()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (currentCameraMode == CleanedCameraMode.CHARACTERMODE)
         {
-            SetupLerp(followObject, savedGodModeGameObject, CleanedCameraMode.GODMODE);
-            ChangeCameraMode(CleanedCameraMode.LERPMODE); 
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1) || 
+                (CheckCharacterClick() != null && CheckCharacterClick() == GameManager.Instance.currentControlledCharacter)
+                )
+            {
+                SetupLerp(followObject, savedGodModeGameObject, CleanedCameraMode.GODMODE);
+                ChangeCameraMode(CleanedCameraMode.LERPMODE); 
+                GameManager.Instance.ChangeState(GameState.GodView); 
+            }
         }
         if (currentCameraMode == CleanedCameraMode.GODMODE && GameManager.Instance.currentState == GameState.GodView)
         {
-            CheckCharacterClick();
+            CharacterMovement character = CheckCharacterClick(); 
+            if (character != null)
+            {
+                TakeCharacterPossesion(character);
+            }
         }
     }
 
@@ -150,16 +165,16 @@ public class CleanedCameraController : MonoBehaviour
         switch(currentCameraMode)
         {
             case CleanedCameraMode.GODMODE:
-                UpdateCameraGodMode(); 
+                UpdateGodMode(); 
                 break;
             case CleanedCameraMode.CHARACTERMODE:
-                UpdateCameraCharacterMode(); 
+                UpdateCharacterMode(); 
                 break;
             case CleanedCameraMode.LERPMODE:
-                UpdateCameraLerpMode(); 
+                UpdateLerpMode(); 
                 break;
             case CleanedCameraMode.DEAD:
-                UpdateCameraDeadMode(); 
+                UpdateDeadMode(); 
                 break;
         }
     }
@@ -189,22 +204,26 @@ public class CleanedCameraController : MonoBehaviour
         {
             case CleanedCameraMode.GODMODE:
                 SetupGodModePivotPoint();
-                SetupGodModeFollowObject(); 
+                SetupGodModeFollowObject();
+                camera.nearClipPlane = 0.05f; 
                 break;
             case CleanedCameraMode.CHARACTERMODE:
-                SetupCharacterFollowObject(); 
+                SetupCharacterFollowObject();
+                camera.nearClipPlane = this.nearClipPlane;
                 break;
             case CleanedCameraMode.LERPMODE:
-                if (!isLerpSetup) { throw new Exception("cameraLerp is not setup before switching to LerpMode"); } 
+                if (!isLerpSetup) { throw new Exception("cameraLerp is not setup before switching to LerpMode"); }
+                camera.nearClipPlane = this.nearClipPlane/2;
                 break;
             case CleanedCameraMode.DEAD:
                 SetupGodModePivotPoint(); 
-                SetupDeadModeFollowObject(); 
+                SetupDeadModeFollowObject();
+                camera.nearClipPlane = 0.05f;
                 break;
         }
     }
 
-    private void UpdateCameraGodMode()
+    private void UpdateGodMode()
     {
         AdjustCameraPivotOffset();
         AdjustCameraDistance();
@@ -215,13 +234,13 @@ public class CleanedCameraController : MonoBehaviour
         FollowObject(); 
     }
 
-    private void UpdateCameraCharacterMode()
+    private void UpdateCharacterMode()
     {
         //zypernKatze maybe add some options here
         LerpFollowObject(); 
     }
 
-    private void UpdateCameraLerpMode()
+    private void UpdateLerpMode()
     {
         currentLerpTime += Time.deltaTime;
 
@@ -234,18 +253,11 @@ public class CleanedCameraController : MonoBehaviour
         {
             isLerpSetup = false;
 
-            if (lerpToMode == CleanedCameraMode.CHARACTERMODE)
-            {
-                GameManager.Instance.ChangeState(GameState.CharacterView); //this also calls the camera to change mode
-            }
-            else if (lerpToMode == CleanedCameraMode.GODMODE)
-            {
-                GameManager.Instance.ChangeState(GameState.GodView); //this also calls the camera to change mode
-            }
+            ChangeCameraMode(lerpToMode); 
         }
     }
 
-    private void UpdateCameraDeadMode()
+    private void UpdateDeadMode()
     {
         godModePivotPoint.Rotate(Vector3.up, 20 * Time.deltaTime);
         FollowObject();
@@ -260,52 +272,53 @@ public class CleanedCameraController : MonoBehaviour
         currentCameraMode = CleanedCameraMode.GODMODE;
     }
 
-    private void ListenToGameManager()
+    private void ListenToGameManager(GameState state) //not listening to GodView and CharacterView because they set themselves up
     {
-        GameManager.Instance.onStateChange.AddListener((state) => {
-            switch(state)
-            {
-                case GameState.GodView:
-                case GameState.RewardMode:
-                case GameState.ShapePlacement:
-                    ChangeCameraMode(CleanedCameraMode.GODMODE);
-                    break;
-                case GameState.CharacterView:
-                    ChangeCameraMode(CleanedCameraMode.CHARACTERMODE);
-                    break;
-                case GameState.GameOver:
-                    ChangeCameraMode(CleanedCameraMode.DEAD); 
-                    break; 
-            }
-        });
+        switch (state)
+        {
+            case GameState.ShapePlacement:
+                SetupLerp(followObject, savedGodModeGameObject, CleanedCameraMode.GODMODE);
+                ChangeCameraMode(CleanedCameraMode.LERPMODE);
+                break;
+            case GameState.GameOver:
+                SetupLerp(followObject, savedGodModeGameObject, CleanedCameraMode.GODMODE);
+                ChangeCameraMode(CleanedCameraMode.LERPMODE);
+                break; 
+        }
     }
 
-    private void CheckCharacterClick()
+    private CharacterMovement CheckCharacterClick()
     {
         RaycastHit hit;
         Ray ray = GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit))
+        if (Input.GetMouseButtonDown(0) && 
+            Physics.Raycast(ray, out hit) && 
+            hit.collider.GetComponent<CharacterMovement>() != null)
         {
-            if (Input.GetMouseButtonDown(0) && hit.collider.GetComponent<CharacterMovement>() != null)
-            {
-                GameManager.Instance.currentControlledCharacter = hit.collider.gameObject.GetComponent<CharacterMovement>();
-                AudioManager.instance.PlayOneShot(FMODEvents.instance.characterTakeControl);
-
-                SaveGodModePosition();
-                SetupLerp(savedGodModeGameObject, followObject, CleanedCameraMode.CHARACTERMODE);
-
-                ChangeCameraMode(CleanedCameraMode.LERPMODE);
-            }
+            return hit.collider.GetComponent<CharacterMovement>(); 
         }
+        return null; 
+    }
+
+    private void TakeCharacterPossesion(CharacterMovement characterMovement)
+    {
+        GameManager.Instance.currentControlledCharacter = characterMovement;
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.characterTakeControl);
+
+        SaveGodModePosition();
+        SetupLerp(savedGodModeGameObject, followObject, CleanedCameraMode.CHARACTERMODE);
+        GameManager.Instance.ChangeState(GameState.CharacterView); //changing cameraMode happens via ListenToGameManager
+
+        ChangeCameraMode(CleanedCameraMode.LERPMODE);
     }
 
     private void AdjustCameraPivotOffset()
     {
         if (Input.GetMouseButton(2))
         {
-            cameraLocalOffset += (Vector3.right * -mouseX + Vector3.up * mouseY) * offSetMoveSpeed * distanceToTarget / maxZoomGodMode;
-            cameraLocalOffset = cameraLocalOffset.ClampVectorComponentWise(-maxOffset, maxOffset);
+            cameraOffset += (transform.right * -mouseX + transform.up * mouseY) * offSetMoveSpeed * distanceToTarget / maxZoomGodMode;
+            cameraOffset = cameraOffset.ClampVectorComponentWise(-maxOffset, maxOffset);
         }
     }
 
@@ -313,7 +326,8 @@ public class CleanedCameraController : MonoBehaviour
     {
         distanceToTarget -= scrollInput * zoomSpeed;
         distanceToTarget = Mathf.Clamp(distanceToTarget, minZoomGodMode, maxZoomGodMode);
-        followObject.transform.localPosition = Vector3.forward * -distanceToTarget + cameraLocalOffset;
+        godModePivotPoint.transform.position = GameManager.Instance.averageCenterPointPosition + cameraOffset; 
+        followObject.transform.localPosition = Vector3.forward * -distanceToTarget;
     }
 
     private void FollowObject()
@@ -369,7 +383,7 @@ public class CleanedCameraController : MonoBehaviour
     {
         if (currentCameraMode == CleanedCameraMode.LERPMODE)
         {
-            throw new Exception("trying to setup lerp, while camera is already lerping"); 
+            Debug.LogWarning("trying to setup lerp, while camera is already lerping"); 
         }
         
         lerpFromObject = from;
@@ -377,7 +391,7 @@ public class CleanedCameraController : MonoBehaviour
         this.lerpToMode = lerpToMode; 
         currentLerpTime = -lerpStartUpTime;
 
-        if (lerpToMode == CleanedCameraMode.CHARACTERMODE) //zypernKatze is setting the FollowObject before saving its position
+        if (lerpToMode == CleanedCameraMode.CHARACTERMODE) //changing cameraMode happens via ListenToGameManager
         {
             SetupCharacterFollowObject();
         }

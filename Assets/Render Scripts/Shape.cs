@@ -15,18 +15,12 @@ public class Shape : MonoBehaviour
     private int numberOfPoints;
     private List<SplinePoint> splineNodePositions = new List<SplinePoint>();
 
-    public ArchitecturalStyle architecturalStyle;
-
-    private void Awake()
-    {
-        splCompReferences = GetComponentsInChildren<SplineComputer>();
-
-    }
+    public ArchitecturalStyle architecturalStyle; 
 
     // Start is called before the first frame update
     void Start()
     {
-       // AudioManager.instance.AddEmitterToLayer(AudioLayerType.HANGDRUM, this.gameObject);
+        splCompReferences = GetComponentsInChildren<SplineComputer>(); 
     }
 
     // Update is called once per frame

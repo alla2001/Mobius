@@ -21,7 +21,7 @@ public class AudioLayerCharacterMode : AudioLayer
     //PUBLIC STATIC METHODS
 
     //MONOBEHAVIOUR METHODS
-    private void Awake()
+    private void Start()
     {
         AudioMode.characterMode.audioLayers.Add(this.layerType, this);
     }

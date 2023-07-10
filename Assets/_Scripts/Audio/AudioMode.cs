@@ -21,12 +21,16 @@ public class AudioMode : MonoBehaviour //must be Monobehaviour because it can ha
     {
         if (isGodMode)
         {
-            godMode = this; 
+            godMode = this;
         }
         if (isCharacterMode)
         {
-            characterMode = this; 
+            characterMode = this;
         }
+    }
+
+    private void Start()
+    {
         if (isStartingSoundMode)
         {
             Play();

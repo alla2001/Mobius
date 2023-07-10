@@ -26,14 +26,14 @@ public class AudioLayerGodMode : AudioLayer
     private StudioEventEmitter currentEventEmitter => eventEmitters[currentAudioNumber];
 
     public static int[] lastSound = new int[2];
-    private float probabiltyOfSoundOnFirstBeat => 2.0f / (averageBeatsBetweenSounds + 3); 
+    private float probabiltyOfSoundOnFirstBeat => 2.0f / (averageBeatsBetweenSounds + 3);
 
     //PUBLIC STATIC METHODS
 
     //MONOBEHAVIOUR METHODS
-    private void Awake()
+    private void Start()
     {
-        AudioMode.godMode.audioLayers.Add(this.layerType, this); 
+        AudioMode.godMode.audioLayers.Add(this.layerType, this);
     }
 
     public override void BeatUpdate(int bar, int beat)
