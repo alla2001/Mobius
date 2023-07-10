@@ -16,7 +16,6 @@ public class CharacterInfo : MonoBehaviour
     private SplineFollower splineFollower;
     private bool isDead;
     private float timeBeforeDespawn = 10f;
-    private float elapsedTime;
 
     public void Start()
     {
@@ -36,9 +35,9 @@ public class CharacterInfo : MonoBehaviour
     FMODUnity.StudioEventEmitter emitter;
     private void Update()
     {
-        characterAnimator.speed = 1 - Mathf.InverseLerp(60f, 0f, timeBeforeDeath);
+        //characterAnimator.speed = 1 - Mathf.InverseLerp(60f, 0f, timeBeforeDeath);
 
-        Debug.Log("character anim speed: " + characterAnimator.speed);
+        //Debug.Log("character anim speed: " + characterAnimator.speed);
 
         bool wentlow=false;
         if (timeBeforeDeath>lowHealthThreshhold)
@@ -51,7 +50,7 @@ public class CharacterInfo : MonoBehaviour
             
             emitter.Play();
         }
-        if (timeBeforeDeath <= 0)
+        if (timeBeforeDeath <= 0 && !isDead)
         {
             splineFollower.followSpeed = 0;
             emitter.Stop();
@@ -62,15 +61,13 @@ public class CharacterInfo : MonoBehaviour
             }
             characterAnimator.SetTrigger("isDead");
             isDead = true;
+            Died();
         }
 
-        if (isDead)
-        {
-            // SOUND LITERALLY CRASHED UNITY
-            /*elapsedTime += Time.deltaTime;
-            if (elapsedTime >= timeBeforeDespawn)*/
-            Destroy(gameObject);
-        }
     }
 
+    private void Died()
+    {
+        Destroy(gameObject, timeBeforeDespawn);
+    }
 }
