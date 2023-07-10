@@ -2,7 +2,7 @@ using Dreamteck.Splines;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro; 
+using UnityEngine.UI; 
 
 [RequireComponent(typeof(SplineFollower))]
 public class CharacterMovement : MonoBehaviour
@@ -30,7 +30,7 @@ public class CharacterMovement : MonoBehaviour
     private bool inInterSection;
     public static List<CharacterMovement> characters = new List<CharacterMovement>();
     public ParticleSystem[] particleSystems;
-    public TMP_Text energyText;
+    public Text energyText;
     private CharacterInfo characterInfo; 
 
     private void Start()
@@ -58,7 +58,11 @@ public class CharacterMovement : MonoBehaviour
     private void Update()
     {
         if (GameManager.Instance.currentControlledCharacter != this) { return; }
-        if (energyText != null) { energyText.text = (characterInfo.timeBeforeDeath / 5f).ToString(); } 
+        if (energyText == null)//zypernKatze searching by gameobjectname unclean
+        {
+            energyText = GameObject.Find("Energy-Text")!.GetComponent<Text>(); 
+        }
+        energyText.text = ((int)(characterInfo.timeBeforeDeath / 10)).ToString();
 
         if (Input.GetKeyDown(KeyCode.D))
         {

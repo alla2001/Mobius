@@ -49,11 +49,13 @@ public class CharacterPlacer : MonoBehaviour
                 }
                 Destroy(Hilight.GetComponent<CharacterMovement>());
                 Destroy(Hilight.GetComponent<SplineFollower>());
-                targetPos = splineComp.Evaluate(splineComp.Project(hit.point).percent).position + splineComp.Evaluate(splineComp.Project(hit.point).percent).up * 0.5f;
-                Hilight.transform.position = targetPos;
-                Hilight.transform.up = splineComp.Evaluate(splineComp.Project(hit.point).percent).up;
-                Debug.DrawLine(splineComp.Evaluate(splineComp.Project(hit.point).percent).position,targetPos,Color.blue,100);
-              
+                if (splineComp != null)
+                {
+                    targetPos = splineComp.Evaluate(splineComp.Project(hit.point).percent).position + splineComp.Evaluate(splineComp.Project(hit.point).percent).up * 0.5f;
+                    Hilight.transform.position = targetPos;
+                    Hilight.transform.up = splineComp.Evaluate(splineComp.Project(hit.point).percent).up;
+                    Debug.DrawLine(splineComp.Evaluate(splineComp.Project(hit.point).percent).position, targetPos, Color.blue, 100);
+                }
             }
             else
             {
