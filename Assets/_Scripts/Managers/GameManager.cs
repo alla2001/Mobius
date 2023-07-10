@@ -35,6 +35,12 @@ public class GameManager : MonoBehaviour
     private List<Vector3> allWallPositions = new List<Vector3>();
      public Vector3 averageCenterPointPosition;
 
+    [SerializeField] GameObject placeCharacterRewardButton;
+    [SerializeField] GameObject addBridgeEnergyRewardButton;
+    [SerializeField] GameObject addCharactersLifeRewardButton;
+    [Range(0, 100)]
+    [SerializeField] int addCharacterSpawnChance = 100;
+
     [SerializeField]
     private float godModeTimeMultiplier;
    
@@ -184,5 +190,26 @@ public class GameManager : MonoBehaviour
             }
         }
         Time.timeScale = timeModes[0]; 
+
+    public void DetermineReward()
+    {
+        int probability = UnityEngine.Random.Range(0, 101);
+
+        Debug.Log("Chance:" + probability + ", CHance: " + addCharacterSpawnChance);
+
+        if (probability <= addCharacterSpawnChance)
+        {
+            Debug.Log("Lucky");
+            addBridgeEnergyRewardButton.SetActive(true);
+            placeCharacterRewardButton.SetActive(true);
+            addCharactersLifeRewardButton.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("Baza");
+            addBridgeEnergyRewardButton.SetActive(true);
+            addCharactersLifeRewardButton.SetActive(true);
+            placeCharacterRewardButton.SetActive(false);
+        }
     }
 }

@@ -232,4 +232,15 @@ public class CharacterMovement : MonoBehaviour
             inInterSection = false;
         }
     }
+
+    public void AddEnergyToAllCharacters()
+    {
+        foreach (var character in characters)
+        {
+            CharacterInfo characterInfo = character.GetComponent<CharacterInfo>();
+            characterInfo.timeBeforeDeath += characterInfo.timetoAddOnReward;
+            GameManager.Instance.ChangeState(GameState.GodView);
+            ItemSpawner.instace.SpawnItems();
+        }
+    }
 }

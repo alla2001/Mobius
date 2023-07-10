@@ -11,6 +11,7 @@ public class CharacterInfo : MonoBehaviour
     public float timeBeforeDeath =  60f;
     public float timeGainedFromItem = 20f;
     public float lowHealthThreshhold=20f;
+    public float timetoAddOnReward = 15f;
 
     private Animator characterAnimator;
     private SplineFollower splineFollower;
