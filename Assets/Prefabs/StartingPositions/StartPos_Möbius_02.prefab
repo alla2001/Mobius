@@ -203,6 +203,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 35.321
       objectReference: {fileID: 0}
+    - target: {fileID: 1784790473211001993, guid: e6bac4ea87f7ae249bc87c04d16ae87a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 689e534edeebbac468b755fe84e9f6e1, type: 2}
+    - target: {fileID: 1784790473211001993, guid: e6bac4ea87f7ae249bc87c04d16ae87a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8f368370059407c46b6ceb08109e61a5, type: 2}
     - target: {fileID: 1784790473677975920, guid: e6bac4ea87f7ae249bc87c04d16ae87a,
         type: 3}
       propertyPath: _clipToSample.up.x
@@ -822,6 +832,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 279.776
       objectReference: {fileID: 0}
+    - target: {fileID: 2704256318198331875, guid: 8ba3160b1fb95e441988353ffcefc8d8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8f368370059407c46b6ceb08109e61a5, type: 2}
+    - target: {fileID: 2704256318198331875, guid: 8ba3160b1fb95e441988353ffcefc8d8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8fc5f71df969c9c4fb3d37b25847dde9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ba3160b1fb95e441988353ffcefc8d8, type: 3}
 --- !u!4 &1406587777632904861 stripped
@@ -897,6 +917,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 273.185
       objectReference: {fileID: 0}
+    - target: {fileID: 1784790473211001993, guid: e6bac4ea87f7ae249bc87c04d16ae87a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d66a0aae4c234fd449db507577efbe94, type: 2}
+    - target: {fileID: 1784790473211001993, guid: e6bac4ea87f7ae249bc87c04d16ae87a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5607224f2d27533438bd5c493fb7d9e2, type: 2}
     - target: {fileID: 1784790473677975920, guid: e6bac4ea87f7ae249bc87c04d16ae87a,
         type: 3}
       propertyPath: _clipToSample.up.x

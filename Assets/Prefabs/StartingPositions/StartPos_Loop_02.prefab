@@ -1031,6 +1031,11 @@ PrefabInstance:
       propertyPath: connections.Array.data[1].point.tangent2.z
       value: -0.00006789294
       objectReference: {fileID: 0}
+    - target: {fileID: 2397197368291285436, guid: 527d8d6d4bc1dd44bb6643029d377cc0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8fc5f71df969c9c4fb3d37b25847dde9, type: 2}
     - target: {fileID: 2397197368291285438, guid: 527d8d6d4bc1dd44bb6643029d377cc0,
         type: 3}
       propertyPath: m_RootOrder
