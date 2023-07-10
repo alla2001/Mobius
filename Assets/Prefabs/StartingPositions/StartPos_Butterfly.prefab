@@ -118,6 +118,11 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 9d233b07af13a224a8e6c4f3805996e0, type: 2}
   - {fileID: 2100000, guid: a29ca4041b22953409659dc37fa98084, type: 2}
   - {fileID: 2100000, guid: 9e956476c4d418b47881927fc5bac4ab, type: 2}
+  - {fileID: 2100000, guid: 109a1ef3d7130dc478a334dbee7b87ac, type: 2}
+  - {fileID: 2100000, guid: d66a0aae4c234fd449db507577efbe94, type: 2}
+  - {fileID: 2100000, guid: c4f165c21b439cc40977d76a6d10c2b0, type: 2}
+  - {fileID: 2100000, guid: c19507be3947b3142b17b2791309f569, type: 2}
+  - {fileID: 2100000, guid: 93abfe297dee77b49b1dc40c83b87056, type: 2}
   unlockedShapeGroups:
   - {fileID: 11400000, guid: 0ed35d57f24fade4d95a4d079a04f7ff, type: 2}
   - {fileID: 11400000, guid: 0ed35d57f24fade4d95a4d079a04f7ff, type: 2}
@@ -125,12 +130,7 @@ MonoBehaviour:
   unlockedArchitectures:
   - {fileID: 11400000, guid: ec35440ea27f9614087c6f7d7c8a1570, type: 2}
   - {fileID: 11400000, guid: 227205d3a7584af489e017597a1aec51, type: 2}
-  unlockedMaterials:
-  - {fileID: 2100000, guid: 109a1ef3d7130dc478a334dbee7b87ac, type: 2}
-  - {fileID: 2100000, guid: d66a0aae4c234fd449db507577efbe94, type: 2}
-  - {fileID: 2100000, guid: c4f165c21b439cc40977d76a6d10c2b0, type: 2}
-  - {fileID: 2100000, guid: c19507be3947b3142b17b2791309f569, type: 2}
-  - {fileID: 2100000, guid: 93abfe297dee77b49b1dc40c83b87056, type: 2}
+  unlockedMaterials: []
   startingPositionNumber: 4
   everyXTimesUnlockShape: 7
   everyXTimesUnlockArchitecture: 5

@@ -23,7 +23,6 @@ public class ShapeDatabase : MonoBehaviour
         this.name = "startingPosition" + startingPositionNumber; 
 
         Awake();
- 
         UnlockForStartingSetup();
         
         //Instantiating the starting Positions
@@ -128,13 +127,15 @@ public class ShapeDatabase : MonoBehaviour
 
     private void Start()
     {
+        LockAllMaterials(); 
+
         List<Material> startingMaterials = new List<Material>();
-        SplineComputer[] scs = FindObjectsOfType<SplineComputer>(); 
-        foreach (SplineComputer sc in scs)
+        Shape[] shapes = FindObjectsOfType<Shape>(); 
+        foreach (Shape shape in shapes)
         {
-            foreach(Material material in sc.GetComponent<Renderer>().materials)
+            foreach(Material sharedMaterial in shape.GetComponent<Renderer>().sharedMaterials)
             {
-                startingMaterials.AddAvoidDuplicate(material);
+                startingMaterials.AddAvoidDuplicate(sharedMaterial);
             }
         }
         foreach(Material material in startingMaterials)
@@ -143,6 +144,7 @@ public class ShapeDatabase : MonoBehaviour
         }
     }
 
+    [ContextMenu("LockAllMaterials")]
     private void LockAllMaterials()
     {
         while (unlockedMaterials.Count > 0) 
@@ -228,8 +230,10 @@ public class ShapeDatabase : MonoBehaviour
 
     public Material UnlockSpecificMaterial(Material material)
     {
-        lockedMaterials.Remove(material); 
-        unlockedMaterials.Add(material); 
+        if (lockedMaterials.Remove(material))
+        {
+            unlockedMaterials.Add(material);
+        }
         //Undo.RecordObject(this, ("unlockedMaterial: " + material.name));
 
         return material; 
