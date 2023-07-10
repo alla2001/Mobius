@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject godViewControls; 
     [SerializeField] GameObject characterViewControls; 
     [SerializeField] GameObject rewardSelectionPanel;
+    [SerializeField] GameObject shapePlacementSpacebar; 
     [SerializeField] GameObject characterIcon;
 
     private GameState gameState; 
@@ -42,7 +43,8 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        //zypernKatze update the energy of bridges 
+        // zypernKatze update the energy of bridges
+        // & show / don't show the bridge-energy according to whether the playing is building a bridge
     }
 
     private void ListenToGameState(GameState gameState)
@@ -76,6 +78,7 @@ public class UIManager : MonoBehaviour
                 break;
             case GameState.ShapePlacement:
                 godViewControls.SetActive(false);
+                shapePlacementSpacebar.SetActive(false); 
 
                 break; 
         }
@@ -104,6 +107,7 @@ public class UIManager : MonoBehaviour
                 break;
             case GameState.ShapePlacement:
                 godViewControls.SetActive(true);
+                shapePlacementSpacebar.SetActive(true);
 
                 break;
         }

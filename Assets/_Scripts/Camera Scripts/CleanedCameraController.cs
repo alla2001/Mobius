@@ -64,6 +64,7 @@ public class CleanedCameraController : MonoBehaviour
     private CleanedCameraMode currentCameraMode; 
 
     private float distanceToTarget;
+    private float distanceToTargetOverflow; 
     private Vector3 cameraOffset;
 
     private bool isLerpSetup; 
@@ -227,8 +228,8 @@ public class CleanedCameraController : MonoBehaviour
 
     private void UpdateGodMode()
     {
-        AdjustCameraPivotOffset();
         AdjustCameraDistance();
+        AdjustCameraPivotOffset();
         if (Input.GetMouseButton(1)) 
         { 
             godModePivotPoint.Rotate(new Vector3(mouseY, mouseX, mouseZ));
@@ -320,7 +321,7 @@ public class CleanedCameraController : MonoBehaviour
     {
         if (Input.GetMouseButton(2))
         {
-            cameraOffset += (transform.right * -mouseX + transform.up * mouseY) * offSetMoveSpeed * distanceToTarget / maxZoomGodMode;
+            cameraOffset += (transform.right * -mouseX + transform.up * mouseY) * offSetMoveSpeed;
             cameraOffset = cameraOffset.ClampVectorComponentWise(-maxOffset, maxOffset);
         }
     }
@@ -328,6 +329,28 @@ public class CleanedCameraController : MonoBehaviour
     private void AdjustCameraDistance()
     {
         distanceToTarget -= scrollInput * zoomSpeed;
+        
+        //zypernKatze not the best designed way to move the camera forward again, but fine
+        if (distanceToTarget < minZoomGodMode)
+        {
+            distanceToTargetOverflow += minZoomGodMode - distanceToTarget;
+            distanceToTarget = minZoomGodMode;
+        }
+        else
+        {
+            distanceToTargetOverflow -= Time.deltaTime * 4f; 
+        }
+        if (distanceToTarget > maxZoomGodMode)
+        {
+            distanceToTarget = maxZoomGodMode; 
+        }
+        if (distanceToTargetOverflow > 10 && scrollInput > 0)
+        {
+            float forceCameraForwardLength = distanceToTargetOverflow - 10;
+            distanceToTargetOverflow = 10; 
+            cameraOffset += transform.forward * forceCameraForwardLength/2; 
+        }
+
         distanceToTarget = Mathf.Clamp(distanceToTarget, minZoomGodMode, maxZoomGodMode);
         godModePivotPoint.transform.position = GameManager.Instance.averageCenterPointPosition + cameraOffset; 
         followObject.transform.localPosition = Vector3.forward * -distanceToTarget;
