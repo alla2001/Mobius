@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8673310568142989974}
   - component: {fileID: 8673310568142989973}
   m_Layer: 0
-  m_Name: startingPosition1
+  m_Name: StartingPosition1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,8 +53,6 @@ MonoBehaviour:
   itemPrefab: {fileID: 2623961208235280102, guid: e5a38b635c23f854e9528ffccebc018e,
     type: 3}
   managerPrefab: {fileID: 8673310568142989975}
-  startingPositionPrefab: {fileID: 1756469803374299660, guid: a9aa575a00388754aacbae83b9447255,
-    type: 3}
   lockedShapeGroups:
   - {fileID: 11400000, guid: 0ed35d57f24fade4d95a4d079a04f7ff, type: 2}
   - {fileID: 11400000, guid: 0ed35d57f24fade4d95a4d079a04f7ff, type: 2}
@@ -2587,8 +2585,8 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a64860902a8dcda45863316ff0922833, type: 2}
-  - {fileID: 2100000, guid: a64860902a8dcda45863316ff0922833, type: 2}
-  - {fileID: 2100000, guid: 1e649fba5e6d3c549a452947aba8383e, type: 2}
+  - {fileID: 2100000, guid: 026704cac1e4863438f613755e765005, type: 2}
+  - {fileID: 2100000, guid: 109a1ef3d7130dc478a334dbee7b87ac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2753,6 +2751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIntersection: {fileID: 8985865289092609490}
+  TimeScaleWhenSlowed: 0.2
 --- !u!1 &8985865289119374734
 GameObject:
   m_ObjectHideFlags: 0
@@ -5175,6 +5174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIntersection: {fileID: 8985865289415371928}
+  TimeScaleWhenSlowed: 0.2
 --- !u!1 &8985865289417984837
 GameObject:
   m_ObjectHideFlags: 0
@@ -10890,6 +10890,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIntersection: {fileID: 8985865289496787429}
+  TimeScaleWhenSlowed: 0.2
 --- !u!1 &8985865289502755453
 GameObject:
   m_ObjectHideFlags: 0
@@ -11208,8 +11209,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a64860902a8dcda45863316ff0922833, type: 2}
-  - {fileID: 2100000, guid: a64860902a8dcda45863316ff0922833, type: 2}
+  - {fileID: 2100000, guid: c19507be3947b3142b17b2791309f569, type: 2}
+  - {fileID: 2100000, guid: 5607224f2d27533438bd5c493fb7d9e2, type: 2}
   - {fileID: 2100000, guid: 93abfe297dee77b49b1dc40c83b87056, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -12120,7 +12121,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a64860902a8dcda45863316ff0922833, type: 2}
-  - {fileID: 2100000, guid: a64860902a8dcda45863316ff0922833, type: 2}
+  - {fileID: 2100000, guid: 026704cac1e4863438f613755e765005, type: 2}
   - {fileID: 2100000, guid: 93abfe297dee77b49b1dc40c83b87056, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -17783,6 +17784,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIntersection: {fileID: 8985865290617476060}
+  TimeScaleWhenSlowed: 0.2
 --- !u!1 &8985865290625213035
 GameObject:
   m_ObjectHideFlags: 0
