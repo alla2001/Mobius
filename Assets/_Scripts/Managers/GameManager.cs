@@ -181,15 +181,16 @@ public class GameManager : MonoBehaviour
 
     public void NextTimeMode()
     {
-        for (int i = 0; i < timeModes.Length-1; i++) 
-        { 
+        for (int i = 0; i < timeModes.Length - 1; i++)
+        {
             if (Time.timeScale == timeModes[i])
             {
                 Time.timeScale = timeModes[i + 1];
-                return; 
+                return;
             }
         }
-        Time.timeScale = timeModes[0]; 
+        Time.timeScale = timeModes[0];
+    }
 
     public void DetermineReward()
     {
