@@ -158,7 +158,11 @@ public class CharacterMovement : MonoBehaviour
             print("Intersect");
             intersectionPos = other.transform.position;
             intersection = other.GetComponent<Intersection>();
-
+            if (GameManager.Instance.currentControlledCharacter == this)
+            {
+                intersection.SlowTime();
+            }
+         
             inInterSection = true;
         }
     }
@@ -168,6 +172,11 @@ public class CharacterMovement : MonoBehaviour
         if (other.CompareTag("Intersection") && inInterSection)
         {
             // other.transform.position= intersectionPos;
+            if (GameManager.Instance.currentControlledCharacter == this)
+            {
+                intersection.ReturnTime();
+            }
+             
             inInterSection = false;
         }
     }
