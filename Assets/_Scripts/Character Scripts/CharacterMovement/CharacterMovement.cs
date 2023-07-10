@@ -2,6 +2,8 @@ using Dreamteck.Splines;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro; 
+
 [RequireComponent(typeof(SplineFollower))]
 public class CharacterMovement : MonoBehaviour
 {
@@ -28,14 +30,17 @@ public class CharacterMovement : MonoBehaviour
     private bool inInterSection;
     public static List<CharacterMovement> characters = new List<CharacterMovement>();
     public ParticleSystem[] particleSystems;
+    public TMP_Text energyText;
+    private CharacterInfo characterInfo; 
 
     private void Start()
     {
         foreach (ParticleSystem particleSystem in particleSystems)
         {
             var main = particleSystem.main; 
-            main.useUnscaledTime = true; 
+            main.useUnscaledTime = false; 
         }
+        characterInfo = GetComponent<CharacterInfo>();
     }
 
     private void OnEnable()
@@ -53,6 +58,8 @@ public class CharacterMovement : MonoBehaviour
     private void Update()
     {
         if (GameManager.Instance.currentControlledCharacter != this) { return; }
+        if (energyText != null) { energyText.text = (characterInfo.timeBeforeDeath / 5f).ToString(); } 
+
         if (Input.GetKeyDown(KeyCode.D))
         {
             MoveOnIntersection(0);

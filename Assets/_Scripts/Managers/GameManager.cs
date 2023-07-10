@@ -40,7 +40,10 @@ public class GameManager : MonoBehaviour
    
     [SerializeField] private GameObject gameOverPanel;
 
-    private CharacterMovement p_currentControlledCharacter; 
+    private CharacterMovement p_currentControlledCharacter;
+
+    [SerializeField] private float[] timeModes; 
+
 
     public CharacterMovement currentControlledCharacter
     {
@@ -65,7 +68,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this);
         }
-        SpawnRandomStartingPosition(); 
+        SpawnRandomStartingPosition();
+        SwitchToTimeMode(0);  
     }
 
     private void SpawnRandomStartingPosition()
@@ -92,19 +96,14 @@ public class GameManager : MonoBehaviour
 
         if (newState == GameState.CharacterView)
         {
-            Time.timeScale = 1f;
-        }
-        else
-        {
-            Time.timeScale = godModeTimeMultiplier;
-          
+            SwitchToTimeMode(2); 
         }
 
         if(newState == GameState.ShapePlacement)
         {
+            SwitchToTimeMode(0);  
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible=false;
-
         }
         else
         {
@@ -167,5 +166,23 @@ public class GameManager : MonoBehaviour
     public void StartCharacterPlacement()
     {
         ChangeState(GameState.CharacterPlacement); 
+    }
+
+    public void SwitchToTimeMode(int timeMode)
+    {
+        Time.timeScale = timeModes[timeMode]; 
+    }
+
+    public void NextTimeMode()
+    {
+        for (int i = 0; i < timeModes.Length-1; i++) 
+        { 
+            if (Time.timeScale == timeModes[i])
+            {
+                Time.timeScale = timeModes[i + 1];
+                return; 
+            }
+        }
+        Time.timeScale = timeModes[0]; 
     }
 }

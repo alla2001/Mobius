@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.Rendering;
 using FMOD;
 using FMODUnity;
+using UnityEngine.UI;
 
 public class BridgeCreator : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class BridgeCreator : MonoBehaviour
     public float energyToAdd=2;
     public List<GameObject> Bridgeparts = new List<GameObject>();
     public static BridgeCreator instance;
+
+    public Text energyText; 
+
     private void Awake()
     {
         if (instance == null)
@@ -78,6 +82,8 @@ public class BridgeCreator : MonoBehaviour
 
         }
         if (!inPortalCreationMode) return;
+
+        energyText.text = energy.ToString();
 
         if (Input.GetKeyDown(KeyCode.Escape) && firstBridgePoint != null)
         {
@@ -288,7 +294,8 @@ public class BridgeCreator : MonoBehaviour
                     splineBridge.GetComponent<SplineMesh>().RebuildImmediate();
                     emitter.Stop();
                     AudioManager.instance.PlayOneShot(FMODEvents.instance.bridgeSecondClick);
-
+                    firstSpline = null;
+                    secondSpline = null;
 
                  
 

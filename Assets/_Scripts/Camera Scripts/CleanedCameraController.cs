@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -115,7 +116,7 @@ public class CleanedCameraController : MonoBehaviour
         if (currentCameraMode == CleanedCameraMode.GODMODE && GameManager.Instance.currentState == GameState.GodView)
         {
             CharacterMovement character = CheckCharacterClick(); 
-            if (character != null && BridgeCreator.instance.firstSpline==null)
+            if (character != null && BridgeCreator.instance.firstSpline.IsUnityNull())
             {
                 TakeCharacterPossesion(character);
             }
@@ -307,6 +308,7 @@ public class CleanedCameraController : MonoBehaviour
     private void TakeCharacterPossesion(CharacterMovement characterMovement)
     {
         GameManager.Instance.currentControlledCharacter = characterMovement;
+        GameManager.Instance.SwitchToTimeMode(2); 
         AudioManager.instance.PlayOneShot(FMODEvents.instance.characterTakeControl);
         //zypernKatze should change sound here, when the character is low on energy
 
@@ -415,7 +417,7 @@ public class CleanedCameraController : MonoBehaviour
         while (deleteTimer < 5.0f)
         {
             deleteTimer += Time.deltaTime;
-            if (currentCameraMode == CleanedCameraMode.GODMODE || currentCameraMode == CleanedCameraMode.DEAD)
+            if (currentCameraMode != CleanedCameraMode.CHARACTERMODE)
             {
                 yield break; 
             }
