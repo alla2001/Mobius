@@ -1,7 +1,8 @@
 using Dreamteck.Splines;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEngine; 
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ShapeDatabase : MonoBehaviour
 {
@@ -125,6 +126,31 @@ public class ShapeDatabase : MonoBehaviour
         instance = this; 
     }
 
+    private void Start()
+    {
+        List<Material> startingMaterials = new List<Material>();
+        SplineComputer[] scs = FindObjectsOfType<SplineComputer>(); 
+        foreach (SplineComputer sc in scs)
+        {
+            foreach(Material material in sc.GetComponent<Renderer>().materials)
+            {
+                startingMaterials.AddAvoidDuplicate(material);
+            }
+        }
+        foreach(Material material in startingMaterials)
+        {
+            UnlockSpecificMaterial(material);
+        }
+    }
+
+    private void LockAllMaterials()
+    {
+        while (unlockedMaterials.Count > 0) 
+        {
+            LockSpecificMaterial(unlockedMaterials[0]); 
+        }
+    }
+
     //IN SCENE METHODS (e.g. things that need to be accessed by unityEvents)
 
     //PUBLIC CODE METHODS
@@ -207,6 +233,15 @@ public class ShapeDatabase : MonoBehaviour
         //Undo.RecordObject(this, ("unlockedMaterial: " + material.name));
 
         return material; 
+    }
+
+    public Material LockSpecificMaterial(Material material)
+    {
+        lockedMaterials.Add(material);
+        unlockedMaterials.Remove(material);
+        //Undo.RecordObject(this, ("unlockedMaterial: " + material.name));
+
+        return material;
     }
 
     public void UnlockForStartingSetup()
