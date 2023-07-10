@@ -40,7 +40,7 @@ MonoBehaviour:
     dimension: 1
   dirtIntensity:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: 1.23
 --- !u!114 &-7011558710299706105
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -62,7 +62,7 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.31
+    m_Value: 0.269
   smoothness:
     m_OverrideState: 1
     m_Value: 0.415
@@ -183,7 +183,7 @@ MonoBehaviour:
   active: 0
   mode:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 1
 --- !u!114 &1546368105556706918
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -245,7 +245,7 @@ MonoBehaviour:
   active: 0
   distance:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   cropToFit:
     m_OverrideState: 1
     m_Value: 1
