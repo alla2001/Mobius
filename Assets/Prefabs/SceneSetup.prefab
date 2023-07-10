@@ -9101,8 +9101,8 @@ MonoBehaviour:
   characterModeCameraLocalPosition: {x: 0, y: 18, z: -15}
   characterModeLocalEulerAngles: {x: 20, y: 0, z: 0}
   nearClipPlane: 2.5
-  lerpStartUpTime: 0.1
-  lerpTime: 0.4
+  lerpStartUpTime: 0
+  lerpTime: 0.75
 --- !u!54 &8508469492524494811
 Rigidbody:
   m_ObjectHideFlags: 0

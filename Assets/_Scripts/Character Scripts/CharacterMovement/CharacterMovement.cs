@@ -27,6 +27,17 @@ public class CharacterMovement : MonoBehaviour
 
     private bool inInterSection;
     public static List<CharacterMovement> characters = new List<CharacterMovement>();
+    public ParticleSystem[] particleSystems;
+
+    private void Start()
+    {
+        foreach (ParticleSystem particleSystem in particleSystems)
+        {
+            var main = particleSystem.main; 
+            main.useUnscaledTime = true; 
+        }
+    }
+
     private void OnEnable()
     {
         characters.Add(this);
@@ -41,7 +52,7 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (GameManager.Instance.currentControlledCharacter != this) return;
+        if (GameManager.Instance.currentControlledCharacter != this) { return; }
         if (Input.GetKeyDown(KeyCode.D))
         {
             MoveOnIntersection(0);
@@ -60,6 +71,40 @@ public class CharacterMovement : MonoBehaviour
     {
         Debug.Log("MouseOverCharacter");
         AudioManager.instance.PlayOneShot(FMODEvents.instance.characterHoverOver);
+
+        if (C_RevertMouseEnterEffect != null) { StopCoroutine(C_RevertMouseEnterEffect); }
+
+        if (GameManager.Instance.currentState == GameState.GodView)
+        {
+            foreach(ParticleSystem particleSystem in particleSystems)
+            {
+                var emission = particleSystem.emission;
+                emission.rateOverTime = new ParticleSystem.MinMaxCurve(2f);
+            }
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        StartCoroutine(RevertMouseEnterEffect()); 
+    }
+
+    Coroutine C_RevertMouseEnterEffect; 
+    private IEnumerator RevertMouseEnterEffect()
+    {
+        float time = 0;
+
+        while (time < 1f)
+        {
+            time += Time.deltaTime;
+            foreach (ParticleSystem particleSystem in particleSystems)
+            {
+                var emission = particleSystem.emission;
+                emission.rateOverTime = new ParticleSystem.MinMaxCurve(Mathf.Lerp(2f, 0.5f, time));
+            }
+            yield return null; 
+        }
+
     }
 
     private void GoBack()
