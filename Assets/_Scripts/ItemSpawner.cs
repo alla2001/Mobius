@@ -10,6 +10,7 @@ public class ItemSpawner : MonoBehaviour
     public GameObject itemPrefab;
     int spawnedItems;
     public static ItemSpawner instace;
+    List<GameObject> createdItems =new List<GameObject>();
     private void Awake()
     {
         if (!instace) instace = this;
@@ -22,6 +23,11 @@ public class ItemSpawner : MonoBehaviour
     }
     public void SpawnItems()
     {
+        foreach (var item in createdItems)
+        {
+            Destroy(item);
+        }
+        createdItems.Clear();
         print("Trying Spawn");
         for (int i = 0; i < 100; i++)
         {
@@ -59,6 +65,7 @@ public class ItemSpawner : MonoBehaviour
                 GameObject  temp = Instantiate(itemPrefab, point.position + point.normal*0.5f , Quaternion.identity);
                 temp.transform.up = point.normal;
                 spawnedItems++;
+                createdItems.Add(temp);
             }
         }
 

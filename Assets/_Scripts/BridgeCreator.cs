@@ -9,6 +9,7 @@ public class BridgeCreator : MonoBehaviour
 {
     public bool inPortalCreationMode;
     public float maxPortalDistance;
+    public float minPortalDistance;
     public GameObject hilightPrefab;
     public Camera mainCamera;
     public GameObject nodePrefab;
@@ -20,20 +21,31 @@ public class BridgeCreator : MonoBehaviour
     private Node firstBridgePoint;
     private Node secondBridgePoint;
     private SplineComputer splineBridge;
-    private SplineComputer firstSpline;
+    [HideInInspector]public SplineComputer firstSpline;
     private SplineComputer secondSpline;
     private GameObject tempHilight;
     public float energyToAdd=2;
-    public List<GameObject> Bridgeparts = new List<GameObject>();   
-    
-        /// <summary>
-        /// DONE : Implement bridge distance/length, cant place too long bridges (Based on energy)
-        /// DONE : Energy based on length, more length used less energy you have
-        /// DONE : Number of scattered objectects depends on legnth 
-        /// TODO : 
-        /// </summary>
+    public List<GameObject> Bridgeparts = new List<GameObject>();
+    public static BridgeCreator instance;
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+    /// <summary>
+    /// DONE : Implement bridge distance/length, cant place too long bridges (Based on energy)
+    /// DONE : Energy based on length, more length used less energy you have
+    /// DONE : Number of scattered objectects depends on legnth 
+    /// TODO : 
+    /// </summary>
     // Start is called before the first frame update
- 
+
 
     private void OnDrawGizmos()
     {
@@ -79,13 +91,25 @@ public class BridgeCreator : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(r, out hit , 1000,~ignoreMask))
         {
-            
-
-            if (firstBridgePoint != null && Vector3.Distance(firstBridgePoint.transform.position, hit.point) > maxPortalDistance)
+            if (hit.collider.CompareTag("Player") && firstBridgePoint==null)
             {
                 if (tempHilight != null)
                     Destroy(tempHilight);
+                lineRenderer.positionCount = 0;
                 return;
+            }
+
+           
+            if (firstBridgePoint != null )
+            {
+                float distance = Vector3.Distance(firstBridgePoint.transform.position, hit.point);
+                if(distance > maxPortalDistance && distance > minPortalDistance)
+                {
+                    if (tempHilight != null)
+                        Destroy(tempHilight);
+                    return;
+                }
+             
             }
          
             if (tempHilight == null)
@@ -111,7 +135,7 @@ public class BridgeCreator : MonoBehaviour
                 secondBridgePoint.transform.rotation = result.rotation;
                 secondBridgePoint.GetComponent<Node>().AddConnection(secondSpline, secondSpline.PercentToPointIndex(secondSpline.Project(hit.point).percent));
                 
-                if (!IsValidBridge() || energy - Vector3.Distance(firstBridgePoint.transform.position, result.position) < 0 || firstSpline== secondSpline || !IsEmptyPoint(secondSpline, index))
+                if (!IsValidBridge() || energy - Vector3.Distance(firstBridgePoint.transform.position, result.position) < 0 /*|| firstSpline == secondSpline || !IsEmptyPoint(secondSpline, index)*/)
                 {
                     lineRenderer.material.color = Color.red;
                     lineRenderer.material.SetColor("_EmissionColor", Color.red);
@@ -149,6 +173,7 @@ public class BridgeCreator : MonoBehaviour
                 {
                     emitter.Stop();
                     Destroy(firstBridgePoint.gameObject);
+                    lineRenderer.positionCount = 0;
                     return;
                 }
                 result = firstSpline.Evaluate(index);
@@ -170,7 +195,8 @@ public class BridgeCreator : MonoBehaviour
                 {
                     emitter.Stop();
                     Destroy(firstBridgePoint.gameObject);
-           
+                    lineRenderer.positionCount = 0;
+
                     return;
                 }
                 secondBridgePoint = Instantiate(nodePrefab).GetComponent<Node>();
@@ -181,7 +207,7 @@ public class BridgeCreator : MonoBehaviour
                     emitter.Stop();
                     Destroy(firstBridgePoint.gameObject);
                     Destroy(secondBridgePoint.gameObject);
-
+                    lineRenderer.positionCount = 0;
                     return;
                 }
                 result = secondSpline.Evaluate(index);
@@ -222,10 +248,10 @@ public class BridgeCreator : MonoBehaviour
                 }
                 energy -= distance;
 
-            
-                //Debug.DrawLine(rayCastPoint1, rayCastPoint2, Color.red, 1000);
 
-                if (!Physics.SphereCast(rayCastPoint1, 0.15f, rayCastPoint2 - rayCastPoint1,out hit, Vector3.Distance(rayCastPoint2 ,rayCastPoint1)))
+                UnityEngine.Debug.DrawLine(rayCastPoint1, rayCastPoint2, Color.red, 1000);
+
+                if (!Physics.SphereCast(rayCastPoint1, 0.01f, rayCastPoint2 - rayCastPoint1,out hit, Vector3.Distance(rayCastPoint2 ,rayCastPoint1)))
                 {
                   
                     SplinePoint[] points = new SplinePoint[2];
@@ -277,6 +303,7 @@ public class BridgeCreator : MonoBehaviour
                     emitter.Stop();
                     Destroy(firstBridgePoint.gameObject);
                     Destroy(secondBridgePoint.gameObject);
+                    lineRenderer.positionCount = 0;
                 }
             }
             return;

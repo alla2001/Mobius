@@ -6,8 +6,21 @@ public class Intersection : MonoBehaviour
 {
     public Node nodeIntersection;
     public static List<Intersection> intersections = new List<Intersection>();
+    public float TimeScaleWhenSlowed=0.2f;
+    float timescaleBefore;
 
 
+    public void SlowTime()
+    {
+        timescaleBefore = Time.timeScale;
+        Time.timeScale = TimeScaleWhenSlowed;
+
+    }
+
+    public void ReturnTime()
+    {
+        Time.timeScale = timescaleBefore;
+    }
     private void OnEnable()
     {
         intersections.Add(this);

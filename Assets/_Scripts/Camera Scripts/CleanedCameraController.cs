@@ -114,7 +114,7 @@ public class CleanedCameraController : MonoBehaviour
         if (currentCameraMode == CleanedCameraMode.GODMODE && GameManager.Instance.currentState == GameState.GodView)
         {
             CharacterMovement character = CheckCharacterClick(); 
-            if (character != null)
+            if (character != null && BridgeCreator.instance.firstSpline==null)
             {
                 TakeCharacterPossesion(character);
             }
