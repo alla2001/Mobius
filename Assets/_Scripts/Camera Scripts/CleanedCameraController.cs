@@ -11,6 +11,8 @@ using static UnityEditor.SceneView;
  *In LerpMode the Camera moves one Object to another one (these can also be moving objects)  
 */
 
+//zypernKatze the camera can be broken by first moving offsetting it heavily and then trying to zoom into the shape
+
 public enum CleanedCameraMode
 {
     GODMODE,
@@ -28,7 +30,7 @@ public class CleanedCameraController : MonoBehaviour
 
     //EDITOR VARIABLES
     public GameObject emptyPrefab;
-    public GameObject savedGodModeGameObject;
+    public GameObject savedGodModeGameObject; 
     public Transform godModePivotPoint;
     public GameObject followObject;
 
@@ -104,7 +106,7 @@ public class CleanedCameraController : MonoBehaviour
                 (CheckCharacterClick() != null && CheckCharacterClick() == GameManager.Instance.currentControlledCharacter)
                 )
             {
-                SetupLerp(followObject, savedGodModeGameObject, CleanedCameraMode.GODMODE);
+                SetupLerp(followObject, GetSavedGodMode(), CleanedCameraMode.GODMODE);
                 ChangeCameraMode(CleanedCameraMode.LERPMODE); 
                 GameManager.Instance.ChangeState(GameState.GodView); 
             }
@@ -277,11 +279,11 @@ public class CleanedCameraController : MonoBehaviour
         switch (state)
         {
             case GameState.ShapePlacement:
-                SetupLerp(followObject, savedGodModeGameObject, CleanedCameraMode.GODMODE);
+                SetupLerp(followObject, GetSavedGodMode(), CleanedCameraMode.GODMODE);
                 ChangeCameraMode(CleanedCameraMode.LERPMODE);
                 break;
             case GameState.GameOver:
-                SetupLerp(followObject, savedGodModeGameObject, CleanedCameraMode.GODMODE);
+                SetupLerp(followObject, GetSavedGodMode(), CleanedCameraMode.GODMODE);
                 ChangeCameraMode(CleanedCameraMode.LERPMODE);
                 break; 
         }
@@ -305,9 +307,10 @@ public class CleanedCameraController : MonoBehaviour
     {
         GameManager.Instance.currentControlledCharacter = characterMovement;
         AudioManager.instance.PlayOneShot(FMODEvents.instance.characterTakeControl);
+        //zypernKatze should change sound here, when the character is low on energy
 
         SaveGodModePosition();
-        SetupLerp(savedGodModeGameObject, followObject, CleanedCameraMode.CHARACTERMODE);
+        SetupLerp(GetSavedGodMode(), followObject, CleanedCameraMode.CHARACTERMODE);
         GameManager.Instance.ChangeState(GameState.CharacterView); //changing cameraMode happens via ListenToGameManager
 
         ChangeCameraMode(CleanedCameraMode.LERPMODE);
@@ -361,12 +364,12 @@ public class CleanedCameraController : MonoBehaviour
 
     private void SetupGodModeFollowObject()
     {
-        SetupFollowObject(godModePivotPoint.transform, savedGodModeGameObject.transform.position, savedGodModeGameObject.transform.localEulerAngles);
+        SetupFollowObject(godModePivotPoint.transform, GetSavedGodMode().transform.position, GetSavedGodMode().transform.localEulerAngles);
     }
 
     private void SetupDeadModeFollowObject()
     {
-        SetupFollowObject(godModePivotPoint.transform, Vector3.back * maxZoomGodMode, savedGodModeGameObject.transform.localEulerAngles); 
+        SetupFollowObject(godModePivotPoint.transform, Vector3.back * maxZoomGodMode, GetSavedGodMode().transform.localEulerAngles); 
     }
 
     private void SaveGodModePosition()
@@ -375,8 +378,27 @@ public class CleanedCameraController : MonoBehaviour
         {
             savedGodModeGameObject = new GameObject(); 
         }
-        savedGodModeGameObject.transform.position = transform.position; 
-        savedGodModeGameObject.transform.rotation = transform.rotation; 
+        savedGodModeGameObject.transform.position = transform.position;
+        savedGodModeGameObject.transform.rotation = transform.rotation;
+
+        StartCoroutine(DeleteGodModePosition()); 
+    }
+
+    private IEnumerator DeleteGodModePosition()
+    {
+        float deleteTimer = 0f;
+        yield return null; 
+        while (deleteTimer < 5.0f)
+        {
+            deleteTimer += Time.deltaTime;
+            if (currentCameraMode == CleanedCameraMode.GODMODE || currentCameraMode == CleanedCameraMode.DEAD)
+            {
+                yield break; 
+            }
+            yield return null; 
+        }
+
+        Destroy(savedGodModeGameObject); 
     }
 
     private void SetupLerp(GameObject from, GameObject to, CleanedCameraMode lerpToMode)
@@ -407,5 +429,18 @@ public class CleanedCameraController : MonoBehaviour
         }
         GameManager.Instance.UpdateAveragePosition(); 
         godModePivotPoint.transform.position = GameManager.Instance.averageCenterPointPosition; 
+    }
+
+    public GameObject GetSavedGodMode()
+    {
+        if (savedGodModeGameObject == null)
+        {
+            godModePivotPoint.transform.position = transform.position;
+            godModePivotPoint.transform.rotation = transform.rotation; 
+            cameraOffset = transform.position - GameManager.Instance.averageCenterPointPosition;
+            distanceToTarget = 25.0f; 
+            savedGodModeGameObject = Instantiate(emptyPrefab, transform.position + -transform.forward * distanceToTarget, transform.rotation, godModePivotPoint); 
+        }
+        return savedGodModeGameObject; 
     }
 }
