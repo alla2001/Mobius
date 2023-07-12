@@ -1,29 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI; 
 using UnityEngine.UIElements;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager instance;
+
     [Header("Icons")]
     [SerializeField] GameObject clockIcon; 
     [SerializeField] GameObject energyIcon; 
     [SerializeField] TextField energyText;
+    public GameObject Character_energy_icon;
+    public Text Character_energy_text; 
 
-    [Header("Explanations")]
+    [Header("Panels")]
+    [SerializeField] GameObject gameStart; 
     [SerializeField] GameObject godViewControls; 
     [SerializeField] GameObject characterViewControls; 
     [SerializeField] GameObject rewardSelectionPanel;
     [SerializeField] GameObject shapePlacementSpacebar; 
     [SerializeField] GameObject characterIcon;
+    [SerializeField] GameObject gameOverPanel; 
 
-    private GameState gameState; 
+    private GameState savedGameState; //needed in order to deactivate the old UI
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
+            Debug.LogError("Secondary FMODEvents destroyed on: " + gameObject.GetNameIncludingParents() + "\nFirst FMODEvents found on: " + instance.gameObject.GetNameIncludingParents());
+        }
+        instance = this;
+    }
 
     void Start()
     {
         GameManager.Instance.onStateChange.AddListener(ListenToGameState);
 
+        gameStart.SetActive(false); 
         clockIcon.SetActive(true);
         energyIcon.SetActive(true);
 
@@ -33,7 +50,7 @@ public class UIManager : MonoBehaviour
         DeactivateUI(GameState.RewardMode);
         DeactivateUI(GameState.CharacterPlacement);
 
-        ActivateUI(gameState); 
+        ActivateUI(savedGameState); 
     }
 
     private void OnDestroy()
@@ -49,9 +66,9 @@ public class UIManager : MonoBehaviour
 
     private void ListenToGameState(GameState gameState)
     {
-        DeactivateUI(this.gameState);
-        this.gameState = gameState; 
-        ActivateUI(this.gameState); 
+        DeactivateUI(this.savedGameState);
+        this.savedGameState = gameState; 
+        ActivateUI(this.savedGameState); 
     }
     
 
@@ -78,7 +95,10 @@ public class UIManager : MonoBehaviour
                 break;
             case GameState.ShapePlacement:
                 godViewControls.SetActive(false);
-                shapePlacementSpacebar.SetActive(false); 
+                shapePlacementSpacebar.SetActive(false);
+                break; 
+            case GameState.GameOver: 
+                gameOverPanel.SetActive(false);
 
                 break; 
         }
@@ -109,6 +129,10 @@ public class UIManager : MonoBehaviour
             case GameState.ShapePlacement:
                 godViewControls.SetActive(true);
                 shapePlacementSpacebar.SetActive(true);
+
+                break;
+            case GameState.GameOver:
+                gameOverPanel.SetActive(true);
 
                 break;
         }

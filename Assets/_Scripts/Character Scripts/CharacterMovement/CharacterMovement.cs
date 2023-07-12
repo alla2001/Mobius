@@ -26,12 +26,13 @@ public class CharacterMovement : MonoBehaviour
     /// </summary>
     private SplineFollower _follower;
 
-
     private bool inInterSection;
     public static List<CharacterMovement> characters = new List<CharacterMovement>();
     public ParticleSystem[] particleSystems;
+    public GameObject characterEnergy_UI;
     public Text energyText;
     private CharacterInfo characterInfo; 
+    [SerializeField] private Animator animator;
 
     private void Start()
     {
@@ -43,27 +44,9 @@ public class CharacterMovement : MonoBehaviour
         characterInfo = GetComponent<CharacterInfo>();
     }
 
-    private void OnEnable()
-    {
-        characters.Add(this);
-        //onNode is called every time the follower passes by a Node
-    }
-
-    private void OnDisable()
-    {
-        characters.Remove(this);
-    }
-
     // Update is called once per frame
-    private void Update()
+    private void Update() //gets enabled / disabled via the TakeControl() and ReleaseControl() Method
     {
-        if (GameManager.Instance.currentControlledCharacter != this) { return; }
-        if (energyText == null)//zypernKatze searching by gameobjectname unclean
-        {
-            energyText = GameObject.Find("Energy-Text")!.GetComponent<Text>(); 
-        }
-        energyText.text = ((int)(characterInfo.timeBeforeDeath / 10)).ToString();
-
         if (Input.GetKeyDown(KeyCode.D))
         {
             MoveOnIntersection(0);
@@ -76,6 +59,7 @@ public class CharacterMovement : MonoBehaviour
         {
             GoBack();
         }
+        energyText.text = ((int)(characterInfo.timeBeforeDeath / 10)).ToString();
     }
 
     private void OnMouseEnter()
@@ -92,12 +76,19 @@ public class CharacterMovement : MonoBehaviour
                 var emission = particleSystem.emission;
                 emission.rateOverTime = new ParticleSystem.MinMaxCurve(2f);
             }
+
+            characterEnergy_UI.SetActive(true);
+            energyText.text = (characterInfo.timeBeforeDeath / characterInfo.energyPerStone).ToString("0.00"); 
         }
     }
 
     private void OnMouseExit()
     {
-        StartCoroutine(RevertMouseEnterEffect()); 
+        StartCoroutine(RevertMouseEnterEffect());
+        if (GameManager.Instance.currentState != GameState.CharacterView)
+        {
+            characterEnergy_UI.SetActive(false);
+        }
     }
 
     Coroutine C_RevertMouseEnterEffect; 
@@ -203,6 +194,8 @@ public class CharacterMovement : MonoBehaviour
         int current = intersection.GetCurrentConnection(follower);
 
         SwitchSpline(intersection.GetConnectionByIndex(current), intersection.GetNextDirection(current), direction > 0);
+
+        animator.SetTrigger("MoveOnIntersection"); 
     }
 
     private Intersection intersection;
@@ -237,14 +230,17 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-    public void AddEnergyToAllCharacters()
+    public void takeControl()
     {
-        foreach (var character in characters)
-        {
-            CharacterInfo characterInfo = character.GetComponent<CharacterInfo>();
-            characterInfo.timeBeforeDeath += characterInfo.timetoAddOnReward;
-            GameManager.Instance.ChangeState(GameState.GodView);
-            ItemSpawner.instace.SpawnItems();
-        }
+        characterEnergy_UI.SetActive(true); 
+        tag = "Player"; 
+        enabled = true; 
+    }
+
+    public void releaseControl()
+    {
+        characterEnergy_UI.SetActive(false);
+        tag = "Untagged"; 
+        enabled = false; 
     }
 }

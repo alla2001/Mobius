@@ -46,10 +46,9 @@ public class ItemSpawner : MonoBehaviour
        
         List<SplineComputer> computers = new List<SplineComputer>();
         computers.AddRange( shape.GetComponentsInChildren<SplineComputer>());
-        foreach (CharacterMovement charMove in CharacterMovement.characters)
+        foreach (CharacterInfo charInfo in CharacterInfo.characters)
         {
-           
-            if (computers.Contains( charMove.GetComponent<SplineFollower>().spline))
+            if (computers.Contains( charInfo.GetComponent<SplineFollower>().spline))
             {
                 return;
             }
@@ -57,8 +56,17 @@ public class ItemSpawner : MonoBehaviour
         print("Found Valid Spline");
         foreach (var splineComputer in computers)
         {
-            int chance = Random.Range(0, 5);
-           
+            float chanceReciprocal = 5;
+            foreach(Item i in FindObjectsOfType<Item>())
+            {
+                chanceReciprocal += 2; 
+            }
+            foreach(CharacterInfo ch in CharacterInfo.characters)
+            {
+                chanceReciprocal += 2; 
+            }
+            int chance = Random.Range(0, (int) chanceReciprocal);
+
             if (chance == 0)
             {
                 SplinePoint point = splineComputer.GetPoint(Random.Range(0, splineComputer.pointCount));

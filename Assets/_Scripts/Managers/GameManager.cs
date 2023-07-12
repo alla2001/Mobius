@@ -25,16 +25,14 @@ public class GameManager : MonoBehaviour
     public int Score;
 
     // Game variables
-    public GameState currentState { get; private set; }
-    [HideInInspector] public float gameTimeScaleCharacter = 1f;
-    [HideInInspector] public float gameTimeScaleGodmode = 0.5f;
+    public  GameState currentState { get; private set; }    
     public UnityEvent<GameState> onStateChange = new UnityEvent<GameState>();
     [HideInInspector] public List<Character> allCharacters;
-    [SerializeField] private List<GameObject> startingPositionPrefabs;
+    [SerializeField] private List<GameObject> startingPositionPrefabs; 
 
     [HideInInspector] public List<GameObject> allWalls;
     private List<Vector3> allWallPositions = new List<Vector3>();
-    public Vector3 averageCenterPointPosition;
+     public Vector3 averageCenterPointPosition;
 
     [SerializeField] GameObject placeCharacterRewardButton;
     [SerializeField] GameObject addBridgeEnergyRewardButton;
@@ -64,9 +62,11 @@ public class GameManager : MonoBehaviour
         }
         set
         {
-            //if (p_currentControlledCharacter != null) { p_currentControlledCharacter.tag = "Untagged"; }
+            if (p_currentControlledCharacter != null) { p_currentControlledCharacter.releaseControl(); }
+
             p_currentControlledCharacter = value;
-            if (value != null) { p_currentControlledCharacter.gameObject.tag = "Player"; }
+            
+            if (value != null) { p_currentControlledCharacter.takeControl(); }
         }
     }
     private void Awake()
@@ -82,8 +82,6 @@ public class GameManager : MonoBehaviour
         SpawnRandomStartingPosition();
         SwitchToTimeMode(0);
         Shader.SetGlobalFloat("_HolePull", 0);
-        
-
     }
 
     private void SpawnRandomStartingPosition()
@@ -104,13 +102,8 @@ public class GameManager : MonoBehaviour
 
     public void ChangeState(GameState newState) 
     {
-        if (currentState==GameState.GameOver)
-        {
-            return;
-        }
         onStateChange.Invoke(newState);
         currentState = newState;
-       
 
         if (newState == GameState.CharacterView)
         {
@@ -119,7 +112,6 @@ public class GameManager : MonoBehaviour
 
         if(newState == GameState.ShapePlacement)
         {
-            Time.timeScale = 1;
             SwitchToTimeMode(0);  
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible=false;
@@ -127,8 +119,7 @@ public class GameManager : MonoBehaviour
         else
         {
             Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true   ;
-
+            Cursor.visible = true;
         }
     }
     public Vector3 UpdateAveragePosition()
@@ -148,21 +139,14 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentState == GameState.GameOver)
+        if (CharacterInfo.characters.Count() == 0)
         {
-            gameOverPanel.SetActive(true);
-        }
-
-        if (CharacterMovement.characters.Count() == 0 &&!dead)
-        {
-            Death();
+            ChangeState(GameState.GameOver);
         }
         if (blackHoleActivated)
         {
             Shader.SetGlobalFloat("_HolePull",Mathf.Lerp(Shader.GetGlobalFloat("_HolePull"),1,lerpSpeed*Time.deltaTime));
             blackholeInstance.transform.localScale = Vector3.Lerp(blackholeInstance.transform.localScale,Vector3.one*8,6f*Time.deltaTime);
-
-
         }
     }
 
@@ -184,12 +168,13 @@ public class GameManager : MonoBehaviour
         return new Vector3(x / positions.Count, y / positions.Count, z / positions.Count);
     }
 
-    void Death()
+    void Death() //zypernKatze02 check this
     {
         ChangeState(GameState.GameOver);
         dead = true;
         StartCoroutine(WaitBlackHole());
     }
+
     public IEnumerator WaitBlackHole()
     {
         yield return new WaitForSeconds(waitBlackHole);
@@ -239,6 +224,7 @@ public class GameManager : MonoBehaviour
             placeCharacterRewardButton.SetActive(false);
         }
     }
+    
     bool blackHoleActivated;
     GameObject blackholeInstance;
     public void TriggerBlackHole()
