@@ -154,6 +154,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1501891053 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6705156960378005438, guid: 5dd8ab27f4737b546af3d4e5ae64a1a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 7559718651396282405}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2087665699 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5710043750582024517, guid: 5dd8ab27f4737b546af3d4e5ae64a1a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 7559718651396282405}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7559718651396282405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -215,6 +227,47 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6934019336669779893, guid: 5dd8ab27f4737b546af3d4e5ae64a1a3,
+        type: 3}
+      propertyPath: gameStart
+      value: 
+      objectReference: {fileID: 2087665699}
+    - target: {fileID: 7194961548147858496, guid: 5dd8ab27f4737b546af3d4e5ae64a1a3,
+        type: 3}
+      propertyPath: energy
+      value: 999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 7194961548147858499, guid: 5dd8ab27f4737b546af3d4e5ae64a1a3,
+        type: 3}
+      propertyPath: lerpSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7194961548147858499, guid: 5dd8ab27f4737b546af3d4e5ae64a1a3,
+        type: 3}
+      propertyPath: maxDistance
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7194961548147858499, guid: 5dd8ab27f4737b546af3d4e5ae64a1a3,
+        type: 3}
+      propertyPath: waitBlackHole
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7194961548147858499, guid: 5dd8ab27f4737b546af3d4e5ae64a1a3,
+        type: 3}
+      propertyPath: blackHolePrefab
+      value: 
+      objectReference: {fileID: 2481566068411693847, guid: f21424447c5c30349963f08b79e2793b,
+        type: 3}
+    - target: {fileID: 7194961548699059336, guid: 5dd8ab27f4737b546af3d4e5ae64a1a3,
+        type: 3}
+      propertyPath: characterImage
+      value: 
+      objectReference: {fileID: 1501891053}
+    - target: {fileID: 7194961548699059341, guid: 5dd8ab27f4737b546af3d4e5ae64a1a3,
+        type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9134906440816647943, guid: 5dd8ab27f4737b546af3d4e5ae64a1a3,
         type: 3}

@@ -136,6 +136,7 @@ MonoBehaviour:
   desaturationMaterial: {fileID: 2100000, guid: 9c59da91fb59256499c7b3ebd98a3d0b,
     type: 2}
   dist: {x: 1, y: 1, z: 1, w: 1}
+  _event: 300
 --- !u!114 &-2709656341338071284
 MonoBehaviour:
   m_ObjectHideFlags: 0

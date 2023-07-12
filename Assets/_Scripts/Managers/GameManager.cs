@@ -5,6 +5,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using static Unity.Burst.Intrinsics.X86.Avx;
 
 public enum GameState
@@ -109,6 +110,11 @@ public class GameManager : MonoBehaviour
         {
             SwitchToTimeMode(2); 
         }
+        else if(newState == GameState.GameOver)
+        {
+            Death();
+            SwitchToTimeMode(2);
+        }
         else
         {
             SwitchToTimeMode(0);
@@ -142,9 +148,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (CharacterInfo.characters.Count() == 0)
+        if (CharacterInfo.characters.Count() == 0 && !dead )
         {
             ChangeState(GameState.GameOver);
+            
         }
         if (blackHoleActivated)
         {
@@ -173,15 +180,18 @@ public class GameManager : MonoBehaviour
 
     void Death() //zypernKatze02 check this
     {
-        ChangeState(GameState.GameOver);
+       
+        
         dead = true;
-        StartCoroutine(WaitBlackHole());
+       
     }
 
     public IEnumerator WaitBlackHole()
     {
         yield return new WaitForSeconds(waitBlackHole);
         TriggerBlackHole();
+        yield return new WaitForSeconds(6);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void StartCharacterPlacement()
     {
@@ -227,13 +237,17 @@ public class GameManager : MonoBehaviour
             placeCharacterRewardButton.SetActive(false);
         }
     }
-    
+    public void LoadNewGame()
+    {
+        StartCoroutine(WaitBlackHole());
+    }
     bool blackHoleActivated;
     GameObject blackholeInstance;
     public void TriggerBlackHole()
     {
         Shader.SetGlobalFloat("_MaxDis", maxDistance);
-        blackholeInstance=Instantiate(blackHolePrefab, Vector3.zero, Quaternion.identity);
+        Shader.SetGlobalVector("_center", averageCenterPointPosition);
+        blackholeInstance =Instantiate(blackHolePrefab, averageCenterPointPosition, Quaternion.identity);
         blackholeInstance.transform.localScale = Vector3.zero;
         blackHoleActivated = true;
 

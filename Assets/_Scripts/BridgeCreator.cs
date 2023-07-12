@@ -19,8 +19,8 @@ public class BridgeCreator : MonoBehaviour
     public LayerMask ignoreMask;
     public float energy = 100;
     public LineRenderer lineRenderer;
-    private Node firstBridgePoint;
-    private Node secondBridgePoint;
+    [SerializeField]public Node firstBridgePoint;
+    [SerializeField]public Node secondBridgePoint;
     private SplineComputer splineBridge;
     [HideInInspector]public SplineComputer firstSpline;
     private SplineComputer secondSpline;
@@ -81,13 +81,14 @@ public class BridgeCreator : MonoBehaviour
             return;
 
         }
-        if (!inPortalCreationMode) return;
+        
+        
 
         energyText.text = energy.ToString();
 
         if (Input.GetKeyDown(KeyCode.Escape) && firstBridgePoint != null)
         {
-            Destroy(firstBridgePoint);
+            Destroy(firstBridgePoint.gameObject);
             AudioManager.instance.PlayOneShot(FMODEvents.instance.bridgeNotPossible);
             lineRenderer.positionCount = 0;
             return;
@@ -323,7 +324,7 @@ public class BridgeCreator : MonoBehaviour
            
             if (Input.GetMouseButtonDown(0))
             {
-                Destroy(firstBridgePoint);
+                Destroy(firstBridgePoint.gameObject);
                 AudioManager.instance.PlayOneShot(FMODEvents.instance.bridgeNotPossible);
                 emitter.Stop();
                 lineRenderer.positionCount = 0;

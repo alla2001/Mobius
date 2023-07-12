@@ -7888,15 +7888,8 @@ MonoBehaviour:
       m_Calls: []
   allCharacters: []
   startingPositionPrefabs:
-  - {fileID: 1062821745374700905, guid: df26872aa9c54d84b907e3c639070551, type: 3}
-  - {fileID: 4209622771712086588, guid: d1a63c608688f5a4794a91639c6b61bd, type: 3}
-  - {fileID: 8673310568142989975, guid: 416c688bc88e90f4e978677f9ff7bca8, type: 3}
-  - {fileID: 6512014290435505460, guid: fa41ef60a646c8940829c03963d2b997, type: 3}
   - {fileID: 3642999204307495865, guid: 6c121af6edfb61b4f86dba32c6b6780d, type: 3}
   - {fileID: 3564889095456715170, guid: 181743312639d59478ce553101d2878b, type: 3}
-  - {fileID: 6047979799371121038, guid: bf21eaf43e68e7845aa0373b1ae4a0f0, type: 3}
-  - {fileID: 4209622771712086588, guid: e3334b2701defb647aaebeb3936d7615, type: 3}
-  - {fileID: 4209622771712086588, guid: 995864a6517f3294bb67bda8196af40f, type: 3}
   allWalls: []
   averageCenterPointPosition: {x: 0, y: 0, z: 0}
   placeCharacterRewardButton: {fileID: 8906884579140339878}
@@ -7939,6 +7932,8 @@ MonoBehaviour:
     m_Bits: 577
   energy: 10
   lineRenderer: {fileID: 7194961548097615086}
+  firstBridgePoint: {fileID: 0}
+  secondBridgePoint: {fileID: 0}
   firstSpline: {fileID: 0}
   energyToAdd: 4
   Bridgeparts:
@@ -8574,21 +8569,6 @@ MonoBehaviour:
   lockedShapeGroups:
   - {fileID: 11400000, guid: 0ed35d57f24fade4d95a4d079a04f7ff, type: 2}
   - {fileID: 11400000, guid: 0ed35d57f24fade4d95a4d079a04f7ff, type: 2}
-  - {fileID: 11400000, guid: 4299548d1863a6345a9316a2e6fe877d, type: 2}
-  - {fileID: 11400000, guid: 4299548d1863a6345a9316a2e6fe877d, type: 2}
-  - {fileID: 11400000, guid: 4299548d1863a6345a9316a2e6fe877d, type: 2}
-  - {fileID: 11400000, guid: 4d48d4a350a99b54095e928bb3289ce4, type: 2}
-  - {fileID: 11400000, guid: 4d48d4a350a99b54095e928bb3289ce4, type: 2}
-  - {fileID: 11400000, guid: 4d48d4a350a99b54095e928bb3289ce4, type: 2}
-  - {fileID: 11400000, guid: 6b53730885941f74caf9aff8e95b7078, type: 2}
-  - {fileID: 11400000, guid: 6b53730885941f74caf9aff8e95b7078, type: 2}
-  - {fileID: 11400000, guid: c0c24a2eb3bd8c24894790bff744b7de, type: 2}
-  - {fileID: 11400000, guid: c0c24a2eb3bd8c24894790bff744b7de, type: 2}
-  - {fileID: 11400000, guid: f13ed0aae13a2714b9cb9b3e08a240e8, type: 2}
-  - {fileID: 11400000, guid: f13ed0aae13a2714b9cb9b3e08a240e8, type: 2}
-  - {fileID: 11400000, guid: d3f8a066b54b68548afeb2a15559a16e, type: 2}
-  - {fileID: 11400000, guid: d3f8a066b54b68548afeb2a15559a16e, type: 2}
-  - {fileID: 11400000, guid: eddd2c3471c0e3f458cdf43f757bd287, type: 2}
   lockedArchitectures:
   - {fileID: 11400000, guid: 8a4900a7f88ab7e479ad4e30f80f6599, type: 2}
   - {fileID: 11400000, guid: c3a354b9c3f07ee4a82b8a061d2c50b9, type: 2}
@@ -8851,7 +8831,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7194961548147858499}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: StartCharacterPlacement
         m_Mode: 1
@@ -9101,7 +9081,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7194961548147858496}
         m_TargetAssemblyTypeName: BridgeCreator, Assembly-CSharp
         m_MethodName: AddBridgeEnergy
         m_Mode: 1

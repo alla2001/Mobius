@@ -133,8 +133,14 @@ public class UIManager : MonoBehaviour
                 break;
             case GameState.GameOver:
                 gameOverPanel.SetActive(true);
-
+                gameStart.SetActive(true);
                 break;
         }
+    }
+
+
+    public void ReLoad()
+    {
+        GameManager.Instance. LoadNewGame();
     }
 }

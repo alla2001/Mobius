@@ -241,7 +241,7 @@ public class CharacterMovement : MonoBehaviour
     public void releaseControl()
     {
         characterEnergy_UI.SetActive(false);
-        tag = "Untagged"; 
+        //tag = "Untagged"; 
         enabled = false; 
     }
 }

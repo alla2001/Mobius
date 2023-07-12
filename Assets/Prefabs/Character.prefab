@@ -19559,9 +19559,9 @@ MonoBehaviour:
   particleSystems:
   - {fileID: 2047040774615667222}
   - {fileID: 4828394336099906837}
-  energyText: {fileID: 0}
-  animator: {fileID: 0}
   characterEnergy_UI: {fileID: 0}
+  energyText: {fileID: 0}
+  animator: {fileID: 369439076119372548}
 --- !u!54 &7005444113296533281
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19596,10 +19596,6 @@ MonoBehaviour:
   warningSoundThreshold: 30
   energyPerStone: 15
   energyStones:
-  - {fileID: 3400429593694817643}
-  - {fileID: 6543317928108449532}
-  - {fileID: 6553905484027318806}
-  - {fileID: 7186679403152037036}
   - {fileID: 4601877602777364043}
   - {fileID: 3648235223263907618}
   - {fileID: 6963564731351701609}

@@ -18,8 +18,13 @@ public class ItemSpawner : MonoBehaviour
     }
     private void Start()
     {
-        shapes = FindObjectsByType<Shape>(FindObjectsSortMode.None).ToList();
+        StartCoroutine(wait());
         SpawnItems();
+    }
+    IEnumerator wait()
+    {
+        shapes = FindObjectsByType<Shape>(FindObjectsSortMode.None).ToList();
+        yield return new WaitForSeconds(0.2f);
     }
     public void SpawnItems()
     {
@@ -48,6 +53,7 @@ public class ItemSpawner : MonoBehaviour
         computers.AddRange( shape.GetComponentsInChildren<SplineComputer>());
         foreach (CharacterInfo charInfo in CharacterInfo.characters)
         {
+            if (charInfo== null|| charInfo.GetComponent<SplineFollower>().spline==null) continue;
             if (computers.Contains( charInfo.GetComponent<SplineFollower>().spline))
             {
                 return;

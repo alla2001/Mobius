@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIntersection: {fileID: 8339913606464748363}
+  TimeScaleWhenSlowed: 0.2
 --- !u!1 &8339913606503692240
 GameObject:
   m_ObjectHideFlags: 0
@@ -1753,6 +1754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIntersection: {fileID: 8339913606565578469}
+  TimeScaleWhenSlowed: 0.2
 --- !u!1 &8339913606719548066
 GameObject:
   m_ObjectHideFlags: 0
@@ -6887,6 +6889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIntersection: {fileID: 8339913607716138216}
+  TimeScaleWhenSlowed: 0.2
 --- !u!1 &8339913608329774374
 GameObject:
   m_ObjectHideFlags: 0
@@ -6986,6 +6989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIntersection: {fileID: 8339913608329774426}
+  TimeScaleWhenSlowed: 0.2
 --- !u!1 &8339913608537477343
 GameObject:
   m_ObjectHideFlags: 0
@@ -7055,8 +7059,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d66a0aae4c234fd449db507577efbe94, type: 2}
-  - {fileID: 2100000, guid: c19507be3947b3142b17b2791309f569, type: 2}
+  - {fileID: 2100000, guid: e7d0e83d935199947876fc2cde7a984c, type: 2}
+  - {fileID: 2100000, guid: e7d0e83d935199947876fc2cde7a984c, type: 2}
   - {fileID: 2100000, guid: 93abfe297dee77b49b1dc40c83b87056, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

@@ -5,7 +5,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
-using static UnityEditor.SceneView;
 
 /*The Camera has multiple modes
  *In GodMode and in CharacterMode it has a point that it follows (if the point is deleted it recreates itself at the proper position)
@@ -116,7 +115,7 @@ public class CleanedCameraController : MonoBehaviour
         if (currentCameraMode == CleanedCameraMode.GODMODE && GameManager.Instance.currentState == GameState.GodView)
         {
             CharacterMovement character = CheckCharacterClick(); 
-            if (character != null && BridgeCreator.instance.firstSpline.IsUnityNull())
+            if (character != null && BridgeCreator.instance.firstBridgePoint.IsUnityNull())
             {
                 TakeCharacterPossesion(character);
             }

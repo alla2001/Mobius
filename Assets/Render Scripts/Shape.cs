@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Dreamteck.Splines;
 using System.Linq;
-using UnityEditor.Experimental.GraphView;
-using static AudioLayerGodMode;
 
 public class Shape : MonoBehaviour
 {
@@ -20,7 +18,9 @@ public class Shape : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        splCompReferences = GetComponentsInChildren<SplineComputer>(); 
+        splCompReferences = GetComponentsInChildren<SplineComputer>();
+        AudioAdder adder = gameObject.AddComponent<AudioAdder>();
+        adder.audioLayer = AudioLayerType.HANGDRUM;
     }
 
     // Update is called once per frame
