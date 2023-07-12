@@ -5,6 +5,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using static Unity.Burst.Intrinsics.X86.Avx;
 
 public enum GameState
 {
@@ -24,16 +25,16 @@ public class GameManager : MonoBehaviour
     public int Score;
 
     // Game variables
-    public  GameState currentState { get; private set; }    
+    public GameState currentState { get; private set; }
     [HideInInspector] public float gameTimeScaleCharacter = 1f;
     [HideInInspector] public float gameTimeScaleGodmode = 0.5f;
     public UnityEvent<GameState> onStateChange = new UnityEvent<GameState>();
     [HideInInspector] public List<Character> allCharacters;
-    [SerializeField] private List<GameObject> startingPositionPrefabs; 
+    [SerializeField] private List<GameObject> startingPositionPrefabs;
 
     [HideInInspector] public List<GameObject> allWalls;
     private List<Vector3> allWallPositions = new List<Vector3>();
-     public Vector3 averageCenterPointPosition;
+    public Vector3 averageCenterPointPosition;
 
     [SerializeField] GameObject placeCharacterRewardButton;
     [SerializeField] GameObject addBridgeEnergyRewardButton;
@@ -43,14 +44,18 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private float godModeTimeMultiplier;
-   
+
     [SerializeField] private GameObject gameOverPanel;
 
     private CharacterMovement p_currentControlledCharacter;
 
-    [SerializeField] private float[] timeModes; 
+    [SerializeField] private float[] timeModes;
 
-
+    [Header("Black Hole Effect")]
+    public GameObject blackHolePrefab;
+    public float lerpSpeed;
+    public float maxDistance;
+    public float waitBlackHole;
     public CharacterMovement currentControlledCharacter
     {
         get 
@@ -59,7 +64,7 @@ public class GameManager : MonoBehaviour
         }
         set
         {
-            if (p_currentControlledCharacter != null) { p_currentControlledCharacter.tag = "Untagged"; }
+            //if (p_currentControlledCharacter != null) { p_currentControlledCharacter.tag = "Untagged"; }
             p_currentControlledCharacter = value;
             if (value != null) { p_currentControlledCharacter.gameObject.tag = "Player"; }
         }
@@ -75,7 +80,10 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         }
         SpawnRandomStartingPosition();
-        SwitchToTimeMode(0);  
+        SwitchToTimeMode(0);
+        Shader.SetGlobalFloat("_HolePull", 0);
+        
+
     }
 
     private void SpawnRandomStartingPosition()
@@ -96,6 +104,10 @@ public class GameManager : MonoBehaviour
 
     public void ChangeState(GameState newState) 
     {
+        if (currentState==GameState.GameOver)
+        {
+            return;
+        }
         onStateChange.Invoke(newState);
         currentState = newState;
        
@@ -107,6 +119,7 @@ public class GameManager : MonoBehaviour
 
         if(newState == GameState.ShapePlacement)
         {
+            Time.timeScale = 1;
             SwitchToTimeMode(0);  
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible=false;
@@ -131,7 +144,7 @@ public class GameManager : MonoBehaviour
 
         return averageCenterPointPosition = GetMeanVector(allWallPositions);
     }
-
+    bool dead;
     // Update is called once per frame
     void Update()
     {
@@ -140,9 +153,16 @@ public class GameManager : MonoBehaviour
             gameOverPanel.SetActive(true);
         }
 
-        if (CharacterMovement.characters.Count() == 0)
+        if (CharacterMovement.characters.Count() == 0 &&!dead)
         {
             Death();
+        }
+        if (blackHoleActivated)
+        {
+            Shader.SetGlobalFloat("_HolePull",Mathf.Lerp(Shader.GetGlobalFloat("_HolePull"),1,lerpSpeed*Time.deltaTime));
+            blackholeInstance.transform.localScale = Vector3.Lerp(blackholeInstance.transform.localScale,Vector3.one*8,6f*Time.deltaTime);
+
+
         }
     }
 
@@ -167,8 +187,14 @@ public class GameManager : MonoBehaviour
     void Death()
     {
         ChangeState(GameState.GameOver);
+        dead = true;
+        StartCoroutine(WaitBlackHole());
     }
-
+    public IEnumerator WaitBlackHole()
+    {
+        yield return new WaitForSeconds(waitBlackHole);
+        TriggerBlackHole();
+    }
     public void StartCharacterPlacement()
     {
         ChangeState(GameState.CharacterPlacement); 
@@ -212,5 +238,15 @@ public class GameManager : MonoBehaviour
             addCharactersLifeRewardButton.SetActive(true);
             placeCharacterRewardButton.SetActive(false);
         }
+    }
+    bool blackHoleActivated;
+    GameObject blackholeInstance;
+    public void TriggerBlackHole()
+    {
+        Shader.SetGlobalFloat("_MaxDis", maxDistance);
+        blackholeInstance=Instantiate(blackHolePrefab, Vector3.zero, Quaternion.identity);
+        blackholeInstance.transform.localScale = Vector3.zero;
+        blackHoleActivated = true;
+
     }
 }

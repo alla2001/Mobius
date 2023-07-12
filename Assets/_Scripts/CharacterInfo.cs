@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 [SelectionBase]
 public class CharacterInfo : MonoBehaviour
@@ -69,6 +70,7 @@ public class CharacterInfo : MonoBehaviour
 
     private void Died()
     {
+         CharacterMovement.characters.Remove(GetComponent<CharacterMovement>()); 
         Destroy(gameObject, timeBeforeDespawn);
     }
 }

@@ -104,7 +104,10 @@ public class BridgeCreator : MonoBehaviour
                 lineRenderer.positionCount = 0;
                 return;
             }
-
+            if (hit.collider.GetComponent<SplineComputer>()==null)
+            {
+                return;
+            }
            
             if (firstBridgePoint != null )
             {
@@ -235,7 +238,7 @@ public class BridgeCreator : MonoBehaviour
            
                 pointNoraml1 = FindConnnectionDirection(firstBridgePoint, secondBridgePoint).normalized;
 
-                pointNoraml2 = -FindConnnectionDirection(secondBridgePoint,firstBridgePoint).normalized;
+                pointNoraml2 = FindConnnectionDirection(secondBridgePoint,firstBridgePoint).normalized;
 
                 tanget1 = FindConnnectionTangent(firstBridgePoint, secondBridgePoint).normalized;
                 tanget2 = FindConnnectionTangent(secondBridgePoint, firstBridgePoint).normalized;

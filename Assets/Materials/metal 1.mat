@@ -95,7 +95,7 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _Blend: 0
-    - _BumpScale: 1
+    - _BumpScale: 3.31
     - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -108,9 +108,13 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Metallic: 1
+    - _HolePull: 0
+    - _MaxDis: 100
+    - _Max_Distance: 880.9
+    - _Metallic: 0.5
     - _OcclusionStrength: 1
     - _Parallax: 0.005
+    - _Push: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1

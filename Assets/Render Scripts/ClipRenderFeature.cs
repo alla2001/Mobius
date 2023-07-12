@@ -30,6 +30,8 @@ public class ClipRenderPass : ScriptableRenderPass
     private RenderTargetHandle destinationHandle;
     private List<ShaderTagId> shaderTagsList = new List<ShaderTagId>();
     private FilteringSettings filteringSettings;
+    private CustomRenderPass m_ScriptablePass;
+    public RenderPassEvent _event = RenderPassEvent.AfterRenderingOpaques;
     public ClipRenderPass(LayerMask targetLayer, Material desaturationMaterial,Vector4 dis)
     {
         this.targetLayer = targetLayer;
@@ -37,6 +39,7 @@ public class ClipRenderPass : ScriptableRenderPass
         this.dis=dis;
         destinationHandle.Init("_DesaturationTempTexture");
         filteringSettings = new FilteringSettings(RenderQueueRange.opaque, targetLayer);
+       
 
         shaderTagsList.Add(new ShaderTagId("SRPDefaultUnlit"));
         shaderTagsList.Add(new ShaderTagId("UniversalForward"));

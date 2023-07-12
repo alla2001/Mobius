@@ -8,11 +8,12 @@ public class DesaturationRenderFeature : ScriptableRendererFeature
     public LayerMask targetLayer;
     public Material desaturationMaterial;
     public Vector4 dist;
+    public RenderPassEvent _event;
     private DesaturationRenderPass desaturationRenderPass;
 
     public override void Create()
     {
-        desaturationRenderPass = new DesaturationRenderPass(targetLayer, desaturationMaterial, dist);
+        desaturationRenderPass = new DesaturationRenderPass(targetLayer, desaturationMaterial, _event, dist);
     }
 
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
@@ -30,11 +31,13 @@ public class DesaturationRenderPass : ScriptableRenderPass
     private RenderTargetHandle destinationHandle;
     private List<ShaderTagId> shaderTagsList = new List<ShaderTagId>();
     private FilteringSettings filteringSettings;
-    public DesaturationRenderPass(LayerMask targetLayer, Material desaturationMaterial,Vector4 dis)
+
+    public DesaturationRenderPass(LayerMask targetLayer, Material desaturationMaterial,RenderPassEvent _event,Vector4 dis)
     {
         this.targetLayer = targetLayer;
         this.desaturationMaterial = desaturationMaterial;
         this.dis=dis;
+        this.renderPassEvent = _event;
         destinationHandle.Init("_DesaturationTempTexture");
         filteringSettings = new FilteringSettings(RenderQueueRange.opaque, targetLayer);
 
@@ -51,8 +54,9 @@ public class DesaturationRenderPass : ScriptableRenderPass
    
 
         CommandBuffer cmd = CommandBufferPool.Get("DesaturationRenderPass");
-     
        
+
+
         using (new ProfilingScope(cmd, new ProfilingSampler("DesaturationRenderPass")))
         {
             context.ExecuteCommandBuffer(cmd);

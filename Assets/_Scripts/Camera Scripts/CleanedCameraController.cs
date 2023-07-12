@@ -282,6 +282,7 @@ public class CleanedCameraController : MonoBehaviour
         {
             case GameState.ShapePlacement:
                 SetupLerp(followObject, GetSavedGodMode(), CleanedCameraMode.GODMODE);
+                
                 ChangeCameraMode(CleanedCameraMode.LERPMODE);
                 break;
             case GameState.GameOver:
