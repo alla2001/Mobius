@@ -259,7 +259,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Bridge.bank
   Name: Bridge
   StudioPath: bank:/Bridge
-  lastModified: 638245235709323958
+  lastModified: 638247503270151292
   FileSizes: []
   Exists: 1
 --- !u!114 &-6482510449710982874
@@ -589,7 +589,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank
   Name: Atmosphere
   StudioPath: bank:/Atmosphere
-  lastModified: 638239079993286552
+  lastModified: 638247503269981190
   FileSizes: []
   Exists: 1
 --- !u!114 &-3579512723145964921
@@ -865,7 +865,7 @@ MonoBehaviour:
   - {fileID: 7926843185186412368}
   StringsBanks:
   - {fileID: 4965414560237861951}
-  cacheTime: 638246655809930185
+  cacheTime: 638247503270948427
   cacheVersion: 131605
 --- !u!114 &1148246024145944954
 MonoBehaviour:
@@ -938,7 +938,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Characters.bank
   Name: Characters
   StudioPath: bank:/Characters
-  lastModified: 638246655809530086
+  lastModified: 638247503270351479
   FileSizes: []
   Exists: 1
 --- !u!114 &1505181566097677450
@@ -1088,7 +1088,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Items.bank
   Name: Items
   StudioPath: bank:/Items
-  lastModified: 638246655809890167
+  lastModified: 638247503270528108
   FileSizes: []
   Exists: 1
 --- !u!114 &2704580702740893643
@@ -1213,7 +1213,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638246655809930185
+  lastModified: 638247503270691809
   FileSizes:
   - Name: 
     Value: 2800
@@ -1576,7 +1576,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638245235709423981
+  lastModified: 638247503270613241
   FileSizes: []
   Exists: 1
 --- !u!114 &7961257047714079726
@@ -1621,7 +1621,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Shape.bank
   Name: Shape
   StudioPath: bank:/Shape
-  lastModified: 638245235709544009
+  lastModified: 638247503270948427
   FileSizes: []
   Exists: 1
 --- !u!114 &8995844917150448218

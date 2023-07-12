@@ -42,6 +42,8 @@ public class CharacterMovement : MonoBehaviour
             main.useUnscaledTime = false; 
         }
         characterInfo = GetComponent<CharacterInfo>();
+        characterEnergy_UI = UIManager.instance.Character_energy_icon; 
+        energyText = UIManager.instance.Character_energy_text;
     }
 
     // Update is called once per frame
@@ -59,7 +61,6 @@ public class CharacterMovement : MonoBehaviour
         {
             GoBack();
         }
-        energyText.text = ((int)(characterInfo.timeBeforeDeath / 10)).ToString();
     }
 
     private void OnMouseEnter()

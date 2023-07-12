@@ -7888,18 +7888,31 @@ MonoBehaviour:
       m_Calls: []
   allCharacters: []
   startingPositionPrefabs:
+  - {fileID: 1062821745374700905, guid: df26872aa9c54d84b907e3c639070551, type: 3}
+  - {fileID: 4209622771712086588, guid: d1a63c608688f5a4794a91639c6b61bd, type: 3}
+  - {fileID: 8673310568142989975, guid: 416c688bc88e90f4e978677f9ff7bca8, type: 3}
+  - {fileID: 6512014290435505460, guid: fa41ef60a646c8940829c03963d2b997, type: 3}
   - {fileID: 3642999204307495865, guid: 6c121af6edfb61b4f86dba32c6b6780d, type: 3}
+  - {fileID: 3564889095456715170, guid: 181743312639d59478ce553101d2878b, type: 3}
+  - {fileID: 6047979799371121038, guid: bf21eaf43e68e7845aa0373b1ae4a0f0, type: 3}
+  - {fileID: 4209622771712086588, guid: e3334b2701defb647aaebeb3936d7615, type: 3}
+  - {fileID: 4209622771712086588, guid: 995864a6517f3294bb67bda8196af40f, type: 3}
   allWalls: []
   averageCenterPointPosition: {x: 0, y: 0, z: 0}
-  placeCharacterRewardButton: {fileID: 0}
-  addBridgeEnergyRewardButton: {fileID: 0}
-  addCharactersLifeRewardButton: {fileID: 0}
+  placeCharacterRewardButton: {fileID: 8906884579140339878}
+  addBridgeEnergyRewardButton: {fileID: 9181839256270169329}
+  addCharactersLifeRewardButton: {fileID: 5087958663483546935}
   addCharacterSpawnChance: 20
-  gameOverPanel: {fileID: 0}
+  godModeTimeMultiplier: 0
+  gameOverPanel: {fileID: 5268832918893104841}
   timeModes:
   - 0.2
   - 0.5
   - 1
+  blackHolePrefab: {fileID: 0}
+  lerpSpeed: 0
+  maxDistance: 0
+  waitBlackHole: 0
 --- !u!114 &7194961548147858496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7934,7 +7947,7 @@ MonoBehaviour:
   - {fileID: 919132149155446097, guid: 20cef254a5dd02d40937410d4889d224, type: 3}
   - {fileID: 919132149155446097, guid: 06f3ea70e83f83f43be1d5a79338a6c5, type: 3}
   - {fileID: 919132149155446097, guid: 2238ded4e0faf3940b5589f99bb438b3, type: 3}
-  energyText: {fileID: 0}
+  energyText: {fileID: 3711779714570829698}
 --- !u!114 &7194961548147858498
 MonoBehaviour:
   m_ObjectHideFlags: 0

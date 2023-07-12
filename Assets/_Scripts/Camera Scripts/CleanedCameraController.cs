@@ -108,7 +108,7 @@ public class CleanedCameraController : MonoBehaviour
                 (CheckCharacterClick() != null && CheckCharacterClick() == GameManager.Instance.currentControlledCharacter)
                 )
             {
-                SetupLerp(followObject, GetSavedGodMode(), CleanedCameraMode.GODMODE, this.lerpStartUpTime);
+                SetupLerp(followObject, GetSavedGodMode(), CleanedCameraMode.GODMODE, 0f, 0.1f);
                 ChangeCameraMode(CleanedCameraMode.LERPMODE); 
                 GameManager.Instance.ChangeState(GameState.GodView); 
             }
@@ -281,12 +281,12 @@ public class CleanedCameraController : MonoBehaviour
         switch (state)
         {
             case GameState.ShapePlacement:
-                SetupLerp(followObject, GetSavedGodMode(), CleanedCameraMode.GODMODE);
+                SetupLerp(followObject, GetSavedGodMode(), CleanedCameraMode.GODMODE, 0f, 0.1f);
                 
                 ChangeCameraMode(CleanedCameraMode.LERPMODE);
                 break;
             case GameState.GameOver:
-                SetupLerp(followObject, GetSavedGodMode(), CleanedCameraMode.GODMODE);
+                SetupLerp(followObject, GetSavedGodMode(), CleanedCameraMode.GODMODE, 0f, 0.1f);
                 ChangeCameraMode(CleanedCameraMode.LERPMODE);
                 break; 
         }
@@ -314,7 +314,7 @@ public class CleanedCameraController : MonoBehaviour
         //zypernKatze should change sound here, when the character is low on energy
 
         SaveGodModePosition();
-        SetupLerp(GetSavedGodMode(), followObject, CleanedCameraMode.CHARACTERMODE, 0.4f);
+        SetupLerp(GetSavedGodMode(), followObject, CleanedCameraMode.CHARACTERMODE, 0f, 0.4f);
         
         GameManager.Instance.ChangeState(GameState.CharacterView); //changing cameraMode happens via ListenToGameManager
 
@@ -428,7 +428,7 @@ public class CleanedCameraController : MonoBehaviour
         Destroy(savedGodModeGameObject); 
     }
 
-    private void SetupLerp(GameObject from, GameObject to, CleanedCameraMode lerpToMode, float lerpStartUpTime = 0f)
+    private void SetupLerp(GameObject from, GameObject to, CleanedCameraMode lerpToMode, float lerpStartUpTime, float lerpTime)
     {
         if (currentCameraMode == CleanedCameraMode.LERPMODE)
         {
@@ -437,6 +437,7 @@ public class CleanedCameraController : MonoBehaviour
         
         lerpFromObject = from;
         lerpToObject = to;
+        this.lerpTime = lerpTime; 
         this.lerpToMode = lerpToMode; 
         currentLerpTime = -lerpStartUpTime;
 

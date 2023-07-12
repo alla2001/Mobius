@@ -109,10 +109,13 @@ public class GameManager : MonoBehaviour
         {
             SwitchToTimeMode(2); 
         }
+        else
+        {
+            SwitchToTimeMode(0);
+        }
 
         if(newState == GameState.ShapePlacement)
         {
-            SwitchToTimeMode(0);  
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible=false;
         }

@@ -6,7 +6,8 @@ public static class ExtensionMethods
 {
     public static T GetRandomElement<T>(this List<T> list)
     {
-        return list[Random.Range(0, list.Count)]; 
+        System.Random r = new System.Random();
+        return list[r.Next(list.Count)]; 
     }
 
     public static T GetRandomElement<T>(this T[] array)
