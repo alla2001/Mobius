@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7645422301850968517}
   m_LocalRotation: {x: -0.6797373, y: -0.01646921, z: 0.2706048, w: -0.6815123}
-  m_LocalPosition: {x: -0.099998996, y: -0.0000028125942, z: 0.0000011250377}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.3600003, y: 1.3600001, z: 1.36}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1824,14 +1824,14 @@ MonoBehaviour:
     useClippedPercent: 0
     keys: []
   _clipFromSample:
-    position: {x: -1.9670898, y: 9.229507, z: -2.1097312}
+    position: {x: -1.9614911, y: 9.287226, z: -2.0282629}
     up: {x: 0.7157766, y: 0.15408371, z: 0.067671694}
     forward: {x: 0.15575567, y: -0.9302775, z: 0.3321503}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
   _clipToSample:
-    position: {x: -1.9670898, y: 9.229507, z: -2.1097312}
+    position: {x: -1.9614911, y: 9.287226, z: -2.0282629}
     up: {x: 0.71577656, y: 0.15408371, z: 0.06767161}
     forward: {x: 0.15575567, y: -0.9302775, z: 0.3321503}
     color: {r: 1, g: 1, b: 1, a: 1}
@@ -2002,7 +2002,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7645422301899901445}
   m_LocalRotation: {x: -0.6797373, y: -0.016469153, z: 0.27060482, w: -0.68151236}
-  m_LocalPosition: {x: -0.1, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.36, y: 1.36, z: 1.36}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3799,14 +3799,14 @@ MonoBehaviour:
     useClippedPercent: 0
     keys: []
   _clipFromSample:
-    position: {x: -1.3253158, y: 2.0264642, z: 0.8151341}
+    position: {x: -1.3197169, y: 2.0841827, z: 0.8966032}
     up: {x: -0.5602539, y: 0.2598095, z: 0.3990889}
     forward: {x: -0.18363526, y: 0.8670133, z: -0.46321288}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
   _clipToSample:
-    position: {x: -1.3253158, y: 2.0264642, z: 0.8151341}
+    position: {x: -1.3197169, y: 2.0841827, z: 0.8966032}
     up: {x: -0.5602539, y: 0.25980952, z: 0.39908883}
     forward: {x: -0.18363526, y: 0.8670133, z: -0.46321288}
     color: {r: 1, g: 1, b: 1, a: 1}
@@ -4012,7 +4012,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7645422302520304199}
   m_LocalRotation: {x: -0.6797373, y: -0.016469153, z: 0.27060482, w: -0.68151236}
-  m_LocalPosition: {x: -0.1, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.36, y: 1.36, z: 1.36}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4899,14 +4899,14 @@ MonoBehaviour:
     useClippedPercent: 0
     keys: []
   _clipFromSample:
-    position: {x: 2.113012, y: 7.483214, z: -5.6756754}
+    position: {x: 2.1186109, y: 7.540932, z: -5.5942063}
     up: {x: 0.7063016, y: 0.20303437, z: 0.02395048}
     forward: {x: 0.2841895, y: -0.7742631, z: -0.5654671}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
   _clipToSample:
-    position: {x: 0.7372194, y: -7.337511, z: 4.0293446}
+    position: {x: 0.74281824, y: -7.2797923, z: 4.1108136}
     up: {x: -0.33493397, y: -0.24418621, z: -0.6073303}
     forward: {x: -0.69352454, y: 0.31387642, z: 0.648464}
     color: {r: 1, g: 1, b: 1, a: 1}
@@ -5075,7 +5075,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7645422302752558667}
   m_LocalRotation: {x: 0.6775069, y: 0.64664406, z: -0.1631751, w: -0.31017697}
-  m_LocalPosition: {x: 0.18354893, y: -8.518431, z: -1.353898}
+  m_LocalPosition: {x: 0.28354895, y: -8.518433, z: -1.3538985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5103,10 +5103,10 @@ MonoBehaviour:
       _type: 0
       position: {x: 0, y: 0, z: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
-      normal: {x: -0.00000017881393, y: 0.6564, z: -0.3313566}
+      normal: {x: -0.0000001937151, y: 0.65639997, z: -0.33135667}
       size: 1
-      tangent: {x: -0.0000068913123, y: -0.00003773225, z: 0.000010022508}
-      tangent2: {x: 0.000007992396, y: 0.000028744751, z: -0.000013932207}
+      tangent: {x: -0.0000047665544, y: -0.000037205187, z: 0.00000914032}
+      tangent2: {x: 0.000005268609, y: 0.000028269167, z: -0.000014816425}
   - invertTangents: 0
     _pointIndex: 23
     _computer: {fileID: 7645422301899901451}
@@ -5114,10 +5114,10 @@ MonoBehaviour:
       _type: 0
       position: {x: 0, y: 0, z: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
-      normal: {x: -0.00000017881393, y: 0.6564, z: -0.3313566}
+      normal: {x: -0.0000001937151, y: 0.65639997, z: -0.33135667}
       size: 1
-      tangent: {x: -0.0000068913123, y: -0.00003773225, z: 0.000010022508}
-      tangent2: {x: 0.000007992396, y: 0.000028744751, z: -0.000013932207}
+      tangent: {x: -0.0000047665544, y: -0.000037205187, z: 0.00000914032}
+      tangent2: {x: 0.000005268609, y: 0.000028269167, z: -0.000014816425}
   _transformSize: 1
   _transformNormals: 1
   _transformTangents: 1
@@ -5147,6 +5147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIntersection: {fileID: 7645422302752558671}
+  TimeScaleWhenSlowed: 0.2
 --- !u!1 &7645422302817770718
 GameObject:
   m_ObjectHideFlags: 0
@@ -5224,6 +5225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIntersection: {fileID: 7645422302817770722}
+  TimeScaleWhenSlowed: 0.2
 --- !u!1 &7645422302831218998
 GameObject:
   m_ObjectHideFlags: 0
@@ -5251,7 +5253,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7645422302831218998}
   m_LocalRotation: {x: 0.6949786, y: 0.064053275, z: 0.10234389, w: -0.70882136}
-  m_LocalPosition: {x: -0.18641841, y: 9.449492, z: -1.8300123}
+  m_LocalPosition: {x: -0.086420655, y: 9.4494915, z: -1.8300133}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5279,10 +5281,10 @@ MonoBehaviour:
       _type: 0
       position: {x: 0, y: 0, z: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
-      normal: {x: -0.0000005364418, y: 0.71662647, z: 0.16463631}
+      normal: {x: -0.00000032782555, y: 0.7166263, z: 0.1646362}
       size: 1
-      tangent: {x: -0.0000030593746, y: 0.000010176501, z: 0.0000044713743}
-      tangent2: {x: 0.00000014018792, y: -0.00000791306, z: -0.0000037096365}
+      tangent: {x: -0.0000017198146, y: 0.000010085234, z: 0.000007413557}
+      tangent2: {x: -0.00000015815772, y: -0.000008500694, z: -0.0000046739588}
   - invertTangents: 0
     _pointIndex: 0
     _computer: {fileID: 7645422302520304205}
@@ -5290,10 +5292,10 @@ MonoBehaviour:
       _type: 0
       position: {x: 0, y: 0, z: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
-      normal: {x: -0.0000005364418, y: 0.71662647, z: 0.16463631}
+      normal: {x: -0.00000032782555, y: 0.7166263, z: 0.1646362}
       size: 1
-      tangent: {x: -0.0000030593746, y: 0.000010176501, z: 0.0000044713743}
-      tangent2: {x: 0.00000014018792, y: -0.00000791306, z: -0.0000037096365}
+      tangent: {x: -0.0000017198146, y: 0.000010085234, z: 0.000007413557}
+      tangent2: {x: -0.00000015815772, y: -0.000008500694, z: -0.0000046739588}
   _transformSize: 1
   _transformNormals: 1
   _transformTangents: 1
@@ -5323,6 +5325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIntersection: {fileID: 7645422302831219002}
+  TimeScaleWhenSlowed: 0.2
 --- !u!1 &7645422303008899276
 GameObject:
   m_ObjectHideFlags: 0
@@ -5489,7 +5492,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7645422303176555587}
   m_LocalRotation: {x: -0.6797373, y: -0.016469153, z: 0.27060482, w: -0.68151236}
-  m_LocalPosition: {x: -0.1, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.36, y: 1.36, z: 1.36}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -6317,14 +6320,14 @@ MonoBehaviour:
     useClippedPercent: 0
     keys: []
   _clipFromSample:
-    position: {x: 1.0934505, y: -6.91132, z: 5.046624}
+    position: {x: 1.0990494, y: -6.8536015, z: 5.1280932}
     up: {x: 0.20254885, y: 0.3619485, z: 0.6071453}
     forward: {x: 0.72451437, y: -0.2324946, z: -0.6488646}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
   _clipToSample:
-    position: {x: 1.0705378, y: 7.2811446, z: -5.896493}
+    position: {x: 1.0761366, y: 7.338863, z: -5.8150234}
     up: {x: -0.6920758, y: -0.1696335, z: -0.18142354}
     forward: {x: -0.22291116, y: 0.8949087, z: 0.38658655}
     color: {r: 1, g: 1, b: 1, a: 1}
@@ -6493,7 +6496,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7645422303237860558}
   m_LocalRotation: {x: 0.25025123, y: 0.5380564, z: 0.67427206, w: 0.43957582}
-  m_LocalPosition: {x: -0.54131496, y: 9.380016, z: -0.8074832}
+  m_LocalPosition: {x: -0.44132078, y: 9.380016, z: -0.80747986}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6521,10 +6524,10 @@ MonoBehaviour:
       _type: 0
       position: {x: 0, y: 0, z: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
-      normal: {x: -0.000000074505806, y: 0.7329702, z: -0.058425844}
+      normal: {x: 0.000000044703484, y: 0.73297006, z: -0.058426082}
       size: 1
-      tangent: {x: 0.00007273472, y: 0.000003971785, z: 0.0000045164634}
-      tangent2: {x: -0.00007659819, y: -0.0000047984795, z: -0.0000036440724}
+      tangent: {x: 0.00007110813, y: 0.0000027359856, z: -0.00000033953984}
+      tangent2: {x: -0.000082857834, y: -0.000006383365, z: -0.000006282826}
   - invertTangents: 0
     _pointIndex: 9
     _computer: {fileID: 7645422301899901451}
@@ -6532,10 +6535,10 @@ MonoBehaviour:
       _type: 0
       position: {x: 0, y: 0, z: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
-      normal: {x: -0.000000074505806, y: 0.7329702, z: -0.058425844}
+      normal: {x: 0.000000044703484, y: 0.73297006, z: -0.058426082}
       size: 1
-      tangent: {x: 0.00007273472, y: 0.000003971785, z: 0.0000045164634}
-      tangent2: {x: -0.00007659819, y: -0.0000047984795, z: -0.0000036440724}
+      tangent: {x: 0.00007110813, y: 0.0000027359856, z: -0.00000033953984}
+      tangent2: {x: -0.000082857834, y: -0.000006383365, z: -0.000006282826}
   _transformSize: 1
   _transformNormals: 1
   _transformTangents: 1
@@ -6565,3 +6568,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIntersection: {fileID: 7645422303237860562}
+  TimeScaleWhenSlowed: 0.2

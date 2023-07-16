@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: 8519053346294415562}
   - component: {fileID: 8519053346294415552}
   - component: {fileID: 3474259629524775405}
-  - component: {fileID: 9031749835058848453}
   - component: {fileID: 7868616206500840234}
+  - component: {fileID: 9031749835058848453}
   m_Layer: 7
   m_Name: Bridge
   m_TagString: Untagged
@@ -916,6 +916,20 @@ MonoBehaviour:
   wrapMode: 0
   minCycles: 1
   maxCycles: 1
+--- !u!114 &7868616206500840234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8519053346294415563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 545c6f310c252bf44afca206a5b5237e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioLayer: 1
+  eventEmitter: {fileID: 9031749835058848453}
 --- !u!114 &9031749835058848453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -947,20 +961,6 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: -1
   OverrideMaxDistance: -1
---- !u!114 &7868616206500840234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8519053346294415563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 545c6f310c252bf44afca206a5b5237e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioLayer: 1
-  eventEmitter: {fileID: 0}
 --- !u!1001 &73082776282117328
 PrefabInstance:
   m_ObjectHideFlags: 0

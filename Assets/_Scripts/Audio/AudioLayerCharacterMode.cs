@@ -21,7 +21,7 @@ public class AudioLayerCharacterMode : AudioLayer
     //PUBLIC STATIC METHODS
 
     //MONOBEHAVIOUR METHODS
-    private void Start()
+    private void Awake()
     {
         AudioMode.characterMode.audioLayers.Add(this.layerType, this);
     }
@@ -69,7 +69,7 @@ public class AudioLayerCharacterMode : AudioLayer
             eventEmitter.Stop();
             eventEmitters.Remove(eventEmitter); 
         }
-        eventEmitter.SetParameter("volume", 1);
+        eventEmitter.SetParameter("Volume", 1.0f);
         bool didAdd = toPlayEventEmitters.AddAvoidDuplicate(eventEmitter);
         DecreaseVolumes();
         return didAdd; 
@@ -95,7 +95,7 @@ public class AudioLayerCharacterMode : AudioLayer
         for (float time = 0; time < fadeLowDuration; time += Time.deltaTime)
         {
             volume = Mathf.Lerp(fromVolume, ToVolume, time/fadeLowDuration); 
-            eventEmitter.SetParameter("volume", volume); 
+            eventEmitter.SetParameter("Volume", volume); 
             yield return null; 
         }
         yield return null; 

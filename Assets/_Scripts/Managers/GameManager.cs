@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -108,16 +109,19 @@ public class GameManager : MonoBehaviour
 
         if (newState == GameState.CharacterView)
         {
-            SwitchToTimeMode(2); 
+            SwitchToTimeMode(2);
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Mode", 1); 
         }
         else if(newState == GameState.GameOver)
         {
             Death();
             SwitchToTimeMode(2);
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Mode", 0);
         }
         else
         {
             SwitchToTimeMode(0);
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Mode", 0);
         }
 
         if(newState == GameState.ShapePlacement)

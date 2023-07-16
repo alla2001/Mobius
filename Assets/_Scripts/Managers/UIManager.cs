@@ -16,15 +16,19 @@ public class UIManager : MonoBehaviour
     public Text Character_energy_text; 
 
     [Header("Panels")]
-    [SerializeField] GameObject gameStart; 
-    [SerializeField] GameObject godViewControls; 
-    [SerializeField] GameObject characterViewControls; 
-    [SerializeField] GameObject rewardSelectionPanel;
-    [SerializeField] GameObject shapePlacementSpacebar; 
+    [SerializeField] GameObject gameStart;
+
+    [SerializeField] GameObject explanationPanel; 
+    //[SerializeField] GameObject godViewControls; 
+    //[SerializeField] GameObject characterViewControls; 
+    //[SerializeField] GameObject shapePlacementSpacebar; 
+    
     [SerializeField] GameObject characterIcon;
-    [SerializeField] GameObject gameOverPanel; 
+    [SerializeField] GameObject gameOverPanel;
+    [SerializeField] GameObject rewardSelectionPanel;
 
     private GameState savedGameState; //needed in order to deactivate the old UI
+    [SerializeField] private GameObject activeExplanationPanel; 
 
     private void Awake()
     {
@@ -33,7 +37,7 @@ public class UIManager : MonoBehaviour
             Destroy(this);
             Debug.LogError("Secondary FMODEvents destroyed on: " + gameObject.GetNameIncludingParents() + "\nFirst FMODEvents found on: " + instance.gameObject.GetNameIncludingParents());
         }
-        instance = this;
+        instance = this; 
     }
 
     void Start()
@@ -49,6 +53,7 @@ public class UIManager : MonoBehaviour
         DeactivateUI(GameState.ShapePlacement);  
         DeactivateUI(GameState.RewardMode);
         DeactivateUI(GameState.CharacterPlacement);
+        SwitchExplanationPanelActive(); 
 
         ActivateUI(savedGameState); 
     }
@@ -77,11 +82,11 @@ public class UIManager : MonoBehaviour
         switch (gameState)
         {
             case GameState.GodView:
-                godViewControls.SetActive(false); 
+                //godViewControls.SetActive(false); 
 
                 break;
             case GameState.CharacterView:
-                characterViewControls.SetActive(false); 
+                //characterViewControls.SetActive(false); 
 
                 break;
             case GameState.RewardMode:
@@ -89,13 +94,13 @@ public class UIManager : MonoBehaviour
 
                 break;
             case GameState.CharacterPlacement:
-                godViewControls.SetActive(false);
+                //godViewControls.SetActive(false);
                 characterIcon.SetActive(false); 
 
                 break;
             case GameState.ShapePlacement:
-                godViewControls.SetActive(false);
-                shapePlacementSpacebar.SetActive(false);
+                //godViewControls.SetActive(false);
+                //shapePlacementSpacebar.SetActive(false);
                 break; 
             case GameState.GameOver: 
                 gameOverPanel.SetActive(false);
@@ -109,11 +114,11 @@ public class UIManager : MonoBehaviour
         switch (gameState)
         {
             case GameState.GodView:
-                godViewControls.SetActive(true);
+                //godViewControls.SetActive(true);
 
                 break;
             case GameState.CharacterView:
-                characterViewControls.SetActive(true);
+                //characterViewControls.SetActive(true);
 
                 break;
             case GameState.RewardMode:
@@ -122,13 +127,13 @@ public class UIManager : MonoBehaviour
 
                 break;
             case GameState.CharacterPlacement:
-                godViewControls.SetActive(true);
+                //godViewControls.SetActive(true);
                 characterIcon.SetActive(true);
 
                 break;
             case GameState.ShapePlacement:
-                godViewControls.SetActive(true);
-                shapePlacementSpacebar.SetActive(true);
+                //godViewControls.SetActive(true);
+                //shapePlacementSpacebar.SetActive(true);
 
                 break;
             case GameState.GameOver:
@@ -138,9 +143,36 @@ public class UIManager : MonoBehaviour
         }
     }
 
-
     public void ReLoad()
     {
         GameManager.Instance. LoadNewGame();
+    }
+ 
+    public void SwitchExplanationPanelActive()
+    {
+        if (explanationPanel.activeSelf)
+        {
+            explanationPanel.SetActive(false);
+            if (GameManager.Instance.currentState == GameState.CharacterView)
+            {
+                GameManager.Instance.SwitchToTimeMode(2); 
+            }
+            else
+            {
+                GameManager.Instance.SwitchToTimeMode(0);
+            }
+        }
+        else
+        {
+            explanationPanel.SetActive(true);
+            Time.timeScale = 0; 
+        }
+    }
+
+    public void SwitchControlExplanationPanel(GameObject newActivePanel)
+    {
+        activeExplanationPanel.SetActive(false);
+        activeExplanationPanel = newActivePanel; 
+        activeExplanationPanel.SetActive(true);
     }
 }

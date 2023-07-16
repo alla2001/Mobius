@@ -3122,6 +3122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIntersection: {fileID: 3342999595710134557}
+  TimeScaleWhenSlowed: 0.2
 --- !u!1 &2465597626304599543
 GameObject:
   m_ObjectHideFlags: 0
@@ -6793,6 +6794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIntersection: {fileID: 5898349557939832538}
+  TimeScaleWhenSlowed: 0.2
 --- !u!1 &3772611509636144293
 GameObject:
   m_ObjectHideFlags: 0
@@ -6892,6 +6894,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIntersection: {fileID: 16608560283658611}
+  TimeScaleWhenSlowed: 0.2
 --- !u!1 &7460578101517219841
 GameObject:
   m_ObjectHideFlags: 0
@@ -7242,7 +7245,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8915647270781136952}
   m_LocalRotation: {x: -0.103410706, y: -0.91212314, z: 0.2864137, w: 0.27441713}
-  m_LocalPosition: {x: -28.05, y: -8.7, z: 36.54}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7430,3 +7433,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIntersection: {fileID: 6289034975384788373}
+  TimeScaleWhenSlowed: 0.2

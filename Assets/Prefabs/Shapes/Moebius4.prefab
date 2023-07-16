@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 1784790473211001990}
   - component: {fileID: -3696159639867299821}
   - component: {fileID: -1126702414232600164}
+  - component: {fileID: -6068165223422587670}
+  - component: {fileID: 4281211300864078371}
   m_Layer: 0
   m_Name: Moebius4
   m_TagString: wall
@@ -132,6 +134,51 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-6068165223422587670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784790473211001988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 545c6f310c252bf44afca206a5b5237e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioLayer: 0
+  eventEmitter: {fileID: 4281211300864078371}
+--- !u!114 &4281211300864078371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784790473211001988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1784790473677975919
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,6 +24,7 @@ public class Item : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GivePlayerPower(other.GetComponent<CharacterInfo>());
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.rewardCollected); 
             Destroy(gameObject);
         }
     }

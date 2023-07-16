@@ -114,21 +114,21 @@ public class AudioManager : MonoBehaviour
         RuntimeManager.PlayOneShot(sound, worldPos);
     }
 
-    public void ChangeAudioMode(AudioMode soundMode)
+    public void ChangeAudioMode(AudioMode audioMode)
     {
         this.soundModeActive.Stop();
-        this.soundModeActive = soundMode;
+        this.soundModeActive = audioMode;
         this.soundModeActive.Play(); 
     }
 
-    public void AddAudioLayerToSoundMode(AudioMode soundMode, AudioLayer audioLayer)
+    public void AddAudioLayerToSoundMode(AudioMode audioMode, AudioLayer audioLayer)
     {
-        soundMode.audioLayers.Add(audioLayer.layerType, audioLayer); 
+        audioMode.audioLayers.Add(audioLayer.layerType, audioLayer); 
     }
 
-    public void AddEventEmitter(AudioMode soundMode, AudioLayerType layerType, StudioEventEmitter eventEmitter, object args)
+    public void AddEventEmitter(AudioMode audioMode, AudioLayerType layerType, StudioEventEmitter eventEmitter, object args)
     {
-        soundMode.AddEmitter(layerType, eventEmitter, args);  
+        audioMode.AddEmitter(layerType, eventEmitter, args);  
     }
 
     public void QueueSound(EventInstance eventInstance, bool start, int bar, int beat)

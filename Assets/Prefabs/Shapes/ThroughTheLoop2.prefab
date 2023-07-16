@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIntersection: {fileID: 8460460758976457317}
+  TimeScaleWhenSlowed: 0.2
 --- !u!1 &8460460759010668843
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,6 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIntersection: {fileID: 8460460759010668842}
+  TimeScaleWhenSlowed: 0.2
 --- !u!1 &8460460759090521216
 GameObject:
   m_ObjectHideFlags: 0
@@ -4470,6 +4472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIntersection: {fileID: 8460460760211340758}
+  TimeScaleWhenSlowed: 0.2
 --- !u!1 &8460460760260195437
 GameObject:
   m_ObjectHideFlags: 0
@@ -8770,3 +8773,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIntersection: {fileID: 8460460760495705123}
+  TimeScaleWhenSlowed: 0.2

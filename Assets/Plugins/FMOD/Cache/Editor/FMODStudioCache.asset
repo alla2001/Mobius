@@ -1,59 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8766105494875639261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/RhythmDrum_4
-  m_EditorClassIdentifier: 
-  Path: event:/RhythmDrum_4
-  Guid:
-    Data1: -10060982
-    Data2: 1203763228
-    Data3: 1548094627
-    Data4: -1176759313
-  Banks:
-  - {fileID: -6500153303326764153}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4299
---- !u!114 &-8523903697217017242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/RhythmDrum_8
-  m_EditorClassIdentifier: 
-  Path: event:/RhythmDrum_8
-  Guid:
-    Data1: 718186619
-    Data2: 1224156730
-    Data3: 585875084
-    Data4: 894219781
-  Banks:
-  - {fileID: -6500153303326764153}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4320
 --- !u!114 &-7718468317345143029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,7 +28,7 @@ MonoBehaviour:
   - {fileID: -4335365199943629765}
   MinDistance: 1
   MaxDistance: 20
-  Length: 8888
+  Length: 20000
 --- !u!114 &-7563559657311502231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,8 +84,8 @@ MonoBehaviour:
   - {fileID: 4498186393119608869}
   MinDistance: 1
   MaxDistance: 20
-  Length: 8888
---- !u!114 &-7235267208711033323
+  Length: 20000
+--- !u!114 &-7130116844535781768
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,24 +95,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/RhythmDrum_7
+  m_Name: event:/RhythmDrum_3
   m_EditorClassIdentifier: 
-  Path: event:/RhythmDrum_7
+  Path: event:/RhythmDrum_3
   Guid:
-    Data1: -528767940
-    Data2: 1295842582
-    Data3: -1796514167
-    Data4: -749441081
+    Data1: -1389637402
+    Data2: 1107525836
+    Data3: 403299245
+    Data4: 1379288154
   Banks:
   - {fileID: -6500153303326764153}
   IsStream: 0
   Is3D: 1
-  IsOneShot: 1
-  Parameters: []
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -736120864461620545}
   MinDistance: 1
   MaxDistance: 20
-  Length: 4315
---- !u!114 &-7021896938123648212
+  Length: 5224
+--- !u!114 &-7032354348177156305
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,23 +123,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/RhythmDrum_9
+  m_Name: event:/RhythmDrum_10
   m_EditorClassIdentifier: 
-  Path: event:/RhythmDrum_9
+  Path: event:/RhythmDrum_10
   Guid:
-    Data1: 251661447
-    Data2: 1307025972
-    Data3: 624388028
-    Data4: 1847082190
+    Data1: -1766324755
+    Data2: 1150651703
+    Data3: 87803017
+    Data4: -425051795
   Banks:
   - {fileID: -6500153303326764153}
   IsStream: 0
   Is3D: 1
-  IsOneShot: 1
-  Parameters: []
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 6205393244173411758}
   MinDistance: 1
   MaxDistance: 20
-  Length: 4314
+  Length: 5511
 --- !u!114 &-7008628238771420365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,7 +207,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Bridge.bank
   Name: Bridge
   StudioPath: bank:/Bridge
-  lastModified: 638245234540573360
+  lastModified: 638251269169760508
   FileSizes: []
   Exists: 1
 --- !u!114 &-6482510449710982874
@@ -313,6 +261,54 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &-6123144899272502423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/RhythmDrum_4/Mode
+  m_EditorClassIdentifier: 
+  Name: Mode
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1255039407
+    data2: 2964793031
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &-5897318177675446165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/RhythmDrum_2/Mode
+  m_EditorClassIdentifier: 
+  Name: Mode
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1255039407
+    data2: 2964793031
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &-5612317060902982562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,6 +336,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 12222
+--- !u!114 &-5549546700076925309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/RhythmDrum_8/Mode
+  m_EditorClassIdentifier: 
+  Name: Mode
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1255039407
+    data2: 2964793031
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &-5518897251353471504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,33 +384,6 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
---- !u!114 &-5439437343726758773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/RhythmDrum_6
-  m_EditorClassIdentifier: 
-  Path: event:/RhythmDrum_6
-  Guid:
-    Data1: 1978462794
-    Data2: 1299795943
-    Data3: -1828143729
-    Data4: -1524339113
-  Banks:
-  - {fileID: -6500153303326764153}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4291
 --- !u!114 &-5344711648803134995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,8 +406,9 @@ MonoBehaviour:
   - {fileID: -6500153303326764153}
   IsStream: 0
   Is3D: 1
-  IsOneShot: 1
-  Parameters: []
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 4621016984331035503}
   MinDistance: 1
   MaxDistance: 20
   Length: 4315
@@ -496,6 +490,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2168
+--- !u!114 &-4402713782170370457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/RhythmDrum_7
+  m_EditorClassIdentifier: 
+  Path: event:/RhythmDrum_7
+  Guid:
+    Data1: 118979949
+    Data2: 1335756423
+    Data3: 1496711312
+    Data4: -222003851
+  Banks:
+  - {fileID: -6500153303326764153}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 1620910092855737950}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5224
 --- !u!114 &-4335365199943629765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -589,7 +611,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Atmosphere.bank
   Name: Atmosphere
   StudioPath: bank:/Atmosphere
-  lastModified: 638240198909442845
+  lastModified: 638251216101185761
   FileSizes: []
   Exists: 1
 --- !u!114 &-3579512723145964921
@@ -643,6 +665,34 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &-3239226905212008912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/RhythmDrum_8
+  m_EditorClassIdentifier: 
+  Path: event:/RhythmDrum_8
+  Guid:
+    Data1: 1398240600
+    Data2: 1339969748
+    Data3: -514937684
+    Data4: -265633962
+  Banks:
+  - {fileID: -6500153303326764153}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -5549546700076925309}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5224
 --- !u!114 &-3000122282362449262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -694,7 +744,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-2103192272333881904
+--- !u!114 &-1591625126367868135
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -704,23 +754,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/RhythmDrum_5
+  m_Name: event:/RhythmDrum_9
   m_EditorClassIdentifier: 
-  Path: event:/RhythmDrum_5
+  Path: event:/RhythmDrum_9
   Guid:
-    Data1: 1977840612
-    Data2: 1151307290
-    Data3: 974771874
-    Data4: -886228034
+    Data1: 1346873260
+    Data2: 1340092287
+    Data3: -474959195
+    Data4: 1035028623
   Banks:
   - {fileID: -6500153303326764153}
   IsStream: 0
   Is3D: 1
-  IsOneShot: 1
-  Parameters: []
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 8554712260200054400}
   MinDistance: 1
   MaxDistance: 20
-  Length: 4298
+  Length: 5224
 --- !u!114 &-1113371389015411000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -745,7 +796,7 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
---- !u!114 &-887774822632506243
+--- !u!114 &-736120864461620545
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -754,24 +805,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/RhythmDrum_10
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/RhythmDrum_3/Mode
   m_EditorClassIdentifier: 
-  Path: event:/RhythmDrum_10
-  Guid:
-    Data1: -2047820245
-    Data2: 1084161571
-    Data3: 883294368
-    Data4: -1057797590
-  Banks:
-  - {fileID: -6500153303326764153}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4306
+  Name: Mode
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1255039407
+    data2: 2964793031
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &-115373438998531269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -819,19 +867,10 @@ MonoBehaviour:
   EditorEvents:
   - {fileID: 7283497362103259185}
   - {fileID: -4508247282113619669}
-  - {fileID: -887774822632506243}
   - {fileID: 7325333917522093195}
   - {fileID: 1841183808584283226}
-  - {fileID: -7235267208711033323}
-  - {fileID: -8766105494875639261}
-  - {fileID: -5439437343726758773}
-  - {fileID: -8523903697217017242}
   - {fileID: -5344711648803134995}
-  - {fileID: -7021896938123648212}
   - {fileID: 7961257047714079726}
-  - {fileID: 6323536715159066465}
-  - {fileID: 2704580702740893643}
-  - {fileID: -2103192272333881904}
   - {fileID: -4334041644088672329}
   - {fileID: 1904841992792945617}
   - {fileID: 2886807884979166812}
@@ -857,6 +896,15 @@ MonoBehaviour:
   - {fileID: -2909646085119642762}
   - {fileID: 5257422744409582238}
   - {fileID: -7008628238771420365}
+  - {fileID: 6822748899530311221}
+  - {fileID: -3239226905212008912}
+  - {fileID: 2956628797867298618}
+  - {fileID: -4402713782170370457}
+  - {fileID: 5335243513253172204}
+  - {fileID: -1591625126367868135}
+  - {fileID: -7130116844535781768}
+  - {fileID: -7032354348177156305}
+  - {fileID: 4907237633637567296}
   EditorParameters:
   - {fileID: 6886616092639955599}
   - {fileID: -5518897251353471504}
@@ -865,8 +913,32 @@ MonoBehaviour:
   - {fileID: 7926843185186412368}
   StringsBanks:
   - {fileID: 4965414560237861951}
-  cacheTime: 638245854230411480
+  cacheTime: 638251292456286604
   cacheVersion: 131605
+--- !u!114 &313515931547408951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/RhythmDrum_5/Mode
+  m_EditorClassIdentifier: 
+  Name: Mode
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1255039407
+    data2: 2964793031
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &1148246024145944954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -895,7 +967,7 @@ MonoBehaviour:
   - {fileID: -5320118287519498172}
   MinDistance: 1
   MaxDistance: 20
-  Length: 11111
+  Length: 20000
 --- !u!114 &1221119665304403349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -938,7 +1010,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Characters.bank
   Name: Characters
   StudioPath: bank:/Characters
-  lastModified: 638245854230296248
+  lastModified: 638251216105181394
   FileSizes: []
   Exists: 1
 --- !u!114 &1505181566097677450
@@ -962,12 +1034,36 @@ MonoBehaviour:
   Banks:
   - {fileID: 1345928142796064524}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
   Length: 3291
+--- !u!114 &1620910092855737950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/RhythmDrum_7/Mode
+  m_EditorClassIdentifier: 
+  Name: Mode
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1255039407
+    data2: 2964793031
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &1629751363515970016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1088,36 +1184,9 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Items.bank
   Name: Items
   StudioPath: bank:/Items
-  lastModified: 638245854230401429
+  lastModified: 638251216106024352
   FileSizes: []
   Exists: 1
---- !u!114 &2704580702740893643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/RhythmDrum_3
-  m_EditorClassIdentifier: 
-  Path: event:/RhythmDrum_3
-  Guid:
-    Data1: 1473542326
-    Data2: 1225496908
-    Data3: -531618428
-    Data4: 580705907
-  Banks:
-  - {fileID: -6500153303326764153}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4317
 --- !u!114 &2886807884979166812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1145,6 +1214,58 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 32182
+--- !u!114 &2956628797867298618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/RhythmDrum_2
+  m_EditorClassIdentifier: 
+  Path: event:/RhythmDrum_2
+  Guid:
+    Data1: 1744298844
+    Data2: 1229301553
+    Data3: -333736037
+    Data4: -1357242552
+  Banks:
+  - {fileID: -6500153303326764153}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -5897318177675446165}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5224
+--- !u!114 &3053570598760059105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/RhythmDrum_6/Mode
+  m_EditorClassIdentifier: 
+  Name: Mode
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1255039407
+    data2: 2964793031
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &3435657843346568063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1173,7 +1294,7 @@ MonoBehaviour:
   - {fileID: 7110632977798779832}
   MinDistance: 1
   MaxDistance: 20
-  Length: 9120
+  Length: 20000
 --- !u!114 &4498186393119608869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1198,6 +1319,58 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &4621016984331035503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/RhythmDrum_1/Mode
+  m_EditorClassIdentifier: 
+  Name: Mode
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1255039407
+    data2: 2964793031
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &4907237633637567296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/RhythmDrum_5
+  m_EditorClassIdentifier: 
+  Path: event:/RhythmDrum_5
+  Guid:
+    Data1: 951659250
+    Data2: 1227467209
+    Data3: -1477748084
+    Data4: -2119289216
+  Banks:
+  - {fileID: -6500153303326764153}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 313515931547408951}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5224
 --- !u!114 &4965414560237861951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1213,7 +1386,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638245854230411480
+  lastModified: 638251243454913478
   FileSizes:
   - Name: 
     Value: 2800
@@ -1272,6 +1445,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 11111
+--- !u!114 &5335243513253172204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/RhythmDrum_4
+  m_EditorClassIdentifier: 
+  Path: event:/RhythmDrum_4
+  Guid:
+    Data1: 1889366414
+    Data2: 1328320627
+    Data3: -884305220
+    Data4: 207734867
+  Banks:
+  - {fileID: -6500153303326764153}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -6123144899272502423}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5224
 --- !u!114 &6068375171693459293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1300,7 +1501,7 @@ MonoBehaviour:
   - {fileID: -6636423251891939872}
   MinDistance: 1
   MaxDistance: 20
-  Length: 10497
+  Length: 20000
 --- !u!114 &6074711636186202782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1328,7 +1529,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 6055
---- !u!114 &6323536715159066465
+--- !u!114 &6205393244173411758
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1337,24 +1538,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/RhythmDrum_2
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/RhythmDrum_10/Mode
   m_EditorClassIdentifier: 
-  Path: event:/RhythmDrum_2
-  Guid:
-    Data1: -1134117711
-    Data2: 1271108796
-    Data3: -1568775038
-    Data4: 1594208373
-  Banks:
-  - {fileID: -6500153303326764153}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4304
+  Name: Mode
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1255039407
+    data2: 2964793031
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &6740973040372844508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1379,6 +1577,34 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &6822748899530311221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/RhythmDrum_6
+  m_EditorClassIdentifier: 
+  Path: event:/RhythmDrum_6
+  Guid:
+    Data1: 1047780688
+    Data2: 1177458822
+    Data3: -96702824
+    Data4: 821476077
+  Banks:
+  - {fileID: -6500153303326764153}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 3053570598760059105}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5224
 --- !u!114 &6886616092639955599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1431,7 +1657,7 @@ MonoBehaviour:
   - {fileID: -3000122282362449262}
   MinDistance: 1
   MaxDistance: 20
-  Length: 12183
+  Length: 20000
 --- !u!114 &7110632977798779832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1576,7 +1802,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638245234540827850
+  lastModified: 638251243454903281
   FileSizes: []
   Exists: 1
 --- !u!114 &7961257047714079726
@@ -1606,6 +1832,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4444
+--- !u!114 &8554712260200054400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/RhythmDrum_9/Mode
+  m_EditorClassIdentifier: 
+  Name: Mode
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1255039407
+    data2: 2964793031
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &8693798338005818441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1621,7 +1871,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Shape.bank
   Name: Shape
   StudioPath: bank:/Shape
-  lastModified: 638245234541181216
+  lastModified: 638251292456286604
   FileSizes: []
   Exists: 1
 --- !u!114 &8995844917150448218

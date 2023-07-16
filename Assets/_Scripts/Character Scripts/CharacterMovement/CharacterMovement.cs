@@ -2,12 +2,14 @@ using Dreamteck.Splines;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI; 
+using UnityEngine.UI;
+using FMODUnity;
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(SplineFollower))]
 public class CharacterMovement : MonoBehaviour
 {
-    public SplineFollower follower
+    public SplineFollower splineFollower
     {
         get
         {
@@ -112,50 +114,50 @@ public class CharacterMovement : MonoBehaviour
 
     private void GoBack()
     {
-        if (follower.direction == Spline.Direction.Forward)
-            follower.direction = Spline.Direction.Backward;
+        if (splineFollower.direction == Spline.Direction.Forward)
+            splineFollower.direction = Spline.Direction.Backward;
         else
-            follower.direction = Spline.Direction.Forward;
+            splineFollower.direction = Spline.Direction.Forward;
     }
 
     private void SwitchSpline(Node.Connection from, Node.Connection to, bool flipDirection)
     {
         //See how much units we have travelled past that Node in the last frame
-        float excessDistance = follower.spline.CalculateLength(follower.spline.GetPointPercent(from.pointIndex), follower.UnclipPercent(follower.result.percent));
+        float excessDistance = splineFollower.spline.CalculateLength(splineFollower.spline.GetPointPercent(from.pointIndex), splineFollower.UnclipPercent(splineFollower.result.percent));
         excessDistance = 0;
         //Set the spline to the follower
-        follower.spline = to.spline;
+        splineFollower.spline = to.spline;
         if (!to.spline.isClosed)
         {
-            follower.wrapMode = SplineFollower.Wrap.PingPong;
+            splineFollower.wrapMode = SplineFollower.Wrap.PingPong;
         }
         else
         {
-            follower.wrapMode = SplineFollower.Wrap.Loop;
+            splineFollower.wrapMode = SplineFollower.Wrap.Loop;
         }
-        follower.RebuildImmediate();
+        splineFollower.RebuildImmediate();
         //Get the location of the junction point in percent along the new spline
-        double startpercent = follower.ClipPercent(to.spline.GetPointPercent(to.pointIndex));
-        if (follower.direction == Spline.Direction.Forward)
+        double startpercent = splineFollower.ClipPercent(to.spline.GetPointPercent(to.pointIndex));
+        if (splineFollower.direction == Spline.Direction.Forward)
         {
             if (Vector3.Dot(from.spline.Evaluate(from.pointIndex).right, to.spline.Evaluate(to.pointIndex).forward) < 0f)
             {
                 if (!flipDirection)
                 {
-                    if (follower.direction == Spline.Direction.Forward)
-                        follower.direction = Spline.Direction.Backward;
+                    if (splineFollower.direction == Spline.Direction.Forward)
+                        splineFollower.direction = Spline.Direction.Backward;
                     else
-                        follower.direction = Spline.Direction.Forward;
+                        splineFollower.direction = Spline.Direction.Forward;
                 }
             }
             else
             {
                 if (flipDirection)
                 {
-                    if (follower.direction == Spline.Direction.Forward)
-                        follower.direction = Spline.Direction.Backward;
+                    if (splineFollower.direction == Spline.Direction.Forward)
+                        splineFollower.direction = Spline.Direction.Backward;
                     else
-                        follower.direction = Spline.Direction.Forward;
+                        splineFollower.direction = Spline.Direction.Forward;
                 }
             }
         }
@@ -165,26 +167,26 @@ public class CharacterMovement : MonoBehaviour
             {
                 if (!flipDirection)
                 {
-                    if (follower.direction == Spline.Direction.Forward)
-                        follower.direction = Spline.Direction.Backward;
+                    if (splineFollower.direction == Spline.Direction.Forward)
+                        splineFollower.direction = Spline.Direction.Backward;
                     else
-                        follower.direction = Spline.Direction.Forward;
+                        splineFollower.direction = Spline.Direction.Forward;
                 }
             }
             else
             {
                 if (flipDirection)
                 {
-                    if (follower.direction == Spline.Direction.Forward)
-                        follower.direction = Spline.Direction.Backward;
+                    if (splineFollower.direction == Spline.Direction.Forward)
+                        splineFollower.direction = Spline.Direction.Backward;
                     else
-                        follower.direction = Spline.Direction.Forward;
+                        splineFollower.direction = Spline.Direction.Forward;
                 }
             }
         }
 
         //Position the follower at the new location and travel excessDistance along the new spline
-        follower.SetPercent(follower.Travel(startpercent, excessDistance, follower.direction));
+        splineFollower.SetPercent(splineFollower.Travel(startpercent, excessDistance, splineFollower.direction));
     }
 
     private Vector3 intersectionPos;
@@ -192,11 +194,13 @@ public class CharacterMovement : MonoBehaviour
     public void MoveOnIntersection(int direction)
     {
         if (!inInterSection) return;
-        int current = intersection.GetCurrentConnection(follower);
+        int current = intersection.GetCurrentConnection(splineFollower);
 
         SwitchSpline(intersection.GetConnectionByIndex(current), intersection.GetNextDirection(current), direction > 0);
 
-        animator.SetTrigger("MoveOnIntersection"); 
+        animator.SetTrigger("MoveOnIntersection");
+        AudioAdder audioAdder = splineFollower.spline.GetComponentInParent<AudioAdder>();
+        if (audioAdder != null) { AudioManager.instance.AddEventEmitter(AudioMode.characterMode, audioAdder.audioLayer, audioAdder.eventEmitter, null); }
     }
 
     private Intersection intersection;

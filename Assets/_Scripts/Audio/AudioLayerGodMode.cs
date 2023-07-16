@@ -31,7 +31,7 @@ public class AudioLayerGodMode : AudioLayer
     //PUBLIC STATIC METHODS
 
     //MONOBEHAVIOUR METHODS
-    private void Start()
+    private void Awake()
     {
         AudioMode.godMode.audioLayers.Add(this.layerType, this);
     }

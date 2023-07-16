@@ -3741,7 +3741,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5072929556005861679}
   m_LocalRotation: {x: -0.6797373, y: -0.016469153, z: 0.27060482, w: -0.68151236}
-  m_LocalPosition: {x: -0.1, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.36, y: 1.36, z: 1.36}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -5107,14 +5107,14 @@ MonoBehaviour:
     useClippedPercent: 0
     keys: []
   _clipFromSample:
-    position: {x: -1.0083377, y: -6.1640134, z: -2.5789456}
+    position: {x: -1.0027388, y: -6.106295, z: -2.4974766}
     up: {x: -0.10985559, y: 0.68126446, z: -0.25390506}
     forward: {x: -0.77136225, y: 0.011104835, z: 0.63629967}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
   _clipToSample:
-    position: {x: -1.0083377, y: -6.1640134, z: -2.5789456}
+    position: {x: -1.0027388, y: -6.106295, z: -2.4974766}
     up: {x: -0.109855555, y: 0.68126446, z: -0.2539051}
     forward: {x: -0.77136225, y: 0.011104835, z: 0.63629967}
     color: {r: 1, g: 1, b: 1, a: 1}

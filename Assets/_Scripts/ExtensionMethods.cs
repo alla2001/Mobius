@@ -103,4 +103,19 @@ public static class ExtensionMethods
         );
         return vector3; 
     }
+
+    /*
+    public static T GetComponentInParent<T>(this Transform transform)
+    {
+        Transform localT = transform;
+        T t; 
+        while (localT != null) 
+        {
+            t = localT.GetComponent<T>();
+            if (t != null) { return t; }
+            localT = localT.parent; 
+        }
+        return default(T); 
+    }
+    */
 }
