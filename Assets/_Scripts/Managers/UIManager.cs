@@ -145,7 +145,7 @@ public class UIManager : MonoBehaviour
 
     public void ReLoad()
     {
-        GameManager.Instance. LoadNewGame();
+        GameManager.Instance.LoadNewGame();
     }
  
     public void SwitchExplanationPanelActive()

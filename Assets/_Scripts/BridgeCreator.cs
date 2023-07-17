@@ -60,7 +60,7 @@ public class BridgeCreator : MonoBehaviour
 
     Vector3 pointNoraml1;
     Vector3 pointNoraml2;
-    FMODUnity.StudioEventEmitter emitter;
+    StudioEventEmitter emitter;
     // Update is called once per frame
     private void Update()
     {
@@ -201,6 +201,7 @@ public class BridgeCreator : MonoBehaviour
                 
                 secondSpline = hit.collider.GetComponent<SplineComputer>();
                 if (secondSpline == null) return;
+                /*
                 if (firstSpline == secondSpline) 
                 {
                     emitter.Stop();
@@ -209,6 +210,7 @@ public class BridgeCreator : MonoBehaviour
 
                     return;
                 }
+                */
                 secondBridgePoint = Instantiate(nodePrefab).GetComponent<Node>();
 
                 index = secondSpline.PercentToPointIndex(secondSpline.Project(hit.point).percent);
@@ -369,6 +371,7 @@ public class BridgeCreator : MonoBehaviour
         splineBridge?.SetPointNormal(1,pointNoraml2);
         
         firstBridgePoint = null; secondBridgePoint = null;
+        emitter.Stop(); 
         splineBridge.onRebuild -= OnReBuild;
         splineBridge.GetComponent<SplineMesh>().RebuildImmediate();
         lineRenderer.positionCount= 0;

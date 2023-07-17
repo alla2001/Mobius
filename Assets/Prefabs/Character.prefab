@@ -19532,7 +19532,7 @@ MonoBehaviour:
   _follow: 1
   _startPosition: 0
   preserveUniformSpeedWithOffset: 0
-  _followSpeed: 2
+  _followSpeed: 3
   _followDuration: 1
   _speedModifier:
     blend: 1
@@ -19591,8 +19591,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBeforeDeath: 180
-  timeGainedFromItem: 30
-  timetoAddOnReward: 15
+  timeGainedFromItem: 25
+  timetoAddOnReward: 25
   warningSoundThreshold: 30
   energyPerStone: 15
   energyStones:

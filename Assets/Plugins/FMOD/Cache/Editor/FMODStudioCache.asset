@@ -207,7 +207,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Bridge.bank
   Name: Bridge
   StudioPath: bank:/Bridge
-  lastModified: 638251269169760508
+  lastModified: 638251437886515567
   FileSizes: []
   Exists: 1
 --- !u!114 &-6482510449710982874
@@ -913,7 +913,7 @@ MonoBehaviour:
   - {fileID: 7926843185186412368}
   StringsBanks:
   - {fileID: 4965414560237861951}
-  cacheTime: 638251292456286604
+  cacheTime: 638251437886718513
   cacheVersion: 131605
 --- !u!114 &313515931547408951
 MonoBehaviour:
@@ -1010,7 +1010,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Characters.bank
   Name: Characters
   StudioPath: bank:/Characters
-  lastModified: 638251216105181394
+  lastModified: 638251437886578334
   FileSizes: []
   Exists: 1
 --- !u!114 &1505181566097677450
@@ -1386,7 +1386,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638251243454913478
+  lastModified: 638251437886588341
   FileSizes:
   - Name: 
     Value: 2800
@@ -1871,7 +1871,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod_Banks/Desktop/Shape.bank
   Name: Shape
   StudioPath: bank:/Shape
-  lastModified: 638251292456286604
+  lastModified: 638251437886718513
   FileSizes: []
   Exists: 1
 --- !u!114 &8995844917150448218

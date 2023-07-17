@@ -26,12 +26,9 @@ public class ItemSpawner : MonoBehaviour
         shapes = FindObjectsByType<Shape>(FindObjectsSortMode.None).ToList();
         yield return new WaitForSeconds(0.2f);
     }
+
     public void SpawnItems()
     {
-        foreach (var item in createdItems)
-        {
-            Destroy(item);
-        }
         createdItems.Clear();
         print("Trying Spawn");
         for (int i = 0; i < 100; i++)
@@ -45,6 +42,13 @@ public class ItemSpawner : MonoBehaviour
         spawnedItems = 0;
     }
 
+    public void DestroyItems()
+    {
+        foreach (var item in createdItems)
+        {
+            Destroy(item);
+        }
+    }
 
     public void SpawnInShape(Shape shape)
     {
@@ -65,11 +69,7 @@ public class ItemSpawner : MonoBehaviour
             float chanceReciprocal = 5;
             foreach(Item i in FindObjectsOfType<Item>())
             {
-                chanceReciprocal += 2; 
-            }
-            foreach(CharacterInfo ch in CharacterInfo.characters)
-            {
-                chanceReciprocal += 2; 
+                chanceReciprocal += 3; 
             }
             int chance = Random.Range(0, (int) chanceReciprocal);
 

@@ -16,6 +16,10 @@ public class AudioAdder : MonoBehaviour
         if (eventEmitter == null)
         {
             eventEmitter = GetComponent<StudioEventEmitter>();
+            if (eventEmitter == null)
+            {
+                eventEmitter = gameObject.AddComponent<StudioEventEmitter>();
+            }
         }
         if (eventEmitter.EventReference.IsNull)
         {

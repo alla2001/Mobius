@@ -66,7 +66,7 @@ public class CharacterInfo : MonoBehaviour
             splineFollower.followSpeed = 0;
             emitter.Stop();
             AudioManager.instance.PlayOneShot(FMODEvents.instance.characterDeath);
-            if (tag == "Player")
+            if (GameManager.Instance.currentControlledCharacter == this)
             {
                 GameManager.Instance.ChangeState(GameState.GodView); 
             }
@@ -94,7 +94,7 @@ public class CharacterInfo : MonoBehaviour
     private void Died()
     {
         characters.Remove(this); 
-        Destroy(gameObject, timeBeforeDespawn);
+        //Destroy(gameObject, timeBeforeDespawn);
     }
 
     public void updateEnergyStones()

@@ -1776,6 +1776,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7204041564905564176}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &3803373654112788918
 GameObject:
   m_ObjectHideFlags: 0
@@ -10877,8 +10889,14 @@ MonoBehaviour:
       m_Calls: []
   allCharacters: []
   startingPositionPrefabs:
+  - {fileID: 1062821745374700905, guid: df26872aa9c54d84b907e3c639070551, type: 3}
+  - {fileID: 4209622771712086588, guid: d1a63c608688f5a4794a91639c6b61bd, type: 3}
+  - {fileID: 8673310568142989975, guid: 416c688bc88e90f4e978677f9ff7bca8, type: 3}
+  - {fileID: 6512014290435505460, guid: fa41ef60a646c8940829c03963d2b997, type: 3}
   - {fileID: 3642999204307495865, guid: 6c121af6edfb61b4f86dba32c6b6780d, type: 3}
   - {fileID: 3564889095456715170, guid: 181743312639d59478ce553101d2878b, type: 3}
+  - {fileID: 6047979799371121038, guid: bf21eaf43e68e7845aa0373b1ae4a0f0, type: 3}
+  - {fileID: 4209622771712086588, guid: e3334b2701defb647aaebeb3936d7615, type: 3}
   allWalls: []
   averageCenterPointPosition: {x: 0, y: 0, z: 0}
   placeCharacterRewardButton: {fileID: 8906884579140339878}
@@ -10891,7 +10909,6 @@ MonoBehaviour:
   - 0.2
   - 0.5
   - 1
-  mouseCursor: {fileID: 2800000, guid: dd8d80f6df2eaa447b3cd1d23d081089, type: 3}
   blackHolePrefab: {fileID: 0}
   lerpSpeed: 0
   maxDistance: 0
@@ -10925,7 +10942,7 @@ MonoBehaviour:
   firstBridgePoint: {fileID: 0}
   secondBridgePoint: {fileID: 0}
   firstSpline: {fileID: 0}
-  energyToAdd: 4
+  energyToAdd: 6
   Bridgeparts:
   - {fileID: 919132149155446097, guid: 9458a4b7ccbf23b4ea3d50dc7cf75f1b, type: 3}
   - {fileID: 919132149155446097, guid: 3f47e03713ede66458cd9cf7cebc337d, type: 3}
@@ -11449,7 +11466,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2922851804595998678
 RectTransform:
   m_ObjectHideFlags: 0
