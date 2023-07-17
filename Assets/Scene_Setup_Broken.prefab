@@ -5766,12 +5766,8 @@ MonoBehaviour:
   eventEmitters: []
   isActive: 0
   toPlayEventEmitters: []
-  fadeLowDuration: 1
-  volumeDecreaseArray:
-  - 1
-  - 0.5
-  - 0.25
-  - 0
+  fadeLowDuration: 0.2
+  volumeDecreaseArray: []
 --- !u!114 &7194961547054157188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5788,12 +5784,8 @@ MonoBehaviour:
   eventEmitters: []
   isActive: 0
   toPlayEventEmitters: []
-  fadeLowDuration: 1
-  volumeDecreaseArray:
-  - 1
-  - 0.5
-  - 0.25
-  - 0
+  fadeLowDuration: 0.2
+  volumeDecreaseArray: []
 --- !u!1 &7194961547085044625
 GameObject:
   m_ObjectHideFlags: 0

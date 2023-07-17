@@ -1,6 +1,7 @@
 using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 //putting in new elements at the end of the list; 
@@ -11,9 +12,9 @@ public class AudioLayerCharacterMode : AudioLayer
     //PUBLIC VARIABLES
     public List<StudioEventEmitter> toPlayEventEmitters; 
     [SerializeField]
-    private float fadeLowDuration = 1.0f; 
+    private float fadeLowDuration = 1.0f;
     [SerializeField]
-    private float[] volumeDecreaseArray = new float[4] { 1.0f, 0.5f, 0.25f, 0.0f };
+    private float[] volumeDecreaseArray = new float[0] { }; 
 
     //PRIVATE VARIABLES
     private float volume = 1.0f;
@@ -77,14 +78,17 @@ public class AudioLayerCharacterMode : AudioLayer
 
     public void DecreaseVolumes()
     {
-        if (eventEmitters.Count == 5)
+        if (eventEmitters.Count >= volumeDecreaseArray.Length+1)
         {
-            eventEmitters.RemoveAt(4);  
+            eventEmitters.RemoveAt(eventEmitters.Count - 1);  
         }
         for (int i = 0; i < eventEmitters.Count; i++)
         {
+            eventEmitters[i].Stop(); 
+            /*
             if (c_decreaseVolumes[i] != null) { StopCoroutine(c_decreaseVolumes[i]); }
             c_decreaseVolumes[i] = StartCoroutine(C_DecreaseVolume(eventEmitters[i], volumeDecreaseArray[i])); 
+            */
         }
     }
 

@@ -77,7 +77,8 @@ public class BridgeCreator : MonoBehaviour
             {
                 Destroy(secondBridgePoint.gameObject);
             }
-       
+            emitter.Stop(); 
+
             return;
 
         }
